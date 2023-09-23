@@ -10,8 +10,8 @@ config_version=5
 
 [application]
 
-config/name="TinyCar"
-run/main_scene="res://main.tscn"
+config/name="The Last Mechanic"
+run/main_scene="res://source/main.tscn"
 config/features=PackedStringArray("4.1", "Forward Plus")
 boot_splash/show_image=false
 boot_splash/fullsize=false
