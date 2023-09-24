@@ -9,24 +9,23 @@
 script/source = "
 extends CharacterBody2D
 
-var speed = 1000
-var ang_speed = PI
+var movement_speed = 1000
+var ang_speed = 0.06
+
+var hp = 100
 
 var direction = 0
-
-func _init():
-	print('halo')
 	
 func _process(delta):
 	
 	direction = 0
-	var self_velocity = Vector2.ZERO
+	velocity = Vector2.ZERO
 	if Input.is_action_pressed(\"ui_up\"):
-		self_velocity = Vector2.UP.rotated(rotation) * speed
+		velocity = Vector2.UP.rotated(rotation) * movement_speed
 		dir()
 		
 	if Input.is_action_pressed(\"ui_down\"):
-		self_velocity = Vector2.DOWN.rotated(rotation) * speed
+		velocity = Vector2.DOWN.rotated(rotation) * movement_speed
 		dir()
 		
 	if Input.is_action_just_pressed(\"ui_up\") or Input.is_action_just_pressed(\"ui_down\"):
@@ -35,8 +34,8 @@ func _process(delta):
 	if Input.is_action_just_released(\"ui_up\") or Input.is_action_just_pressed(\"ui_down\"):
 		$AudioStreamPlayer.stop()
 		
-	rotation += ang_speed * direction * delta
-	position += self_velocity * delta
+	rotation += ang_speed * direction # * delta
+	#position += velocity # * delta
 	
 func _physics_process(delta):
 	move_and_slide()
@@ -56,7 +55,7 @@ radius = 24.0
 height = 96.0
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
-safe_margin = 0.001
+safe_margin = 0.1
 script = SubResource("GDScript_wo5ts")
 
 [node name="LightYellow" type="Sprite2D" parent="."]

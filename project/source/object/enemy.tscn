@@ -1,12 +1,13 @@
 [gd_scene load_steps=4 format=3 uid="uid://o0wln7a0f0t3"]
 
-[ext_resource type="Texture2D" uid="uid://dehg38xt8tidn" path="res://resource/image/car.png" id="1_lmhyc"]
+[ext_resource type="Texture2D" uid="uid://dd5qoikkws2ep" path="res://resource/image/enemy.png" id="1_o1pv4"]
 
 [sub_resource type="GDScript" id="GDScript_3nnkj"]
 script/source = "
 extends CharacterBody2D
 
-var movement_speed = 100.0
+@export var movement_speed = 100.0
+@export var hp = 10
 
 @onready var player = get_tree().get_first_node_in_group('player')
 
@@ -18,15 +19,16 @@ func _physics_process(_delta):
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3ay8f"]
 radius = 24.0
-height = 96.0
+height = 72.0
 
 [node name="Enemy" type="CharacterBody2D"]
+safe_margin = 0.1
 script = SubResource("GDScript_3nnkj")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
 scale = Vector2(6, 6)
-texture = ExtResource("1_lmhyc")
+texture = ExtResource("1_o1pv4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_3ay8f")

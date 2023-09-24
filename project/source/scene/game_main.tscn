@@ -127,6 +127,13 @@ stream = ExtResource("11_4jo27")
 autoplay = true
 
 [node name="Enemy" parent="." instance=ExtResource("11_4uxub")]
+position = Vector2(284, 189)
+
+[node name="Enemy2" parent="." instance=ExtResource("11_4uxub")]
+position = Vector2(959, 368)
+
+[node name="Enemy3" parent="." instance=ExtResource("11_4uxub")]
+position = Vector2(397, 604)
 
 [node name="Coin" parent="." instance=ExtResource("3_vsshu")]
 position = Vector2(620, -494)
