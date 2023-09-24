@@ -16,7 +16,7 @@ config/features=PackedStringArray("4.1", "Forward Plus")
 boot_splash/show_image=false
 boot_splash/fullsize=false
 boot_splash/use_filter=false
-config/icon="res://cone_straight.png"
+config/icon="res://resource/icon/icon_x1000.png"
 config/windows_native_icon="res://icon.ico"
 
 [display]

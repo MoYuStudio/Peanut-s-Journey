@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://bsln5r51b15m3"]
+[gd_scene load_steps=15 format=3 uid="uid://bsln5r51b15m3"]
 
 [ext_resource type="Texture2D" uid="uid://ch46ih3bj2452" path="res://resource/tile/grass_1.png" id="1_d2riw"]
 [ext_resource type="Texture2D" uid="uid://cgpyifad4bcyu" path="res://resource/tile/grass_2.png" id="2_k0ccv"]
@@ -8,10 +8,9 @@
 [ext_resource type="Texture2D" uid="uid://bgi0etyll61m5" path="res://resource/ui/tile_0440.png" id="5_64o87"]
 [ext_resource type="Texture2D" uid="uid://cwlwqdguqsr2o" path="res://resource/ui/tile_0441.png" id="6_edpqx"]
 [ext_resource type="Texture2D" uid="uid://d3esgqippy8aa" path="res://resource/ui/tile_0438.png" id="7_lhoby"]
-[ext_resource type="Texture2D" uid="uid://6ndddp5duhfh" path="res://resource/image/light_yellow.png" id="8_h2qpf"]
-[ext_resource type="Texture2D" uid="uid://dehg38xt8tidn" path="res://resource/image/car.png" id="9_orcfo"]
-[ext_resource type="AudioStream" uid="uid://c80tpxgcpbvjm" path="res://resource/sound/TRANSPORTATION_SPORTS_CAR_Porsche_Boxster_Accelerate_Interior.mp3" id="10_p5iug"]
+[ext_resource type="PackedScene" uid="uid://c1tw37pkcvsy3" path="res://source/object/player.tscn" id="8_msja2"]
 [ext_resource type="AudioStream" uid="uid://c1prlyy7syjqo" path="res://resource/music/Just Dance - Patrick Patrikios.mp3" id="11_4jo27"]
+[ext_resource type="PackedScene" uid="uid://o0wln7a0f0t3" path="res://source/object/enemy.tscn" id="11_4uxub"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8yn4d"]
 texture = ExtResource("1_d2riw")
@@ -30,61 +29,10 @@ physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_8yn4d")
 sources/1 = SubResource("TileSetAtlasSource_q15mw")
 
-[sub_resource type="GDScript" id="GDScript_wo5ts"]
-script/source = "
-extends CharacterBody2D
-
-var speed = 1000
-var ang_speed = PI
-
-var direction = 0
-
-func _init():
-	print('halo')
-	
-func _process(delta):
-	
-	direction = 0
-	var self_velocity = Vector2.ZERO
-	if Input.is_action_pressed(\"ui_up\"):
-		self_velocity = Vector2.UP.rotated(rotation) * speed
-		dir()
-		
-	if Input.is_action_pressed(\"ui_down\"):
-		self_velocity = Vector2.DOWN.rotated(rotation) * speed
-		dir()
-		
-	if Input.is_action_just_pressed(\"ui_up\") or Input.is_action_just_pressed(\"ui_down\"):
-		$AudioStreamPlayer.play()
-		
-	if Input.is_action_just_released(\"ui_up\") or Input.is_action_just_pressed(\"ui_down\"):
-		$AudioStreamPlayer.stop()
-		
-	rotation += ang_speed * direction * delta
-	position += self_velocity * delta
-	
-func _physics_process(delta):
-	move_and_slide()
-
-func dir():
-	direction = 0
-	if Input.is_action_pressed(\"ui_left\"):
-		direction = -1
-	if Input.is_action_pressed(\"ui_right\"):
-		direction = 1
-		
-	
-"
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2lfdc"]
-radius = 31.0
-height = 108.0
-
 [node name="Main" type="Node"]
 
 [node name="TileMap" type="TileMap" parent="."]
 texture_filter = 1
-position = Vector2(0, -1)
 scale = Vector2(6, 6)
 tile_set = SubResource("TileSet_tge8r")
 format = 2
@@ -174,50 +122,14 @@ position = Vector2(631, 92)
 scale = Vector2(9, 9)
 texture = ExtResource("7_lhoby")
 
-[node name="Car" type="CharacterBody2D" parent="."]
-position = Vector2(640, 360)
-safe_margin = 0.001
-script = SubResource("GDScript_wo5ts")
-
-[node name="LightYellow" type="Sprite2D" parent="Car"]
-position = Vector2(-16, -159)
-texture = ExtResource("8_h2qpf")
-
-[node name="LightYellow2" type="Sprite2D" parent="Car"]
-position = Vector2(17, -159)
-texture = ExtResource("8_h2qpf")
-
-[node name="Sprite2D" type="Sprite2D" parent="Car"]
-texture_filter = 1
-scale = Vector2(6, 6)
-texture = ExtResource("9_orcfo")
-
-[node name="Label" type="Label" parent="Car"]
-anchors_preset = -1
-anchor_right = 0.4375
-anchor_bottom = 0.375
-offset_left = -85.0
-offset_top = 88.0
-offset_right = 91.0
-offset_bottom = 179.0
-theme_override_fonts/font = ExtResource("3_q5r0c")
-theme_override_font_sizes/font_size = 64
-text = "TEST CAR"
-metadata/_edit_use_anchors_ = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Car"]
-shape = SubResource("CapsuleShape2D_2lfdc")
-
-[node name="Camera2D" type="Camera2D" parent="Car"]
-zoom = Vector2(0.6, 0.6)
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Car"]
-stream = ExtResource("10_p5iug")
-volume_db = 10.0
-
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("11_4jo27")
 autoplay = true
 
+[node name="Enemy" parent="." instance=ExtResource("11_4uxub")]
+
 [node name="Coin" parent="." instance=ExtResource("3_vsshu")]
 position = Vector2(620, -494)
+
+[node name="Player" parent="." instance=ExtResource("8_msja2")]
+position = Vector2(629, 393)
