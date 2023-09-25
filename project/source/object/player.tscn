@@ -72,6 +72,7 @@ safe_margin = 0.1
 script = SubResource("GDScript_wo5ts")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
+visible = false
 position = Vector2(0, -166)
 texture = ExtResource("1_fcmov")
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://o0wln7a0f0t3"]
+[gd_scene load_steps=8 format=3 uid="uid://o0wln7a0f0t3"]
 
 [ext_resource type="Texture2D" uid="uid://6onhkfixeo84" path="res://resource/ships/ship2.png" id="1_jug03"]
 [ext_resource type="PackedScene" uid="uid://5ygp3ic8vnl6" path="res://source/object/hurtbox.tscn" id="2_1e2o4"]
@@ -26,9 +26,6 @@ func _on_hurt_box_hurt(damage):
 radius = 24.0
 height = 96.0
 
-[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_6svne"]
-polygon = PackedVector2Array(-12, -36, 12, -36, 12, -18, 24, -18, 24, 18, 12, 18, 12, 36, -12, 36, -12, 18, -24, 18, -24, -18, -12, -18)
-
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_e3hjc"]
 radius = 25.0
 height = 98.0
@@ -48,9 +45,6 @@ texture = ExtResource("1_jug03")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_3ay8f")
-
-[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
-occluder = SubResource("OccluderPolygon2D_6svne")
 
 [node name="HurtBox" parent="." instance=ExtResource("2_1e2o4")]
 position = Vector2(42.3167, -84.8457)
