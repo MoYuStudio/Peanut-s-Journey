@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cyhq6j03us6mk"
+path="res://.godot/imported/Galactic Damages - Jingle Punks.mp3-7e71bcb5475a6fd46d6f4da18aa02b3e.mp3str"
+
+[deps]
+
+source_file="res://resource/music/Galactic Damages - Jingle Punks.mp3"
+dest_files=["res://.godot/imported/Galactic Damages - Jingle Punks.mp3-7e71bcb5475a6fd46d6f4da18aa02b3e.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

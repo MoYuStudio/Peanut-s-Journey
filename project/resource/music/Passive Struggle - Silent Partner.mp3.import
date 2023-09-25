@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bobas4r6buqu3"
+path="res://.godot/imported/Passive Struggle - Silent Partner.mp3-bd3d8fa19c8cdb371b930f729438412f.mp3str"
+
+[deps]
+
+source_file="res://resource/music/Passive Struggle - Silent Partner.mp3"
+dest_files=["res://.godot/imported/Passive Struggle - Silent Partner.mp3-bd3d8fa19c8cdb371b930f729438412f.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

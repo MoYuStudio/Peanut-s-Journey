@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dedn7dukyretx"
+path="res://.godot/imported/Run - Max Surla_Media Right Productions.mp3-7577ce1d4b2d187f922f4c3ded63d6f6.mp3str"
+
+[deps]
+
+source_file="res://resource/music/Run - Max Surla_Media Right Productions.mp3"
+dest_files=["res://.godot/imported/Run - Max Surla_Media Right Productions.mp3-7577ce1d4b2d187f922f4c3ded63d6f6.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

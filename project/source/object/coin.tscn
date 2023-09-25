@@ -13,7 +13,6 @@ func _ready():
 func _process(delta):
 	pass
 
-
 func _on_body_entered(body):
 	$AudioStreamPlayer.play()
 	hide()
@@ -27,6 +26,7 @@ radius = 5.00278
 
 [node name="Coin" type="Area2D"]
 scale = Vector2(6, 6)
+collision_layer = 8
 script = SubResource("GDScript_2w41h")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -38,6 +38,5 @@ shape = SubResource("CircleShape2D_elho4")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_h5nwo")
-volume_db = 10.0
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

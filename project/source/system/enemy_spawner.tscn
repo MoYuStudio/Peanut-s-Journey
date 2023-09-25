@@ -1,0 +1,25 @@
+[gd_scene load_steps=2 format=3 uid="uid://ckujg6i1b6ujw"]
+
+[sub_resource type="GDScript" id="GDScript_pl02q"]
+script/source = "
+extends Node2D
+
+@export var spawns = []
+
+@onready var enemy = preload('res://source/object/enemy.tscn')
+
+func _process(delta):
+	var enemy_instance = enemy.instantiate()
+	enemy_instance.globel_position = Vector2(0,0)
+	add_child(enemy_instance)
+
+func _on_spawn_timer_timeout():
+	$SpawnTimer.start()
+"
+
+[node name="EnemySpawner" type="Node2D"]
+script = SubResource("GDScript_pl02q")
+
+[node name="SpawnTimer" type="Timer" parent="."]
+
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]

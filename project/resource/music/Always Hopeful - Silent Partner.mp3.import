@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dbmskiya572dy"
+path="res://.godot/imported/Always Hopeful - Silent Partner.mp3-b7527c170f49a98bf54909c74d434d38.mp3str"
+
+[deps]
+
+source_file="res://resource/music/Always Hopeful - Silent Partner.mp3"
+dest_files=["res://.godot/imported/Always Hopeful - Silent Partner.mp3-b7527c170f49a98bf54909c74d434d38.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

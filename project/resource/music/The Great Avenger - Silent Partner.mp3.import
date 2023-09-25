@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://diad7emq2tbbv"
+path="res://.godot/imported/The Great Avenger - Silent Partner.mp3-10b23a72e607b4dd035043af9ac99260.mp3str"
+
+[deps]
+
+source_file="res://resource/music/The Great Avenger - Silent Partner.mp3"
+dest_files=["res://.godot/imported/The Great Avenger - Silent Partner.mp3-10b23a72e607b4dd035043af9ac99260.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cv8uqfyc7iexl"
+path="res://.godot/imported/Higher - Silent Partner.mp3-b9002aba6fb4e46d96ef752f04e9a446.mp3str"
+
+[deps]
+
+source_file="res://resource/music/Higher - Silent Partner.mp3"
+dest_files=["res://.godot/imported/Higher - Silent Partner.mp3-b9002aba6fb4e46d96ef752f04e9a446.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

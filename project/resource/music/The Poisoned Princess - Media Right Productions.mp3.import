@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://btfgjlj8ct3sr"
+path="res://.godot/imported/The Poisoned Princess - Media Right Productions.mp3-7c22946add5bdef7e49a5ea3c8e45d2a.mp3str"
+
+[deps]
+
+source_file="res://resource/music/The Poisoned Princess - Media Right Productions.mp3"
+dest_files=["res://.godot/imported/The Poisoned Princess - Media Right Productions.mp3-7c22946add5bdef7e49a5ea3c8e45d2a.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

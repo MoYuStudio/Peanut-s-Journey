@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://beprjnt84stvg"
+path="res://.godot/imported/North - Silent Partner.mp3-4857bd2e0086dbe69ea78e20e5ae9277.mp3str"
+
+[deps]
+
+source_file="res://resource/music/North - Silent Partner.mp3"
+dest_files=["res://.godot/imported/North - Silent Partner.mp3-4857bd2e0086dbe69ea78e20e5ae9277.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

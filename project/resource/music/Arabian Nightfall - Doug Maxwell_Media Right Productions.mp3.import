@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://doym31mns6qmb"
+path="res://.godot/imported/Arabian Nightfall - Doug Maxwell_Media Right Productions.mp3-1b35811fa7991c9f9d709525883bb835.mp3str"
+
+[deps]
+
+source_file="res://resource/music/Arabian Nightfall - Doug Maxwell_Media Right Productions.mp3"
+dest_files=["res://.godot/imported/Arabian Nightfall - Doug Maxwell_Media Right Productions.mp3-1b35811fa7991c9f9d709525883bb835.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

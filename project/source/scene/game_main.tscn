@@ -1,7 +1,6 @@
-[gd_scene load_steps=15 format=3 uid="uid://bsln5r51b15m3"]
+[gd_scene load_steps=14 format=3 uid="uid://bsln5r51b15m3"]
 
-[ext_resource type="Texture2D" uid="uid://ch46ih3bj2452" path="res://resource/tile/grass_1.png" id="1_d2riw"]
-[ext_resource type="Texture2D" uid="uid://cgpyifad4bcyu" path="res://resource/tile/grass_2.png" id="2_k0ccv"]
+[ext_resource type="Texture2D" uid="uid://cglsyatgg5an" path="res://resource/tile/water1.png" id="1_n34p7"]
 [ext_resource type="FontFile" uid="uid://dx53pdhxhyn2p" path="res://resource/font/kenney_pixel.ttf" id="3_q5r0c"]
 [ext_resource type="PackedScene" uid="uid://cuo2ugjcdhtjc" path="res://source/object/coin.tscn" id="3_vsshu"]
 [ext_resource type="Texture2D" uid="uid://bfimofqhtti0o" path="res://resource/ui/tile_0439.png" id="4_wohpv"]
@@ -9,25 +8,19 @@
 [ext_resource type="Texture2D" uid="uid://cwlwqdguqsr2o" path="res://resource/ui/tile_0441.png" id="6_edpqx"]
 [ext_resource type="Texture2D" uid="uid://d3esgqippy8aa" path="res://resource/ui/tile_0438.png" id="7_lhoby"]
 [ext_resource type="PackedScene" uid="uid://c1tw37pkcvsy3" path="res://source/object/player.tscn" id="8_msja2"]
-[ext_resource type="AudioStream" uid="uid://c1prlyy7syjqo" path="res://resource/music/Just Dance - Patrick Patrikios.mp3" id="11_4jo27"]
+[ext_resource type="AudioStream" uid="uid://dedn7dukyretx" path="res://resource/music/Run - Max Surla_Media Right Productions.mp3" id="8_u7m0s"]
 [ext_resource type="PackedScene" uid="uid://o0wln7a0f0t3" path="res://source/object/enemy.tscn" id="11_4uxub"]
+[ext_resource type="PackedScene" uid="uid://djxky8bdiaorh" path="res://source/object/medicine.tscn" id="11_seraj"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8yn4d"]
-texture = ExtResource("1_d2riw")
-0:0/0 = 0
-0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-0:0/0/physics_layer_0/angular_velocity = 0.0
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_q15mw"]
-texture = ExtResource("2_k0ccv")
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_cdihq"]
+texture = ExtResource("1_n34p7")
 0:0/0 = 0
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:0/0/physics_layer_0/angular_velocity = 0.0
 
 [sub_resource type="TileSet" id="TileSet_tge8r"]
 physics_layer_0/collision_layer = 1
-sources/0 = SubResource("TileSetAtlasSource_8yn4d")
-sources/1 = SubResource("TileSetAtlasSource_q15mw")
+sources/0 = SubResource("TileSetAtlasSource_cdihq")
 
 [node name="Main" type="Node"]
 
@@ -123,7 +116,8 @@ scale = Vector2(9, 9)
 texture = ExtResource("7_lhoby")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("11_4jo27")
+stream = ExtResource("8_u7m0s")
+volume_db = -5.0
 autoplay = true
 
 [node name="Enemy" parent="." instance=ExtResource("11_4uxub")]
@@ -137,6 +131,9 @@ position = Vector2(397, 604)
 
 [node name="Coin" parent="." instance=ExtResource("3_vsshu")]
 position = Vector2(620, -494)
+
+[node name="Medicine" parent="." instance=ExtResource("11_seraj")]
+position = Vector2(617, -834)
 
 [node name="Player" parent="." instance=ExtResource("8_msja2")]
 position = Vector2(629, 393)
