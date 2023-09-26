@@ -35,9 +35,11 @@ func _process(delta):
 		
 	if Input.is_action_just_pressed(\"ui_up\") or Input.is_action_just_pressed(\"ui_down\"):
 		$AudioStreamPlayer.play()
+		$HitBox.show()
 		
 	if Input.is_action_just_released(\"ui_up\") or Input.is_action_just_pressed(\"ui_down\"):
 		$AudioStreamPlayer.stop()
+		$HitBox.hide()
 		
 	rotation += ang_speed * direction # * delta
 	$HUD.rotation -= ang_speed * direction
@@ -139,9 +141,10 @@ collision_mask = 2
 shape = SubResource("CapsuleShape2D_066yk")
 
 [node name="HitBox" parent="." instance=ExtResource("9_5ef0a")]
+visible = false
 collision_layer = 4
 collision_mask = 4
-damage = 10
+damage = 100
 
 [node name="CollisionShape2D" parent="HitBox" index="0"]
 position = Vector2(0, -46)
