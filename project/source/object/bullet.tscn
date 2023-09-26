@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://d3q784vdwj5jn"]
+[gd_scene load_steps=5 format=3 uid="uid://d3q784vdwj5jn"]
 
 [ext_resource type="Texture2D" uid="uid://12m1rx27uei8" path="res://resource/image/bullet.png" id="1_uu2r1"]
+[ext_resource type="AudioStream" uid="uid://37w1v4s618rg" path="res://resource/sound/gun_01.mp3" id="2_22erm"]
 
 [sub_resource type="GDScript" id="GDScript_n4bwb"]
 script/source = "
@@ -18,17 +19,19 @@ var attack_size = 1.0
 var target = Vector2.ZERO
 var angle = Vector2.ZERO
 
+var direction = Vector2.ZERO
+
 func _ready():
 	angle = global_position.direction_to(target)
-	rotation = angle.angle() + deg_to_rad(135)
+	# rotation = angle.angle() + deg_to_rad(135)
 	match level:
 		1:
 			hp = 1
-			speed = 100
-			damage = 5
+			speed = 1000
+			damage = 1
 			knock_amount = 100
 			attack_size = 1.0
-			
+
 func _physics_process(delta):
 	position += angle * speed * delta
 	
@@ -37,15 +40,15 @@ func enemy_hit(charge = 1):
 	if hp <= 0:
 		queue_free()
 
-
 func _on_timer_timeout():
 	queue_free()
 "
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pp6ma"]
-size = Vector2(12, 12)
+size = Vector2(6, 12)
 
 [node name="Bullet" type="Area2D" groups=["attack"]]
+rotation = 1.5708
 collision_layer = 4
 collision_mask = 4
 script = SubResource("GDScript_n4bwb")
@@ -59,9 +62,10 @@ texture = ExtResource("1_uu2r1")
 shape = SubResource("RectangleShape2D_pp6ma")
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 9.0
+wait_time = 3.0
 autostart = true
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_22erm")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
