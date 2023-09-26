@@ -1,6 +1,6 @@
-[gd_scene load_steps=18 format=3 uid="uid://bsln5r51b15m3"]
+[gd_scene load_steps=23 format=3 uid="uid://bsln5r51b15m3"]
 
-[ext_resource type="Texture2D" uid="uid://cglsyatgg5an" path="res://resource/tile/water1.png" id="1_n34p7"]
+[ext_resource type="Texture2D" uid="uid://ch46ih3bj2452" path="res://resource/tile/grass_1.png" id="1_75xrl"]
 [ext_resource type="FontFile" uid="uid://dx53pdhxhyn2p" path="res://resource/font/kenney_pixel.ttf" id="3_q5r0c"]
 [ext_resource type="PackedScene" uid="uid://cuo2ugjcdhtjc" path="res://source/object/coin.tscn" id="3_vsshu"]
 [ext_resource type="Texture2D" uid="uid://bfimofqhtti0o" path="res://resource/ui/tile_0439.png" id="4_wohpv"]
@@ -9,6 +9,8 @@
 [ext_resource type="Texture2D" uid="uid://d3esgqippy8aa" path="res://resource/ui/tile_0438.png" id="7_lhoby"]
 [ext_resource type="PackedScene" uid="uid://c1tw37pkcvsy3" path="res://source/object/player.tscn" id="8_msja2"]
 [ext_resource type="AudioStream" uid="uid://dedn7dukyretx" path="res://resource/music/Run - Max Surla_Media Right Productions.mp3" id="8_u7m0s"]
+[ext_resource type="PackedScene" uid="uid://ckujg6i1b6ujw" path="res://source/system/enemy_spawner.tscn" id="9_pygcc"]
+[ext_resource type="Script" path="res://source/system/spawn_info.gd" id="10_coo6n"]
 [ext_resource type="PackedScene" uid="uid://o0wln7a0f0t3" path="res://source/object/enemy.tscn" id="11_4uxub"]
 [ext_resource type="PackedScene" uid="uid://djxky8bdiaorh" path="res://source/object/medicine.tscn" id="11_seraj"]
 
@@ -174,25 +176,49 @@ gradient = SubResource("Gradient_6qgrp")
 width = 1000
 height = 1000
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_cdihq"]
-texture = ExtResource("1_n34p7")
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_c0anb"]
+texture = ExtResource("1_75xrl")
 0:0/0 = 0
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:0/0/physics_layer_0/angular_velocity = 0.0
 
 [sub_resource type="TileSet" id="TileSet_tge8r"]
 physics_layer_0/collision_layer = 1
-sources/0 = SubResource("TileSetAtlasSource_cdihq")
+sources/0 = SubResource("TileSetAtlasSource_c0anb")
+
+[sub_resource type="Resource" id="Resource_on3j5"]
+script = ExtResource("10_coo6n")
+time_start = 0
+time_end = 10
+enemy = ExtResource("11_4uxub")
+enemy_num = 1
+enemy_spawn_delay = 1
+
+[sub_resource type="Resource" id="Resource_sh0rk"]
+script = ExtResource("10_coo6n")
+time_start = 10
+time_end = 30
+enemy = ExtResource("11_4uxub")
+enemy_num = 5
+enemy_spawn_delay = 1
+
+[sub_resource type="Resource" id="Resource_jygxq"]
+script = ExtResource("10_coo6n")
+time_start = 30
+time_end = 60
+enemy = ExtResource("11_4uxub")
+enemy_num = 10
+enemy_spawn_delay = 1
 
 [node name="Main" type="Node"]
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Water" type="Sprite2D" parent="."]
+visible = false
 material = SubResource("ShaderMaterial_ougap")
 scale = Vector2(10, 10)
 texture = SubResource("GradientTexture2D_l0wy0")
 
 [node name="TileMap" type="TileMap" parent="."]
-visible = false
 texture_filter = 1
 scale = Vector2(6, 6)
 tile_set = SubResource("TileSet_tge8r")
@@ -288,14 +314,8 @@ stream = ExtResource("8_u7m0s")
 volume_db = -5.0
 autoplay = true
 
-[node name="Enemy" parent="." instance=ExtResource("11_4uxub")]
-position = Vector2(284, 189)
-
-[node name="Enemy2" parent="." instance=ExtResource("11_4uxub")]
-position = Vector2(959, 368)
-
-[node name="Enemy3" parent="." instance=ExtResource("11_4uxub")]
-position = Vector2(397, 604)
+[node name="EnemySpawner" parent="." instance=ExtResource("9_pygcc")]
+spawns = Array[ExtResource("10_coo6n")]([SubResource("Resource_on3j5"), SubResource("Resource_sh0rk"), SubResource("Resource_jygxq")])
 
 [node name="Coin" parent="." instance=ExtResource("3_vsshu")]
 position = Vector2(620, -494)

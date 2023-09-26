@@ -22,10 +22,10 @@ func _on_body_entered(body):
 "
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_elho4"]
-radius = 5.00278
+radius = 8.0
 
 [node name="Coin" type="Area2D"]
-scale = Vector2(6, 6)
+scale = Vector2(3, 3)
 collision_layer = 8
 collision_mask = 8
 script = SubResource("GDScript_2w41h")
