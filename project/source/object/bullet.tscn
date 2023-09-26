@@ -19,7 +19,7 @@ var attack_size = 1.0
 var target = Vector2.ZERO
 var angle = Vector2.ZERO
 
-var direction = Vector2.ZERO
+# var direction = Vector2.ZERO
 
 func _ready():
 	angle = global_position.direction_to(target)
@@ -28,7 +28,7 @@ func _ready():
 		1:
 			hp = 1
 			speed = 1000
-			damage = 1
+			damage = 3
 			knock_amount = 100
 			attack_size = 1.0
 

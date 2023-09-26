@@ -12,14 +12,9 @@
 
 [sub_resource type="GDScript" id="GDScript_wo5ts"]
 script/source = "
-extends CharacterBody2D
-
-#var movement_speed = 6
-#var ang_speed = 0.03
+extends Node2D
 
 var hp = 100
-
-# var direction = 0
 
 var enemy_close = []
 
@@ -30,7 +25,7 @@ var enemy_close = []
 var bullet_ammo = 0
 var bullet_base_ammo = 1
 var bullet_level = 1
-var bullet_attack_speed = 0.01
+var bullet_attack_speed = 0.06
 
 # 进程函数 ==============================================================
 
@@ -38,48 +33,27 @@ func _ready():
 	attack()
 	
 func _process(delta):
+	set_position($Body.position)
 	if hp <= 0:
 		queue_free()
 		get_tree().change_scene_to_file('res://source/scene/menu_gameover.tscn')
-	
-	#$Body.direction = 0
-	#$Body.velocity = Vector2.ZERO
-	#if Input.is_action_pressed(\"ui_up\"):
-		#$Body.velocity = Vector2.UP.rotated(rotation) * movement_speed
-		#dir()
-		
-	#if Input.is_action_pressed(\"ui_down\"):
-		#$Body.velocity = Vector2.DOWN.rotated(rotation) * movement_speed/3
-		#dir()
 		
 	if Input.is_action_just_pressed(\"ui_up\") or Input.is_action_just_pressed(\"ui_down\"):
 		$AudioStreamPlayer.play()
-		# $Body/HitBox.collision.disabled = false
 		
 	if Input.is_action_just_released(\"ui_up\") or Input.is_action_just_pressed(\"ui_down\"):
 		$AudioStreamPlayer.stop()
-		# $Body/HitBox.collision.disabled = true
-		
-	# $Body.rotation += ang_speed * $Body.direction # * delta
-	print($Body.position , position)
-	position = $Body.position
-	#$HUD.rotation -= ang_speed * direction
-	#$Attack.rotation -= ang_speed * direction
-	#position += velocity # * delta
-	
-	if bullet_ammo > 0:
-		var bullet_attack = bullet.instantiate()
-		bullet_attack.position = Vector2.ZERO
-		bullet_attack.target = get_random_target()
-		bullet_attack.level = bullet_level
-		bullet_attack.look_at(get_random_target())
-		add_child(bullet_attack)
-		bullet_ammo -= 1
 	
 func _physics_process(delta):
-	position = $Body.position
 	$HUD/HP.value = hp
-	move_and_slide()
+	if len(enemy_close) > 1:
+		if bullet_ammo > 0:
+			var bullet_attack = bullet.instantiate()
+			bullet_attack.target = get_random_target()
+			bullet_attack.level = bullet_level
+			bullet_attack.look_at(get_random_target())
+			add_child(bullet_attack)
+			bullet_ammo -= 1
 
 # 自定义函数 =============================================================
 
@@ -143,18 +117,12 @@ func _process(delta):
 		dir()
 		
 	if Input.is_action_just_pressed(\"ui_up\") or Input.is_action_just_pressed(\"ui_down\"):
-		#$AudioStreamPlayer.play()
 		$HitBox.collision.disabled = false
 		
 	if Input.is_action_just_released(\"ui_up\") or Input.is_action_just_pressed(\"ui_down\"):
-		#$AudioStreamPlayer.stop()
 		$HitBox.collision.disabled = true
 		
 	rotation += ang_speed * direction # * delta
-	print(position,$Sprite2D.position)
-	#$HUD.rotation -= ang_speed * direction
-	#$Attack.rotation -= ang_speed * direction
-	#position += velocity # * delta
 	
 func _physics_process(delta):
 	move_and_slide()
@@ -170,8 +138,8 @@ func dir():
 "
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2lfdc"]
-radius = 24.0
-height = 96.0
+radius = 18.0
+height = 84.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_066yk"]
 radius = 150.0
@@ -183,13 +151,13 @@ size = Vector2(216, 66)
 [sub_resource type="CircleShape2D" id="CircleShape2D_jwwij"]
 radius = 4038.45
 
-[node name="Player" type="CharacterBody2D" groups=["player"]]
-collision_layer = 15
-safe_margin = 0.1
+[node name="Player" type="Node2D" groups=["player"]]
 script = SubResource("GDScript_wo5ts")
 
 [node name="Body" type="CharacterBody2D" parent="." groups=["player"]]
+scale = Vector2(1, 1)
 collision_layer = 15
+safe_margin = 1.0
 script = SubResource("GDScript_7j67i")
 
 [node name="Sprite2D" type="Sprite2D" parent="Body"]
@@ -226,7 +194,6 @@ damage = 10
 
 [node name="CollisionShape2D" parent="Body/HitBox" index="0"]
 position = Vector2(-2.86102e-06, -285)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_n8lhe")
 disabled = true
 
@@ -239,12 +206,17 @@ monitorable = false
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Body/EnemyDetectionArea"]
 shape = SubResource("CircleShape2D_jwwij")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CapsuleShape2D_2lfdc")
-disabled = true
+[node name="Label" type="Label" parent="Body"]
+texture_filter = 1
+offset_right = 118.0
+offset_bottom = 91.0
+theme_override_font_sizes/font_size = 64
+text = "test"
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("4_bxypg")
+[node name="Attack" type="Node2D" parent="."]
+
+[node name="BulletTimer" type="Timer" parent="Attack"]
+wait_time = 1.5
 
 [node name="HUD" type="Control" parent="."]
 layout_mode = 3
@@ -286,20 +258,20 @@ metadata/_edit_use_anchors_ = true
 [node name="ColorRect" type="ColorRect" parent="HUD"]
 z_index = -10
 layout_mode = 0
-offset_left = -914.0
-offset_top = -514.0
-offset_right = 914.0
-offset_bottom = 514.0
+offset_left = -918.0
+offset_top = -535.0
+offset_right = 910.0
+offset_bottom = 493.0
 color = Color(0.611765, 0.8, 0.396078, 1)
-
-[node name="Attack" type="Node2D" parent="."]
-
-[node name="BulletTimer" type="Timer" parent="Attack"]
-wait_time = 1.5
 
 [node name="Camera2D" type="Camera2D" parent="."]
 scale = Vector2(0.166667, 0.166667)
 zoom = Vector2(0.7, 0.7)
+position_smoothing_enabled = true
+position_smoothing_speed = 6.0
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_bxypg")
 
 [connection signal="hurt" from="Body/HurtBox" to="." method="_on_hurt_box_hurt"]
 [connection signal="body_entered" from="Body/EnemyDetectionArea" to="." method="_on_enemy_detection_area_body_entered"]
