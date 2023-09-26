@@ -28,7 +28,7 @@ func _ready():
 		1:
 			hp = 1
 			speed = 1000
-			damage = 3
+			damage = 5
 			knock_amount = 100
 			attack_size = 1.0
 
@@ -67,5 +67,7 @@ autostart = true
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("2_22erm")
+autoplay = true
+max_polyphony = 100
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
