@@ -1,11 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://o0wln7a0f0t3"]
+[gd_scene load_steps=11 format=3 uid="uid://dtq83fvoydww4"]
 
-[ext_resource type="Texture2D" uid="uid://dd5qoikkws2ep" path="res://resource/image/enemy.png" id="1_4fujm"]
-[ext_resource type="PackedScene" uid="uid://5ygp3ic8vnl6" path="res://source/object/hurtbox.tscn" id="2_1e2o4"]
-[ext_resource type="PackedScene" uid="uid://o84475elvy3" path="res://source/object/hitbox.tscn" id="3_bjah8"]
-[ext_resource type="Texture2D" uid="uid://bvhr66hwk76fl" path="res://resource/image/hp_bar_under.png" id="4_yfotg"]
-[ext_resource type="Texture2D" uid="uid://l3vbbpxnu51a" path="res://resource/image/hp_bar_over.png" id="5_den12"]
-[ext_resource type="Texture2D" uid="uid://bvf7unifbeymv" path="res://resource/image/hp_bar_progress.png" id="6_qdygd"]
+[ext_resource type="Texture2D" uid="uid://buh1ss45yjqka" path="res://resource/image/enemy1.png" id="1_06v1x"]
+[ext_resource type="PackedScene" uid="uid://5ygp3ic8vnl6" path="res://source/object/hurtbox.tscn" id="2_le0gi"]
+[ext_resource type="PackedScene" uid="uid://o84475elvy3" path="res://source/object/hitbox.tscn" id="3_el081"]
+[ext_resource type="Texture2D" uid="uid://bvhr66hwk76fl" path="res://resource/image/hp_bar_under.png" id="4_bedos"]
+[ext_resource type="Texture2D" uid="uid://l3vbbpxnu51a" path="res://resource/image/hp_bar_over.png" id="5_d4mhn"]
+[ext_resource type="Texture2D" uid="uid://bvf7unifbeymv" path="res://resource/image/hp_bar_progress.png" id="6_8hge0"]
 
 [sub_resource type="GDScript" id="GDScript_3nnkj"]
 script/source = "
@@ -34,33 +34,35 @@ func _on_hurt_box_hurt(damage):
 "
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3ay8f"]
-radius = 18.0
-height = 48.0
+radius = 24.0
+height = 72.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_e3hjc"]
-radius = 20.0
-height = 52.0
+radius = 26.0
+height = 76.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5yeo4"]
-radius = 19.0
-height = 50.0
+radius = 25.0
+height = 74.0
 
 [node name="Enemy" type="CharacterBody2D"]
 collision_layer = 4
 collision_mask = 4
 safe_margin = 0.1
 script = SubResource("GDScript_3nnkj")
+movement_speed = 50.0
+hp = 30
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
 rotation = 1.5708
 scale = Vector2(6, 6)
-texture = ExtResource("1_4fujm")
+texture = ExtResource("1_06v1x")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_3ay8f")
 
-[node name="HurtBox" parent="." instance=ExtResource("2_1e2o4")]
+[node name="HurtBox" parent="." instance=ExtResource("2_le0gi")]
 position = Vector2(42.3167, -84.8457)
 collision_layer = 4
 collision_mask = 4
@@ -69,11 +71,11 @@ collision_mask = 4
 position = Vector2(-42.3167, 84.8457)
 shape = SubResource("CapsuleShape2D_e3hjc")
 
-[node name="HitBox" parent="." instance=ExtResource("3_bjah8")]
+[node name="HitBox" parent="." instance=ExtResource("3_el081")]
 position = Vector2(42.3167, -84.8457)
 collision_layer = 2
 collision_mask = 2
-damage = 3
+damage = 10
 
 [node name="CollisionShape2D" parent="HitBox" index="0"]
 position = Vector2(-42.3167, 84.8457)
@@ -95,9 +97,9 @@ offset_right = -8.0
 offset_bottom = -47.0
 scale = Vector2(3, 3)
 max_value = 10.0
-texture_under = ExtResource("4_yfotg")
-texture_over = ExtResource("5_den12")
-texture_progress = ExtResource("6_qdygd")
+texture_under = ExtResource("4_bedos")
+texture_over = ExtResource("5_d4mhn")
+texture_progress = ExtResource("6_8hge0")
 tint_under = Color(0, 0, 0, 0)
 tint_progress = Color(0.305882, 1, 0.12549, 1)
 

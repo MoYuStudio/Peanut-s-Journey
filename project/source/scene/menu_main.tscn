@@ -1,6 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://b4u7q3b4vyfbd"]
+[gd_scene load_steps=7 format=3 uid="uid://b4u7q3b4vyfbd"]
 
 [ext_resource type="FontFile" uid="uid://dx53pdhxhyn2p" path="res://resource/font/kenney_pixel.ttf" id="1_yjtna"]
+[ext_resource type="Texture2D" uid="uid://dehg38xt8tidn" path="res://resource/image/car.png" id="2_t03h1"]
+[ext_resource type="Texture2D" uid="uid://dd5qoikkws2ep" path="res://resource/image/enemy.png" id="3_7ww4j"]
+[ext_resource type="Texture2D" uid="uid://buh1ss45yjqka" path="res://resource/image/enemy1.png" id="4_4e4nn"]
+[ext_resource type="Texture2D" uid="uid://w0sftujii570" path="res://resource/icon/icon_x1000.png" id="5_s017b"]
 
 [sub_resource type="GDScript" id="GDScript_o3aco"]
 script/source = "
@@ -14,10 +18,16 @@ func _process(delta):
 		get_tree().change_scene_to_file('res://source/scene/game_main.tscn')
 "
 
-[node name="menu_main" type="Node"]
+[node name="MenuMain" type="Node"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -1394.0
+offset_top = -801.0
+offset_right = 2664.0
+offset_bottom = 1504.0
+color = Color(0, 0, 0, 1)
 
 [node name="Title" type="Label" parent="."]
-self_modulate = Color(1, 1, 1, 0.588235)
 offset_left = 143.0
 offset_top = 82.0
 offset_right = 1087.0
@@ -28,30 +38,94 @@ text = "The Last Mechanic Demo"
 
 [node name="Subtitle" type="Label" parent="."]
 self_modulate = Color(1, 1, 1, 0.588235)
-offset_left = 475.0
-offset_top = 503.0
-offset_right = 723.0
-offset_bottom = 564.0
+offset_left = 480.0
+offset_top = 602.0
+offset_right = 728.0
+offset_bottom = 663.0
 theme_override_fonts/font = ExtResource("1_yjtna")
 theme_override_font_sizes/font_size = 64
 text = "MOYU STUDIO"
 
 [node name="Web" type="Label" parent="."]
 self_modulate = Color(1, 1, 1, 0.588235)
-offset_left = 405.0
-offset_top = 608.0
-offset_right = 849.0
-offset_bottom = 663.0
+offset_left = 394.0
+offset_top = 640.0
+offset_right = 838.0
+offset_bottom = 695.0
 theme_override_fonts/font = ExtResource("1_yjtna")
 theme_override_font_sizes/font_size = 64
 text = "www.moyu-stuido.com
 "
 
-[node name="Button" type="Button" parent="."]
-offset_left = 455.0
-offset_top = 272.0
-offset_right = 751.0
-offset_bottom = 396.0
-text = "Start
+[node name="StartButton" type="Button" parent="."]
+offset_left = 535.0
+offset_top = 335.0
+offset_right = 663.0
+offset_bottom = 391.0
+theme_override_fonts/font = ExtResource("1_yjtna")
+theme_override_font_sizes/font_size = 64
+text = "START
 "
+flat = true
 script = SubResource("GDScript_o3aco")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Car" type="Sprite2D" parent="Control"]
+texture_filter = 1
+position = Vector2(383, 359)
+rotation = 1.5708
+scale = Vector2(6, 5.81)
+texture = ExtResource("2_t03h1")
+
+[node name="Enemy" type="Sprite2D" parent="Control"]
+texture_filter = 1
+position = Vector2(761, 222)
+rotation = -2.37016
+scale = Vector2(6, 6)
+texture = ExtResource("3_7ww4j")
+
+[node name="Enemy1" type="Sprite2D" parent="Control"]
+texture_filter = 1
+position = Vector2(830, 349)
+rotation = -1.74533
+scale = Vector2(9, 9)
+texture = ExtResource("4_4e4nn")
+
+[node name="Enemy2" type="Sprite2D" parent="Control"]
+texture_filter = 1
+position = Vector2(754, 484)
+rotation = -1.19555
+scale = Vector2(6, 6)
+texture = ExtResource("3_7ww4j")
+
+[node name="Enemy3" type="Sprite2D" parent="Control"]
+texture_filter = 1
+position = Vector2(172, 200)
+rotation = 2.04902
+scale = Vector2(6, 6)
+texture = ExtResource("3_7ww4j")
+
+[node name="Enemy4" type="Sprite2D" parent="Control"]
+texture_filter = 1
+position = Vector2(247, 484)
+rotation = 1.01229
+scale = Vector2(6, 6)
+texture = ExtResource("3_7ww4j")
+
+[node name="Enemy5" type="Sprite2D" parent="Control"]
+texture_filter = 1
+position = Vector2(955, 283)
+rotation = -1.74882
+scale = Vector2(6, 6)
+texture = ExtResource("3_7ww4j")
+
+[node name="IconX1000" type="Sprite2D" parent="Control"]
+position = Vector2(845, 350)
+rotation = 0.207694
+scale = Vector2(0.35, 0.34375)
+texture = ExtResource("5_s017b")

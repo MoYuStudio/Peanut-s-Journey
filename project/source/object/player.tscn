@@ -1,102 +1,76 @@
-[gd_scene load_steps=14 format=3 uid="uid://c1tw37pkcvsy3"]
+[gd_scene load_steps=15 format=3 uid="uid://5qysj6hg81ni"]
 
-[ext_resource type="Texture2D" uid="uid://6ndddp5duhfh" path="res://resource/image/light_yellow.png" id="1_fcmov"]
-[ext_resource type="Texture2D" uid="uid://dehg38xt8tidn" path="res://resource/image/car.png" id="2_dc5sy"]
-[ext_resource type="FontFile" uid="uid://dx53pdhxhyn2p" path="res://resource/font/kenney_pixel.ttf" id="3_75bdf"]
-[ext_resource type="AudioStream" uid="uid://c80tpxgcpbvjm" path="res://resource/sound/TRANSPORTATION_SPORTS_CAR_Porsche_Boxster_Accelerate_Interior.mp3" id="4_bxypg"]
-[ext_resource type="PackedScene" uid="uid://5ygp3ic8vnl6" path="res://source/object/hurtbox.tscn" id="5_yqutu"]
-[ext_resource type="Texture2D" uid="uid://bvhr66hwk76fl" path="res://resource/image/hp_bar_under.png" id="6_na1pr"]
-[ext_resource type="Texture2D" uid="uid://l3vbbpxnu51a" path="res://resource/image/hp_bar_over.png" id="7_qopcr"]
-[ext_resource type="Texture2D" uid="uid://bvf7unifbeymv" path="res://resource/image/hp_bar_progress.png" id="8_b22qt"]
-[ext_resource type="PackedScene" uid="uid://o84475elvy3" path="res://source/object/hitbox.tscn" id="9_5ef0a"]
+[ext_resource type="Texture2D" uid="uid://6ndddp5duhfh" path="res://resource/image/light_yellow.png" id="1_whkv6"]
+[ext_resource type="Texture2D" uid="uid://dehg38xt8tidn" path="res://resource/image/car.png" id="2_j61uu"]
+[ext_resource type="AudioStream" uid="uid://c80tpxgcpbvjm" path="res://resource/sound/TRANSPORTATION_SPORTS_CAR_Porsche_Boxster_Accelerate_Interior.mp3" id="3_ykvhe"]
+[ext_resource type="PackedScene" uid="uid://5ygp3ic8vnl6" path="res://source/object/hurtbox.tscn" id="4_0r4m7"]
+[ext_resource type="PackedScene" uid="uid://o84475elvy3" path="res://source/object/hitbox.tscn" id="5_pn3of"]
+[ext_resource type="Texture2D" uid="uid://bvhr66hwk76fl" path="res://resource/image/hp_bar_under.png" id="6_jdgbj"]
+[ext_resource type="Texture2D" uid="uid://l3vbbpxnu51a" path="res://resource/image/hp_bar_over.png" id="7_kdxn7"]
+[ext_resource type="Texture2D" uid="uid://bvf7unifbeymv" path="res://resource/image/hp_bar_progress.png" id="8_otrdb"]
+[ext_resource type="FontFile" uid="uid://dx53pdhxhyn2p" path="res://resource/font/kenney_pixel.ttf" id="9_ljcfm"]
 
-[sub_resource type="GDScript" id="GDScript_wo5ts"]
-script/source = "
-extends CharacterBody2D
-
-var movement_speed = 600
-var ang_speed = 0.03
-
-var hp = 100
-
-var direction = 0
-	
-func _process(delta):
-	
-	direction = 0
-	velocity = Vector2.ZERO
-	if Input.is_action_pressed(\"ui_up\"):
-		velocity = Vector2.UP.rotated(rotation) * movement_speed
-		dir()
-		
-	if Input.is_action_pressed(\"ui_down\"):
-		velocity = Vector2.DOWN.rotated(rotation) * movement_speed/6
-		dir()
-		
-	if Input.is_action_just_pressed(\"ui_up\") or Input.is_action_just_pressed(\"ui_down\"):
-		$AudioStreamPlayer.play()
-		$HitBox.show()
-		
-	if Input.is_action_just_released(\"ui_up\") or Input.is_action_just_pressed(\"ui_down\"):
-		$AudioStreamPlayer.stop()
-		$HitBox.hide()
-		
-	rotation += ang_speed * direction # * delta
-	$HUD.rotation -= ang_speed * direction
-	#position += velocity # * delta
-	
-func _physics_process(delta):
-	$HUD/HP.value = hp
-	move_and_slide()
-
-func dir():
-	direction = 0
-	if Input.is_action_pressed(\"ui_left\"):
-		direction = -1
-	if Input.is_action_pressed(\"ui_right\"):
-		direction = 1
-		
-func _on_hurt_box_hurt(damage):
-	hp -= damage
+[sub_resource type="GDScript" id="GDScript_4jjok"]
+script/source = "extends Node2D
 "
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2lfdc"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qxlt5"]
 radius = 24.0
 height = 96.0
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_066yk"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_njyy5"]
 radius = 25.0
 height = 98.0
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_n8lhe"]
-size = Vector2(36, 8)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u81bu"]
+size = Vector2(36, 12)
 
-[node name="Player" type="CharacterBody2D" groups=["player"]]
-collision_layer = 15
-safe_margin = 0.1
-script = SubResource("GDScript_wo5ts")
+[sub_resource type="CircleShape2D" id="CircleShape2D_70qif"]
+radius = 507.119
 
-[node name="PointLight2D" type="PointLight2D" parent="."]
+[node name="Player" type="Node2D"]
+script = SubResource("GDScript_4jjok")
+
+[node name="Player" type="CharacterBody2D" parent="."]
+
+[node name="PointLight2D" type="PointLight2D" parent="Player"]
 position = Vector2(-12, -165)
-texture = ExtResource("1_fcmov")
+texture = ExtResource("1_whkv6")
 
-[node name="PointLight2D2" type="PointLight2D" parent="."]
+[node name="PointLight2D2" type="PointLight2D" parent="Player"]
 position = Vector2(12, -165)
-texture = ExtResource("1_fcmov")
+texture = ExtResource("1_whkv6")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="Player"]
 texture_filter = 1
 scale = Vector2(6, 6)
-texture = ExtResource("2_dc5sy")
+texture = ExtResource("2_j61uu")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CapsuleShape2D_2lfdc")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+shape = SubResource("CapsuleShape2D_qxlt5")
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="Player"]
 zoom = Vector2(0.7, 0.7)
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("4_bxypg")
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Player"]
+stream = ExtResource("3_ykvhe")
+
+[node name="HurtBox" parent="Player" instance=ExtResource("4_0r4m7")]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" parent="Player/HurtBox" index="0"]
+shape = SubResource("CapsuleShape2D_njyy5")
+
+[node name="HitBox" parent="Player" instance=ExtResource("5_pn3of")]
+collision_layer = 4
+collision_mask = 4
+damage = 10
+
+[node name="CollisionShape2D" parent="Player/HitBox" index="0"]
+position = Vector2(0, -48)
+shape = SubResource("RectangleShape2D_u81bu")
+disabled = true
 
 [node name="HUD" type="Control" parent="."]
 layout_mode = 3
@@ -104,6 +78,7 @@ anchors_preset = 0
 
 [node name="HP" type="TextureProgressBar" parent="HUD"]
 modulate = Color(1, 1, 1, 0.784314)
+z_index = 1
 texture_filter = 1
 layout_mode = 0
 offset_left = -48.0
@@ -111,14 +86,15 @@ offset_top = -110.0
 offset_right = -32.0
 offset_bottom = -105.0
 scale = Vector2(6, 6)
-texture_under = ExtResource("6_na1pr")
-texture_over = ExtResource("7_qopcr")
-texture_progress = ExtResource("8_b22qt")
+texture_under = ExtResource("6_jdgbj")
+texture_over = ExtResource("7_kdxn7")
+texture_progress = ExtResource("8_otrdb")
 tint_under = Color(0, 0, 0, 0)
 tint_progress = Color(0.305882, 1, 0.12549, 1)
 
 [node name="PlayerName" type="Label" parent="HUD"]
 modulate = Color(1, 1, 1, 0.588235)
+z_index = 1
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 0.4375
@@ -127,30 +103,36 @@ offset_left = -90.94
 offset_top = 77.125
 offset_right = 92.06
 offset_bottom = 116.125
-theme_override_fonts/font = ExtResource("3_75bdf")
+theme_override_fonts/font = ExtResource("9_ljcfm")
 theme_override_font_sizes/font_size = 48
 text = "PlayerName
 "
 metadata/_edit_use_anchors_ = true
 
-[node name="HurtBox" parent="." instance=ExtResource("5_yqutu")]
-collision_layer = 2
-collision_mask = 2
+[node name="ColorRect" type="ColorRect" parent="HUD"]
+z_index = -10
+layout_mode = 0
+offset_left = -914.0
+offset_top = -514.0
+offset_right = 914.0
+offset_bottom = 514.0
+color = Color(0.611765, 0.8, 0.396078, 1)
 
-[node name="CollisionShape2D" parent="HurtBox" index="0"]
-shape = SubResource("CapsuleShape2D_066yk")
+[node name="Attack" type="Node2D" parent="."]
 
-[node name="HitBox" parent="." instance=ExtResource("9_5ef0a")]
-visible = false
+[node name="BulletTimer" type="Timer" parent="Attack"]
+wait_time = 1.5
+
+[node name="BulletAttackTimer" type="Timer" parent="Attack/BulletTimer"]
+wait_time = 0.075
+
+[node name="EnemyDetectionArea" type="Area2D" parent="."]
 collision_layer = 4
 collision_mask = 4
-damage = 100
+monitorable = false
 
-[node name="CollisionShape2D" parent="HitBox" index="0"]
-position = Vector2(0, -46)
-shape = SubResource("RectangleShape2D_n8lhe")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyDetectionArea"]
+shape = SubResource("CircleShape2D_70qif")
 
-[connection signal="hurt" from="HurtBox" to="." method="_on_hurt_box_hurt"]
-
-[editable path="HurtBox"]
-[editable path="HitBox"]
+[editable path="Player/HurtBox"]
+[editable path="Player/HitBox"]

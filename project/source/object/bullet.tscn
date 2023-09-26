@@ -1,0 +1,67 @@
+[gd_scene load_steps=4 format=3 uid="uid://d3q784vdwj5jn"]
+
+[ext_resource type="Texture2D" uid="uid://12m1rx27uei8" path="res://resource/image/bullet.png" id="1_uu2r1"]
+
+[sub_resource type="GDScript" id="GDScript_n4bwb"]
+script/source = "
+extends Area2D
+
+@onready var player = get_tree().get_first_node_in_group('player')
+
+var level = 1
+var hp = 1
+var speed = 1000
+var damage = 5
+var knock_amount = 100
+var attack_size = 1.0
+
+var target = Vector2.ZERO
+var angle = Vector2.ZERO
+
+func _ready():
+	angle = global_position.direction_to(target)
+	rotation = angle.angle() + deg_to_rad(135)
+	match level:
+		1:
+			hp = 1
+			speed = 100
+			damage = 5
+			knock_amount = 100
+			attack_size = 1.0
+			
+func _physics_process(delta):
+	position += angle * speed * delta
+	
+func enemy_hit(charge = 1):
+	hp -= charge
+	if hp <= 0:
+		queue_free()
+
+
+func _on_timer_timeout():
+	queue_free()
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pp6ma"]
+size = Vector2(12, 12)
+
+[node name="Bullet" type="Area2D" groups=["attack"]]
+collision_layer = 4
+collision_mask = 4
+script = SubResource("GDScript_n4bwb")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(3, 3)
+texture = ExtResource("1_uu2r1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_pp6ma")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 9.0
+autostart = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
