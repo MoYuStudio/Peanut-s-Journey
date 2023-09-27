@@ -48,7 +48,7 @@ time_start = 60
 time_end = 100
 enemy = ExtResource("11_4uxub")
 enemy_num = 35
-enemy_spawn_delay = 1
+enemy_spawn_delay = 5
 
 [node name="Main" type="Node"]
 
