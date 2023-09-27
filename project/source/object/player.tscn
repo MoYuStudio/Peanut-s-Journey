@@ -39,8 +39,7 @@ func _process(delta):
 	$CollisionShape2D.rotation = $Body.rotation
 	if hp <= 0:
 		get_tree().change_scene_to_file('res://source/scene/menu_gameover.tscn')
-		queue_free()
-		
+		# queue_free()
 		
 	if Input.is_action_just_pressed(\"ui_up\") or Input.is_action_just_pressed(\"ui_down\"):
 		$AudioStreamPlayer.play()
@@ -100,8 +99,8 @@ func _on_enemy_detection_area_body_exited(body):
 "
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wmrfs"]
-radius = 24.0
-height = 96.0
+radius = 19.0
+height = 86.0
 
 [sub_resource type="GDScript" id="GDScript_7j67i"]
 script/source = "
@@ -163,15 +162,15 @@ color = Color(1, 1, 1, 0.588235)
 turbulence_noise_strength = 20.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6qemh"]
-radius = 24.0
-height = 96.0
+radius = 12.0
+height = 72.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_066yk"]
 radius = 150.0
 height = 588.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n8lhe"]
-size = Vector2(216, 66)
+size = Vector2(323.999, 66)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_jwwij"]
 radius = 4038.45
@@ -217,13 +216,15 @@ shape = SubResource("CapsuleShape2D_6qemh")
 disabled = true
 
 [node name="PointLight2D" type="PointLight2D" parent="Body"]
-position = Vector2(-2, -27.5)
-scale = Vector2(0.166667, 0.166667)
+texture_filter = 1
+position = Vector2(-13, -118)
+scale = Vector2(0.6, 0.6)
 texture = ExtResource("1_fcmov")
 
 [node name="PointLight2D2" type="PointLight2D" parent="Body"]
-position = Vector2(2, -27.5)
-scale = Vector2(0.166667, 0.166667)
+texture_filter = 1
+position = Vector2(13, -118)
+scale = Vector2(0.6, 0.6)
 texture = ExtResource("1_fcmov")
 
 [node name="HurtBox" parent="Body" instance=ExtResource("5_yqutu")]
@@ -242,6 +243,7 @@ damage = 30
 
 [node name="CollisionShape2D" parent="Body/HitBox" index="0"]
 position = Vector2(-2.86102e-06, -285)
+scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_n8lhe")
 disabled = true
 
@@ -333,6 +335,7 @@ texture = SubResource("GradientTexture2D_mha5w")
 modulate = Color(1, 1, 1, 0.0117647)
 texture_filter = 1
 material = ExtResource("11_i4vq8")
+position = Vector2(-1, -2)
 scale = Vector2(29.9375, 17.5313)
 texture = SubResource("GradientTexture2D_oh07r")
 
