@@ -338,7 +338,8 @@ stream = ExtResource("4_bxypg")
 z_index = 10
 texture_filter = 1
 material = ExtResource("11_yigrs")
-scale = Vector2(32.25, 18.5313)
+position = Vector2(-4.00003, -4)
+scale = Vector2(33.625, 18.875)
 texture = SubResource("GradientTexture2D_mha5w")
 
 [node name="Rain" type="Sprite2D" parent="."]
@@ -351,8 +352,15 @@ texture = SubResource("GradientTexture2D_oh07r")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Rain"]
 stream = ExtResource("15_p4a21")
-volume_db = -10.0
+volume_db = -15.0
 autoplay = true
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -1367.0
+offset_top = -837.0
+offset_right = 1407.0
+offset_bottom = 877.0
+color = Color(0, 0, 0, 0.137255)
 
 [connection signal="hurt" from="Body/HurtBox" to="." method="_on_hurt_box_hurt"]
 [connection signal="body_entered" from="Body/EnemyDetectionArea" to="." method="_on_enemy_detection_area_body_entered"]

@@ -1880,4 +1880,4 @@ scale = Vector2(10, 10)
 texture = SubResource("GradientTexture2D_t1y2u")
 
 [node name="BulletMan" parent="." instance=ExtResource("7_cscdr")]
-position = Vector2(8.16667, -471.833)
+position = Vector2(6, -471.833)
