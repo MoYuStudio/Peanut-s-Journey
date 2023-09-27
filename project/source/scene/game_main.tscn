@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://bsln5r51b15m3"]
+[gd_scene load_steps=14 format=3 uid="uid://bsln5r51b15m3"]
 
 [ext_resource type="PackedScene" uid="uid://buew5r4txo07l" path="res://source/object/tilemap.tscn" id="1_hswe2"]
 [ext_resource type="FontFile" uid="uid://dx53pdhxhyn2p" path="res://resource/font/kenney_pixel.ttf" id="3_q5r0c"]
@@ -8,7 +8,6 @@
 [ext_resource type="Script" path="res://source/system/spawn_info.gd" id="10_coo6n"]
 [ext_resource type="PackedScene" uid="uid://c1tw37pkcvsy3" path="res://source/object/player.tscn" id="10_phe80"]
 [ext_resource type="PackedScene" uid="uid://o0wln7a0f0t3" path="res://source/object/enemy.tscn" id="11_4uxub"]
-[ext_resource type="PackedScene" uid="uid://dtq83fvoydww4" path="res://source/object/enemy1.tscn" id="11_hsccw"]
 [ext_resource type="PackedScene" uid="uid://djxky8bdiaorh" path="res://source/object/medicine.tscn" id="11_seraj"]
 
 [sub_resource type="Resource" id="Resource_on3j5"]
@@ -43,26 +42,10 @@ enemy = ExtResource("11_4uxub")
 enemy_num = 25
 enemy_spawn_delay = 1
 
-[sub_resource type="Resource" id="Resource_a6br3"]
-script = ExtResource("10_coo6n")
-time_start = 50
-time_end = 60
-enemy = ExtResource("11_hsccw")
-enemy_num = 1
-enemy_spawn_delay = 1
-
-[sub_resource type="Resource" id="Resource_xxr5m"]
-script = ExtResource("10_coo6n")
-time_start = 60
-time_end = 100
-enemy = ExtResource("11_hsccw")
-enemy_num = 10
-enemy_spawn_delay = 1
-
 [node name="Main" type="Node"]
 
 [node name="EnemySpawner" parent="." instance=ExtResource("9_pygcc")]
-spawns = Array[ExtResource("10_coo6n")]([SubResource("Resource_on3j5"), SubResource("Resource_sh0rk"), SubResource("Resource_jygxq"), SubResource("Resource_v2iot"), SubResource("Resource_a6br3"), SubResource("Resource_xxr5m")])
+spawns = Array[ExtResource("10_coo6n")]([SubResource("Resource_on3j5"), SubResource("Resource_sh0rk"), SubResource("Resource_jygxq"), SubResource("Resource_v2iot")])
 
 [node name="TileMap" parent="." instance=ExtResource("1_hswe2")]
 

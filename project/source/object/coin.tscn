@@ -1,6 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://cuo2ugjcdhtjc"]
+[gd_scene load_steps=7 format=3 uid="uid://cuo2ugjcdhtjc"]
 
-[ext_resource type="Texture2D" uid="uid://dtf7belqtuddo" path="res://resource/image/coin.png" id="1_wj6kj"]
+[ext_resource type="Texture2D" uid="uid://6xhyu1mfusrx" path="res://resource/image/coin_sprite.png" id="1_8bgin"]
 [ext_resource type="AudioStream" uid="uid://ckhsnp2yodh4x" path="res://resource/sound/confirmation_001.ogg" id="2_h5nwo"]
 
 [sub_resource type="GDScript" id="GDScript_2w41h"]
@@ -8,7 +8,7 @@ script/source = "
 extends Area2D
 
 func _ready():
-	pass
+	$AnimationPlayer.play('animation')
 
 func _process(delta):
 	pass
@@ -24,7 +24,30 @@ func _on_body_entered(body):
 [sub_resource type="CircleShape2D" id="CircleShape2D_elho4"]
 radius = 8.0
 
+[sub_resource type="Animation" id="Animation_f4cjo"]
+resource_name = "animation"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0, 11]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_osgta"]
+_data = {
+"animation": SubResource("Animation_f4cjo")
+}
+
 [node name="Coin" type="Area2D"]
+z_index = -2
 scale = Vector2(3, 3)
 collision_layer = 8
 collision_mask = 8
@@ -32,12 +55,20 @@ script = SubResource("GDScript_2w41h")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
-texture = ExtResource("1_wj6kj")
+texture = ExtResource("1_8bgin")
+hframes = 6
+vframes = 2
+frame = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_elho4")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_h5nwo")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_osgta")
+}
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
