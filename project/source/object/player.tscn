@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://c1tw37pkcvsy3"]
+[gd_scene load_steps=26 format=3 uid="uid://c1tw37pkcvsy3"]
 
 [ext_resource type="Texture2D" uid="uid://6ndddp5duhfh" path="res://resource/image/light_yellow.png" id="1_fcmov"]
 [ext_resource type="Texture2D" uid="uid://cciym2m3cx1ij" path="res://resource/image/steam.png" id="1_ouxap"]
@@ -7,6 +7,7 @@
 [ext_resource type="AudioStream" uid="uid://c80tpxgcpbvjm" path="res://resource/sound/TRANSPORTATION_SPORTS_CAR_Porsche_Boxster_Accelerate_Interior.mp3" id="4_bxypg"]
 [ext_resource type="PackedScene" uid="uid://5ygp3ic8vnl6" path="res://source/object/hurtbox.tscn" id="5_yqutu"]
 [ext_resource type="Texture2D" uid="uid://bvhr66hwk76fl" path="res://resource/image/hp_bar_under.png" id="6_na1pr"]
+[ext_resource type="Texture2D" uid="uid://d4fpxy7ab8r70" path="res://resource/image/gun.png" id="6_wh1gl"]
 [ext_resource type="Texture2D" uid="uid://l3vbbpxnu51a" path="res://resource/image/hp_bar_over.png" id="7_qopcr"]
 [ext_resource type="Texture2D" uid="uid://bvf7unifbeymv" path="res://resource/image/hp_bar_progress.png" id="8_b22qt"]
 [ext_resource type="PackedScene" uid="uid://o84475elvy3" path="res://source/object/hitbox.tscn" id="9_5ef0a"]
@@ -77,6 +78,7 @@ func _on_bullet_timer_timeout():
 	if len(enemy_close) > 1:
 		var bullet_attack = bullet.instantiate()
 		bullet_attack.target = get_random_target()
+		$Gun.look_at(bullet_attack.target)
 		bullet_attack.level = bullet_level
 		add_child(bullet_attack)
 			
@@ -256,6 +258,14 @@ shape = SubResource("CircleShape2D_jwwij")
 [node name="BulletTimer" type="Timer" parent="Attack"]
 wait_time = 1.5
 
+[node name="Gun" type="Sprite2D" parent="."]
+z_index = 3
+texture_filter = 1
+position = Vector2(0, -9.53674e-07)
+rotation = -1.5708
+scale = Vector2(3, 3)
+texture = ExtResource("6_wh1gl")
+
 [node name="HUD" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
@@ -296,10 +306,10 @@ metadata/_edit_use_anchors_ = true
 [node name="ColorRect" type="ColorRect" parent="HUD"]
 z_index = -10
 layout_mode = 0
-offset_left = -914.0
-offset_top = -514.0
-offset_right = 914.0
-offset_bottom = 514.0
+offset_left = -1053.0
+offset_top = -649.0
+offset_right = 1053.0
+offset_bottom = 649.0
 color = Color(0.611765, 0.8, 0.396078, 1)
 
 [node name="Camera2D" type="Camera2D" parent="."]

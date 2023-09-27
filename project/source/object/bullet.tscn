@@ -45,10 +45,9 @@ func _on_timer_timeout():
 "
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pp6ma"]
-size = Vector2(6, 12)
+size = Vector2(12, 12)
 
 [node name="Bullet" type="Area2D" groups=["attack"]]
-rotation = 1.5708
 collision_layer = 4
 collision_mask = 4
 script = SubResource("GDScript_n4bwb")
