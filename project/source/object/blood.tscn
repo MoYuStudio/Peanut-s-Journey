@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://dnvmjkdpqytsk"]
 
 [ext_resource type="Texture2D" uid="uid://cmligav026enw" path="res://resource/image/blood.png" id="1_y5lt5"]
-[ext_resource type="AudioStream" uid="uid://r3amtsp3j7ca" path="res://resource/sound/question_001.ogg" id="2_hvq3f"]
+[ext_resource type="AudioStream" uid="uid://bqghqyefvramf" path="res://resource/sound/enemy_death.mp3" id="2_wrdx5"]
 
 [sub_resource type="GDScript" id="GDScript_afk56"]
 script/source = "
@@ -16,7 +16,7 @@ func _ready():
 
 [sub_resource type="Animation" id="Animation_45mdx"]
 resource_name = "animation"
-length = 9.0
+length = 12.0
 step = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -37,7 +37,7 @@ tracks/1/path = NodePath(".:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(8, 9),
+"times": PackedFloat32Array(11, 12),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0.784314), Color(1, 1, 1, 0)]
@@ -52,12 +52,12 @@ _data = {
 modulate = Color(1, 1, 1, 0.784314)
 z_index = -2
 texture_filter = 1
-scale = Vector2(6, 6)
+scale = Vector2(1e-05, 1e-05)
 texture = ExtResource("1_y5lt5")
 script = SubResource("GDScript_afk56")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("2_hvq3f")
+stream = ExtResource("2_wrdx5")
 autoplay = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

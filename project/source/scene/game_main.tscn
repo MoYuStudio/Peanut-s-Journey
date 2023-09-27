@@ -1,7 +1,7 @@
 [gd_scene load_steps=14 format=3 uid="uid://bsln5r51b15m3"]
 
 [ext_resource type="PackedScene" uid="uid://buew5r4txo07l" path="res://source/object/tilemap.tscn" id="1_hswe2"]
-[ext_resource type="FontFile" uid="uid://dx53pdhxhyn2p" path="res://resource/font/kenney_pixel.ttf" id="3_q5r0c"]
+[ext_resource type="FontFile" uid="uid://ckmyjvou4nb1f" path="res://resource/font/kenney_pixel.ttf" id="3_q5r0c"]
 [ext_resource type="PackedScene" uid="uid://cuo2ugjcdhtjc" path="res://source/object/coin.tscn" id="3_vsshu"]
 [ext_resource type="AudioStream" uid="uid://dedn7dukyretx" path="res://resource/music/Run - Max Surla_Media Right Productions.mp3" id="8_u7m0s"]
 [ext_resource type="PackedScene" uid="uid://ckujg6i1b6ujw" path="res://source/system/enemy_spawner.tscn" id="9_pygcc"]

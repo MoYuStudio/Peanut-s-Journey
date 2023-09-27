@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://o0wln7a0f0t3"]
+[gd_scene load_steps=13 format=3 uid="uid://o0wln7a0f0t3"]
 
 [ext_resource type="Texture2D" uid="uid://dd5qoikkws2ep" path="res://resource/image/enemy.png" id="1_4fujm"]
 [ext_resource type="PackedScene" uid="uid://5ygp3ic8vnl6" path="res://source/object/hurtbox.tscn" id="2_1e2o4"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://bvhr66hwk76fl" path="res://resource/image/hp_bar_under.png" id="4_yfotg"]
 [ext_resource type="Texture2D" uid="uid://l3vbbpxnu51a" path="res://resource/image/hp_bar_over.png" id="5_den12"]
 [ext_resource type="Texture2D" uid="uid://bvf7unifbeymv" path="res://resource/image/hp_bar_progress.png" id="6_qdygd"]
+[ext_resource type="AudioStream" uid="uid://btu76j8w6dkd6" path="res://resource/sound/enemy_sound.mp3" id="8_bt1nu"]
 
 [sub_resource type="GDScript" id="GDScript_3nnkj"]
 script/source = "
@@ -128,6 +129,10 @@ texture_over = ExtResource("5_den12")
 texture_progress = ExtResource("6_qdygd")
 tint_under = Color(0, 0, 0, 0)
 tint_progress = Color(0.305882, 1, 0.12549, 1)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_bt1nu")
+autoplay = true
 
 [connection signal="hurt" from="HurtBox" to="." method="_on_hurt_box_hurt"]
 
