@@ -1,6 +1,7 @@
-[gd_scene load_steps=17 format=3 uid="uid://c1tw37pkcvsy3"]
+[gd_scene load_steps=25 format=3 uid="uid://c1tw37pkcvsy3"]
 
 [ext_resource type="Texture2D" uid="uid://6ndddp5duhfh" path="res://resource/image/light_yellow.png" id="1_fcmov"]
+[ext_resource type="Texture2D" uid="uid://cciym2m3cx1ij" path="res://resource/image/steam.png" id="1_ouxap"]
 [ext_resource type="Texture2D" uid="uid://dehg38xt8tidn" path="res://resource/image/car.png" id="2_dc5sy"]
 [ext_resource type="FontFile" uid="uid://dx53pdhxhyn2p" path="res://resource/font/kenney_pixel.ttf" id="3_75bdf"]
 [ext_resource type="AudioStream" uid="uid://c80tpxgcpbvjm" path="res://resource/sound/TRANSPORTATION_SPORTS_CAR_Porsche_Boxster_Accelerate_Interior.mp3" id="4_bxypg"]
@@ -9,6 +10,8 @@
 [ext_resource type="Texture2D" uid="uid://l3vbbpxnu51a" path="res://resource/image/hp_bar_over.png" id="7_qopcr"]
 [ext_resource type="Texture2D" uid="uid://bvf7unifbeymv" path="res://resource/image/hp_bar_progress.png" id="8_b22qt"]
 [ext_resource type="PackedScene" uid="uid://o84475elvy3" path="res://source/object/hitbox.tscn" id="9_5ef0a"]
+[ext_resource type="Material" uid="uid://bi0fishftfal1" path="res://resource/shader/rain.tres" id="11_i4vq8"]
+[ext_resource type="Material" uid="uid://bm3ej4etv2p3" path="res://resource/shader/tilt_shift.tres" id="11_yigrs"]
 
 [sub_resource type="GDScript" id="GDScript_wo5ts"]
 script/source = "
@@ -22,10 +25,8 @@ var enemy_close = []
 @onready var bullet = preload('res://source/object/bullet.tscn')
 @onready var bullet_timer = $Attack/BulletTimer
 @onready var bullet_attack_timer = $Attack/BulletTimer/BulletAttackTimer
-var bullet_ammo = 0
-var bullet_base_ammo = 1
 var bullet_level = 1
-var bullet_attack_speed = 0.09
+var bullet_attack_speed = 0.1
 
 # 进程函数 ==============================================================
 
@@ -47,15 +48,7 @@ func _process(delta):
 	
 func _physics_process(delta):
 	$HUD/HP.value = hp
-	if len(enemy_close) > 1:
-		if bullet_ammo > 0:
-			var bullet_attack = bullet.instantiate()
-			bullet_attack.target = get_random_target()
-			bullet_attack.level = bullet_level
-			bullet_attack.look_at(get_random_target())
-			add_child(bullet_attack)
-			bullet_ammo -= 1
-			
+	
 	move_and_slide()
 
 # 自定义函数 =============================================================
@@ -81,7 +74,11 @@ func _on_hurt_box_hurt(damage):
 	
 # 子弹信号
 func _on_bullet_timer_timeout():
-	bullet_ammo += bullet_base_ammo
+	if len(enemy_close) > 1:
+		var bullet_attack = bullet.instantiate()
+		bullet_attack.target = get_random_target()
+		bullet_attack.level = bullet_level
+		add_child(bullet_attack)
 			
 func get_random_target():
 	if enemy_close.size() > 0:
@@ -145,6 +142,23 @@ func dir():
 		direction = 1
 "
 
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_s0k1v"]
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+particle_flag_disable_z = true
+direction = Vector3(0, 1, 0)
+spread = 35.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 32.0
+initial_velocity_max = 64.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+linear_accel_max = 35.0
+scale_min = 6.0
+scale_max = 9.0
+color = Color(1, 1, 1, 0.588235)
+turbulence_noise_strength = 20.0
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6qemh"]
 radius = 24.0
 height = 96.0
@@ -159,6 +173,16 @@ size = Vector2(216, 66)
 [sub_resource type="CircleShape2D" id="CircleShape2D_jwwij"]
 radius = 4038.45
 
+[sub_resource type="Gradient" id="Gradient_x7f0i"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_mha5w"]
+gradient = SubResource("Gradient_x7f0i")
+
+[sub_resource type="Gradient" id="Gradient_qqeh2"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_oh07r"]
+gradient = SubResource("Gradient_qqeh2")
+
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 collision_layer = 15
 collision_mask = 15
@@ -168,7 +192,6 @@ script = SubResource("GDScript_wo5ts")
 shape = SubResource("CapsuleShape2D_wmrfs")
 
 [node name="Body" type="CharacterBody2D" parent="." groups=["player"]]
-scale = Vector2(1, 1)
 collision_layer = 15
 collision_mask = 15
 script = SubResource("GDScript_7j67i")
@@ -177,6 +200,13 @@ script = SubResource("GDScript_7j67i")
 texture_filter = 1
 scale = Vector2(6, 6)
 texture = ExtResource("2_dc5sy")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Body"]
+texture_filter = 1
+position = Vector2(0, 48)
+amount = 6
+process_material = SubResource("ParticleProcessMaterial_s0k1v")
+texture = ExtResource("1_ouxap")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Body"]
 position = Vector2(5.36442e-07, -9.53674e-07)
@@ -280,6 +310,20 @@ position_smoothing_speed = 6.0
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_bxypg")
+
+[node name="TiltShift" type="Sprite2D" parent="."]
+z_index = 10
+texture_filter = 1
+material = ExtResource("11_yigrs")
+scale = Vector2(32.25, 18.5313)
+texture = SubResource("GradientTexture2D_mha5w")
+
+[node name="Rain" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.0117647)
+texture_filter = 1
+material = ExtResource("11_i4vq8")
+scale = Vector2(29.9375, 17.5313)
+texture = SubResource("GradientTexture2D_oh07r")
 
 [connection signal="hurt" from="Body/HurtBox" to="." method="_on_hurt_box_hurt"]
 [connection signal="body_entered" from="Body/EnemyDetectionArea" to="." method="_on_enemy_detection_area_body_entered"]
