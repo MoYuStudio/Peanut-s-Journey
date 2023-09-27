@@ -37,8 +37,8 @@ func _on_hurt_box_hurt(damage, angle, knock_back_amount):
 "
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3ay8f"]
-radius = 18.0
-height = 48.0
+radius = 12.0
+height = 38.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_e3hjc"]
 radius = 20.0
