@@ -12,7 +12,7 @@ extends Area2D
 @onready var disable_timer = $DisableTimer
 @onready var hurt_audio = $AudioStreamPlayer2D
 
-signal hurt(damage)
+signal hurt(damage, angle, knock_back)
 
 func _on_area_entered(area):
 	if area.is_in_group('attack'):
@@ -28,7 +28,16 @@ func _on_area_entered(area):
 					if area.has_method('tempdisable'):
 						area.tempdisable()
 			var damage = area.damage
-			emit_signal('hurt',damage)
+			var angle = Vector2.ZERO
+			var knock_back = 1
+			if not area.get('angle') == null:
+				angle = area.angle
+			if not area.get('knock_back') == null:
+				knock_back = area.knock_back
+				
+			emit_signal('hurt', damage, angle, knock_back)
+			if area.has_method('enemy_hit'):
+				area.enemy_hit(1)
 
 func _on_disable_timer_timeout():
 	collision.call_deferred('set','disabled',false)

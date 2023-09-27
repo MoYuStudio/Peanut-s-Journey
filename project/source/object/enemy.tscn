@@ -13,24 +13,27 @@ extends CharacterBody2D
 
 @export var movement_speed = 100.0
 @export var hp = 10
+@export var knock_back_recovery = 3.5
+var knock_back = Vector2.ZERO
 
 @onready var player = get_tree().get_first_node_in_group('player')
 
-func _process(delta):
-	if hp <= 0:
-		queue_free()
-
 func _physics_process(_delta):
+	knock_back = knock_back.move_toward(Vector2.ZERO, knock_back_recovery)
 	var direction = position.direction_to(player.position)
 	velocity = direction * movement_speed
+	velocity += knock_back
 	$HUD.rotation = -rotation
 	
 	$HUD/HP.value = hp
 	look_at(player.position)
 	move_and_slide()
 
-func _on_hurt_box_hurt(damage):
+func _on_hurt_box_hurt(damage, angle, knock_back_amount):
 	hp -= damage
+	knock_back = angle * knock_back_amount
+	if hp <= 0:
+		queue_free()
 "
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3ay8f"]
