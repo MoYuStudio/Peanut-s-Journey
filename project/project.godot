@@ -10,13 +10,13 @@ config_version=5
 
 [application]
 
-config/name="The Last Mechanic"
+config/name="花生米先生的车"
 run/main_scene="res://source/main.tscn"
 config/features=PackedStringArray("4.1", "Forward Plus")
 boot_splash/show_image=false
 boot_splash/fullsize=false
 boot_splash/use_filter=false
-config/icon="res://resource/icon/icon_x1000.png"
+config/icon="res://resource/icon/icon_128x128.png"
 config/windows_native_icon="res://icon.ico"
 
 [display]
@@ -25,6 +25,7 @@ window/size/viewport_width=1280
 window/size/viewport_height=720
 window/stretch/mode="viewport"
 window/stretch/aspect="expand"
+mouse_cursor/custom_image="res://resource/image/mouse.png"
 
 [input]
 

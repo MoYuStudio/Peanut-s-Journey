@@ -28,18 +28,18 @@ offset_right = 2664.0
 offset_bottom = 1504.0
 color = Color(0, 0, 0, 1)
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="ColorRect"]
 texture_filter = 1
-position = Vector2(844, 358)
+position = Vector2(2238, 1159)
 scale = Vector2(10.2031, 11.7188)
 texture = ExtResource("1_hmj4w")
 
-[node name="ColorRect2" type="ColorRect" parent="."]
+[node name="ColorRect2" type="ColorRect" parent="ColorRect"]
 modulate = Color(1, 1, 1, 0.392157)
-offset_left = -626.0
-offset_top = -119.0
-offset_right = 529.0
-offset_bottom = 875.0
+offset_left = 768.0
+offset_top = 682.0
+offset_right = 1923.0
+offset_bottom = 1676.0
 color = Color(0, 0, 0, 1)
 
 [node name="Title" type="Label" parent="."]
@@ -53,38 +53,71 @@ text = "花生米先生
 的车
 "
 
-[node name="Subtitle" type="Label" parent="."]
-self_modulate = Color(1, 1, 1, 0.588235)
-offset_left = 34.0
-offset_top = 629.0
-offset_right = 285.0
-offset_bottom = 690.0
-theme_override_fonts/font = ExtResource("2_kikh1")
-theme_override_font_sizes/font_size = 32
-text = "MOYU STUDIO"
-
-[node name="Web" type="Label" parent="."]
-self_modulate = Color(1, 1, 1, 0.588235)
-texture_filter = 1
-offset_left = 34.0
-offset_top = 659.0
-offset_right = 382.0
-offset_bottom = 704.0
-theme_override_fonts/font = ExtResource("2_kikh1")
-theme_override_font_sizes/font_size = 24
-text = "www.moyu-stuido.com
-"
-
-[node name="StartButton" type="Button" parent="."]
-offset_left = 14.0
-offset_top = 383.0
-offset_right = 258.0
-offset_bottom = 475.0
+[node name="FastStartButton" type="Button" parent="Title"]
+offset_left = -25.0
+offset_top = 207.0
+offset_right = 219.0
+offset_bottom = 278.0
 theme_override_fonts/font = ExtResource("2_kikh1")
 theme_override_font_sizes/font_size = 48
 text = "快速开始"
 flat = true
 script = SubResource("GDScript_o3aco")
+
+[node name="StartButton" type="Button" parent="Title"]
+offset_left = -30.0
+offset_top = 290.0
+offset_right = 214.0
+offset_bottom = 361.0
+theme_override_fonts/font = ExtResource("2_kikh1")
+theme_override_font_sizes/font_size = 48
+disabled = true
+text = "开始"
+flat = true
+
+[node name="SettingButton" type="Button" parent="Title"]
+offset_left = -35.0
+offset_top = 375.0
+offset_right = 209.0
+offset_bottom = 446.0
+theme_override_fonts/font = ExtResource("2_kikh1")
+theme_override_font_sizes/font_size = 48
+disabled = true
+text = "设置"
+flat = true
+
+[node name="ESCButton" type="Button" parent="Title"]
+offset_left = -37.0
+offset_top = 461.0
+offset_right = 207.0
+offset_bottom = 532.0
+theme_override_fonts/font = ExtResource("2_kikh1")
+theme_override_font_sizes/font_size = 48
+disabled = true
+text = "退出"
+flat = true
+
+[node name="Subtitle" type="Label" parent="Title"]
+self_modulate = Color(1, 1, 1, 0.588235)
+offset_left = -11.0
+offset_top = 575.0
+offset_right = 240.0
+offset_bottom = 636.0
+theme_override_fonts/font = ExtResource("2_kikh1")
+theme_override_font_sizes/font_size = 32
+text = "MOYU STUDIO"
+
+[node name="Web" type="Label" parent="Title"]
+self_modulate = Color(1, 1, 1, 0.588235)
+texture_filter = 1
+offset_left = -11.0
+offset_top = 605.0
+offset_right = 337.0
+offset_bottom = 650.0
+theme_override_fonts/font = ExtResource("2_kikh1")
+theme_override_font_sizes/font_size = 24
+text = "www.moyu-stuido.com
+"
 
 [node name="Control" type="Control" parent="."]
 visible = false

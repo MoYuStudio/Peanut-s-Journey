@@ -25,6 +25,11 @@ signal remove_from_array(object)
 var death_animation = preload('res://source/object/blood.tscn')
 var death_coin = preload('res://source/object/coin.tscn')
 
+# var screen_size
+
+# func _ready():
+# 	screen_size = get_viewport_rect().size
+
 func _physics_process(_delta):
 	knock_back = knock_back.move_toward(Vector2.ZERO, knock_back_recovery)
 	var direction = position.direction_to(player.position)
