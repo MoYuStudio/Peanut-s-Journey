@@ -1,14 +1,12 @@
-[gd_scene load_steps=15 format=3 uid="uid://bsln5r51b15m3"]
+[gd_scene load_steps=13 format=3 uid="uid://bsln5r51b15m3"]
 
-[ext_resource type="PackedScene" uid="uid://buew5r4txo07l" path="res://source/object/tilemap.tscn" id="1_hswe2"]
+[ext_resource type="PackedScene" uid="uid://buew5r4txo07l" path="res://source/map/tilemap.tscn" id="1_hswe2"]
 [ext_resource type="FontFile" uid="uid://ckmyjvou4nb1f" path="res://resource/font/kenney_pixel.ttf" id="3_q5r0c"]
-[ext_resource type="PackedScene" uid="uid://cuo2ugjcdhtjc" path="res://source/object/coin.tscn" id="3_vsshu"]
 [ext_resource type="AudioStream" uid="uid://dedn7dukyretx" path="res://resource/music/Run - Max Surla_Media Right Productions.mp3" id="8_u7m0s"]
-[ext_resource type="PackedScene" uid="uid://ckujg6i1b6ujw" path="res://source/system/enemy_spawner.tscn" id="9_pygcc"]
-[ext_resource type="Script" path="res://source/system/spawn_info.gd" id="10_coo6n"]
+[ext_resource type="PackedScene" uid="uid://ckujg6i1b6ujw" path="res://source/utility/enemy_spawner.tscn" id="9_pygcc"]
+[ext_resource type="Script" path="res://source/utility/spawn_info.gd" id="10_coo6n"]
 [ext_resource type="PackedScene" uid="uid://c1tw37pkcvsy3" path="res://source/object/player.tscn" id="10_phe80"]
 [ext_resource type="PackedScene" uid="uid://o0wln7a0f0t3" path="res://source/object/enemy.tscn" id="11_4uxub"]
-[ext_resource type="PackedScene" uid="uid://djxky8bdiaorh" path="res://source/object/medicine.tscn" id="11_seraj"]
 
 [sub_resource type="Resource" id="Resource_on3j5"]
 script = ExtResource("10_coo6n")
@@ -58,6 +56,7 @@ spawns = Array[ExtResource("10_coo6n")]([SubResource("Resource_on3j5"), SubResou
 [node name="TileMap" parent="." instance=ExtResource("1_hswe2")]
 
 [node name="Control" type="Control" parent="."]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_left = -594.0
@@ -104,11 +103,5 @@ stream = ExtResource("8_u7m0s")
 volume_db = -5.0
 autoplay = true
 
-[node name="Coin" parent="." instance=ExtResource("3_vsshu")]
-position = Vector2(48, -523)
-
-[node name="Medicine" parent="." instance=ExtResource("11_seraj")]
-position = Vector2(49, -722)
-
 [node name="Player" parent="." instance=ExtResource("10_phe80")]
-position = Vector2(50, 56)
+position = Vector2(61, 8)

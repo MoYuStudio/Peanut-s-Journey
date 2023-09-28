@@ -1,13 +1,13 @@
 [gd_scene load_steps=13 format=3 uid="uid://o0wln7a0f0t3"]
 
 [ext_resource type="Texture2D" uid="uid://dd5qoikkws2ep" path="res://resource/image/enemy.png" id="1_4fujm"]
-[ext_resource type="PackedScene" uid="uid://5ygp3ic8vnl6" path="res://source/object/hurtbox.tscn" id="2_1e2o4"]
-[ext_resource type="PackedScene" uid="uid://o84475elvy3" path="res://source/object/hitbox.tscn" id="3_bjah8"]
-[ext_resource type="AudioStream" uid="uid://d3tpsjwds2pyl" path="res://resource/sound/glitch_001.ogg" id="3_g7wmm"]
+[ext_resource type="PackedScene" uid="uid://5ygp3ic8vnl6" path="res://source/utility/hurtbox.tscn" id="2_1e2o4"]
+[ext_resource type="PackedScene" uid="uid://o84475elvy3" path="res://source/utility/hitbox.tscn" id="3_bjah8"]
+[ext_resource type="AudioStream" path="res://resource/sound/glitch_001.ogg" id="3_g7wmm"]
 [ext_resource type="Texture2D" uid="uid://bvhr66hwk76fl" path="res://resource/image/hp_bar_under.png" id="4_yfotg"]
 [ext_resource type="Texture2D" uid="uid://l3vbbpxnu51a" path="res://resource/image/hp_bar_over.png" id="5_den12"]
 [ext_resource type="Texture2D" uid="uid://bvf7unifbeymv" path="res://resource/image/hp_bar_progress.png" id="6_qdygd"]
-[ext_resource type="AudioStream" uid="uid://btu76j8w6dkd6" path="res://resource/sound/enemy_sound.mp3" id="8_bt1nu"]
+[ext_resource type="AudioStream" uid="uid://cec6ejlhxk36l" path="res://resource/sound/enemy_sound.mp3" id="8_bt1nu"]
 
 [sub_resource type="GDScript" id="GDScript_3nnkj"]
 script/source = "
@@ -40,11 +40,14 @@ func death():
 	emit_signal('remove_from_array',self)
 	
 	var enemy_death_animation = death_animation.instantiate()
-	var enemy_death_coin = death_coin.instantiate()
 	enemy_death_animation.global_position = global_position
-	enemy_death_coin.global_position = global_position
 	get_parent().call_deferred('add_child', enemy_death_animation)
-	get_parent().call_deferred('add_child', enemy_death_coin)
+	
+	
+	if randi_range(0,100) <= 90: # %90概率产生金币
+		var enemy_death_coin = death_coin.instantiate()
+		enemy_death_coin.global_position = global_position
+		get_parent().call_deferred('add_child', enemy_death_coin)
 	
 	queue_free()
 	
@@ -132,7 +135,7 @@ tint_progress = Color(0.305882, 1, 0.12549, 1)
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("8_bt1nu")
-volume_db = -10.0
+volume_db = -15.0
 autoplay = true
 
 [connection signal="hurt" from="HurtBox" to="." method="_on_hurt_box_hurt"]

@@ -1,26 +1,29 @@
-[gd_scene load_steps=28 format=3 uid="uid://c1tw37pkcvsy3"]
+[gd_scene load_steps=34 format=3 uid="uid://c1tw37pkcvsy3"]
 
 [ext_resource type="Texture2D" uid="uid://6ndddp5duhfh" path="res://resource/image/light_yellow.png" id="1_fcmov"]
 [ext_resource type="Texture2D" uid="uid://cciym2m3cx1ij" path="res://resource/image/steam.png" id="1_ouxap"]
 [ext_resource type="Texture2D" uid="uid://dehg38xt8tidn" path="res://resource/image/car.png" id="2_dc5sy"]
 [ext_resource type="FontFile" uid="uid://ckmyjvou4nb1f" path="res://resource/font/kenney_pixel.ttf" id="3_75bdf"]
-[ext_resource type="AudioStream" uid="uid://c80tpxgcpbvjm" path="res://resource/sound/TRANSPORTATION_SPORTS_CAR_Porsche_Boxster_Accelerate_Interior.mp3" id="4_bxypg"]
-[ext_resource type="AudioStream" uid="uid://d3tpsjwds2pyl" path="res://resource/sound/glitch_001.ogg" id="5_yphfo"]
-[ext_resource type="PackedScene" uid="uid://5ygp3ic8vnl6" path="res://source/object/hurtbox.tscn" id="5_yqutu"]
+[ext_resource type="AudioStream" path="res://resource/sound/TRANSPORTATION_SPORTS_CAR_Porsche_Boxster_Accelerate_Interior.mp3" id="4_bxypg"]
+[ext_resource type="AudioStream" path="res://resource/sound/glitch_001.ogg" id="5_yphfo"]
+[ext_resource type="PackedScene" uid="uid://5ygp3ic8vnl6" path="res://source/utility/hurtbox.tscn" id="5_yqutu"]
 [ext_resource type="Texture2D" uid="uid://bvhr66hwk76fl" path="res://resource/image/hp_bar_under.png" id="6_na1pr"]
 [ext_resource type="Texture2D" uid="uid://d4fpxy7ab8r70" path="res://resource/image/gun.png" id="6_wh1gl"]
 [ext_resource type="Texture2D" uid="uid://l3vbbpxnu51a" path="res://resource/image/hp_bar_over.png" id="7_qopcr"]
 [ext_resource type="Texture2D" uid="uid://bvf7unifbeymv" path="res://resource/image/hp_bar_progress.png" id="8_b22qt"]
-[ext_resource type="PackedScene" uid="uid://o84475elvy3" path="res://source/object/hitbox.tscn" id="9_5ef0a"]
+[ext_resource type="PackedScene" uid="uid://o84475elvy3" path="res://source/utility/hitbox.tscn" id="9_5ef0a"]
+[ext_resource type="Texture2D" uid="uid://6xhyu1mfusrx" path="res://resource/image/coin_sprite.png" id="11_2ssyj"]
 [ext_resource type="Material" uid="uid://bi0fishftfal1" path="res://resource/shader/rain.tres" id="11_i4vq8"]
 [ext_resource type="Material" uid="uid://bm3ej4etv2p3" path="res://resource/shader/tilt_shift.tres" id="11_yigrs"]
-[ext_resource type="AudioStream" uid="uid://d4d3mq48n2o1w" path="res://resource/sound/rain.mp3" id="15_p4a21"]
+[ext_resource type="AudioStream" uid="uid://om43vjvq3531" path="res://resource/sound/rain.mp3" id="15_p4a21"]
 
 [sub_resource type="GDScript" id="GDScript_wo5ts"]
 script/source = "
 extends CharacterBody2D
 
 var hp = 100
+
+var money = 0
 
 var enemy_close = []
 
@@ -51,6 +54,7 @@ func _process(delta):
 	
 func _physics_process(delta):
 	$HUD/HP.value = hp
+	$HUD/Money.text = str(money)
 	
 	move_and_slide()
 
@@ -101,6 +105,15 @@ func _on_enemy_detection_area_body_entered(body):
 func _on_enemy_detection_area_body_exited(body):
 	if enemy_close.has(body):
 		enemy_close.erase(body)
+
+
+func _on_grab_area_area_entered(area):
+	if area.is_in_group('loot'):
+		area.target = self
+
+func _on_collect_area_area_entered(area):
+	if area.is_in_group('loot'):
+		money += area.collect()
 "
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wmrfs"]
@@ -111,8 +124,8 @@ height = 86.0
 script/source = "
 extends CharacterBody2D
 
-var movement_speed = 600
-var ang_speed = 0.03
+var movement_speed = 500
+var ang_speed = 0.02
 
 var direction = 0
 
@@ -180,6 +193,45 @@ size = Vector2(323.999, 66)
 [sub_resource type="CircleShape2D" id="CircleShape2D_jwwij"]
 radius = 4038.45
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_2nxfv"]
+radius = 256.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_odqar"]
+radius = 24.0
+height = 96.0
+
+[sub_resource type="GDScript" id="GDScript_g7d0s"]
+script/source = "
+extends Sprite2D
+
+@onready var animation = $AnimationPlayer
+
+func _ready():
+	animation.play('animation')
+"
+
+[sub_resource type="Animation" id="Animation_kfeg8"]
+resource_name = "animation"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0, 11]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_scgp6"]
+_data = {
+"animation": SubResource("Animation_kfeg8")
+}
+
 [sub_resource type="Gradient" id="Gradient_x7f0i"]
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_mha5w"]
@@ -221,6 +273,7 @@ shape = SubResource("CapsuleShape2D_6qemh")
 disabled = true
 
 [node name="PointLight2D" type="PointLight2D" parent="Body"]
+visible = false
 texture_filter = 1
 position = Vector2(-13, -118)
 scale = Vector2(0.6, 0.6)
@@ -228,6 +281,7 @@ energy = 3.0
 texture = ExtResource("1_fcmov")
 
 [node name="PointLight2D2" type="PointLight2D" parent="Body"]
+visible = false
 texture_filter = 1
 position = Vector2(13, -118)
 scale = Vector2(0.6, 0.6)
@@ -257,6 +311,7 @@ shape = SubResource("RectangleShape2D_n8lhe")
 disabled = true
 
 [node name="EnemyDetectionArea" type="Area2D" parent="Body"]
+visible = false
 scale = Vector2(0.166667, 0.166667)
 collision_layer = 4
 collision_mask = 4
@@ -264,6 +319,20 @@ monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Body/EnemyDetectionArea"]
 shape = SubResource("CircleShape2D_jwwij")
+
+[node name="GrabArea" type="Area2D" parent="Body"]
+collision_layer = 8
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Body/GrabArea"]
+shape = SubResource("CircleShape2D_2nxfv")
+
+[node name="CollectArea" type="Area2D" parent="Body"]
+collision_layer = 8
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Body/CollectArea"]
+shape = SubResource("CapsuleShape2D_odqar")
 
 [node name="Attack" type="Node2D" parent="."]
 
@@ -298,6 +367,30 @@ texture_progress = ExtResource("8_b22qt")
 tint_under = Color(0, 0, 0, 0)
 tint_progress = Color(0.305882, 1, 0.12549, 1)
 
+[node name="Coin" type="Sprite2D" parent="HUD"]
+texture_filter = 1
+position = Vector2(-601, -294)
+scale = Vector2(6, 6)
+texture = ExtResource("11_2ssyj")
+hframes = 6
+vframes = 2
+script = SubResource("GDScript_g7d0s")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="HUD/Coin"]
+libraries = {
+"": SubResource("AnimationLibrary_scgp6")
+}
+
+[node name="Money" type="Label" parent="HUD"]
+texture_filter = 1
+offset_left = -556.0
+offset_top = -334.0
+offset_right = -508.0
+offset_bottom = -259.0
+theme_override_fonts/font = ExtResource("3_75bdf")
+theme_override_font_sizes/font_size = 96
+text = "0"
+
 [node name="PlayerName" type="Label" parent="HUD"]
 visible = false
 modulate = Color(1, 1, 1, 0.588235)
@@ -317,6 +410,7 @@ text = "PlayerName
 metadata/_edit_use_anchors_ = true
 
 [node name="ColorRect" type="ColorRect" parent="HUD"]
+visible = false
 z_index = -10
 layout_mode = 0
 offset_left = -1053.0
@@ -327,7 +421,7 @@ color = Color(0.611765, 0.8, 0.396078, 1)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 scale = Vector2(0.166667, 0.166667)
-zoom = Vector2(0.7, 0.7)
+zoom = Vector2(0.9, 0.9)
 position_smoothing_enabled = true
 position_smoothing_speed = 6.0
 
@@ -338,11 +432,12 @@ stream = ExtResource("4_bxypg")
 z_index = 10
 texture_filter = 1
 material = ExtResource("11_yigrs")
-position = Vector2(-4.00003, -4)
+position = Vector2(61, -26)
 scale = Vector2(33.625, 18.875)
 texture = SubResource("GradientTexture2D_mha5w")
 
 [node name="Rain" type="Sprite2D" parent="."]
+visible = false
 modulate = Color(1, 1, 1, 0.0117647)
 texture_filter = 1
 material = ExtResource("11_i4vq8")
@@ -353,18 +448,20 @@ texture = SubResource("GradientTexture2D_oh07r")
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Rain"]
 stream = ExtResource("15_p4a21")
 volume_db = -15.0
-autoplay = true
 
-[node name="ColorRect" type="ColorRect" parent="."]
-offset_left = -1367.0
-offset_top = -837.0
-offset_right = 1407.0
-offset_bottom = 877.0
+[node name="ColorRect" type="ColorRect" parent="Rain"]
+visible = false
+offset_left = -45.6284
+offset_top = -47.6291
+offset_right = 2728.37
+offset_bottom = 1666.37
 color = Color(0, 0, 0, 0.137255)
 
 [connection signal="hurt" from="Body/HurtBox" to="." method="_on_hurt_box_hurt"]
 [connection signal="body_entered" from="Body/EnemyDetectionArea" to="." method="_on_enemy_detection_area_body_entered"]
 [connection signal="body_exited" from="Body/EnemyDetectionArea" to="." method="_on_enemy_detection_area_body_exited"]
+[connection signal="area_entered" from="Body/GrabArea" to="." method="_on_grab_area_area_entered"]
+[connection signal="area_entered" from="Body/CollectArea" to="." method="_on_collect_area_area_entered"]
 [connection signal="timeout" from="Attack/BulletTimer" to="." method="_on_bullet_timer_timeout"]
 
 [editable path="Body/HurtBox"]

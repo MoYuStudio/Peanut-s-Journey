@@ -1,24 +1,41 @@
 [gd_scene load_steps=7 format=3 uid="uid://cuo2ugjcdhtjc"]
 
 [ext_resource type="Texture2D" uid="uid://6xhyu1mfusrx" path="res://resource/image/coin_sprite.png" id="1_8bgin"]
-[ext_resource type="AudioStream" uid="uid://ckhsnp2yodh4x" path="res://resource/sound/confirmation_001.ogg" id="2_h5nwo"]
+[ext_resource type="AudioStream" uid="uid://cotv0p0hvjb8q" path="res://resource/sound/get_coin.ogg" id="2_wo425"]
 
 [sub_resource type="GDScript" id="GDScript_2w41h"]
 script/source = "
 extends Area2D
 
+@onready var animation = $AnimationPlayer
+@onready var collision = $CollisionShape2D
+@onready var audio = $AudioStreamPlayer
+
+@export var money = 1
+
+var target = null
+var speed = 0
+
 func _ready():
-	$AnimationPlayer.play('animation')
+	animation.play('animation')
 
 func _process(delta):
 	pass
+	
+func _physics_process(delta):
+	if target != null:
+		global_position = global_position.move_toward(target.global_position, speed)
+		speed += 2*delta
 
-func _on_body_entered(body):
-	$AudioStreamPlayer.play()
+func collect():
+	audio.play()
+	collision.call_deferred('set', 'disable', true)
 	hide()
-	await $AudioStreamPlayer.finished
-	queue_free()
+	
+	return money
 
+func _on_audio_stream_player_finished():
+	queue_free()
 "
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_elho4"]
@@ -46,7 +63,7 @@ _data = {
 "animation": SubResource("Animation_f4cjo")
 }
 
-[node name="Coin" type="Area2D"]
+[node name="Coin" type="Area2D" groups=["loot"]]
 z_index = -2
 scale = Vector2(3, 3)
 collision_layer = 8
@@ -63,12 +80,12 @@ vframes = 2
 shape = SubResource("CircleShape2D_elho4")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("2_h5nwo")
-volume_db = -10.0
+stream = ExtResource("2_wo425")
+volume_db = -15.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_osgta")
 }
 
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="finished" from="AudioStreamPlayer" to="." method="_on_audio_stream_player_finished"]

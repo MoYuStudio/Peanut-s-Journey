@@ -43,16 +43,15 @@ offset_bottom = 875.0
 color = Color(0, 0, 0, 1)
 
 [node name="Title" type="Label" parent="."]
-offset_left = 33.0
-offset_top = 42.0
-offset_right = 328.0
-offset_bottom = 390.0
+offset_left = 45.0
+offset_top = 54.0
+offset_right = 340.0
+offset_bottom = 228.0
 theme_override_fonts/font = ExtResource("2_kikh1")
 theme_override_font_sizes/font_size = 64
-text = "没有什么
-是花生米
-解决不了的
-！！！"
+text = "花生米先生
+的车
+"
 
 [node name="Subtitle" type="Label" parent="."]
 self_modulate = Color(1, 1, 1, 0.588235)
@@ -77,12 +76,12 @@ text = "www.moyu-stuido.com
 "
 
 [node name="StartButton" type="Button" parent="."]
-offset_left = 40.0
-offset_top = 431.0
-offset_right = 284.0
-offset_bottom = 523.0
+offset_left = 14.0
+offset_top = 383.0
+offset_right = 258.0
+offset_bottom = 475.0
 theme_override_fonts/font = ExtResource("2_kikh1")
-theme_override_font_sizes/font_size = 64
+theme_override_font_sizes/font_size = 48
 text = "快速开始"
 flat = true
 script = SubResource("GDScript_o3aco")
