@@ -1,11 +1,11 @@
 [gd_scene load_steps=11 format=3 uid="uid://da83a1jtuybi2"]
 
 [ext_resource type="Texture2D" uid="uid://bnmx8pt0nk4u2" path="res://resource/logo/logo.png" id="1_8ng5c"]
-[ext_resource type="AudioStream" uid="uid://ckhsnp2yodh4x" path="res://resource/sound/confirmation_001.ogg" id="2_7dng5"]
+[ext_resource type="AudioStream" path="res://resource/sound/confirmation_001.ogg" id="2_7dng5"]
 
 [sub_resource type="GDScript" id="GDScript_6o0tv"]
 script/source = "
-extends Control
+extends Node
 
 func _ready():
 	$Audio/AnimationPlayer.play('init')
@@ -102,13 +102,10 @@ _data = {
 "init": SubResource("Animation_sm6h4")
 }
 
-[node name="Init" type="Control"]
-layout_mode = 3
-anchors_preset = 0
+[node name="Init" type="Node"]
 script = SubResource("GDScript_6o0tv")
 
 [node name="Background" type="ColorRect" parent="."]
-layout_mode = 0
 offset_left = -900.0
 offset_top = -600.0
 offset_right = 8100.0
@@ -128,7 +125,6 @@ libraries = {
 }
 
 [node name="Mask" type="ColorRect" parent="."]
-layout_mode = 0
 offset_left = -900.0
 offset_top = -600.0
 offset_right = 8100.0
