@@ -374,6 +374,7 @@ scale = Vector2(6, 6)
 texture = ExtResource("11_2ssyj")
 hframes = 6
 vframes = 2
+frame = 6
 script = SubResource("GDScript_g7d0s")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="HUD/Coin"]
