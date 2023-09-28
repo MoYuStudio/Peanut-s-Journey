@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bk5s4288bvljb"]
 
-[ext_resource type="Texture2D" uid="uid://dehg38xt8tidn" path="res://resource/image/car.png" id="1_3rly0"]
+[ext_resource type="Texture2D" uid="uid://dehg38xt8tidn" path="res://resource/image/car.png" id="1_h1shc"]
 
 [node name="MenuUpgrades" type="Node"]
 
@@ -16,4 +16,4 @@ texture_filter = 1
 position = Vector2(641, 356)
 rotation = 1.5708
 scale = Vector2(16, 16)
-texture = ExtResource("1_3rly0")
+texture = ExtResource("1_h1shc")

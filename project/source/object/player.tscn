@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://c1tw37pkcvsy3"]
+[gd_scene load_steps=35 format=3 uid="uid://c1tw37pkcvsy3"]
 
 [ext_resource type="Texture2D" uid="uid://6ndddp5duhfh" path="res://resource/image/light_yellow.png" id="1_fcmov"]
 [ext_resource type="Texture2D" uid="uid://cciym2m3cx1ij" path="res://resource/image/steam.png" id="1_ouxap"]
@@ -54,7 +54,7 @@ func _process(delta):
 	
 func _physics_process(delta):
 	$HUD/HP.value = hp
-	$HUD/Money.text = str(money)
+	$GUI/Money.text = str(money)
 	
 	move_and_slide()
 
@@ -125,7 +125,7 @@ script/source = "
 extends CharacterBody2D
 
 var movement_speed = 500
-var ang_speed = 0.02
+var ang_speed = 0.023
 
 var direction = 0
 
@@ -200,6 +200,16 @@ radius = 256.0
 radius = 24.0
 height = 96.0
 
+[sub_resource type="Gradient" id="Gradient_x7f0i"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_mha5w"]
+gradient = SubResource("Gradient_x7f0i")
+
+[sub_resource type="Gradient" id="Gradient_qqeh2"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_oh07r"]
+gradient = SubResource("Gradient_qqeh2")
+
 [sub_resource type="GDScript" id="GDScript_g7d0s"]
 script/source = "
 extends Sprite2D
@@ -232,15 +242,18 @@ _data = {
 "animation": SubResource("Animation_kfeg8")
 }
 
-[sub_resource type="Gradient" id="Gradient_x7f0i"]
+[sub_resource type="GDScript" id="GDScript_bhj5u"]
+script/source = "
+extends Button
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_mha5w"]
-gradient = SubResource("Gradient_x7f0i")
+func _ready():
+	pass
 
-[sub_resource type="Gradient" id="Gradient_qqeh2"]
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_oh07r"]
-gradient = SubResource("Gradient_qqeh2")
+func _process(delta):
+	if is_pressed():
+		get_tree().change_scene_to_file('res://source/scene/menu_main.tscn')
+		
+"
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 collision_layer = 15
@@ -367,31 +380,6 @@ texture_progress = ExtResource("8_b22qt")
 tint_under = Color(0, 0, 0, 0)
 tint_progress = Color(0.305882, 1, 0.12549, 1)
 
-[node name="Coin" type="Sprite2D" parent="HUD"]
-texture_filter = 1
-position = Vector2(-601, -294)
-scale = Vector2(6, 6)
-texture = ExtResource("11_2ssyj")
-hframes = 6
-vframes = 2
-frame = 6
-script = SubResource("GDScript_g7d0s")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="HUD/Coin"]
-libraries = {
-"": SubResource("AnimationLibrary_scgp6")
-}
-
-[node name="Money" type="Label" parent="HUD"]
-texture_filter = 1
-offset_left = -556.0
-offset_top = -334.0
-offset_right = -508.0
-offset_bottom = -259.0
-theme_override_fonts/font = ExtResource("3_75bdf")
-theme_override_font_sizes/font_size = 96
-text = "0"
-
 [node name="PlayerName" type="Label" parent="HUD"]
 visible = false
 modulate = Color(1, 1, 1, 0.588235)
@@ -457,6 +445,41 @@ offset_top = -47.6291
 offset_right = 2728.37
 offset_bottom = 1666.37
 color = Color(0, 0, 0, 0.137255)
+
+[node name="GUI" type="CanvasLayer" parent="."]
+
+[node name="Money" type="Label" parent="GUI"]
+texture_filter = 1
+offset_left = 138.0
+offset_top = 46.0
+offset_right = 186.0
+offset_bottom = 121.0
+theme_override_fonts/font = ExtResource("3_75bdf")
+theme_override_font_sizes/font_size = 96
+text = "0"
+
+[node name="Coin" type="Sprite2D" parent="GUI/Money"]
+texture_filter = 1
+position = Vector2(-49, 38)
+scale = Vector2(6, 6)
+texture = ExtResource("11_2ssyj")
+hframes = 6
+vframes = 2
+frame = 2
+script = SubResource("GDScript_g7d0s")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="GUI/Money/Coin"]
+libraries = {
+"": SubResource("AnimationLibrary_scgp6")
+}
+
+[node name="ESCButton" type="Button" parent="GUI"]
+offset_left = 1155.0
+offset_top = 45.0
+offset_right = 1229.0
+offset_bottom = 111.0
+text = "ESC"
+script = SubResource("GDScript_bhj5u")
 
 [connection signal="hurt" from="Body/HurtBox" to="." method="_on_hurt_box_hurt"]
 [connection signal="body_entered" from="Body/EnemyDetectionArea" to="." method="_on_enemy_detection_area_body_entered"]
