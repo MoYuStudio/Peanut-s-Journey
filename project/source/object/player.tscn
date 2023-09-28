@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://c1tw37pkcvsy3"]
+[gd_scene load_steps=36 format=3 uid="uid://c1tw37pkcvsy3"]
 
 [ext_resource type="Texture2D" uid="uid://6ndddp5duhfh" path="res://resource/image/light_yellow.png" id="1_fcmov"]
 [ext_resource type="Texture2D" uid="uid://cciym2m3cx1ij" path="res://resource/image/steam.png" id="1_ouxap"]
@@ -16,6 +16,7 @@
 [ext_resource type="Material" uid="uid://bi0fishftfal1" path="res://resource/shader/rain.tres" id="11_i4vq8"]
 [ext_resource type="Material" uid="uid://bm3ej4etv2p3" path="res://resource/shader/tilt_shift.tres" id="11_yigrs"]
 [ext_resource type="AudioStream" uid="uid://om43vjvq3531" path="res://resource/sound/rain.mp3" id="15_p4a21"]
+[ext_resource type="PackedScene" uid="uid://bcjcxpy5noqj8" path="res://source/object/upgrades.tscn" id="17_cuu6k"]
 
 [sub_resource type="GDScript" id="GDScript_wo5ts"]
 script/source = "
@@ -27,6 +28,8 @@ var money = 0
 
 var enemy_close = []
 
+@onready var upgrades_menu = $GUI/Upgrades
+
 # Attacks
 @onready var bullet = preload('res://source/object/bullet.tscn')
 @onready var bullet_timer = $Attack/BulletTimer
@@ -37,6 +40,7 @@ var bullet_attack_speed = 0.1
 # 进程函数 ==============================================================
 
 func _ready():
+	upgrades_menu.visible = false
 	attack()
 	
 func _process(delta):
@@ -46,12 +50,12 @@ func _process(delta):
 		get_tree().change_scene_to_file('res://source/scene/menu_gameover.tscn')
 		# queue_free()
 		
-	if Input.is_action_just_pressed(\"ui_up\") or Input.is_action_just_pressed(\"ui_down\"):
+	if Input.is_action_just_pressed('ui_up') or Input.is_action_just_pressed('ui_down'):
 		$AudioStreamPlayer.play()
 		
-	if Input.is_action_just_released(\"ui_up\") or Input.is_action_just_pressed(\"ui_down\"):
+	if Input.is_action_just_released('ui_up') or Input.is_action_just_pressed('ui_down'):
 		$AudioStreamPlayer.stop()
-	
+		
 func _physics_process(delta):
 	$HUD/HP.value = hp
 	$GUI/Money.text = str(money)
@@ -106,7 +110,6 @@ func _on_enemy_detection_area_body_exited(body):
 	if enemy_close.has(body):
 		enemy_close.erase(body)
 
-
 func _on_grab_area_area_entered(area):
 	if area.is_in_group('loot'):
 		area.target = self
@@ -114,6 +117,9 @@ func _on_grab_area_area_entered(area):
 func _on_collect_area_area_entered(area):
 	if area.is_in_group('loot'):
 		money += area.collect()
+	if area.is_in_group('shop'):
+		get_tree().paused = true
+		upgrades_menu.visible = true
 "
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wmrfs"]
@@ -194,7 +200,7 @@ size = Vector2(323.999, 66)
 radius = 4038.45
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2nxfv"]
-radius = 256.0
+radius = 192.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_odqar"]
 radius = 24.0
@@ -341,8 +347,8 @@ collision_mask = 8
 shape = SubResource("CircleShape2D_2nxfv")
 
 [node name="CollectArea" type="Area2D" parent="Body"]
-collision_layer = 8
-collision_mask = 8
+collision_layer = 9
+collision_mask = 9
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Body/CollectArea"]
 shape = SubResource("CapsuleShape2D_odqar")
@@ -465,7 +471,6 @@ scale = Vector2(6, 6)
 texture = ExtResource("11_2ssyj")
 hframes = 6
 vframes = 2
-frame = 2
 script = SubResource("GDScript_g7d0s")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="GUI/Money/Coin"]
@@ -474,12 +479,18 @@ libraries = {
 }
 
 [node name="ESCButton" type="Button" parent="GUI"]
-offset_left = 1155.0
-offset_top = 45.0
-offset_right = 1229.0
-offset_bottom = 111.0
+offset_left = 1136.0
+offset_top = 52.0
+offset_right = 1216.0
+offset_bottom = 108.0
+theme_override_fonts/font = ExtResource("3_75bdf")
+theme_override_font_sizes/font_size = 64
 text = "ESC"
+flat = true
 script = SubResource("GDScript_bhj5u")
+
+[node name="Upgrades" parent="GUI" instance=ExtResource("17_cuu6k")]
+visible = false
 
 [connection signal="hurt" from="Body/HurtBox" to="." method="_on_hurt_box_hurt"]
 [connection signal="body_entered" from="Body/EnemyDetectionArea" to="." method="_on_enemy_detection_area_body_entered"]

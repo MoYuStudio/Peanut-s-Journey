@@ -1,9 +1,11 @@
 [gd_scene load_steps=2 format=3 uid="uid://l6fjqq8ja2ev"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5pwgl"]
-size = Vector2(60, 30)
+size = Vector2(16, 16)
 
-[node name="Shop" type="Area2D"]
+[node name="Shop" type="Area2D" groups=["shop"]]
+collision_layer = 9
+collision_mask = 9
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_5pwgl")

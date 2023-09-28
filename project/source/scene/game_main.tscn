@@ -1,8 +1,7 @@
-[gd_scene load_steps=13 format=3 uid="uid://bsln5r51b15m3"]
+[gd_scene load_steps=12 format=3 uid="uid://bsln5r51b15m3"]
 
 [ext_resource type="PackedScene" uid="uid://buew5r4txo07l" path="res://source/map/tilemap.tscn" id="1_hswe2"]
 [ext_resource type="FontFile" uid="uid://ckmyjvou4nb1f" path="res://resource/font/kenney_pixel.ttf" id="3_q5r0c"]
-[ext_resource type="AudioStream" uid="uid://dedn7dukyretx" path="res://resource/music/Run - Max Surla_Media Right Productions.mp3" id="8_u7m0s"]
 [ext_resource type="PackedScene" uid="uid://ckujg6i1b6ujw" path="res://source/utility/enemy_spawner.tscn" id="9_pygcc"]
 [ext_resource type="Script" path="res://source/utility/spawn_info.gd" id="10_coo6n"]
 [ext_resource type="PackedScene" uid="uid://c1tw37pkcvsy3" path="res://source/object/player.tscn" id="10_phe80"]
@@ -97,11 +96,6 @@ theme_override_fonts/font = ExtResource("3_q5r0c")
 theme_override_font_sizes/font_size = 32
 text = "www.moyu-stuido.com
 "
-
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("8_u7m0s")
-volume_db = -5.0
-autoplay = true
 
 [node name="Player" parent="." instance=ExtResource("10_phe80")]
 position = Vector2(61, 8)
