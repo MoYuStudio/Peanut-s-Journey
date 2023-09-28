@@ -25,6 +25,7 @@ extends CharacterBody2D
 @onready var upgrades_menu = $GUI/Upgrades
 
 # Attacks
+@onready var gun = $Attack/Gun
 @onready var bullet = preload('res://source/object/bullet.tscn')
 @onready var bullet_timer = $Attack/BulletTimer
 @onready var bullet_attack_timer = $Attack/BulletTimer/BulletAttackTimer
@@ -39,17 +40,18 @@ var enemy_close = []
 
 var body_position = Vector2.ZERO
 var body_velocity = Vector2.ZERO
-var body_rotation = 0
+var body_rotation = 89.535
 var body_direction = 0
 
 var car_movement_speed = 400
 var car_ang_speed = 0.01
-var car_brake = 10
+# var car_brake = 10
 
 # 进程函数 ==============================================================
 
 func _ready():
 	upgrades_menu.visible = false
+	gun.rotation = 44
 	attack()
 	
 func _process(delta):
