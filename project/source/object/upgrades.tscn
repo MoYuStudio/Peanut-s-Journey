@@ -97,6 +97,7 @@ text = "引擎升级"
 flat = true
 
 [node name="Button2" type="Button" parent="."]
+layout_mode = 0
 offset_left = 627.0
 offset_top = 492.0
 offset_right = 930.0
@@ -108,6 +109,7 @@ text = "转向机升级"
 flat = true
 
 [node name="Button3" type="Button" parent="."]
+layout_mode = 0
 offset_left = 462.0
 offset_top = 88.0
 offset_right = 734.0
@@ -119,6 +121,7 @@ text = "火炮升级"
 flat = true
 
 [node name="Button4" type="Button" parent="."]
+layout_mode = 0
 offset_left = 115.0
 offset_top = 285.0
 offset_right = 387.0
@@ -130,6 +133,7 @@ text = "氮气升级"
 flat = true
 
 [node name="Button5" type="Button" parent="."]
+layout_mode = 0
 offset_left = 823.0
 offset_top = 221.0
 offset_right = 1095.0
@@ -141,6 +145,7 @@ text = "保护杠升级"
 flat = true
 
 [node name="Button6" type="Button" parent="."]
+layout_mode = 0
 offset_left = 254.0
 offset_top = 495.0
 offset_right = 526.0

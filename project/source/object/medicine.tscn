@@ -1,7 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://djxky8bdiaorh"]
+[gd_scene load_steps=4 format=3 uid="uid://djxky8bdiaorh"]
 
 [ext_resource type="Texture2D" uid="uid://cx36yq3v1q7rd" path="res://resource/image/medicine.png" id="1_d6irv"]
-[ext_resource type="AudioStream" path="res://resource/sound/confirmation_001.ogg" id="2_uaksj"]
 
 [sub_resource type="GDScript" id="GDScript_2w41h"]
 script/source = "
@@ -38,6 +37,5 @@ texture = ExtResource("1_d6irv")
 shape = SubResource("CircleShape2D_elho4")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("2_uaksj")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

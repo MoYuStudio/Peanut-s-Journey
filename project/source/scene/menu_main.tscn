@@ -36,6 +36,7 @@ texture = ExtResource("1_hmj4w")
 
 [node name="ColorRect2" type="ColorRect" parent="ColorRect"]
 modulate = Color(1, 1, 1, 0.392157)
+layout_mode = 0
 offset_left = 768.0
 offset_top = 682.0
 offset_right = 1923.0
@@ -54,6 +55,7 @@ text = "花生米先生
 "
 
 [node name="FastStartButton" type="Button" parent="Title"]
+layout_mode = 0
 offset_left = -25.0
 offset_top = 207.0
 offset_right = 219.0
@@ -65,6 +67,7 @@ flat = true
 script = SubResource("GDScript_o3aco")
 
 [node name="StartButton" type="Button" parent="Title"]
+layout_mode = 0
 offset_left = -30.0
 offset_top = 290.0
 offset_right = 214.0
@@ -76,6 +79,7 @@ text = "开始"
 flat = true
 
 [node name="SettingButton" type="Button" parent="Title"]
+layout_mode = 0
 offset_left = -35.0
 offset_top = 375.0
 offset_right = 209.0
@@ -87,6 +91,7 @@ text = "设置"
 flat = true
 
 [node name="ESCButton" type="Button" parent="Title"]
+layout_mode = 0
 offset_left = -37.0
 offset_top = 461.0
 offset_right = 207.0
@@ -99,6 +104,7 @@ flat = true
 
 [node name="Subtitle" type="Label" parent="Title"]
 self_modulate = Color(1, 1, 1, 0.588235)
+layout_mode = 0
 offset_left = -11.0
 offset_top = 575.0
 offset_right = 240.0
@@ -110,6 +116,7 @@ text = "MOYU STUDIO"
 [node name="Web" type="Label" parent="Title"]
 self_modulate = Color(1, 1, 1, 0.588235)
 texture_filter = 1
+layout_mode = 0
 offset_left = -11.0
 offset_top = 605.0
 offset_right = 337.0

@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://da83a1jtuybi2"]
 
 [ext_resource type="Texture2D" uid="uid://bnmx8pt0nk4u2" path="res://resource/logo/logo.png" id="1_8ng5c"]
-[ext_resource type="AudioStream" path="res://resource/sound/confirmation_001.ogg" id="2_7dng5"]
+[ext_resource type="AudioStream" uid="uid://vc6wr7iugdmp" path="res://resource/sound/gun_01.mp3" id="2_lydgl"]
 
 [sub_resource type="GDScript" id="GDScript_6o0tv"]
 script/source = "
@@ -137,7 +137,7 @@ libraries = {
 }
 
 [node name="Audio" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("2_7dng5")
+stream = ExtResource("2_lydgl")
 volume_db = 7.3
 autoplay = true
 

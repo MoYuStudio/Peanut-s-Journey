@@ -1,11 +1,9 @@
-[gd_scene load_steps=36 format=3 uid="uid://c1tw37pkcvsy3"]
+[gd_scene load_steps=34 format=3 uid="uid://c1tw37pkcvsy3"]
 
 [ext_resource type="Texture2D" uid="uid://6ndddp5duhfh" path="res://resource/image/light_yellow.png" id="1_fcmov"]
 [ext_resource type="Texture2D" uid="uid://cciym2m3cx1ij" path="res://resource/image/steam.png" id="1_ouxap"]
 [ext_resource type="Texture2D" uid="uid://dehg38xt8tidn" path="res://resource/image/car.png" id="2_dc5sy"]
 [ext_resource type="FontFile" uid="uid://ckmyjvou4nb1f" path="res://resource/font/kenney_pixel.ttf" id="3_75bdf"]
-[ext_resource type="AudioStream" path="res://resource/sound/TRANSPORTATION_SPORTS_CAR_Porsche_Boxster_Accelerate_Interior.mp3" id="4_bxypg"]
-[ext_resource type="AudioStream" path="res://resource/sound/glitch_001.ogg" id="5_yphfo"]
 [ext_resource type="PackedScene" uid="uid://5ygp3ic8vnl6" path="res://source/utility/hurtbox.tscn" id="5_yqutu"]
 [ext_resource type="Texture2D" uid="uid://bvhr66hwk76fl" path="res://resource/image/hp_bar_under.png" id="6_na1pr"]
 [ext_resource type="Texture2D" uid="uid://d4fpxy7ab8r70" path="res://resource/image/gun.png" id="6_wh1gl"]
@@ -22,12 +20,8 @@
 script/source = "
 extends CharacterBody2D
 
-var hp = 100
-
-var money = 0
-
-var enemy_close = []
-
+@onready var body = $Body
+@onready var collision = $CollisionShape2D
 @onready var upgrades_menu = $GUI/Upgrades
 
 # Attacks
@@ -37,6 +31,21 @@ var enemy_close = []
 var bullet_level = 1
 var bullet_attack_speed = 0.1
 
+var hp = 100
+
+var money = 0
+
+var enemy_close = []
+
+var body_position = Vector2.ZERO
+var body_velocity = Vector2.ZERO
+var body_rotation = 0
+var body_direction = 0
+
+var car_movement_speed = 400
+var car_ang_speed = 0.01
+var car_brake = 10
+
 # 进程函数 ==============================================================
 
 func _ready():
@@ -44,17 +53,38 @@ func _ready():
 	attack()
 	
 func _process(delta):
-	velocity = $Body.velocity
-	$CollisionShape2D.rotation = $Body.rotation
 	if hp <= 0:
 		get_tree().change_scene_to_file('res://source/scene/menu_gameover.tscn')
 		# queue_free()
+
+	body_direction = 0
+	# body_position = Vector2.ZERO
+	body_velocity = Vector2.ZERO
+	if Input.is_action_pressed(\"ui_up\"):
+		body_velocity = Vector2.UP.rotated(body_rotation) * car_movement_speed
+		body_dir()
+		
+	if Input.is_action_pressed(\"ui_down\"):
+		body_velocity = Vector2.DOWN.rotated(body_rotation) * car_movement_speed/3
+		body_dir()
+		
+	if Input.is_action_just_pressed(\"ui_up\"):
+		$Body/HitBox.collision.disabled = false
+		
+	if Input.is_action_just_released(\"ui_up\"):
+		$Body/HitBox.collision.disabled = true
+		
+	body_rotation += car_ang_speed * body_direction # * delta
 		
 	if Input.is_action_just_pressed('ui_up') or Input.is_action_just_pressed('ui_down'):
 		$AudioStreamPlayer.play()
 		
 	if Input.is_action_just_released('ui_up') or Input.is_action_just_pressed('ui_down'):
 		$AudioStreamPlayer.stop()
+		
+	velocity = body_velocity
+	collision.rotation = body_rotation
+	body.rotation = body_rotation
 		
 func _physics_process(delta):
 	$HUD/HP.value = hp
@@ -64,12 +94,12 @@ func _physics_process(delta):
 
 # 自定义函数 =============================================================
 
-func dir():
-	$Body.direction = 0
+func body_dir():
+	body_direction = 0
 	if Input.is_action_pressed(\"ui_left\"):
-		$Body.direction = -1
+		body_direction = -1
 	if Input.is_action_pressed(\"ui_right\"):
-		$Body.direction = 1
+		body_direction = 1
 		
 func attack():
 	if bullet_level == 0:
@@ -130,30 +160,31 @@ height = 86.0
 script/source = "
 extends CharacterBody2D
 
-var movement_speed = 500
-var ang_speed = 0.023
+var movement_speed = 400
+var ang_speed = 0.01
 
 var direction = 0
 
 func _process(delta):
-	direction = 0
-	position = Vector2.ZERO
-	velocity = Vector2.ZERO
-	if Input.is_action_pressed(\"ui_up\"):
-		velocity = Vector2.UP.rotated(rotation) * movement_speed
-		dir()
+	#direction = 0
+	#position = Vector2.ZERO
+	#velocity = Vector2.ZERO
+	#if Input.is_action_pressed(\"ui_up\"):
+	#	velocity = Vector2.UP.rotated(rotation) * movement_speed
+	#	dir()
 		
-	if Input.is_action_pressed(\"ui_down\"):
-		velocity = Vector2.DOWN.rotated(rotation) * movement_speed/3
-		dir()
+	#if Input.is_action_pressed(\"ui_down\"):
+	#	velocity = Vector2.DOWN.rotated(rotation) * movement_speed/3
+	#	dir()
 		
-	if Input.is_action_just_pressed(\"ui_up\") or Input.is_action_just_pressed(\"ui_down\"):
-		$HitBox.collision.disabled = false
+	#if Input.is_action_just_pressed(\"ui_up\"):
+	#	$HitBox.collision.disabled = false
 		
-	if Input.is_action_just_released(\"ui_up\") or Input.is_action_just_pressed(\"ui_down\"):
-		$HitBox.collision.disabled = true
+	#if Input.is_action_just_released(\"ui_up\"):
+	#	$HitBox.collision.disabled = true
 		
-	rotation += ang_speed * direction # * delta
+	#rotation += ang_speed * direction # * delta
+	pass
 	
 func _physics_process(delta):
 	move_and_slide()
@@ -270,6 +301,7 @@ script = SubResource("GDScript_wo5ts")
 shape = SubResource("CapsuleShape2D_wmrfs")
 
 [node name="Body" type="CharacterBody2D" parent="." groups=["player"]]
+texture_filter = 1
 collision_layer = 15
 collision_mask = 15
 script = SubResource("GDScript_7j67i")
@@ -287,6 +319,7 @@ process_material = SubResource("ParticleProcessMaterial_s0k1v")
 texture = ExtResource("1_ouxap")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Body"]
+visible = false
 position = Vector2(5.36442e-07, -9.53674e-07)
 shape = SubResource("CapsuleShape2D_6qemh")
 disabled = true
@@ -314,9 +347,6 @@ collision_mask = 2
 
 [node name="CollisionShape2D" parent="Body/HurtBox" index="0"]
 shape = SubResource("CapsuleShape2D_066yk")
-
-[node name="AudioStreamPlayer2D" parent="Body/HurtBox" index="2"]
-stream = ExtResource("5_yphfo")
 
 [node name="HitBox" parent="Body" instance=ExtResource("9_5ef0a")]
 scale = Vector2(0.166667, 0.166667)
@@ -347,8 +377,9 @@ collision_mask = 8
 shape = SubResource("CircleShape2D_2nxfv")
 
 [node name="CollectArea" type="Area2D" parent="Body"]
-collision_layer = 9
-collision_mask = 9
+visible = false
+collision_layer = 8
+collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Body/CollectArea"]
 shape = SubResource("CapsuleShape2D_odqar")
@@ -367,6 +398,7 @@ scale = Vector2(3, 3)
 texture = ExtResource("6_wh1gl")
 
 [node name="HUD" type="Control" parent="."]
+texture_filter = 1
 layout_mode = 3
 anchors_preset = 0
 
@@ -417,11 +449,11 @@ color = Color(0.611765, 0.8, 0.396078, 1)
 [node name="Camera2D" type="Camera2D" parent="."]
 scale = Vector2(0.166667, 0.166667)
 zoom = Vector2(0.9, 0.9)
+process_callback = 0
 position_smoothing_enabled = true
 position_smoothing_speed = 6.0
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("4_bxypg")
 
 [node name="TiltShift" type="Sprite2D" parent="."]
 z_index = 10
