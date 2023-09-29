@@ -50,8 +50,7 @@ offset_right = 340.0
 offset_bottom = 228.0
 theme_override_fonts/font = ExtResource("2_kikh1")
 theme_override_font_sizes/font_size = 64
-text = "花生米先生
-的车
+text = "花生迷途
 "
 
 [node name="FastStartButton" type="Button" parent="Title"]
