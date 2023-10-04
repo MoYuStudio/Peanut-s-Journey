@@ -1,7 +1,7 @@
 [gd_scene load_steps=12 format=3 uid="uid://bsln5r51b15m3"]
 
 [ext_resource type="PackedScene" uid="uid://buew5r4txo07l" path="res://source/map/tilemap.tscn" id="1_hswe2"]
-[ext_resource type="FontFile" uid="uid://dx53pdhxhyn2p" path="res://resource/font/kenney_pixel.ttf" id="3_q5r0c"]
+[ext_resource type="FontFile" uid="uid://ckmyjvou4nb1f" path="res://resource/font/kenney_pixel.ttf" id="3_q5r0c"]
 [ext_resource type="PackedScene" uid="uid://ckujg6i1b6ujw" path="res://source/utility/enemy_spawner.tscn" id="9_pygcc"]
 [ext_resource type="Script" path="res://source/utility/spawn_info.gd" id="10_coo6n"]
 [ext_resource type="PackedScene" uid="uid://c1tw37pkcvsy3" path="res://source/object/player.tscn" id="10_phe80"]

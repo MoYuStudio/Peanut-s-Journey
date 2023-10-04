@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://da83a1jtuybi2"]
 
 [ext_resource type="Texture2D" uid="uid://bnmx8pt0nk4u2" path="res://resource/logo/logo.png" id="1_8ng5c"]
-[ext_resource type="AudioStream" uid="uid://37w1v4s618rg" path="res://resource/sound/gun_01.mp3" id="2_lydgl"]
+[ext_resource type="AudioStream" uid="uid://vc6wr7iugdmp" path="res://resource/sound/gun_01.mp3" id="2_lydgl"]
 
 [sub_resource type="GDScript" id="GDScript_6o0tv"]
 script/source = "

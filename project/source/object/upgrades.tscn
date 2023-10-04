@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://bcjcxpy5noqj8"]
 
-[ext_resource type="Material" uid="uid://bm3ej4etv2p3" path="res://resource/shader/tilt_shift.tres" id="1_0e1eo"]
+[ext_resource type="Material" uid="uid://d6qhgh84hwou" path="res://resource/shader/tilt_shift.tres" id="1_0e1eo"]
 [ext_resource type="Texture2D" uid="uid://dehg38xt8tidn" path="res://resource/image/car.png" id="1_h1shc"]
 [ext_resource type="FontFile" uid="uid://dwo3w3m0bti6d" path="res://resource/font/YouSheBiaoTiHei.ttf" id="3_op80d"]
 [ext_resource type="Texture2D" uid="uid://dgq6snhbt4tfy" path="res://resource/ui/esc_sprite.png" id="4_grjf5"]
