@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://b4g43o3dnrfc0"]
+
+[ext_resource type="Texture2D" uid="uid://cciym2m3cx1ij" path="res://resource/image/steam.png" id="1_cpdsw"]
+
+[sub_resource type="GDScript" id="GDScript_phs5p"]
+script/source = "
+extends Area2D
+
+@onready var collision = $CollisionShape2D
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_aabhm"]
+size = Vector2(48, 48)
+
+[node name="NextPart" type="Area2D" groups=["next_part"]]
+collision_layer = 9
+collision_mask = 9
+script = SubResource("GDScript_phs5p")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_aabhm")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.588235)
+texture_filter = 1
+scale = Vector2(16, 16)
+texture = ExtResource("1_cpdsw")

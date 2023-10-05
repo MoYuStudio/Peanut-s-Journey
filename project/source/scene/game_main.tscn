@@ -1,101 +1,31 @@
-[gd_scene load_steps=12 format=3 uid="uid://bsln5r51b15m3"]
+[gd_scene load_steps=4 format=3 uid="uid://bsln5r51b15m3"]
 
-[ext_resource type="PackedScene" uid="uid://buew5r4txo07l" path="res://source/map/tilemap.tscn" id="1_hswe2"]
-[ext_resource type="FontFile" uid="uid://ckmyjvou4nb1f" path="res://resource/font/kenney_pixel.ttf" id="3_q5r0c"]
-[ext_resource type="PackedScene" uid="uid://ckujg6i1b6ujw" path="res://source/utility/enemy_spawner.tscn" id="9_pygcc"]
-[ext_resource type="Script" path="res://source/utility/spawn_info.gd" id="10_coo6n"]
+[ext_resource type="PackedScene" uid="uid://dv4gxfv4kty63" path="res://source/map/map.tscn" id="1_7orcr"]
 [ext_resource type="PackedScene" uid="uid://c1tw37pkcvsy3" path="res://source/object/player.tscn" id="10_phe80"]
-[ext_resource type="PackedScene" uid="uid://o0wln7a0f0t3" path="res://source/object/enemy.tscn" id="11_4uxub"]
 
-[sub_resource type="Resource" id="Resource_on3j5"]
-script = ExtResource("10_coo6n")
-time_start = 0
-time_end = 10
-enemy = ExtResource("11_4uxub")
-enemy_num = 1
-enemy_spawn_delay = 5
+[sub_resource type="GDScript" id="GDScript_ge11n"]
+script/source = "
+extends Node
 
-[sub_resource type="Resource" id="Resource_sh0rk"]
-script = ExtResource("10_coo6n")
-time_start = 10
-time_end = 30
-enemy = ExtResource("11_4uxub")
-enemy_num = 5
-enemy_spawn_delay = 5
+@onready var enemy_spawner = $Map/EnemySpawner
+@onready var next_part = $Map/TileMap/NextPart
 
-[sub_resource type="Resource" id="Resource_jygxq"]
-script = ExtResource("10_coo6n")
-time_start = 30
-time_end = 50
-enemy = ExtResource("11_4uxub")
-enemy_num = 10
-enemy_spawn_delay = 5
+func _ready():
+	next_part.visible = false
+	next_part.collision.disabled = true
 
-[sub_resource type="Resource" id="Resource_v2iot"]
-script = ExtResource("10_coo6n")
-time_start = 50
-time_end = 60
-enemy = ExtResource("11_4uxub")
-enemy_num = 25
-enemy_spawn_delay = 5
-
-[sub_resource type="Resource" id="Resource_7kyp4"]
-script = ExtResource("10_coo6n")
-time_start = 60
-time_end = 100
-enemy = ExtResource("11_4uxub")
-enemy_num = 35
-enemy_spawn_delay = 5
+func _process(delta):
+	if enemy_spawner.time >= 10 and enemy_spawner.my_children.size() <= 1:
+		next_part.visible = true
+		next_part.collision.disabled = false
+"
 
 [node name="Main" type="Node"]
+script = SubResource("GDScript_ge11n")
 
-[node name="EnemySpawner" parent="." instance=ExtResource("9_pygcc")]
-spawns = Array[ExtResource("10_coo6n")]([SubResource("Resource_on3j5"), SubResource("Resource_sh0rk"), SubResource("Resource_jygxq"), SubResource("Resource_v2iot"), SubResource("Resource_7kyp4")])
-
-[node name="TileMap" parent="." instance=ExtResource("1_hswe2")]
-
-[node name="Control" type="Control" parent="."]
-visible = false
-layout_mode = 3
-anchors_preset = 0
-offset_left = -594.0
-offset_top = 93.0
-offset_right = -554.0
-offset_bottom = 133.0
-
-[node name="Title" type="Label" parent="Control"]
-self_modulate = Color(1, 1, 1, 0.588235)
-layout_mode = 0
-offset_left = 408.0
-offset_top = -217.0
-offset_right = 880.0
-offset_bottom = -166.0
-theme_override_fonts/font = ExtResource("3_q5r0c")
-theme_override_font_sizes/font_size = 64
-text = "The Last Mechanic Demo"
-
-[node name="Subtitle" type="Label" parent="Control"]
-self_modulate = Color(1, 1, 1, 0.588235)
-layout_mode = 0
-offset_left = 551.0
-offset_top = 93.0
-offset_right = 737.0
-offset_bottom = 132.0
-theme_override_fonts/font = ExtResource("3_q5r0c")
-theme_override_font_sizes/font_size = 48
-text = "MOYU STUDIO"
-
-[node name="Web" type="Label" parent="Control"]
-self_modulate = Color(1, 1, 1, 0.588235)
-layout_mode = 0
-offset_left = 533.0
-offset_top = 141.0
-offset_right = 755.0
-offset_bottom = 168.0
-theme_override_fonts/font = ExtResource("3_q5r0c")
-theme_override_font_sizes/font_size = 32
-text = "www.moyu-stuido.com
-"
+[node name="Map" parent="." instance=ExtResource("1_7orcr")]
 
 [node name="Player" parent="." instance=ExtResource("10_phe80")]
 position = Vector2(61, 8)
+
+[editable path="Map"]

@@ -13,13 +13,15 @@ var time = 0
 var enemy_cap = 500
 var enemies_to_spawn = []
 
+var my_children = []
+
 func _process(delta):
 	pass
 
 func _on_spawn_timer_timeout():
 	time += 1
 	var enemy_spawns = spawns
-	var my_children = get_children()
+	my_children = get_children()
 	for i in enemy_spawns:
 		if time >= i.time_start and time <= i.time_end:
 			if i.spawn_delay_counter < i.enemy_spawn_delay:

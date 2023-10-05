@@ -1,0 +1,70 @@
+[gd_scene load_steps=5 format=3 uid="uid://bsln5r51b15m3"]
+
+[ext_resource type="PackedScene" uid="uid://buew5r4txo07l" path="res://source/map/tilemap.tscn" id="1_hswe2"]
+[ext_resource type="FontFile" uid="uid://ckmyjvou4nb1f" path="res://resource/font/kenney_pixel.ttf" id="3_q5r0c"]
+[ext_resource type="PackedScene" uid="uid://c1tw37pkcvsy3" path="res://source/object/player.tscn" id="10_phe80"]
+
+[sub_resource type="GDScript" id="GDScript_ge11n"]
+script/source = "
+extends Node
+
+
+func _ready():
+	pass
+
+func _process(delta):
+	# print(time, my_children.size())
+"
+
+[node name="Main" type="Node"]
+script = SubResource("GDScript_ge11n")
+
+[node name="TileMap" parent="." instance=ExtResource("1_hswe2")]
+
+[node name="Control" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_left = -594.0
+offset_top = 93.0
+offset_right = -554.0
+offset_bottom = 133.0
+
+[node name="Title" type="Label" parent="Control"]
+self_modulate = Color(1, 1, 1, 0.588235)
+layout_mode = 0
+offset_left = 408.0
+offset_top = -217.0
+offset_right = 880.0
+offset_bottom = -166.0
+theme_override_fonts/font = ExtResource("3_q5r0c")
+theme_override_font_sizes/font_size = 64
+text = "The Last Mechanic Demo"
+
+[node name="Subtitle" type="Label" parent="Control"]
+self_modulate = Color(1, 1, 1, 0.588235)
+layout_mode = 0
+offset_left = 551.0
+offset_top = 93.0
+offset_right = 737.0
+offset_bottom = 132.0
+theme_override_fonts/font = ExtResource("3_q5r0c")
+theme_override_font_sizes/font_size = 48
+text = "MOYU STUDIO"
+
+[node name="Web" type="Label" parent="Control"]
+self_modulate = Color(1, 1, 1, 0.588235)
+layout_mode = 0
+offset_left = 533.0
+offset_top = 141.0
+offset_right = 755.0
+offset_bottom = 168.0
+theme_override_fonts/font = ExtResource("3_q5r0c")
+theme_override_font_sizes/font_size = 32
+text = "www.moyu-stuido.com
+"
+
+[node name="Player" parent="." instance=ExtResource("10_phe80")]
+position = Vector2(61, 8)
+
+[editable path="TileMap"]

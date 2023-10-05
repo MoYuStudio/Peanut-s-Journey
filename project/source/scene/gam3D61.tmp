@@ -1,0 +1,46 @@
+[gd_scene load_steps=7 format=3 uid="uid://bsln5r51b15m3"]
+
+[ext_resource type="PackedScene" uid="uid://dv4gxfv4kty63" path="res://source/map/map.tscn" id="1_7orcr"]
+[ext_resource type="PackedScene" uid="uid://o0wln7a0f0t3" path="res://source/object/enemy.tscn" id="2_445ak"]
+[ext_resource type="Script" path="res://source/utility/spawn_info.gd" id="3_f7ae1"]
+[ext_resource type="PackedScene" uid="uid://c1tw37pkcvsy3" path="res://source/object/player.tscn" id="10_phe80"]
+
+[sub_resource type="GDScript" id="GDScript_ge11n"]
+script/source = "
+extends Node
+
+@onready var enemy_spawner = $Map/EnemySpawner
+@onready var next_part = $Map/TileMap/NextPart
+
+func _ready():
+	next_part.visible = false
+	next_part.collision.disabled = true
+
+func _process(delta):
+	#print(enemy_spawner.time,'   ',enemy_spawner.my_children)
+	#if enemy_spawner.time >= 10 and enemy_spawner.my_children.size() <= 1:
+	#	next_part.visible = true
+	#	next_part.collision.disabled = false
+	pass
+"
+
+[sub_resource type="Resource" id="Resource_8ohy7"]
+script = ExtResource("3_f7ae1")
+time_start = 0
+time_end = 10
+enemy = ExtResource("2_445ak")
+enemy_num = 3
+enemy_spawn_delay = 1
+
+[node name="Main" type="Node"]
+script = SubResource("GDScript_ge11n")
+
+[node name="Map" parent="." instance=ExtResource("1_7orcr")]
+
+[node name="EnemySpawner" parent="Map" index="0"]
+spawns = Array[ExtResource("3_f7ae1")]([SubResource("Resource_8ohy7")])
+
+[node name="Player" parent="." instance=ExtResource("10_phe80")]
+position = Vector2(61, 8)
+
+[editable path="Map"]

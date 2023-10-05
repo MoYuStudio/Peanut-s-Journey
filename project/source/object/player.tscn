@@ -47,9 +47,7 @@ func _ready():
 	
 func _process(delta):
 	
-	if hp <= 0:
-		get_tree().change_scene_to_file('res://source/scene/menu_gameover.tscn')
-		# queue_free()
+	
 		
 	if Input.is_action_just_pressed(\"ui_up\"):
 		$Body/HitBox.collision.disabled = false
@@ -66,6 +64,9 @@ func _process(delta):
 		$AudioStreamPlayer.stop()
 		
 func _physics_process(delta):
+	if hp <= 0:
+		get_tree().change_scene_to_file('res://source/scene/menu_gameover.tscn')
+		# queue_free()
 
 	$HUD/HP.value = hp
 	$GUI/Money.text = str(money)
@@ -123,6 +124,8 @@ func _on_collect_area_area_entered(area):
 	if area.is_in_group('shop'):
 		get_tree().paused = true
 		upgrades_menu.visible = true
+	if area.is_in_group('next_part'):
+		print('pass')
 
 # 引擎升级
 func _on_engine_power_slider_value_changed(value):
