@@ -361,6 +361,7 @@ shape = SubResource("CircleShape2D_stomd")
 disabled = true
 
 [node name="PointLight2D" type="PointLight2D" parent="Body"]
+visible = false
 z_index = 1
 texture_filter = 1
 position = Vector2(144, -15)
@@ -370,6 +371,7 @@ energy = 3.0
 texture = ExtResource("1_fcmov")
 
 [node name="PointLight2D2" type="PointLight2D" parent="Body"]
+visible = false
 z_index = 1
 texture_filter = 1
 position = Vector2(144, 15)
@@ -513,6 +515,7 @@ texture = SubResource("GradientTexture2D_mha5w")
 
 [node name="Rain" type="Sprite2D" parent="."]
 modulate = Color(1, 1, 1, 0.0117647)
+z_index = 9
 texture_filter = 1
 material = ExtResource("11_i4vq8")
 position = Vector2(-1, -2)
