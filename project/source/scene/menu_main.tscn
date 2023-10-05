@@ -53,6 +53,16 @@ theme_override_font_sizes/font_size = 64
 text = "花生迷途
 "
 
+[node name="EnTitle" type="Label" parent="Title"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 67.0
+offset_right = 299.0
+offset_bottom = 112.0
+theme_override_fonts/font = ExtResource("2_kikh1")
+theme_override_font_sizes/font_size = 32
+text = "Peanut's Journey"
+
 [node name="FastStartButton" type="Button" parent="Title"]
 layout_mode = 0
 offset_left = -25.0

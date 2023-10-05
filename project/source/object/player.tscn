@@ -30,11 +30,11 @@ extends CharacterBody2D
 @onready var bullet_timer = $Attack/BulletTimer
 @onready var bullet_attack_timer = $Attack/BulletTimer/BulletAttackTimer
 var bullet_level = 1
-var bullet_attack_speed = 0.1
+var bullet_attack_speed = 0.1 # 0.1
 
 var hp = 100
 
-var money = 0
+var money = 1000
 
 var enemy_close = []
 
@@ -123,6 +123,24 @@ func _on_collect_area_area_entered(area):
 	if area.is_in_group('shop'):
 		get_tree().paused = true
 		upgrades_menu.visible = true
+
+# 引擎升级
+func _on_engine_power_slider_value_changed(value):
+	body.engine_power = value
+
+# 转向机升级
+func _on_steering_angle_slider_value_changed(value):
+	body.steering_angle = value
+
+# 武器升级
+func _on_weapon_up_pressed():
+	if money >= 100:
+		if bullet_level < 5:
+			bullet_level += 1
+			bullet_attack_speed -= 0.01
+			$GUI/Upgrades/Weapon/Speed/HBoxContainer/Value.text = str(bullet_level)
+			money -= 100
+			$GUI/Money.text = str(money)
 "
 
 [sub_resource type="GDScript" id="GDScript_7j67i"]
@@ -240,8 +258,8 @@ turbulence_noise_strength = 20.0
 radius = 150.0
 height = 588.0
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_n8lhe"]
-size = Vector2(323.999, 66)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tjw6m"]
+size = Vector2(323.999, 71.9997)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_jwwij"]
 radius = 4038.45
@@ -343,22 +361,23 @@ shape = SubResource("CircleShape2D_stomd")
 disabled = true
 
 [node name="PointLight2D" type="PointLight2D" parent="Body"]
-visible = false
 texture_filter = 1
-position = Vector2(-13, -118)
-scale = Vector2(0.6, 0.6)
+position = Vector2(144, -15)
+rotation = 1.5708
+scale = Vector2(3, 3)
 energy = 3.0
 texture = ExtResource("1_fcmov")
 
 [node name="PointLight2D2" type="PointLight2D" parent="Body"]
-visible = false
 texture_filter = 1
-position = Vector2(13, -118)
-scale = Vector2(0.6, 0.6)
+position = Vector2(144, 15)
+rotation = 1.5708
+scale = Vector2(3, 3)
 energy = 3.0
 texture = ExtResource("1_fcmov")
 
 [node name="HurtBox" parent="Body" instance=ExtResource("5_yqutu")]
+visible = false
 rotation = 1.5708
 scale = Vector2(0.166667, 0.166667)
 collision_layer = 2
@@ -375,12 +394,12 @@ collision_mask = 4
 damage = 30
 
 [node name="CollisionShape2D" parent="Body/HitBox" index="0"]
-position = Vector2(-2.86102e-06, -285)
-shape = SubResource("RectangleShape2D_n8lhe")
+position = Vector2(-0.00102992, -288)
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_tjw6m")
 disabled = true
 
 [node name="EnemyDetectionArea" type="Area2D" parent="Body"]
-visible = false
 rotation = 1.5708
 scale = Vector2(0.166667, 0.166667)
 collision_layer = 4
@@ -391,6 +410,7 @@ monitorable = false
 shape = SubResource("CircleShape2D_jwwij")
 
 [node name="GrabArea" type="Area2D" parent="Body"]
+visible = false
 rotation = 1.5708
 collision_layer = 8
 collision_mask = 8
@@ -482,15 +502,15 @@ position_smoothing_speed = 6.0
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 
 [node name="TiltShift" type="Sprite2D" parent="."]
+visible = false
 z_index = 10
 texture_filter = 1
 material = ExtResource("11_yigrs")
-position = Vector2(61, -26)
+position = Vector2(-655, -330)
 scale = Vector2(33.625, 18.875)
 texture = SubResource("GradientTexture2D_mha5w")
 
 [node name="Rain" type="Sprite2D" parent="."]
-visible = false
 modulate = Color(1, 1, 1, 0.0117647)
 texture_filter = 1
 material = ExtResource("11_i4vq8")
@@ -511,6 +531,23 @@ offset_bottom = 1666.37
 color = Color(0, 0, 0, 0.137255)
 
 [node name="GUI" type="CanvasLayer" parent="."]
+
+[node name="Upgrades" parent="GUI" instance=ExtResource("17_cuu6k")]
+visible = false
+
+[node name="Title" parent="GUI/Upgrades/Weapon" index="0"]
+layout_mode = 0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 354.0
+offset_bottom = 87.0
+
+[node name="Button" parent="GUI/Upgrades/Weapon" index="3"]
+layout_mode = 0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 23.0
+offset_bottom = 137.0
 
 [node name="Money" type="Label" parent="GUI"]
 texture_filter = 1
@@ -547,15 +584,16 @@ text = "ESC"
 flat = true
 script = SubResource("GDScript_bhj5u")
 
-[node name="Upgrades" parent="GUI" instance=ExtResource("17_cuu6k")]
-visible = false
-
 [connection signal="hurt" from="Body/HurtBox" to="." method="_on_hurt_box_hurt"]
 [connection signal="body_entered" from="Body/EnemyDetectionArea" to="." method="_on_enemy_detection_area_body_entered"]
 [connection signal="body_exited" from="Body/EnemyDetectionArea" to="." method="_on_enemy_detection_area_body_exited"]
 [connection signal="area_entered" from="Body/GrabArea" to="." method="_on_grab_area_area_entered"]
 [connection signal="area_entered" from="Body/CollectArea" to="." method="_on_collect_area_area_entered"]
 [connection signal="timeout" from="Attack/BulletTimer" to="." method="_on_bullet_timer_timeout"]
+[connection signal="value_changed" from="GUI/Upgrades/Car/EnginePower/HSlider" to="." method="_on_engine_power_slider_value_changed"]
+[connection signal="value_changed" from="GUI/Upgrades/Car/SteeringAngle/HSlider" to="." method="_on_steering_angle_slider_value_changed"]
+[connection signal="pressed" from="GUI/Upgrades/Weapon/Speed/Up" to="." method="_on_weapon_up_pressed"]
 
 [editable path="Body/HurtBox"]
 [editable path="Body/HitBox"]
+[editable path="GUI/Upgrades"]
