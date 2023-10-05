@@ -272,8 +272,8 @@ radius = 24.0
 height = 96.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wmrfs"]
-radius = 18.0
-height = 84.0
+radius = 24.0
+height = 96.0
 
 [sub_resource type="Gradient" id="Gradient_x7f0i"]
 
@@ -397,7 +397,6 @@ damage = 30
 
 [node name="CollisionShape2D" parent="Body/HitBox" index="0"]
 position = Vector2(-0.00102992, -288)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_tjw6m")
 disabled = true
 
@@ -538,14 +537,12 @@ color = Color(0, 0, 0, 0.137255)
 visible = false
 
 [node name="Title" parent="GUI/Upgrades/Weapon" index="0"]
-layout_mode = 0
 offset_left = 0.0
 offset_top = 0.0
 offset_right = 354.0
 offset_bottom = 87.0
 
 [node name="Button" parent="GUI/Upgrades/Weapon" index="3"]
-layout_mode = 0
 offset_left = 0.0
 offset_top = 0.0
 offset_right = 23.0

@@ -365,6 +365,7 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="Title" type="Label" parent="Weapon"]
+layout_mode = 0
 offset_left = 457.0
 offset_top = 58.0
 offset_right = 811.0
@@ -403,7 +404,7 @@ text = "等级 "
 layout_mode = 2
 theme_override_fonts/font = ExtResource("4_j3ouc")
 theme_override_font_sizes/font_size = 64
-text = "0"
+text = "1"
 
 [node name="Label2" type="Label" parent="Weapon/Speed/HBoxContainer"]
 layout_mode = 2
@@ -419,6 +420,7 @@ theme_override_font_sizes/font_size = 48
 text = "100 升级"
 
 [node name="Button" type="Button" parent="Weapon"]
+layout_mode = 0
 offset_left = 4.0
 offset_top = 250.0
 offset_right = 74.0
