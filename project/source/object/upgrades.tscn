@@ -352,10 +352,10 @@ flat = true
 
 [node name="Button" type="Button" parent="Car"]
 layout_mode = 2
-offset_left = 1169.0
-offset_top = 230.0
-offset_right = 1239.0
-offset_bottom = 430.0
+offset_left = 1206.0
+offset_top = 271.0
+offset_right = 1276.0
+offset_bottom = 471.0
 text = ">"
 script = SubResource("GDScript_swuq2")
 
@@ -384,10 +384,10 @@ script = SubResource("GDScript_kddkh")
 
 [node name="Speed" type="VBoxContainer" parent="Weapon"]
 layout_mode = 0
-offset_left = 842.0
-offset_top = 307.0
-offset_right = 1077.0
-offset_bottom = 433.0
+offset_left = 918.0
+offset_top = 317.0
+offset_right = 1153.0
+offset_bottom = 443.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Weapon/Speed"]
 layout_mode = 2
@@ -405,18 +405,24 @@ theme_override_fonts/font = ExtResource("4_j3ouc")
 theme_override_font_sizes/font_size = 64
 text = "0"
 
+[node name="Label2" type="Label" parent="Weapon/Speed/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_j3ouc")
+theme_override_font_sizes/font_size = 64
+text = "/5"
+
 [node name="Up" type="Button" parent="Weapon/Speed"]
 texture_filter = 1
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_op80d")
 theme_override_font_sizes/font_size = 48
-text = "-100 升级"
+text = "100 升级"
 
 [node name="Button" type="Button" parent="Weapon"]
-offset_left = 51.0
-offset_top = 270.0
-offset_right = 121.0
-offset_bottom = 470.0
+offset_left = 4.0
+offset_top = 250.0
+offset_right = 74.0
+offset_bottom = 450.0
 text = "<"
 script = SubResource("GDScript_otk85")
 

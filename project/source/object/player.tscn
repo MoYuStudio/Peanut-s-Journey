@@ -34,7 +34,7 @@ var bullet_attack_speed = 0.1 # 0.1
 
 var hp = 100
 
-var money = 1000
+var money = 0
 
 var enemy_close = []
 
