@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bcjcxpy5noqj8"]
+[gd_scene load_steps=19 format=3 uid="uid://bcjcxpy5noqj8"]
 
 [ext_resource type="Material" uid="uid://d6qhgh84hwou" path="res://resource/shader/tilt_shift.tres" id="1_0e1eo"]
 [ext_resource type="Texture2D" uid="uid://dehg38xt8tidn" path="res://resource/image/car.png" id="1_h1shc"]
@@ -65,6 +65,31 @@ _data = {
 "animation": SubResource("Animation_04iwo")
 }
 
+[sub_resource type="GDScript" id="GDScript_w2esl"]
+script/source = "
+extends Label
+
+func _ready():
+	pass
+
+func _physics_process(delta):
+	var viewport_size = get_viewport_rect().size
+	var logo_size = get_rect().size
+	position.x = viewport_size.x/2 - logo_size.x/2
+	position.y = logo_size.y/2
+"
+
+[sub_resource type="GDScript" id="GDScript_fm75v"]
+script/source = "
+extends Sprite2D
+
+func _physics_process(delta):
+	var viewport_size = get_viewport_rect().size
+	var logo_size = get_rect().size
+	position.x = viewport_size.x/2 - logo_size.x/2
+	position.y = viewport_size.y/2 - logo_size.y/2
+"
+
 [sub_resource type="GDScript" id="GDScript_r8yxv"]
 script/source = "
 extends Control
@@ -93,6 +118,66 @@ func _ready():
 
 func _process(delta):
 	value.text = str(slider.value)
+"
+
+[sub_resource type="GDScript" id="GDScript_swuq2"]
+script/source = "
+extends Button
+
+func _ready():
+	pass
+
+func _physics_process(delta):
+	size = Vector2(70,200)
+	var viewport_size = get_viewport_rect().size
+	var logo_size = get_rect().size
+	position.x = viewport_size.x - logo_size.x
+	position.y = viewport_size.y/2 - logo_size.y/2
+	
+	
+"
+
+[sub_resource type="GDScript" id="GDScript_kcf7n"]
+script/source = "
+extends Label
+
+func _ready():
+	pass
+
+func _physics_process(delta):
+	var viewport_size = get_viewport_rect().size
+	var logo_size = get_rect().size
+	position.x = viewport_size.x/2 - logo_size.x/2
+	position.y = logo_size.y/2
+	
+"
+
+[sub_resource type="GDScript" id="GDScript_kddkh"]
+script/source = "
+extends Sprite2D
+
+func _physics_process(delta):
+	var viewport_size = get_viewport_rect().size
+	var logo_size = get_rect().size
+	position.x = viewport_size.x/2 - logo_size.x/2
+	position.y = viewport_size.y/2 - logo_size.y/2
+"
+
+[sub_resource type="GDScript" id="GDScript_otk85"]
+script/source = "
+extends Button
+
+func _ready():
+	pass
+
+func _physics_process(delta):
+	size = Vector2(70,200)
+	var viewport_size = get_viewport_rect().size
+	var logo_size = get_rect().size
+	position.x = 0
+	position.y = viewport_size.y/2 - logo_size.y/2
+	
+	
 "
 
 [node name="Upgrades" type="Control"]
@@ -163,6 +248,7 @@ theme_override_fonts/font = ExtResource("3_op80d")
 theme_override_font_sizes/font_size = 64
 text = "汽车改装车间
 "
+script = SubResource("GDScript_w2esl")
 
 [node name="Car" type="Sprite2D" parent="Car"]
 texture_filter = 1
@@ -170,6 +256,7 @@ position = Vector2(605, 327)
 rotation = 1.5708
 scale = Vector2(16, 16)
 texture = ExtResource("1_h1shc")
+script = SubResource("GDScript_fm75v")
 
 [node name="EnginePower" type="VBoxContainer" parent="Car"]
 layout_mode = 2
@@ -268,8 +355,9 @@ layout_mode = 2
 offset_left = 1169.0
 offset_top = 230.0
 offset_right = 1239.0
-offset_bottom = 454.0
+offset_bottom = 430.0
 text = ">"
+script = SubResource("GDScript_swuq2")
 
 [node name="Weapon" type="Control" parent="."]
 anchors_preset = 0
@@ -285,12 +373,14 @@ theme_override_fonts/font = ExtResource("3_op80d")
 theme_override_font_sizes/font_size = 64
 text = "武器改装车间
 "
+script = SubResource("GDScript_kcf7n")
 
-[node name="Sprite2D" type="Sprite2D" parent="Weapon"]
+[node name="Weapon" type="Sprite2D" parent="Weapon"]
 texture_filter = 1
 position = Vector2(565, 376)
 scale = Vector2(16, 16)
 texture = ExtResource("6_0naur")
+script = SubResource("GDScript_kddkh")
 
 [node name="Speed" type="VBoxContainer" parent="Weapon"]
 layout_mode = 0
@@ -323,11 +413,12 @@ theme_override_font_sizes/font_size = 48
 text = "-100 升级"
 
 [node name="Button" type="Button" parent="Weapon"]
-offset_left = 81.0
-offset_top = 300.0
-offset_right = 125.0
-offset_bottom = 437.0
+offset_left = 51.0
+offset_top = 270.0
+offset_right = 121.0
+offset_bottom = 470.0
 text = "<"
+script = SubResource("GDScript_otk85")
 
 [connection signal="pressed" from="Car/Button" to="." method="_on_car_page_button_pressed"]
 [connection signal="pressed" from="Weapon/Button" to="." method="_on_weapon_page_button_pressed"]
