@@ -309,11 +309,11 @@ gradient = SubResource("Gradient_x7f0i")
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_oh07r"]
 gradient = SubResource("Gradient_qqeh2")
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0ifu1"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_t50s3"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3rawd"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ne4uk"]
 
-[sub_resource type="GDScript" id="GDScript_3rbx0"]
+[sub_resource type="GDScript" id="GDScript_cns5b"]
 script/source = "
 extends Button
 
@@ -576,6 +576,7 @@ position_smoothing_speed = 6.0
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 
 [node name="TiltShift" type="Sprite2D" parent="."]
+visible = false
 z_index = 10
 texture_filter = 1
 material = ExtResource("11_yigrs")
@@ -584,6 +585,7 @@ scale = Vector2(50, 19)
 texture = SubResource("GradientTexture2D_mha5w")
 
 [node name="Rain" type="Sprite2D" parent="."]
+visible = false
 modulate = Color(1, 1, 1, 0.0117647)
 z_index = 9
 texture_filter = 1
@@ -622,17 +624,17 @@ offset_bottom = 137.0
 
 [node name="ESCButton" type="Button" parent="GUI"]
 texture_filter = 1
-offset_left = 1700.0
-offset_top = 80.0
-offset_right = 1852.0
-offset_bottom = 168.0
+offset_left = 1705.0
+offset_top = 59.0
+offset_right = 1857.0
+offset_bottom = 149.0
 theme_override_fonts/font = ExtResource("16_rb3nj")
 theme_override_font_sizes/font_size = 64
-theme_override_styles/normal = SubResource("StyleBoxEmpty_0ifu1")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_3rawd")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_t50s3")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ne4uk")
 text = "ESC"
 flat = true
-script = SubResource("GDScript_3rbx0")
+script = SubResource("GDScript_cns5b")
 
 [node name="Level" type="Label" parent="GUI"]
 modulate = Color(1, 1, 1, 0.901961)
