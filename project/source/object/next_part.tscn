@@ -54,7 +54,7 @@ script = SubResource("GDScript_phs5p")
 shape = SubResource("RectangleShape2D_aabhm")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-modulate = Color(1, 1, 1, 0.25098)
+modulate = Color(1, 1, 1, 0.501961)
 texture_filter = 1
 position = Vector2(-7, 0)
 texture = ExtResource("1_grfq1")

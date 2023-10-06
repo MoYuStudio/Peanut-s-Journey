@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://c1tw37pkcvsy3"]
+[gd_scene load_steps=38 format=3 uid="uid://c1tw37pkcvsy3"]
 
 [ext_resource type="Texture2D" uid="uid://6ndddp5duhfh" path="res://resource/image/light_yellow.png" id="1_fcmov"]
 [ext_resource type="Texture2D" uid="uid://cciym2m3cx1ij" path="res://resource/image/steam.png" id="1_ouxap"]
@@ -14,6 +14,7 @@
 [ext_resource type="Material" uid="uid://bss0l0sqbcfrj" path="res://resource/shader/rain.tres" id="11_i4vq8"]
 [ext_resource type="Material" uid="uid://d6qhgh84hwou" path="res://resource/shader/tilt_shift.tres" id="11_yigrs"]
 [ext_resource type="AudioStream" uid="uid://om43vjvq3531" path="res://resource/sound/rain.mp3" id="15_p4a21"]
+[ext_resource type="FontFile" uid="uid://c4xqu78o8tn3h" path="res://resource/font/kenney_blocks.ttf" id="16_igcmu"]
 [ext_resource type="PackedScene" uid="uid://bcjcxpy5noqj8" path="res://source/object/upgrades.tscn" id="17_cuu6k"]
 
 [sub_resource type="GDScript" id="GDScript_wo5ts"]
@@ -39,6 +40,8 @@ var money = 0
 var enemy_close = []
 
 var level_switch = false
+@onready var level = $GUI/Level
+@onready var level_animation = $GUI/Level/AnimationPlayer
 
 # 进程函数 ==============================================================
 
@@ -126,6 +129,7 @@ func _on_collect_area_area_entered(area):
 		upgrades_menu.visible = true
 	if area.is_in_group('next_part'):
 		level_switch = true
+		level.text = str(int(level.text)+1)
 
 # 引擎升级
 func _on_engine_power_slider_value_changed(value):
@@ -332,6 +336,40 @@ func _process(delta):
 		get_tree().change_scene_to_file('res://source/scene/menu_main.tscn')
 		
 "
+
+[sub_resource type="GDScript" id="GDScript_d85q8"]
+script/source = "
+extends Label
+
+@onready var animation = $AnimationPlayer
+
+func _ready():
+	animation.play('animation')
+
+func _process(delta):
+	pass
+"
+
+[sub_resource type="Animation" id="Animation_1dnba"]
+resource_name = "animation"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2.5, 4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_g6giu"]
+_data = {
+"animation": SubResource("Animation_1dnba")
+}
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 collision_layer = 15
@@ -587,6 +625,21 @@ theme_override_font_sizes/font_size = 64
 text = "ESC"
 flat = true
 script = SubResource("GDScript_bhj5u")
+
+[node name="Level" type="Label" parent="GUI"]
+offset_left = 921.0
+offset_top = 177.0
+offset_right = 961.0
+offset_bottom = 203.0
+theme_override_fonts/font = ExtResource("16_igcmu")
+theme_override_font_sizes/font_size = 128
+text = "1"
+script = SubResource("GDScript_d85q8")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="GUI/Level"]
+libraries = {
+"": SubResource("AnimationLibrary_g6giu")
+}
 
 [connection signal="hurt" from="Body/HurtBox" to="." method="_on_hurt_box_hurt"]
 [connection signal="body_entered" from="Body/EnemyDetectionArea" to="." method="_on_enemy_detection_area_body_entered"]
