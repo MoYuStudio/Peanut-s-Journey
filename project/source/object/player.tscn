@@ -500,7 +500,6 @@ color = Color(0.611765, 0.8, 0.396078, 1)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 scale = Vector2(0.166667, 0.166667)
-zoom = Vector2(0.9, 0.9)
 process_callback = 0
 position_smoothing_enabled = true
 position_smoothing_speed = 6.0

@@ -7,6 +7,9 @@
 script/source = "
 extends Node
 
+@onready var map1 = preload('res://source/map/map1.tscn')
+
+@onready var map = $Map
 @onready var enemy_spawner = $Map/EnemySpawner
 @onready var next_part = $Map/TileMap/NextPart
 
@@ -18,9 +21,28 @@ func _ready():
 	next_part.collision.disabled = true
 
 func _process(delta):
-	if enemy_spawner.time >= 10 and enemy_spawner.my_children.size() <= 1:
-		next_part.visible = true
-		next_part.collision.disabled = false
+	pass
+
+func _physics_process(delta):
+	if enemy_spawner != null:
+		if enemy_spawner.time >= map_time and enemy_spawner.my_children.size() <= 1:
+			next_part.visible = true
+			next_part.collision.disabled = false
+		
+			map.queue_free()
+			
+			map1 = map1.instantiate()
+			call_deferred('add_child', map1)
+			
+			map = $Map
+			enemy_spawner = $Map/EnemySpawner
+			next_part = $Map/TileMap/NextPart
+
+			map_level = $Map.map_level
+			map_time = $Map.map_time
+			
+			next_part.visible = false
+			next_part.collision.disabled = true
 "
 
 [node name="Main" type="Node"]
@@ -30,5 +52,3 @@ script = SubResource("GDScript_ge11n")
 
 [node name="Player" parent="." instance=ExtResource("10_phe80")]
 position = Vector2(61, 8)
-
-[editable path="Map"]
