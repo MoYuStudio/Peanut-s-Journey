@@ -511,6 +511,9 @@ shape = SubResource("CapsuleShape2D_wmrfs")
 [node name="BulletTimer" type="Timer" parent="Attack"]
 wait_time = 1.5
 
+[node name="BulletAttackTimer" type="Timer" parent="Attack/BulletTimer"]
+wait_time = 0.2
+
 [node name="Gun" type="Sprite2D" parent="Attack"]
 z_index = 3
 texture_filter = 1

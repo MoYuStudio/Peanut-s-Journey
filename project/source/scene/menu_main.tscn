@@ -86,6 +86,7 @@ color = Color(0, 0, 0, 1)
 
 [node name="ColorRect3" type="ColorRect" parent="ColorRect"]
 modulate = Color(1, 1, 1, 0.392157)
+layout_mode = 0
 offset_left = 3118.0
 offset_top = 705.0
 offset_right = 4591.0
