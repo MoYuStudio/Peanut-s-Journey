@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://o0wln7a0f0t3"]
+[gd_scene load_steps=15 format=3 uid="uid://o0wln7a0f0t3"]
 
 [ext_resource type="Texture2D" uid="uid://dd5qoikkws2ep" path="res://resource/image/enemy.png" id="1_iyfpn"]
 [ext_resource type="PackedScene" uid="uid://5ygp3ic8vnl6" path="res://source/utility/hurtbox.tscn" id="2_ggsfu"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bvhr66hwk76fl" path="res://resource/image/hp_bar_under.png" id="4_4v00r"]
 [ext_resource type="Texture2D" uid="uid://l3vbbpxnu51a" path="res://resource/image/hp_bar_over.png" id="5_ldmkq"]
 [ext_resource type="Texture2D" uid="uid://bvf7unifbeymv" path="res://resource/image/hp_bar_progress.png" id="6_spi3s"]
+[ext_resource type="FontFile" uid="uid://bxkcgrk5xuhuc" path="res://resource/font/kenney_mini.ttf" id="7_heglm"]
 [ext_resource type="AudioStream" uid="uid://cec6ejlhxk36l" path="res://resource/sound/enemy_sound.mp3" id="7_t38y1"]
 
 [sub_resource type="GDScript" id="GDScript_3nnkj"]
@@ -24,10 +25,14 @@ signal remove_from_array(object)
 var death_animation = preload('res://source/object/blood.tscn')
 var death_coin = preload('res://source/object/coin.tscn')
 
+@onready var hurt_sign = $HUD/HurtSign
+@onready var hurt_sign_animation = $HUD/HurtSign/AnimationPlayer
+
 # var screen_size
 
-# func _ready():
+func _ready():
 # 	screen_size = get_viewport_rect().size
+	pass
 
 func _physics_process(_delta):
 	knock_back = knock_back.move_toward(Vector2.ZERO, knock_back_recovery)
@@ -58,6 +63,8 @@ func death():
 func _on_hurt_box_hurt(damage, angle, knock_back_amount):
 	hp -= damage
 	knock_back = angle * knock_back_amount
+	hurt_sign.text = str(damage)
+	hurt_sign_animation.play('animation')
 	if hp <= 0:
 		death()
 		
@@ -74,6 +81,39 @@ height = 52.0
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5yeo4"]
 radius = 19.0
 height = 50.0
+
+[sub_resource type="Animation" id="Animation_hyu54"]
+resource_name = "animation"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-16, -130), Vector2(-16, -150)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_f4qk8"]
+_data = {
+"animation": SubResource("Animation_hyu54")
+}
 
 [node name="Enemy" type="CharacterBody2D"]
 z_index = -1
@@ -132,6 +172,27 @@ texture_over = ExtResource("5_ldmkq")
 texture_progress = ExtResource("6_spi3s")
 tint_under = Color(0, 0, 0, 0)
 tint_progress = Color(0.305882, 1, 0.12549, 1)
+
+[node name="HurtSign" type="Label" parent="HUD"]
+modulate = Color(1, 1, 1, 0)
+z_index = 9
+texture_filter = 1
+layout_mode = 0
+offset_left = -16.0
+offset_top = -130.0
+offset_right = 64.0
+offset_bottom = 33.0
+theme_override_colors/font_color = Color(0.933333, 0.196078, 0.027451, 0.784314)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 0.784314)
+theme_override_constants/outline_size = 9
+theme_override_fonts/font = ExtResource("7_heglm")
+theme_override_font_sizes/font_size = 64
+text = "0"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="HUD/HurtSign"]
+libraries = {
+"": SubResource("AnimationLibrary_f4qk8")
+}
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("7_t38y1")
