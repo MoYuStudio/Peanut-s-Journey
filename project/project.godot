@@ -19,10 +19,6 @@ boot_splash/use_filter=false
 config/icon="res://resource/icon/icon_x64.png"
 config/windows_native_icon="res://resource/icon/icon_x64.ico"
 
-[autoload]
-
-SceneTransition="*res://source/transition/scene_transition.tscn"
-
 [display]
 
 window/size/viewport_width=1920

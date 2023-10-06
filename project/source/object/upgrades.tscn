@@ -32,10 +32,6 @@ func _on_car_page_button_pressed():
 func _on_weapon_page_button_pressed():
 	car_page.visible = true
 	weapon_page.visible = false
-
-
-func _on_wheel_friction_slider_value_changed(value):
-	pass # Replace with function body.
 "
 
 [sub_resource type="GDScript" id="GDScript_lmiis"]

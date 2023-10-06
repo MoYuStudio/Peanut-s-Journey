@@ -19,8 +19,8 @@ func _ready():
 
 func _process(delta):
 	if is_pressed():
-		# get_tree().change_scene_to_file('res://source/scene/game_main.tscn')
-		SceneTransition.change_scene('res://source/scene/game_main.tscn')
+		get_tree().change_scene_to_file('res://source/scene/game_main.tscn')
+		# SceneTransition.change_scene('res://source/scene/game_main.tscn')
 "
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rx25s"]
@@ -40,8 +40,8 @@ func _ready():
 
 func _process(delta):
 	if is_pressed():
-		# get_tree().change_scene_to_file('res://source/scene/menu_setting.tscn')
-		SceneTransition.change_scene('res://source/scene/menu_setting.tscn')
+		get_tree().change_scene_to_file('res://source/scene/menu_setting.tscn')
+		# SceneTransition.change_scene('res://source/scene/menu_setting.tscn')
 "
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4n3ja"]
