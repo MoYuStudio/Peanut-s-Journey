@@ -38,6 +38,7 @@ var bullet_attack_speed = 0.1 # 0.1
 var hp = 100
 
 var money = 0
+@onready var money_label = $GUI/InfoBar/Money
 
 var enemy_close = []
 
@@ -74,7 +75,7 @@ func _physics_process(delta):
 		# queue_free()
 
 	$HUD/HP.value = hp
-	$GUI/Money.text = str(money)
+	money_label.text = str(money)
 	
 	move_and_slide()
 
@@ -294,6 +295,55 @@ gradient = SubResource("Gradient_x7f0i")
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_oh07r"]
 gradient = SubResource("Gradient_qqeh2")
 
+[sub_resource type="GDScript" id="GDScript_3rbx0"]
+script/source = "
+extends Button
+
+func _physics_process(delta):
+	var viewport_size = get_viewport_rect().size
+	var logo_size = get_rect().size
+	position.x = viewport_size.x - logo_size.x*1.5
+	position.y = logo_size.y/2
+"
+
+[sub_resource type="GDScript" id="GDScript_d85q8"]
+script/source = "
+extends Label
+
+@onready var animation = $AnimationPlayer
+
+func _ready():
+	animation.play('animation')
+
+func _physics_process(delta):
+	var viewport_size = get_viewport_rect().size
+	var logo_size = get_rect().size
+	position.x = viewport_size.x/2 - logo_size.x/2
+	position.y = logo_size.y/2
+
+"
+
+[sub_resource type="Animation" id="Animation_1dnba"]
+resource_name = "animation"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2.5, 4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_g6giu"]
+_data = {
+"animation": SubResource("Animation_1dnba")
+}
+
 [sub_resource type="GDScript" id="GDScript_g7d0s"]
 script/source = "
 extends Sprite2D
@@ -324,53 +374,6 @@ tracks/0/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_scgp6"]
 _data = {
 "animation": SubResource("Animation_kfeg8")
-}
-
-[sub_resource type="GDScript" id="GDScript_bhj5u"]
-script/source = "
-extends Button
-
-func _ready():
-	pass
-
-func _process(delta):
-	if is_pressed():
-		get_tree().change_scene_to_file('res://source/scene/menu_main.tscn')
-		
-"
-
-[sub_resource type="GDScript" id="GDScript_d85q8"]
-script/source = "
-extends Label
-
-@onready var animation = $AnimationPlayer
-
-func _ready():
-	animation.play('animation')
-
-func _process(delta):
-	pass
-"
-
-[sub_resource type="Animation" id="Animation_1dnba"]
-resource_name = "animation"
-length = 4.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:modulate")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 2.5, 4),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_g6giu"]
-_data = {
-"animation": SubResource("Animation_1dnba")
 }
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
@@ -593,41 +596,17 @@ offset_top = 0.0
 offset_right = 23.0
 offset_bottom = 137.0
 
-[node name="Money" type="Label" parent="GUI"]
-texture_filter = 1
-offset_left = 198.0
-offset_top = 47.0
-offset_right = 270.0
-offset_bottom = 170.0
-theme_override_fonts/font = ExtResource("15_y2u7u")
-theme_override_font_sizes/font_size = 96
-text = "0"
-
-[node name="Coin" type="Sprite2D" parent="GUI/Money"]
-texture_filter = 1
-position = Vector2(-74, 67)
-scale = Vector2(6, 6)
-texture = ExtResource("11_2ssyj")
-hframes = 6
-vframes = 2
-script = SubResource("GDScript_g7d0s")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="GUI/Money/Coin"]
-libraries = {
-"": SubResource("AnimationLibrary_scgp6")
-}
-
 [node name="ESCButton" type="Button" parent="GUI"]
 texture_filter = 1
-offset_left = 1662.0
-offset_top = 30.0
-offset_right = 1886.0
-offset_bottom = 158.0
+offset_left = 1700.0
+offset_top = 80.0
+offset_right = 1852.0
+offset_bottom = 168.0
 theme_override_fonts/font = ExtResource("16_rb3nj")
 theme_override_font_sizes/font_size = 64
 text = "ESC"
 flat = true
-script = SubResource("GDScript_bhj5u")
+script = SubResource("GDScript_3rbx0")
 
 [node name="Level" type="Label" parent="GUI"]
 offset_left = 921.0
@@ -643,6 +622,37 @@ script = SubResource("GDScript_d85q8")
 libraries = {
 "": SubResource("AnimationLibrary_g6giu")
 }
+
+[node name="InfoBar" type="Control" parent="GUI"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Coin" type="Sprite2D" parent="GUI/InfoBar"]
+texture_filter = 1
+position = Vector2(128, 128)
+scale = Vector2(6, 6)
+texture = ExtResource("11_2ssyj")
+hframes = 6
+vframes = 2
+script = SubResource("GDScript_g7d0s")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="GUI/InfoBar/Coin"]
+libraries = {
+"": SubResource("AnimationLibrary_scgp6")
+}
+
+[node name="Money" type="Label" parent="GUI/InfoBar"]
+texture_filter = 1
+layout_mode = 2
+offset_left = 180.0
+offset_top = 60.0
+offset_right = 240.0
+offset_bottom = 183.0
+theme_override_fonts/font = ExtResource("15_y2u7u")
+theme_override_font_sizes/font_size = 96
+text = "0"
 
 [connection signal="hurt" from="Body/HurtBox" to="." method="_on_hurt_box_hurt"]
 [connection signal="body_entered" from="Body/EnemyDetectionArea" to="." method="_on_enemy_detection_area_body_entered"]
