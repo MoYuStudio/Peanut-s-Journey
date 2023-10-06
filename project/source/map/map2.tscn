@@ -1,7 +1,7 @@
 [gd_scene load_steps=13 format=3 uid="uid://u3pyn3maf0tf"]
 
 [ext_resource type="PackedScene" uid="uid://ckujg6i1b6ujw" path="res://source/utility/enemy_spawner.tscn" id="1_d81bl"]
-[ext_resource type="PackedScene" uid="uid://o0wln7a0f0t3" path="res://source/enemy/enemy.tscn" id="2_812gi"]
+[ext_resource type="PackedScene" uid="uid://dj0c8slaekvqu" path="res://source/enemy/enemy0.tscn" id="2_lq81b"]
 [ext_resource type="Script" path="res://source/utility/spawn_info.gd" id="3_cpyal"]
 [ext_resource type="Texture2D" uid="uid://bcmtvcjpa48fs" path="res://resource/tile/tilemap.png" id="4_ho0f8"]
 [ext_resource type="PackedScene" uid="uid://l6fjqq8ja2ev" path="res://source/object/shop.tscn" id="5_2bukf"]
@@ -25,7 +25,7 @@ func _process(delta):
 script = ExtResource("3_cpyal")
 time_start = 0
 time_end = 10
-enemy = ExtResource("2_812gi")
+enemy = ExtResource("2_lq81b")
 enemy_num = 3
 enemy_spawn_delay = 1
 
@@ -33,7 +33,7 @@ enemy_spawn_delay = 1
 script = ExtResource("3_cpyal")
 time_start = 10
 time_end = 30
-enemy = ExtResource("2_812gi")
+enemy = ExtResource("2_lq81b")
 enemy_num = 6
 enemy_spawn_delay = 1
 
@@ -41,7 +41,7 @@ enemy_spawn_delay = 1
 script = ExtResource("3_cpyal")
 time_start = 30
 time_end = 60
-enemy = ExtResource("2_812gi")
+enemy = ExtResource("2_lq81b")
 enemy_num = 9
 enemy_spawn_delay = 1
 

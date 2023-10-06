@@ -1,8 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://bvvoosa2rauys"]
+[gd_scene load_steps=13 format=3 uid="uid://bvvoosa2rauys"]
 
 [ext_resource type="PackedScene" uid="uid://ckujg6i1b6ujw" path="res://source/utility/enemy_spawner.tscn" id="1_u5h3a"]
-[ext_resource type="PackedScene" uid="uid://o0wln7a0f0t3" path="res://source/enemy/enemy.tscn" id="2_w8wu5"]
+[ext_resource type="PackedScene" uid="uid://dj0c8slaekvqu" path="res://source/enemy/enemy0.tscn" id="2_4tlyr"]
 [ext_resource type="Script" path="res://source/utility/spawn_info.gd" id="3_h5ulj"]
+[ext_resource type="PackedScene" uid="uid://btcj0j8gy05an" path="res://source/enemy/enemy1.tscn" id="4_jwptl"]
 [ext_resource type="Texture2D" uid="uid://bcmtvcjpa48fs" path="res://resource/tile/tilemap.png" id="4_oxk1l"]
 [ext_resource type="PackedScene" uid="uid://l6fjqq8ja2ev" path="res://source/object/shop.tscn" id="5_uhtvx"]
 [ext_resource type="PackedScene" uid="uid://b4g43o3dnrfc0" path="res://source/object/next_part.tscn" id="6_56fi8"]
@@ -25,8 +26,16 @@ func _process(delta):
 script = ExtResource("3_h5ulj")
 time_start = 0
 time_end = 10
-enemy = ExtResource("2_w8wu5")
+enemy = ExtResource("2_4tlyr")
 enemy_num = 3
+enemy_spawn_delay = 1
+
+[sub_resource type="Resource" id="Resource_ye31j"]
+script = ExtResource("3_h5ulj")
+time_start = 5
+time_end = 10
+enemy = ExtResource("4_jwptl")
+enemy_num = 2
 enemy_spawn_delay = 1
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2iwv8"]
@@ -208,7 +217,7 @@ sources/1 = SubResource("TileSetAtlasSource_2iwv8")
 script = SubResource("GDScript_l1exk")
 
 [node name="EnemySpawner" parent="." instance=ExtResource("1_u5h3a")]
-spawns = Array[ExtResource("3_h5ulj")]([SubResource("Resource_8ohy7")])
+spawns = Array[ExtResource("3_h5ulj")]([SubResource("Resource_8ohy7"), SubResource("Resource_ye31j")])
 
 [node name="TileMap" type="TileMap" parent="."]
 texture_filter = 1

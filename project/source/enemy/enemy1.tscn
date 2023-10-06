@@ -1,13 +1,13 @@
-[gd_scene load_steps=15 format=3 uid="uid://o0wln7a0f0t3"]
+[gd_scene load_steps=15 format=3 uid="uid://btcj0j8gy05an"]
 
-[ext_resource type="Texture2D" uid="uid://dd5qoikkws2ep" path="res://resource/image/enemy0.png" id="1_8lrat"]
-[ext_resource type="PackedScene" uid="uid://5ygp3ic8vnl6" path="res://source/utility/hurtbox.tscn" id="2_ggsfu"]
-[ext_resource type="PackedScene" uid="uid://o84475elvy3" path="res://source/utility/hitbox.tscn" id="3_1im1y"]
-[ext_resource type="Texture2D" uid="uid://bvhr66hwk76fl" path="res://resource/image/hp_bar_under.png" id="4_4v00r"]
-[ext_resource type="Texture2D" uid="uid://l3vbbpxnu51a" path="res://resource/image/hp_bar_over.png" id="5_ldmkq"]
-[ext_resource type="Texture2D" uid="uid://bvf7unifbeymv" path="res://resource/image/hp_bar_progress.png" id="6_spi3s"]
-[ext_resource type="FontFile" uid="uid://bxkcgrk5xuhuc" path="res://resource/font/kenney_mini.ttf" id="7_heglm"]
-[ext_resource type="AudioStream" uid="uid://cec6ejlhxk36l" path="res://resource/sound/enemy_sound.mp3" id="7_t38y1"]
+[ext_resource type="Texture2D" uid="uid://buh1ss45yjqka" path="res://resource/image/enemy1.png" id="1_nbd4q"]
+[ext_resource type="PackedScene" uid="uid://5ygp3ic8vnl6" path="res://source/utility/hurtbox.tscn" id="2_78qbu"]
+[ext_resource type="PackedScene" uid="uid://o84475elvy3" path="res://source/utility/hitbox.tscn" id="3_iyvns"]
+[ext_resource type="Texture2D" uid="uid://bvhr66hwk76fl" path="res://resource/image/hp_bar_under.png" id="4_y42fr"]
+[ext_resource type="Texture2D" uid="uid://l3vbbpxnu51a" path="res://resource/image/hp_bar_over.png" id="5_8wqjo"]
+[ext_resource type="Texture2D" uid="uid://bvf7unifbeymv" path="res://resource/image/hp_bar_progress.png" id="6_w6m3h"]
+[ext_resource type="FontFile" uid="uid://bxkcgrk5xuhuc" path="res://resource/font/kenney_mini.ttf" id="7_f4u2r"]
+[ext_resource type="AudioStream" uid="uid://cec6ejlhxk36l" path="res://resource/sound/enemy_sound.mp3" id="8_tftdp"]
 
 [sub_resource type="GDScript" id="GDScript_3nnkj"]
 script/source = "
@@ -75,12 +75,12 @@ radius = 12.0
 height = 38.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_e3hjc"]
-radius = 20.0
-height = 52.0
+radius = 24.0
+height = 72.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5yeo4"]
 radius = 19.0
-height = 50.0
+height = 60.0
 
 [sub_resource type="Animation" id="Animation_hyu54"]
 resource_name = "animation"
@@ -121,17 +121,20 @@ collision_layer = 4
 collision_mask = 4
 safe_margin = 0.1
 script = SubResource("GDScript_3nnkj")
+movement_speed = 50.0
+hp = 50
+knock_back_recovery = 1.5
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
 rotation = 1.5708
 scale = Vector2(6, 6)
-texture = ExtResource("1_8lrat")
+texture = ExtResource("1_nbd4q")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_3ay8f")
 
-[node name="HurtBox" parent="." instance=ExtResource("2_ggsfu")]
+[node name="HurtBox" parent="." instance=ExtResource("2_78qbu")]
 position = Vector2(42.3167, -84.8457)
 collision_layer = 4
 collision_mask = 4
@@ -141,7 +144,7 @@ hitbox_type = 1
 position = Vector2(-42.3167, 84.8457)
 shape = SubResource("CapsuleShape2D_e3hjc")
 
-[node name="HitBox" parent="." instance=ExtResource("3_1im1y")]
+[node name="HitBox" parent="." instance=ExtResource("3_iyvns")]
 position = Vector2(42.3167, -84.8457)
 collision_layer = 2
 collision_mask = 2
@@ -154,8 +157,9 @@ shape = SubResource("CapsuleShape2D_5yeo4")
 [node name="HUD" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
+offset_top = -12.0
 offset_right = 40.0
-offset_bottom = 40.0
+offset_bottom = 28.0
 
 [node name="HP" type="TextureProgressBar" parent="HUD"]
 modulate = Color(1, 1, 1, 0.784314)
@@ -167,9 +171,9 @@ offset_right = -8.0
 offset_bottom = -47.0
 scale = Vector2(3, 3)
 max_value = 10.0
-texture_under = ExtResource("4_4v00r")
-texture_over = ExtResource("5_ldmkq")
-texture_progress = ExtResource("6_spi3s")
+texture_under = ExtResource("4_y42fr")
+texture_over = ExtResource("5_8wqjo")
+texture_progress = ExtResource("6_w6m3h")
 tint_under = Color(0, 0, 0, 0)
 tint_progress = Color(0.305882, 1, 0.12549, 1)
 
@@ -185,7 +189,7 @@ offset_bottom = 33.0
 theme_override_colors/font_color = Color(0.933333, 0.196078, 0.027451, 0.784314)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 0.784314)
 theme_override_constants/outline_size = 9
-theme_override_fonts/font = ExtResource("7_heglm")
+theme_override_fonts/font = ExtResource("7_f4u2r")
 theme_override_font_sizes/font_size = 64
 text = "0"
 
@@ -195,7 +199,7 @@ libraries = {
 }
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("7_t38y1")
+stream = ExtResource("8_tftdp")
 volume_db = -30.0
 autoplay = true
 

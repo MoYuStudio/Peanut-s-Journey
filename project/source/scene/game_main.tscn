@@ -16,7 +16,7 @@ extends Node
 var map_list = []
 
 func _ready():
-	for num in range(1, 5):
+	for num in range(1, 6):
 		var map_preload = load('res://source/map/map' + str(num) + '.tscn')
 		map_list.append(map_preload)
 	
