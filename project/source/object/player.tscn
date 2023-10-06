@@ -317,12 +317,9 @@ gradient = SubResource("Gradient_qqeh2")
 script/source = "
 extends Button
 
-func _process(delta):
+func _physics_process(delta):
 	if is_pressed():
 		get_tree().change_scene_to_file('res://source/scene/menu_main.tscn')
-		# SceneTransition.change_scene('res://source/scene/menu_main.tscn')
-
-func _physics_process(delta):
 	var viewport_size = get_viewport_rect().size
 	var logo_size = get_rect().size
 	position.x = viewport_size.x - logo_size.x*1.5

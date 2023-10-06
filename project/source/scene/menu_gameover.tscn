@@ -13,8 +13,8 @@ func _ready():
 
 func _process(delta):
 	if is_pressed():
-		# get_tree().change_scene_to_file('res://source/scene/menu_main.tscn')
-		SceneTransition.change_scene('res://source/scene/menu_main.tscn')
+		get_tree().change_scene_to_file('res://source/scene/menu_main.tscn')
+		# SceneTransition.change_scene('res://source/scene/menu_main.tscn')
 "
 
 [node name="MenuGameover" type="Node"]
