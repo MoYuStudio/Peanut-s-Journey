@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://da83a1jtuybi2"]
 
 [ext_resource type="Texture2D" uid="uid://bnmx8pt0nk4u2" path="res://resource/logo/logo.png" id="1_8ng5c"]
-[ext_resource type="AudioStream" uid="uid://vc6wr7iugdmp" path="res://resource/sound/gun_01.mp3" id="2_lydgl"]
+[ext_resource type="AudioStream" uid="uid://cotv0p0hvjb8q" path="res://resource/sound/get_coin.ogg" id="2_koyle"]
 
 [sub_resource type="GDScript" id="GDScript_6o0tv"]
 script/source = "
@@ -12,8 +12,8 @@ func _ready():
 	$Logo/AnimationPlayer.play('init')
 	$Mask/AnimationPlayer.play('init')
 	await $Mask/AnimationPlayer.animation_finished
-	get_tree().change_scene_to_file('res://source/scene/menu_main.tscn')
-	# SceneTransition.change_scene('res://source/scene/menu_main.tscn')
+	# get_tree().change_scene_to_file('res://source/scene/menu_main.tscn')
+	SceneTransition.change_scene('res://source/scene/menu_main.tscn')
 "
 
 [sub_resource type="GDScript" id="GDScript_r6bpv"]
@@ -118,6 +118,6 @@ libraries = {
 }
 
 [node name="Audio" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("2_lydgl")
+stream = ExtResource("2_koyle")
 volume_db = 6.4
 autoplay = true

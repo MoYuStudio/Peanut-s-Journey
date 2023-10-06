@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://c1tw37pkcvsy3"]
+[gd_scene load_steps=43 format=3 uid="uid://c1tw37pkcvsy3"]
 
 [ext_resource type="Texture2D" uid="uid://6ndddp5duhfh" path="res://resource/image/light_yellow.png" id="1_fcmov"]
 [ext_resource type="Texture2D" uid="uid://cciym2m3cx1ij" path="res://resource/image/steam.png" id="1_ouxap"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://bvf7unifbeymv" path="res://resource/image/hp_bar_progress.png" id="8_b22qt"]
 [ext_resource type="PackedScene" uid="uid://o84475elvy3" path="res://source/utility/hitbox.tscn" id="9_5ef0a"]
 [ext_resource type="Texture2D" uid="uid://6xhyu1mfusrx" path="res://resource/image/coin_sprite.png" id="11_2ssyj"]
+[ext_resource type="AudioStream" uid="uid://ct1oed1nsolof" path="res://resource/sound/car_run.mp3" id="11_2uvdb"]
 [ext_resource type="Material" uid="uid://bss0l0sqbcfrj" path="res://resource/shader/rain.tres" id="11_i4vq8"]
 [ext_resource type="Material" uid="uid://d6qhgh84hwou" path="res://resource/shader/tilt_shift.tres" id="11_yigrs"]
 [ext_resource type="AudioStream" uid="uid://om43vjvq3531" path="res://resource/sound/rain.mp3" id="15_p4a21"]
@@ -69,10 +70,14 @@ func _process(delta):
 	if Input.is_action_just_released('ui_up') or Input.is_action_just_pressed('ui_down'):
 		$AudioStreamPlayer.stop()
 		
+	if Input.is_action_pressed('esc'):
+		# get_tree().change_scene_to_packed(menu_main)
+		SceneTransition.change_scene('res://source/scene/menu_main.tscn')
+		
 func _physics_process(delta):
 	if hp <= 0:
-		get_tree().change_scene_to_file('res://source/scene/menu_gameover.tscn')
-		# SceneTransition.change_scene('res://source/scene/menu_gameover.tscn')
+		# get_tree().change_scene_to_file('res://source/scene/menu_gameover.tscn')
+		SceneTransition.change_scene('res://source/scene/menu_gameover.tscn')
 
 	$HUD/HP.value = hp
 	money_label.text = str(money)
@@ -321,7 +326,9 @@ extends Button
 
 func _physics_process(delta):
 	if is_pressed():
-		get_tree().change_scene_to_packed(menu_main)
+		# get_tree().change_scene_to_packed(menu_main)
+		SceneTransition.change_scene('res://source/scene/menu_main.tscn')
+		
 	var viewport_size = get_viewport_rect().size
 	var logo_size = get_rect().size
 	position.x = viewport_size.x - logo_size.x*1.5
@@ -576,6 +583,8 @@ position_smoothing_enabled = true
 position_smoothing_speed = 6.0
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_2uvdb")
+volume_db = -20.0
 
 [node name="TiltShift" type="Sprite2D" parent="."]
 visible = false
@@ -587,7 +596,6 @@ scale = Vector2(50, 19)
 texture = SubResource("GradientTexture2D_mha5w")
 
 [node name="Rain" type="Sprite2D" parent="."]
-visible = false
 modulate = Color(1, 1, 1, 0.0117647)
 z_index = 9
 texture_filter = 1

@@ -1,9 +1,10 @@
-[gd_scene load_steps=17 format=3 uid="uid://b4u7q3b4vyfbd"]
+[gd_scene load_steps=18 format=3 uid="uid://b4u7q3b4vyfbd"]
 
 [ext_resource type="Texture2D" uid="uid://bcx8mej25vwm4" path="res://resource/image/menu_background.png" id="1_hmj4w"]
 [ext_resource type="FontFile" uid="uid://dwo3w3m0bti6d" path="res://resource/font/YouSheBiaoTiHei.ttf" id="2_kikh1"]
 [ext_resource type="FontFile" uid="uid://cyvdvdsbhwc8m" path="res://resource/font/kenney_mini_square.ttf" id="3_nvl8e"]
 [ext_resource type="Texture2D" uid="uid://bnmx8pt0nk4u2" path="res://resource/logo/logo.png" id="5_oh756"]
+[ext_resource type="AudioStream" uid="uid://dbmskiya572dy" path="res://resource/music/Always Hopeful - Silent Partner.mp3" id="6_a3elk"]
 [ext_resource type="Texture2D" uid="uid://bmt8xisd5hfdx" path="res://resource/icon/icon_x64.png" id="7_suonw"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ajq0g"]
@@ -19,8 +20,8 @@ func _ready():
 
 func _process(delta):
 	if is_pressed():
-		get_tree().change_scene_to_file('res://source/scene/game_main.tscn')
-		# SceneTransition.change_scene('res://source/scene/game_main.tscn')
+		# get_tree().change_scene_to_file('res://source/scene/game_main.tscn')
+		SceneTransition.change_scene('res://source/scene/game_main.tscn')
 "
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rx25s"]
@@ -40,8 +41,8 @@ func _ready():
 
 func _process(delta):
 	if is_pressed():
-		get_tree().change_scene_to_file('res://source/scene/menu_setting.tscn')
-		# SceneTransition.change_scene('res://source/scene/menu_setting.tscn')
+		# get_tree().change_scene_to_file('res://source/scene/menu_setting.tscn')
+		SceneTransition.change_scene('res://source/scene/menu_setting.tscn')
 "
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4n3ja"]
@@ -197,3 +198,8 @@ theme_override_fonts/font = ExtResource("2_kikh1")
 theme_override_font_sizes/font_size = 24
 text = "www.moyu-stuido.com
 "
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_a3elk")
+volume_db = -15.0
+autoplay = true

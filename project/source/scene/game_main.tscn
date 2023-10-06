@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://bsln5r51b15m3"]
+[gd_scene load_steps=5 format=3 uid="uid://bsln5r51b15m3"]
 
 [ext_resource type="PackedScene" uid="uid://dkfvi3tnhl45p" path="res://source/map/map0.tscn" id="1_g5pqf"]
+[ext_resource type="AudioStream" uid="uid://btfgjlj8ct3sr" path="res://resource/music/The Poisoned Princess - Media Right Productions.mp3" id="3_wg65d"]
 [ext_resource type="PackedScene" uid="uid://c1tw37pkcvsy3" path="res://source/object/player.tscn" id="10_phe80"]
 
 [sub_resource type="GDScript" id="GDScript_ge11n"]
@@ -63,6 +64,11 @@ position = Vector2(61, 8)
 
 [node name="BulletAttackTimer2" type="Timer" parent="Player/Attack/BulletTimer" index="0"]
 wait_time = 0.2
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_wg65d")
+volume_db = -10.0
+autoplay = true
 
 [editable path="Player"]
 [editable path="Player/Body/HurtBox"]
