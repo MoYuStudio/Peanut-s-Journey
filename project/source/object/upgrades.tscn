@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bcjcxpy5noqj8"]
+[gd_scene load_steps=27 format=3 uid="uid://bcjcxpy5noqj8"]
 
 [ext_resource type="Material" uid="uid://d6qhgh84hwou" path="res://resource/shader/tilt_shift.tres" id="1_0e1eo"]
 [ext_resource type="Texture2D" uid="uid://dehg38xt8tidn" path="res://resource/image/car.png" id="1_h1shc"]
@@ -6,6 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://dgq6snhbt4tfy" path="res://resource/ui/esc_sprite.png" id="4_grjf5"]
 [ext_resource type="FontFile" uid="uid://ckmyjvou4nb1f" path="res://resource/font/kenney_pixel.ttf" id="4_j3ouc"]
 [ext_resource type="Texture2D" uid="uid://d4fpxy7ab8r70" path="res://resource/image/gun.png" id="6_0naur"]
+[ext_resource type="Texture2D" uid="uid://2f4x7d5krxim" path="res://resource/image/arrows_icon.png" id="6_0nsuk"]
+[ext_resource type="Texture2D" uid="uid://bahg1tacr6e8v" path="res://resource/image/arrows_icon_f.png" id="8_w2uex"]
 
 [sub_resource type="GDScript" id="GDScript_k02s4"]
 script/source = "
@@ -23,7 +25,6 @@ func _process(delta):
 		visible = false
 		get_tree().paused = false
 
-
 func _on_car_page_button_pressed():
 	car_page.visible = false
 	weapon_page.visible = true
@@ -31,6 +32,10 @@ func _on_car_page_button_pressed():
 func _on_weapon_page_button_pressed():
 	car_page.visible = true
 	weapon_page.visible = false
+
+
+func _on_wheel_friction_slider_value_changed(value):
+	pass # Replace with function body.
 "
 
 [sub_resource type="GDScript" id="GDScript_lmiis"]
@@ -86,7 +91,18 @@ extends Sprite2D
 func _physics_process(delta):
 	var viewport_size = get_viewport_rect().size
 	var logo_size = get_rect().size
-	position.x = viewport_size.x/2 - logo_size.x/2
+	position.x = viewport_size.x/4
+	position.y = viewport_size.y/2 - logo_size.y/2
+"
+
+[sub_resource type="GDScript" id="GDScript_vs87c"]
+script/source = "
+extends GridContainer
+
+func _physics_process(delta):
+	var viewport_size = get_viewport_rect().size
+	var logo_size = get_rect().size
+	position.x = viewport_size.x/2 + logo_size.x/4
 	position.y = viewport_size.y/2 - logo_size.y/2
 "
 
@@ -119,6 +135,10 @@ func _ready():
 func _process(delta):
 	value.text = str(slider.value)
 "
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5dyc1"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_a08yk"]
 
 [sub_resource type="GDScript" id="GDScript_swuq2"]
 script/source = "
@@ -159,9 +179,25 @@ extends Sprite2D
 func _physics_process(delta):
 	var viewport_size = get_viewport_rect().size
 	var logo_size = get_rect().size
-	position.x = viewport_size.x/2 - logo_size.x/2
+	position.x = viewport_size.x/4
+	position.y = viewport_size.y/2 - logo_size.y/2
+	
+"
+
+[sub_resource type="GDScript" id="GDScript_ucuxe"]
+script/source = "
+extends GridContainer
+
+func _physics_process(delta):
+	var viewport_size = get_viewport_rect().size
+	var logo_size = get_rect().size
+	position.x = viewport_size.x/2 + logo_size.x/4
 	position.y = viewport_size.y/2 - logo_size.y/2
 "
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_g6hs3"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rx5eq"]
 
 [sub_resource type="GDScript" id="GDScript_otk85"]
 script/source = "
@@ -192,20 +228,20 @@ script = SubResource("GDScript_k02s4")
 
 [node name="ColorRect2" type="ColorRect" parent="."]
 layout_mode = 0
-offset_left = -1065.0
-offset_top = -731.0
-offset_right = 2325.0
-offset_bottom = 1513.0
+offset_left = -1556.0
+offset_top = -843.0
+offset_right = 3530.0
+offset_bottom = 1972.0
 color = Color(0, 0, 0, 0.501961)
 
 [node name="ColorRect" type="ColorRect" parent="."]
 texture_filter = 1
 material = ExtResource("1_0e1eo")
 layout_mode = 0
-offset_left = -21.0
-offset_top = -16.0
-offset_right = 1301.0
-offset_bottom = 738.0
+offset_left = -1786.0
+offset_top = -25.0
+offset_right = 3716.0
+offset_bottom = 1125.0
 
 [node name="Esc" type="HBoxContainer" parent="."]
 layout_mode = 0
@@ -235,6 +271,7 @@ libraries = {
 }
 
 [node name="Car" type="Control" parent="."]
+visible = false
 anchors_preset = 0
 
 [node name="Title" type="Label" parent="Car"]
@@ -251,115 +288,133 @@ script = SubResource("GDScript_w2esl")
 
 [node name="Car" type="Sprite2D" parent="Car"]
 texture_filter = 1
-position = Vector2(948, 545)
+position = Vector2(540, 516)
 rotation = 1.5708
 scale = Vector2(16, 16)
 texture = ExtResource("1_h1shc")
 script = SubResource("GDScript_fm75v")
 
-[node name="EnginePower" type="VBoxContainer" parent="Car"]
+[node name="GridContainer" type="GridContainer" parent="Car"]
+layout_mode = 0
+offset_left = 1069.0
+offset_top = 302.0
+offset_right = 1470.0
+offset_bottom = 746.0
+script = SubResource("GDScript_vs87c")
+
+[node name="EnginePower" type="VBoxContainer" parent="Car/GridContainer"]
 layout_mode = 2
-offset_left = 1304.0
-offset_top = 425.0
-offset_right = 1604.0
-offset_bottom = 533.0
 script = SubResource("GDScript_r8yxv")
 
-[node name="Label" type="Label" parent="Car/EnginePower"]
+[node name="Label" type="Label" parent="Car/GridContainer/EnginePower"]
 texture_filter = 1
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_op80d")
 theme_override_font_sizes/font_size = 32
-text = "引擎升级 Engine Power"
+text = "引擎 Engine Power"
 
-[node name="HSlider" type="HSlider" parent="Car/EnginePower"]
+[node name="HSlider" type="HSlider" parent="Car/GridContainer/EnginePower"]
 layout_mode = 2
 min_value = 500.0
 max_value = 900.0
 value = 700.0
 
-[node name="Value" type="Label" parent="Car/EnginePower"]
+[node name="Value" type="Label" parent="Car/GridContainer/EnginePower"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("4_j3ouc")
 theme_override_font_sizes/font_size = 48
 text = "0"
 
-[node name="SteeringAngle" type="VBoxContainer" parent="Car"]
+[node name="SteeringAngle" type="VBoxContainer" parent="Car/GridContainer"]
 texture_filter = 1
 layout_mode = 2
-offset_left = 1129.0
-offset_top = 716.0
-offset_right = 1429.0
-offset_bottom = 824.0
 script = SubResource("GDScript_ug8ic")
 
-[node name="Label" type="Label" parent="Car/SteeringAngle"]
+[node name="Label" type="Label" parent="Car/GridContainer/SteeringAngle"]
 texture_filter = 1
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_op80d")
 theme_override_font_sizes/font_size = 32
-text = "转向机升级 Steering Angle"
+text = "转向机 Steering Angle"
 
-[node name="HSlider" type="HSlider" parent="Car/SteeringAngle"]
+[node name="HSlider" type="HSlider" parent="Car/GridContainer/SteeringAngle"]
 layout_mode = 2
 min_value = 0.1
 max_value = 0.3
 step = 0.01
 value = 0.2
 
-[node name="Value" type="Label" parent="Car/SteeringAngle"]
+[node name="Value" type="Label" parent="Car/GridContainer/SteeringAngle"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("4_j3ouc")
 theme_override_font_sizes/font_size = 48
 text = "0"
 
-[node name="Button4" type="Button" parent="Car"]
+[node name="Breaking" type="VBoxContainer" parent="Car/GridContainer"]
+texture_filter = 1
 layout_mode = 2
-offset_left = 375.0
-offset_top = 313.0
-offset_right = 619.0
-offset_bottom = 451.0
-theme_override_fonts/font = ExtResource("3_op80d")
-theme_override_font_sizes/font_size = 64
-disabled = true
-text = "氮气升级"
-flat = true
+script = SubResource("GDScript_ug8ic")
 
-[node name="Button5" type="Button" parent="Car"]
+[node name="Label" type="Label" parent="Car/GridContainer/Breaking"]
+texture_filter = 1
 layout_mode = 2
-offset_left = 961.0
-offset_top = 248.0
-offset_right = 1370.0
-offset_bottom = 410.0
 theme_override_fonts/font = ExtResource("3_op80d")
-theme_override_font_sizes/font_size = 64
-disabled = true
-text = "保护杠升级"
-flat = true
+theme_override_font_sizes/font_size = 32
+text = "刹车 Breaking"
 
-[node name="Button6" type="Button" parent="Car"]
+[node name="HSlider" type="HSlider" parent="Car/GridContainer/Breaking"]
 layout_mode = 2
-offset_left = 351.0
-offset_top = 617.0
-offset_right = 675.0
-offset_bottom = 803.0
+min_value = -650.0
+max_value = -350.0
+value = -350.0
+
+[node name="Value" type="Label" parent="Car/GridContainer/Breaking"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_j3ouc")
+theme_override_font_sizes/font_size = 48
+text = "0"
+
+[node name="WheelFriction" type="VBoxContainer" parent="Car/GridContainer"]
+texture_filter = 1
+layout_mode = 2
+script = SubResource("GDScript_ug8ic")
+
+[node name="Label" type="Label" parent="Car/GridContainer/WheelFriction"]
+texture_filter = 1
+layout_mode = 2
 theme_override_fonts/font = ExtResource("3_op80d")
-theme_override_font_sizes/font_size = 64
-disabled = true
-text = "轮胎升级"
-flat = true
+theme_override_font_sizes/font_size = 32
+text = "轮胎抓地力 WheelFriction"
+
+[node name="HSlider" type="HSlider" parent="Car/GridContainer/WheelFriction"]
+layout_mode = 2
+min_value = 300.0
+max_value = 900.0
+value = 400.0
+
+[node name="Value" type="Label" parent="Car/GridContainer/WheelFriction"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_j3ouc")
+theme_override_font_sizes/font_size = 48
+text = "0"
 
 [node name="Button" type="Button" parent="Car"]
+modulate = Color(1, 1, 1, 0.784314)
+texture_filter = 1
 layout_mode = 2
-offset_left = 1847.0
-offset_top = 440.0
+offset_left = 1767.0
+offset_top = 457.0
 offset_right = 1917.0
-offset_bottom = 640.0
-text = ">"
+offset_bottom = 607.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_5dyc1")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_a08yk")
+icon = ExtResource("6_0nsuk")
+flat = true
+icon_alignment = 1
+expand_icon = true
 script = SubResource("GDScript_swuq2")
 
 [node name="Weapon" type="Control" parent="."]
-visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -378,41 +433,45 @@ script = SubResource("GDScript_kcf7n")
 
 [node name="Weapon" type="Sprite2D" parent="Weapon"]
 texture_filter = 1
-position = Vector2(933, 533)
+position = Vector2(563, 551)
 scale = Vector2(16, 16)
 texture = ExtResource("6_0naur")
 script = SubResource("GDScript_kddkh")
 
-[node name="Speed" type="VBoxContainer" parent="Weapon"]
+[node name="GridContainer" type="GridContainer" parent="Weapon"]
 layout_mode = 0
-offset_left = 1305.0
-offset_top = 459.0
-offset_right = 1540.0
-offset_bottom = 585.0
+offset_left = 1212.0
+offset_top = 494.0
+offset_right = 1426.0
+offset_bottom = 620.0
+script = SubResource("GDScript_ucuxe")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Weapon/Speed"]
+[node name="Speed" type="VBoxContainer" parent="Weapon/GridContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Weapon/Speed/HBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Weapon/GridContainer/Speed"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Weapon/GridContainer/Speed/HBoxContainer"]
 texture_filter = 1
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_op80d")
 theme_override_font_sizes/font_size = 32
 text = "等级 "
 
-[node name="Value" type="Label" parent="Weapon/Speed/HBoxContainer"]
+[node name="Value" type="Label" parent="Weapon/GridContainer/Speed/HBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("4_j3ouc")
 theme_override_font_sizes/font_size = 64
 text = "1"
 
-[node name="Label2" type="Label" parent="Weapon/Speed/HBoxContainer"]
+[node name="Label2" type="Label" parent="Weapon/GridContainer/Speed/HBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("4_j3ouc")
 theme_override_font_sizes/font_size = 64
 text = "/5"
 
-[node name="Up" type="Button" parent="Weapon/Speed"]
+[node name="Up" type="Button" parent="Weapon/GridContainer/Speed"]
 texture_filter = 1
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_op80d")
@@ -420,12 +479,18 @@ theme_override_font_sizes/font_size = 48
 text = "100 升级"
 
 [node name="Button" type="Button" parent="Weapon"]
+modulate = Color(1, 1, 1, 0.784314)
+texture_filter = 1
 layout_mode = 0
-offset_left = 8.0
-offset_top = 451.0
-offset_right = 78.0
-offset_bottom = 651.0
-text = "<"
+offset_top = 453.0
+offset_right = 150.0
+offset_bottom = 603.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_g6hs3")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_rx5eq")
+icon = ExtResource("8_w2uex")
+flat = true
+icon_alignment = 1
+expand_icon = true
 script = SubResource("GDScript_otk85")
 
 [connection signal="pressed" from="Car/Button" to="." method="_on_car_page_button_pressed"]

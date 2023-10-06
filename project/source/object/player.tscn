@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://c1tw37pkcvsy3"]
+[gd_scene load_steps=42 format=3 uid="uid://c1tw37pkcvsy3"]
 
 [ext_resource type="Texture2D" uid="uid://6ndddp5duhfh" path="res://resource/image/light_yellow.png" id="1_fcmov"]
 [ext_resource type="Texture2D" uid="uid://cciym2m3cx1ij" path="res://resource/image/steam.png" id="1_ouxap"]
@@ -141,6 +141,14 @@ func _on_engine_power_slider_value_changed(value):
 # 转向机升级
 func _on_steering_angle_slider_value_changed(value):
 	body.steering_angle = value
+	
+# 刹车升级
+func _on_breaking_slider_value_changed(value):
+	body.breaking = value
+	
+# 轮胎抓地力升级
+func _on_wheel_friction_slider_value_changed(value):
+	body.slip_speed = value
 
 # 武器升级
 func _on_weapon_up_pressed():
@@ -151,6 +159,12 @@ func _on_weapon_up_pressed():
 			$GUI/Upgrades/Weapon/Speed/HBoxContainer/Value.text = str(bullet_level)
 			money -= 100
 			money_label.text = str(money)
+
+
+
+
+
+
 "
 
 [sub_resource type="GDScript" id="GDScript_7j67i"]
@@ -168,7 +182,7 @@ var steering_angle = 0.2 # 转向
 var engine_power = 700 # 引擎
 var friction = -0.9 # 摩擦
 var drag = -0.001 # 阻力
-var breaking = -450 # 刹车
+var breaking = -350 # 刹车
 var max_speed_reverse = 200 # 倒车速度
 var slip_speed = 400 # 漂移速度
 var traction_fast = 0.03 # 漂移地板滑度高
@@ -294,6 +308,10 @@ gradient = SubResource("Gradient_x7f0i")
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_oh07r"]
 gradient = SubResource("Gradient_qqeh2")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0ifu1"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3rawd"]
 
 [sub_resource type="GDScript" id="GDScript_3rbx0"]
 script/source = "
@@ -558,12 +576,11 @@ position_smoothing_speed = 6.0
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 
 [node name="TiltShift" type="Sprite2D" parent="."]
-visible = false
 z_index = 10
 texture_filter = 1
 material = ExtResource("11_yigrs")
-position = Vector2(-655, -330)
-scale = Vector2(33.625, 18.875)
+position = Vector2(0, 2)
+scale = Vector2(50, 19)
 texture = SubResource("GradientTexture2D_mha5w")
 
 [node name="Rain" type="Sprite2D" parent="."]
@@ -572,7 +589,7 @@ z_index = 9
 texture_filter = 1
 material = ExtResource("11_i4vq8")
 position = Vector2(-1, -2)
-scale = Vector2(29.9375, 17.5313)
+scale = Vector2(50, 19)
 texture = SubResource("GradientTexture2D_oh07r")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Rain"]
@@ -599,7 +616,6 @@ offset_right = 354.0
 offset_bottom = 87.0
 
 [node name="Button" parent="GUI/Upgrades/Weapon" index="3"]
-offset_left = 0.0
 offset_top = 0.0
 offset_right = 23.0
 offset_bottom = 137.0
@@ -612,6 +628,8 @@ offset_right = 1852.0
 offset_bottom = 168.0
 theme_override_fonts/font = ExtResource("16_rb3nj")
 theme_override_font_sizes/font_size = 64
+theme_override_styles/normal = SubResource("StyleBoxEmpty_0ifu1")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_3rawd")
 text = "ESC"
 flat = true
 script = SubResource("GDScript_3rbx0")
@@ -670,9 +688,6 @@ text = "0"
 [connection signal="area_entered" from="Body/GrabArea" to="." method="_on_grab_area_area_entered"]
 [connection signal="area_entered" from="Body/CollectArea" to="." method="_on_collect_area_area_entered"]
 [connection signal="timeout" from="Attack/BulletTimer" to="." method="_on_bullet_timer_timeout"]
-[connection signal="value_changed" from="GUI/Upgrades/Car/EnginePower/HSlider" to="." method="_on_engine_power_slider_value_changed"]
-[connection signal="value_changed" from="GUI/Upgrades/Car/SteeringAngle/HSlider" to="." method="_on_steering_angle_slider_value_changed"]
-[connection signal="pressed" from="GUI/Upgrades/Weapon/Speed/Up" to="." method="_on_weapon_up_pressed"]
 
 [editable path="Body/HurtBox"]
 [editable path="Body/HitBox"]
