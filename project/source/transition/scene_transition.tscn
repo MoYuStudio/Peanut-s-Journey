@@ -1,0 +1,64 @@
+[gd_scene load_steps=4 format=3 uid="uid://dedi6ag3bv7o2"]
+
+[sub_resource type="GDScript" id="GDScript_3etyb"]
+script/source = "
+extends CanvasLayer
+
+@onready var animation = $AnimationPlayer
+
+func _ready():
+	self.hide()
+	pass
+
+func _process(delta):
+	pass
+
+func change_scene(path):
+	self.show()
+	self.set_layer(999)
+	animation.play('animation')
+	await animation.animation_finished
+	get_tree().change_scene_to_file(path)
+	animation.play_backwards('animation')
+	await animation.animation_finished
+	self.set_layer(-999)
+	self.hide()
+	pass
+"
+
+[sub_resource type="Animation" id="Animation_fsb0i"]
+resource_name = "animation"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_12iga"]
+_data = {
+"animation": SubResource("Animation_fsb0i")
+}
+
+[node name="SceneTransition" type="CanvasLayer"]
+script = SubResource("GDScript_3etyb")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+modulate = Color(1, 1, 1, 0)
+offset_left = -1914.0
+offset_top = -1134.0
+offset_right = 3924.0
+offset_bottom = 2046.0
+color = Color(0, 0, 0, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_12iga")
+}

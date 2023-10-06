@@ -12,7 +12,8 @@ func _ready():
 	$Logo/AnimationPlayer.play('init')
 	$Mask/AnimationPlayer.play('init')
 	await $Mask/AnimationPlayer.animation_finished
-	get_tree().change_scene_to_file('res://source/scene/menu_main.tscn')
+	# get_tree().change_scene_to_file('res://source/scene/menu_main.tscn')
+	SceneTransition.change_scene('res://source/scene/menu_main.tscn')
 "
 
 [sub_resource type="GDScript" id="GDScript_r6bpv"]
@@ -94,6 +95,7 @@ color = Color(0, 0, 0, 1)
 [node name="Logo" type="Sprite2D" parent="."]
 texture_filter = 1
 position = Vector2(640, 360)
+scale = Vector2(1.96021, 1.96021)
 texture = ExtResource("1_8ng5c")
 script = SubResource("GDScript_r6bpv")
 
@@ -103,6 +105,7 @@ libraries = {
 }
 
 [node name="Mask" type="ColorRect" parent="."]
+modulate = Color(1, 1, 1, 0)
 offset_left = -900.0
 offset_top = -600.0
 offset_right = 8100.0
