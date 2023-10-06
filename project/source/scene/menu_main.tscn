@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://b4u7q3b4vyfbd"]
+[gd_scene load_steps=11 format=3 uid="uid://b4u7q3b4vyfbd"]
 
 [ext_resource type="Texture2D" uid="uid://bcx8mej25vwm4" path="res://resource/image/menu_background.png" id="1_hmj4w"]
 [ext_resource type="FontFile" uid="uid://dwo3w3m0bti6d" path="res://resource/font/YouSheBiaoTiHei.ttf" id="2_kikh1"]
 [ext_resource type="Texture2D" uid="uid://dehg38xt8tidn" path="res://resource/image/car.png" id="2_t03h1"]
+[ext_resource type="FontFile" uid="uid://ckmyjvou4nb1f" path="res://resource/font/kenney_pixel.ttf" id="3_3v4av"]
 [ext_resource type="Texture2D" uid="uid://dd5qoikkws2ep" path="res://resource/image/enemy.png" id="3_7ww4j"]
 [ext_resource type="Texture2D" uid="uid://buh1ss45yjqka" path="res://resource/image/enemy1.png" id="4_4e4nn"]
 [ext_resource type="Texture2D" uid="uid://bmt8xisd5hfdx" path="res://resource/icon/icon_x64.png" id="7_suonw"]
@@ -79,13 +80,14 @@ text = "花生迷途
 "
 
 [node name="EnTitle" type="Label" parent="Title"]
+texture_filter = 1
 layout_mode = 0
 offset_left = 2.0
 offset_top = 67.0
 offset_right = 299.0
 offset_bottom = 112.0
-theme_override_fonts/font = ExtResource("2_kikh1")
-theme_override_font_sizes/font_size = 32
+theme_override_fonts/font = ExtResource("3_3v4av")
+theme_override_font_sizes/font_size = 48
 text = "Peanut's Journey"
 
 [node name="FastStartButton" type="Button" parent="Title"]

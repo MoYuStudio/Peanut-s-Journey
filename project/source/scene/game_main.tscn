@@ -10,6 +10,9 @@ extends Node
 @onready var enemy_spawner = $Map/EnemySpawner
 @onready var next_part = $Map/TileMap/NextPart
 
+@onready var map_level = $Map.map_level
+@onready var map_time = $Map.map_time
+
 func _ready():
 	next_part.visible = false
 	next_part.collision.disabled = true
