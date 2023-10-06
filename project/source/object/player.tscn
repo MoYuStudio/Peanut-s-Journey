@@ -125,7 +125,6 @@ func _on_collect_area_area_entered(area):
 		get_tree().paused = true
 		upgrades_menu.visible = true
 	if area.is_in_group('next_part'):
-		print('pass')
 		level_switch = true
 
 # 引擎升级

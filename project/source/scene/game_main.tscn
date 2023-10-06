@@ -7,15 +7,19 @@
 script/source = "
 extends Node
 
-@onready var map_list = [preload('res://source/map/map1.tscn')]
-
 @onready var map = $Map
 @onready var enemy_spawner = $Map/EnemySpawner
 @onready var next_part = $Map/TileMap/NextPart
 
 @onready var play = $Player
 
+var map_list = []
+
 func _ready():
+	for num in range(1, 5):
+		var map_preload = load('res://source/map/map' + str(num) + '.tscn')
+		map_list.append(map_preload)
+	
 	next_part.visible = false
 	next_part.collision.disabled = true
 
