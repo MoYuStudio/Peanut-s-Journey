@@ -275,7 +275,7 @@ text = "引擎升级 Engine Power"
 [node name="HSlider" type="HSlider" parent="Car/EnginePower"]
 layout_mode = 2
 min_value = 500.0
-max_value = 1200.0
+max_value = 900.0
 value = 700.0
 
 [node name="Value" type="Label" parent="Car/EnginePower"]
