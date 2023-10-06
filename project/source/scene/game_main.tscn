@@ -1,20 +1,19 @@
 [gd_scene load_steps=4 format=3 uid="uid://bsln5r51b15m3"]
 
-[ext_resource type="PackedScene" uid="uid://dv4gxfv4kty63" path="res://source/map/map.tscn" id="1_7orcr"]
+[ext_resource type="PackedScene" uid="uid://dkfvi3tnhl45p" path="res://source/map/map0.tscn" id="1_g5pqf"]
 [ext_resource type="PackedScene" uid="uid://c1tw37pkcvsy3" path="res://source/object/player.tscn" id="10_phe80"]
 
 [sub_resource type="GDScript" id="GDScript_ge11n"]
 script/source = "
 extends Node
 
-@onready var map1 = preload('res://source/map/map1.tscn')
+@onready var map_list = [preload('res://source/map/map1.tscn')]
 
 @onready var map = $Map
 @onready var enemy_spawner = $Map/EnemySpawner
 @onready var next_part = $Map/TileMap/NextPart
 
-@onready var map_level = $Map.map_level
-@onready var map_time = $Map.map_time
+@onready var play = $Player
 
 func _ready():
 	next_part.visible = false
@@ -25,30 +24,34 @@ func _process(delta):
 
 func _physics_process(delta):
 	if enemy_spawner != null:
-		if enemy_spawner.time >= map_time and enemy_spawner.my_children.size() <= 1:
+		if enemy_spawner.time >= map.map_time and enemy_spawner.my_children.size() <= 1:
 			next_part.visible = true
 			next_part.collision.disabled = false
+			
+			if play.level_switch == true:
+				var map_level = map.map_level
 		
-			map.queue_free()
-			
-			map1 = map1.instantiate()
-			call_deferred('add_child', map1)
-			
-			map = $Map
-			enemy_spawner = $Map/EnemySpawner
-			next_part = $Map/TileMap/NextPart
-
-			map_level = $Map.map_level
-			map_time = $Map.map_time
-			
-			next_part.visible = false
-			next_part.collision.disabled = true
+				map.queue_free()
+				
+				map = map_list[map_level].instantiate()
+				add_child(map)
+				map.set_name('Map'+str(map_level+1))
+				
+				map = get_node('Map'+str(map_level+1))
+				enemy_spawner = get_node('Map'+str(map_level+1)+'/EnemySpawner')
+				next_part = get_node('Map'+str(map_level+1)+'/TileMap/NextPart')
+				
+				next_part.visible = false
+				next_part.collision.disabled = true
+				
+				play.position = Vector2.ZERO
+				play.level_switch = false
 "
 
 [node name="Main" type="Node"]
 script = SubResource("GDScript_ge11n")
 
-[node name="Map" parent="." instance=ExtResource("1_7orcr")]
+[node name="Map" parent="." instance=ExtResource("1_g5pqf")]
 
 [node name="Player" parent="." instance=ExtResource("10_phe80")]
 position = Vector2(61, 8)

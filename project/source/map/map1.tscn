@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dkfvi3tnhl45p"]
+[gd_scene load_steps=11 format=3 uid="uid://hobgjaxq4cqv"]
 
 [ext_resource type="PackedScene" uid="uid://ckujg6i1b6ujw" path="res://source/utility/enemy_spawner.tscn" id="1_8xw1w"]
 [ext_resource type="PackedScene" uid="uid://o0wln7a0f0t3" path="res://source/object/enemy.tscn" id="2_axkiy"]
@@ -237,10 +237,4 @@ layer_2/tile_data = PackedInt32Array(393216, 65537, 6, 458752, 65537, 7, 393217,
 position = Vector2(280, -72.5)
 
 [node name="NextPart" parent="TileMap" instance=ExtResource("6_tdsk8")]
-position = Vector2(598, 0)
-
-[node name="Label" type="Label" parent="."]
-offset_right = 180.0
-offset_bottom = 54.0
-theme_override_font_sizes/font_size = 64
-text = "MAP1"
+position = Vector2(613, 0)

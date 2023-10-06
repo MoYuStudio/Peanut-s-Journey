@@ -38,6 +38,8 @@ var money = 0
 
 var enemy_close = []
 
+var level_switch = false
+
 # 进程函数 ==============================================================
 
 func _ready():
@@ -46,8 +48,6 @@ func _ready():
 	attack()
 	
 func _process(delta):
-	
-	
 		
 	if Input.is_action_just_pressed(\"ui_up\"):
 		$Body/HitBox.collision.disabled = false
@@ -126,6 +126,7 @@ func _on_collect_area_area_entered(area):
 		upgrades_menu.visible = true
 	if area.is_in_group('next_part'):
 		print('pass')
+		level_switch = true
 
 # 引擎升级
 func _on_engine_power_slider_value_changed(value):
