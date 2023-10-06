@@ -26,20 +26,20 @@ offset_bottom = 1546.0
 color = Color(0, 0, 0, 1)
 
 [node name="Label" type="Label" parent="."]
-offset_left = 195.0
-offset_top = 190.0
-offset_right = 659.0
-offset_bottom = 360.0
+offset_left = 407.0
+offset_top = 306.0
+offset_right = 911.0
+offset_bottom = 479.0
 rotation = -0.225147
 theme_override_fonts/font = ExtResource("1_0twfy")
 theme_override_font_sizes/font_size = 128
 text = "失败 !!!"
 
 [node name="BackButton" type="Button" parent="."]
-offset_left = 1019.0
-offset_top = 536.0
-offset_right = 1145.0
-offset_bottom = 640.0
+offset_left = 1590.0
+offset_top = 821.0
+offset_right = 1716.0
+offset_bottom = 925.0
 theme_override_fonts/font = ExtResource("1_0twfy")
 theme_override_font_sizes/font_size = 64
 text = "返回
@@ -50,8 +50,10 @@ script = SubResource("GDScript_vhbo6")
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 614.0
+offset_top = 102.0
+offset_right = 800.0
+offset_bottom = 356.0
 
 [node name="Blood" type="Sprite2D" parent="Control"]
 texture_filter = 1

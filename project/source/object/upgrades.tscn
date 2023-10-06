@@ -209,10 +209,10 @@ offset_bottom = 738.0
 
 [node name="Esc" type="HBoxContainer" parent="."]
 layout_mode = 0
-offset_left = 564.0
-offset_top = 645.0
-offset_right = 727.0
-offset_bottom = 690.0
+offset_left = 932.0
+offset_top = 937.0
+offset_right = 1095.0
+offset_bottom = 982.0
 
 [node name="Label" type="Label" parent="Esc"]
 texture_filter = 1
@@ -235,15 +235,14 @@ libraries = {
 }
 
 [node name="Car" type="Control" parent="."]
-visible = false
 anchors_preset = 0
 
 [node name="Title" type="Label" parent="Car"]
 layout_mode = 2
-offset_left = 441.0
-offset_top = 20.0
-offset_right = 863.0
-offset_bottom = 107.0
+offset_left = 771.0
+offset_top = 69.0
+offset_right = 1125.0
+offset_bottom = 156.0
 theme_override_fonts/font = ExtResource("3_op80d")
 theme_override_font_sizes/font_size = 64
 text = "汽车改装车间
@@ -252,7 +251,7 @@ script = SubResource("GDScript_w2esl")
 
 [node name="Car" type="Sprite2D" parent="Car"]
 texture_filter = 1
-position = Vector2(605, 327)
+position = Vector2(948, 545)
 rotation = 1.5708
 scale = Vector2(16, 16)
 texture = ExtResource("1_h1shc")
@@ -260,10 +259,10 @@ script = SubResource("GDScript_fm75v")
 
 [node name="EnginePower" type="VBoxContainer" parent="Car"]
 layout_mode = 2
-offset_left = 804.0
-offset_top = 292.0
-offset_right = 1104.0
-offset_bottom = 400.0
+offset_left = 1304.0
+offset_top = 425.0
+offset_right = 1604.0
+offset_bottom = 533.0
 script = SubResource("GDScript_r8yxv")
 
 [node name="Label" type="Label" parent="Car/EnginePower"]
@@ -271,7 +270,7 @@ texture_filter = 1
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_op80d")
 theme_override_font_sizes/font_size = 32
-text = "引擎升级"
+text = "引擎升级 Engine Power"
 
 [node name="HSlider" type="HSlider" parent="Car/EnginePower"]
 layout_mode = 2
@@ -288,10 +287,10 @@ text = "0"
 [node name="SteeringAngle" type="VBoxContainer" parent="Car"]
 texture_filter = 1
 layout_mode = 2
-offset_left = 670.0
-offset_top = 475.0
-offset_right = 970.0
-offset_bottom = 583.0
+offset_left = 1129.0
+offset_top = 716.0
+offset_right = 1429.0
+offset_bottom = 824.0
 script = SubResource("GDScript_ug8ic")
 
 [node name="Label" type="Label" parent="Car/SteeringAngle"]
@@ -299,7 +298,7 @@ texture_filter = 1
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_op80d")
 theme_override_font_sizes/font_size = 32
-text = "转向机升级"
+text = "转向机升级 Steering Angle"
 
 [node name="HSlider" type="HSlider" parent="Car/SteeringAngle"]
 layout_mode = 2
@@ -316,10 +315,10 @@ text = "0"
 
 [node name="Button4" type="Button" parent="Car"]
 layout_mode = 2
-offset_left = 153.0
-offset_top = 260.0
-offset_right = 397.0
-offset_bottom = 398.0
+offset_left = 375.0
+offset_top = 313.0
+offset_right = 619.0
+offset_bottom = 451.0
 theme_override_fonts/font = ExtResource("3_op80d")
 theme_override_font_sizes/font_size = 64
 disabled = true
@@ -328,10 +327,10 @@ flat = true
 
 [node name="Button5" type="Button" parent="Car"]
 layout_mode = 2
-offset_left = 726.0
-offset_top = 115.0
-offset_right = 1135.0
-offset_bottom = 277.0
+offset_left = 961.0
+offset_top = 248.0
+offset_right = 1370.0
+offset_bottom = 410.0
 theme_override_fonts/font = ExtResource("3_op80d")
 theme_override_font_sizes/font_size = 64
 disabled = true
@@ -340,10 +339,10 @@ flat = true
 
 [node name="Button6" type="Button" parent="Car"]
 layout_mode = 2
-offset_left = 213.0
-offset_top = 446.0
-offset_right = 537.0
-offset_bottom = 632.0
+offset_left = 351.0
+offset_top = 617.0
+offset_right = 675.0
+offset_bottom = 803.0
 theme_override_fonts/font = ExtResource("3_op80d")
 theme_override_font_sizes/font_size = 64
 disabled = true
@@ -352,24 +351,25 @@ flat = true
 
 [node name="Button" type="Button" parent="Car"]
 layout_mode = 2
-offset_left = 1206.0
-offset_top = 271.0
-offset_right = 1276.0
-offset_bottom = 471.0
+offset_left = 1847.0
+offset_top = 440.0
+offset_right = 1917.0
+offset_bottom = 640.0
 text = ">"
 script = SubResource("GDScript_swuq2")
 
 [node name="Weapon" type="Control" parent="."]
+visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="Title" type="Label" parent="Weapon"]
 layout_mode = 0
-offset_left = 457.0
-offset_top = 58.0
-offset_right = 811.0
-offset_bottom = 145.0
+offset_left = 794.0
+offset_top = 62.0
+offset_right = 1148.0
+offset_bottom = 149.0
 theme_override_fonts/font = ExtResource("3_op80d")
 theme_override_font_sizes/font_size = 64
 text = "武器改装车间
@@ -378,17 +378,17 @@ script = SubResource("GDScript_kcf7n")
 
 [node name="Weapon" type="Sprite2D" parent="Weapon"]
 texture_filter = 1
-position = Vector2(565, 376)
+position = Vector2(933, 533)
 scale = Vector2(16, 16)
 texture = ExtResource("6_0naur")
 script = SubResource("GDScript_kddkh")
 
 [node name="Speed" type="VBoxContainer" parent="Weapon"]
 layout_mode = 0
-offset_left = 918.0
-offset_top = 317.0
-offset_right = 1153.0
-offset_bottom = 443.0
+offset_left = 1305.0
+offset_top = 459.0
+offset_right = 1540.0
+offset_bottom = 585.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Weapon/Speed"]
 layout_mode = 2
@@ -421,10 +421,10 @@ text = "100 升级"
 
 [node name="Button" type="Button" parent="Weapon"]
 layout_mode = 0
-offset_left = 4.0
-offset_top = 250.0
-offset_right = 74.0
-offset_bottom = 450.0
+offset_left = 8.0
+offset_top = 451.0
+offset_right = 78.0
+offset_bottom = 651.0
 text = "<"
 script = SubResource("GDScript_otk85")
 

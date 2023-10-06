@@ -1,11 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://b4u7q3b4vyfbd"]
+[gd_scene load_steps=8 format=3 uid="uid://b4u7q3b4vyfbd"]
 
 [ext_resource type="Texture2D" uid="uid://bcx8mej25vwm4" path="res://resource/image/menu_background.png" id="1_hmj4w"]
 [ext_resource type="FontFile" uid="uid://dwo3w3m0bti6d" path="res://resource/font/YouSheBiaoTiHei.ttf" id="2_kikh1"]
-[ext_resource type="Texture2D" uid="uid://dehg38xt8tidn" path="res://resource/image/car.png" id="2_t03h1"]
 [ext_resource type="FontFile" uid="uid://ckmyjvou4nb1f" path="res://resource/font/kenney_pixel.ttf" id="3_3v4av"]
-[ext_resource type="Texture2D" uid="uid://dd5qoikkws2ep" path="res://resource/image/enemy.png" id="3_7ww4j"]
-[ext_resource type="Texture2D" uid="uid://buh1ss45yjqka" path="res://resource/image/enemy1.png" id="4_4e4nn"]
 [ext_resource type="Texture2D" uid="uid://bmt8xisd5hfdx" path="res://resource/icon/icon_x64.png" id="7_suonw"]
 
 [sub_resource type="GDScript" id="GDScript_o3aco"]
@@ -55,25 +52,25 @@ color = Color(0, 0, 0, 1)
 
 [node name="Sprite2D" type="Sprite2D" parent="ColorRect"]
 texture_filter = 1
-position = Vector2(2238, 1159)
-scale = Vector2(10.2031, 11.7188)
+position = Vector2(2615, 1348)
+scale = Vector2(16.0937, 17.625)
 texture = ExtResource("1_hmj4w")
 
 [node name="ColorRect2" type="ColorRect" parent="ColorRect"]
 modulate = Color(1, 1, 1, 0.392157)
 layout_mode = 0
-offset_left = 768.0
-offset_top = 682.0
-offset_right = 1923.0
-offset_bottom = 1676.0
+offset_left = 571.0
+offset_top = 710.0
+offset_right = 2044.0
+offset_bottom = 2004.0
 color = Color(0, 0, 0, 1)
 
 [node name="Title" type="Label" parent="."]
 texture_filter = 1
-offset_left = 45.0
-offset_top = 54.0
-offset_right = 340.0
-offset_bottom = 228.0
+offset_left = 81.0
+offset_top = 68.0
+offset_right = 376.0
+offset_bottom = 242.0
 theme_override_fonts/font = ExtResource("2_kikh1")
 theme_override_font_sizes/font_size = 64
 text = "花生迷途
@@ -142,10 +139,10 @@ script = SubResource("GDScript_lc1lc")
 self_modulate = Color(1, 1, 1, 0.588235)
 texture_filter = 1
 layout_mode = 0
-offset_left = -11.0
-offset_top = 575.0
-offset_right = 240.0
-offset_bottom = 636.0
+offset_left = -27.0
+offset_top = 854.0
+offset_right = 224.0
+offset_bottom = 915.0
 theme_override_fonts/font = ExtResource("2_kikh1")
 theme_override_font_sizes/font_size = 32
 text = "MOYU STUDIO"
@@ -154,78 +151,17 @@ text = "MOYU STUDIO"
 self_modulate = Color(1, 1, 1, 0.588235)
 texture_filter = 1
 layout_mode = 0
-offset_left = -11.0
-offset_top = 605.0
-offset_right = 337.0
-offset_bottom = 650.0
+offset_left = -20.0
+offset_top = 920.0
+offset_right = 328.0
+offset_bottom = 965.0
 theme_override_fonts/font = ExtResource("2_kikh1")
 theme_override_font_sizes/font_size = 24
 text = "www.moyu-stuido.com
 "
 
-[node name="Control" type="Control" parent="."]
-visible = false
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="Car" type="Sprite2D" parent="Control"]
-texture_filter = 1
-position = Vector2(383, 359)
-rotation = 1.5708
-scale = Vector2(6, 5.81)
-texture = ExtResource("2_t03h1")
-
-[node name="Enemy" type="Sprite2D" parent="Control"]
-texture_filter = 1
-position = Vector2(761, 222)
-rotation = -2.37016
-scale = Vector2(6, 6)
-texture = ExtResource("3_7ww4j")
-
-[node name="Enemy1" type="Sprite2D" parent="Control"]
-texture_filter = 1
-position = Vector2(830, 349)
-rotation = -1.74533
-scale = Vector2(9, 9)
-texture = ExtResource("4_4e4nn")
-
-[node name="Enemy2" type="Sprite2D" parent="Control"]
-texture_filter = 1
-position = Vector2(754, 484)
-rotation = -1.19555
-scale = Vector2(6, 6)
-texture = ExtResource("3_7ww4j")
-
-[node name="Enemy3" type="Sprite2D" parent="Control"]
-texture_filter = 1
-position = Vector2(172, 200)
-rotation = 2.04902
-scale = Vector2(6, 6)
-texture = ExtResource("3_7ww4j")
-
-[node name="Enemy4" type="Sprite2D" parent="Control"]
-texture_filter = 1
-position = Vector2(247, 484)
-rotation = 1.01229
-scale = Vector2(6, 6)
-texture = ExtResource("3_7ww4j")
-
-[node name="Enemy5" type="Sprite2D" parent="Control"]
-texture_filter = 1
-position = Vector2(955, 283)
-rotation = -1.74882
-scale = Vector2(6, 6)
-texture = ExtResource("3_7ww4j")
-
-[node name="IconX1000" type="Sprite2D" parent="Control"]
-position = Vector2(845, 350)
-rotation = 0.207694
-scale = Vector2(0.35, 0.34375)
-
 [node name="IconX64" type="Sprite2D" parent="."]
 texture_filter = 1
-position = Vector2(298, 107)
+position = Vector2(367, 118)
 rotation = -0.214676
 texture = ExtResource("7_suonw")
