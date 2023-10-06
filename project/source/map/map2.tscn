@@ -1,7 +1,7 @@
-[gd_scene load_steps=11 format=3 uid="uid://u3pyn3maf0tf"]
+[gd_scene load_steps=13 format=3 uid="uid://u3pyn3maf0tf"]
 
 [ext_resource type="PackedScene" uid="uid://ckujg6i1b6ujw" path="res://source/utility/enemy_spawner.tscn" id="1_d81bl"]
-[ext_resource type="PackedScene" uid="uid://o0wln7a0f0t3" path="res://source/object/enemy.tscn" id="2_u71li"]
+[ext_resource type="PackedScene" uid="uid://o0wln7a0f0t3" path="res://source/enemy/enemy.tscn" id="2_812gi"]
 [ext_resource type="Script" path="res://source/utility/spawn_info.gd" id="3_cpyal"]
 [ext_resource type="Texture2D" uid="uid://bcmtvcjpa48fs" path="res://resource/tile/tilemap.png" id="4_ho0f8"]
 [ext_resource type="PackedScene" uid="uid://l6fjqq8ja2ev" path="res://source/object/shop.tscn" id="5_2bukf"]
@@ -12,7 +12,7 @@ script/source = "
 extends Node2D
 
 @onready var map_level = 2
-@onready var map_time = 10
+@onready var map_time = 60
 
 func _ready():
 	pass
@@ -25,8 +25,24 @@ func _process(delta):
 script = ExtResource("3_cpyal")
 time_start = 0
 time_end = 10
-enemy = ExtResource("2_u71li")
+enemy = ExtResource("2_812gi")
 enemy_num = 3
+enemy_spawn_delay = 1
+
+[sub_resource type="Resource" id="Resource_ogq7h"]
+script = ExtResource("3_cpyal")
+time_start = 10
+time_end = 30
+enemy = ExtResource("2_812gi")
+enemy_num = 6
+enemy_spawn_delay = 1
+
+[sub_resource type="Resource" id="Resource_v2q7u"]
+script = ExtResource("3_cpyal")
+time_start = 30
+time_end = 60
+enemy = ExtResource("2_812gi")
+enemy_num = 9
 enemy_spawn_delay = 1
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2iwv8"]
@@ -208,7 +224,7 @@ sources/1 = SubResource("TileSetAtlasSource_2iwv8")
 script = SubResource("GDScript_l1exk")
 
 [node name="EnemySpawner" parent="." instance=ExtResource("1_d81bl")]
-spawns = Array[ExtResource("3_cpyal")]([SubResource("Resource_8ohy7")])
+spawns = Array[ExtResource("3_cpyal")]([SubResource("Resource_8ohy7"), SubResource("Resource_ogq7h"), SubResource("Resource_v2q7u")])
 
 [node name="TileMap" type="TileMap" parent="."]
 texture_filter = 1

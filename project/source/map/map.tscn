@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://bcmtvcjpa48fs" path="res://resource/tile/tilemap.png" id="1_85kdv"]
 [ext_resource type="PackedScene" uid="uid://ckujg6i1b6ujw" path="res://source/utility/enemy_spawner.tscn" id="1_il36e"]
 [ext_resource type="PackedScene" uid="uid://l6fjqq8ja2ev" path="res://source/object/shop.tscn" id="2_8bfla"]
-[ext_resource type="PackedScene" uid="uid://o0wln7a0f0t3" path="res://source/object/enemy.tscn" id="2_c17my"]
+[ext_resource type="PackedScene" uid="uid://o0wln7a0f0t3" path="res://source/enemy/enemy.tscn" id="2_815g2"]
 [ext_resource type="Script" path="res://source/utility/spawn_info.gd" id="3_op38k"]
 [ext_resource type="PackedScene" uid="uid://b4g43o3dnrfc0" path="res://source/object/next_part.tscn" id="3_q52d3"]
 
@@ -25,7 +25,7 @@ func _process(delta):
 script = ExtResource("3_op38k")
 time_start = 0
 time_end = 10
-enemy = ExtResource("2_c17my")
+enemy = ExtResource("2_815g2")
 enemy_num = 3
 enemy_spawn_delay = 1
 

@@ -94,7 +94,6 @@ color = Color(0, 0, 0, 1)
 [node name="Logo" type="Sprite2D" parent="."]
 texture_filter = 1
 position = Vector2(640, 360)
-scale = Vector2(1e-05, 1e-05)
 texture = ExtResource("1_8ng5c")
 script = SubResource("GDScript_r6bpv")
 

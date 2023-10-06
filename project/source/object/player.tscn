@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://c1tw37pkcvsy3"]
+[gd_scene load_steps=40 format=3 uid="uid://c1tw37pkcvsy3"]
 
 [ext_resource type="Texture2D" uid="uid://6ndddp5duhfh" path="res://resource/image/light_yellow.png" id="1_fcmov"]
 [ext_resource type="Texture2D" uid="uid://cciym2m3cx1ij" path="res://resource/image/steam.png" id="1_ouxap"]
@@ -14,7 +14,9 @@
 [ext_resource type="Material" uid="uid://bss0l0sqbcfrj" path="res://resource/shader/rain.tres" id="11_i4vq8"]
 [ext_resource type="Material" uid="uid://d6qhgh84hwou" path="res://resource/shader/tilt_shift.tres" id="11_yigrs"]
 [ext_resource type="AudioStream" uid="uid://om43vjvq3531" path="res://resource/sound/rain.mp3" id="15_p4a21"]
+[ext_resource type="FontFile" uid="uid://cyvdvdsbhwc8m" path="res://resource/font/kenney_mini_square.ttf" id="15_y2u7u"]
 [ext_resource type="FontFile" uid="uid://c4xqu78o8tn3h" path="res://resource/font/kenney_blocks.ttf" id="16_igcmu"]
+[ext_resource type="FontFile" uid="uid://briod8qq6bg6o" path="res://resource/font/kenney_mini_square_mono.ttf" id="16_rb3nj"]
 [ext_resource type="PackedScene" uid="uid://bcjcxpy5noqj8" path="res://source/object/upgrades.tscn" id="17_cuu6k"]
 
 [sub_resource type="GDScript" id="GDScript_wo5ts"]
@@ -593,18 +595,18 @@ offset_bottom = 137.0
 
 [node name="Money" type="Label" parent="GUI"]
 texture_filter = 1
-offset_left = 120.0
-offset_top = 57.0
-offset_right = 168.0
-offset_bottom = 132.0
-theme_override_fonts/font = ExtResource("3_75bdf")
-theme_override_font_sizes/font_size = 64
+offset_left = 198.0
+offset_top = 47.0
+offset_right = 270.0
+offset_bottom = 170.0
+theme_override_fonts/font = ExtResource("15_y2u7u")
+theme_override_font_sizes/font_size = 96
 text = "0"
 
 [node name="Coin" type="Sprite2D" parent="GUI/Money"]
 texture_filter = 1
-position = Vector2(-32, 25)
-scale = Vector2(3, 3)
+position = Vector2(-74, 67)
+scale = Vector2(6, 6)
 texture = ExtResource("11_2ssyj")
 hframes = 6
 vframes = 2
@@ -616,11 +618,12 @@ libraries = {
 }
 
 [node name="ESCButton" type="Button" parent="GUI"]
-offset_left = 1751.0
-offset_top = 57.0
-offset_right = 1831.0
-offset_bottom = 113.0
-theme_override_fonts/font = ExtResource("3_75bdf")
+texture_filter = 1
+offset_left = 1662.0
+offset_top = 30.0
+offset_right = 1886.0
+offset_bottom = 158.0
+theme_override_fonts/font = ExtResource("16_rb3nj")
 theme_override_font_sizes/font_size = 64
 text = "ESC"
 flat = true
