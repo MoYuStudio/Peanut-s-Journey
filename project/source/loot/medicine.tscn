@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://djxky8bdiaorh"]
 
-[ext_resource type="Texture2D" uid="uid://cx36yq3v1q7rd" path="res://resource/image/medicine.png" id="1_d6irv"]
+[ext_resource type="Texture2D" uid="uid://cx36yq3v1q7rd" path="res://resource/image/medicine.png" id="1_hjyhn"]
 
 [sub_resource type="GDScript" id="GDScript_2w41h"]
 script/source = "
@@ -31,7 +31,7 @@ script = SubResource("GDScript_2w41h")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
-texture = ExtResource("1_d6irv")
+texture = ExtResource("1_hjyhn")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_elho4")

@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://cuo2ugjcdhtjc"]
 
-[ext_resource type="Texture2D" uid="uid://6xhyu1mfusrx" path="res://resource/image/coin_sprite.png" id="1_8bgin"]
-[ext_resource type="AudioStream" uid="uid://cotv0p0hvjb8q" path="res://resource/sound/get_coin.ogg" id="2_wo425"]
+[ext_resource type="Texture2D" uid="uid://6xhyu1mfusrx" path="res://resource/image/coin_sprite.png" id="1_iubyv"]
+[ext_resource type="AudioStream" uid="uid://cotv0p0hvjb8q" path="res://resource/sound/get_coin.ogg" id="2_b81kb"]
 
 [sub_resource type="GDScript" id="GDScript_2w41h"]
 script/source = "
@@ -84,7 +84,7 @@ script = SubResource("GDScript_2w41h")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
-texture = ExtResource("1_8bgin")
+texture = ExtResource("1_iubyv")
 hframes = 6
 vframes = 2
 
@@ -92,7 +92,7 @@ vframes = 2
 shape = SubResource("CircleShape2D_elho4")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("2_wo425")
+stream = ExtResource("2_b81kb")
 volume_db = -15.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
