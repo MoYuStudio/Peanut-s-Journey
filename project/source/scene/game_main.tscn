@@ -89,7 +89,7 @@ autoplay = true
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 visible = false
-color = Color(0, 0, 0, 1)
+color = Color(0.0784314, 0.0784314, 0.0784314, 1)
 
 [editable path="Player"]
 [editable path="Player/Body/HurtBox"]

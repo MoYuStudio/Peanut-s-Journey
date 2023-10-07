@@ -430,18 +430,30 @@ shadow_filter = 1
 shadow_filter_smooth = 6.0
 shadow_item_cull_mask = 13
 texture = ExtResource("2_1k24c")
-texture_scale = 3.0
+texture_scale = 2.5
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="Body/Light"]
 occluder = SubResource("OccluderPolygon2D_kjywa")
 occluder_light_mask = 2
 
 [node name="PointLight2D" type="PointLight2D" parent="Body/Light"]
-position = Vector2(48, 1.13687e-13)
+position = Vector2(48.0249, 1.08863e-09)
 rotation = 1.5708
-scale = Vector2(2.5, 8)
+scale = Vector2(2, 4)
 color = Color(1, 0.901961, 0.588235, 1)
-energy = 3.0
+energy = 2.0
+shadow_enabled = true
+shadow_filter = 1
+shadow_filter_smooth = 6.0
+shadow_item_cull_mask = 13
+texture = ExtResource("1_3la6u")
+offset = Vector2(0, -117.505)
+
+[node name="PointLight2D2" type="PointLight2D" parent="Body/Light"]
+position = Vector2(48, 0)
+rotation = 1.5708
+scale = Vector2(2.5, 2)
+color = Color(1, 0.901961, 0.588235, 1)
 shadow_enabled = true
 shadow_filter = 1
 shadow_filter_smooth = 6.0
