@@ -60,7 +60,6 @@ script = SubResource("GDScript_ge11n")
 [node name="Map" parent="." instance=ExtResource("1_g5pqf")]
 
 [node name="Player" parent="." instance=ExtResource("10_phe80")]
-position = Vector2(61, 8)
 
 [node name="BulletAttackTimer2" type="Timer" parent="Player/Attack/BulletTimer" index="0"]
 wait_time = 0.2
