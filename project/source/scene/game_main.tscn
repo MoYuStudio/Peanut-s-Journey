@@ -70,6 +70,9 @@ stream = ExtResource("3_wg65d")
 volume_db = -10.0
 autoplay = true
 
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0, 0, 0, 1)
+
 [editable path="Player"]
 [editable path="Player/Body/HurtBox"]
 [editable path="Player/Body/HitBox"]

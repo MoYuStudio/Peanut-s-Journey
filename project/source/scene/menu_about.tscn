@@ -1,0 +1,101 @@
+[gd_scene load_steps=5 format=3 uid="uid://d807bhkw0gm"]
+
+[ext_resource type="FontFile" uid="uid://dwo3w3m0bti6d" path="res://resource/font/YouSheBiaoTiHei.ttf" id="1_fjljd"]
+
+[sub_resource type="GDScript" id="GDScript_k18k5"]
+script/source = "
+extends Control
+
+func _ready():
+	$AnimationPlayer.play('animation')
+	
+func _physics_process(delta):
+	await $AnimationPlayer.animation_finished
+	SceneTransition.change_scene('res://source/scene/menu_main.tscn')
+"
+
+[sub_resource type="Animation" id="Animation_ogbd4"]
+resource_name = "animation"
+length = 6.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("VBoxContainer:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(600, 1000), Vector2(600, -2500)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pcxl5"]
+_data = {
+"animation": SubResource("Animation_ogbd4")
+}
+
+[node name="MenuAbout" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = SubResource("GDScript_k18k5")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = -1684.0
+offset_top = -944.0
+offset_right = 3561.0
+offset_bottom = 2195.0
+color = Color(0, 0, 0, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 600.0
+offset_top = 1000.0
+offset_right = 1414.0
+offset_bottom = 3436.0
+alignment = 1
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_fjljd")
+theme_override_font_sizes/font_size = 64
+text = "花生迷途
+Peanut's Journey
+
+MoYu Studio 摸鱼社 出品
+
+策划
+WilsonVinson
+
+程序
+WilsonVinson
+
+美术
+WilsonVinson
+
+音效
+WilsonVinson
+
+发行
+WilsonVinson
+
+鸣谢
+
+测试
+Eric
+Raoul
+
+美术
+B.辞鱼
+"
+horizontal_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_pcxl5")
+}

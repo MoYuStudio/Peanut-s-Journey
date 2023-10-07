@@ -31,6 +31,10 @@ window/stretch/mode="viewport"
 window/stretch/aspect="expand"
 mouse_cursor/custom_image="res://resource/image/mouse.png"
 
+[editor]
+
+movie_writer/movie_file="C:/Users/WilsonVinson/Desktop/Peanut's Journey Movie/1.avi"
+
 [input]
 
 ui_left={
@@ -73,6 +77,10 @@ esc={
 
 [layer_names]
 
+2d_render/layer_1="World"
+2d_render/layer_2="Player"
+2d_render/layer_3="Enemy"
+2d_render/layer_4="Loot"
 2d_physics/layer_1="World"
 2d_physics/layer_2="Player"
 2d_physics/layer_3="Enemy"

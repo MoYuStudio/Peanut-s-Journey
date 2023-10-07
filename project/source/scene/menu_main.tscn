@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://b4u7q3b4vyfbd"]
+[gd_scene load_steps=37 format=3 uid="uid://b4u7q3b4vyfbd"]
 
 [ext_resource type="Texture2D" uid="uid://bcmtvcjpa48fs" path="res://resource/tile/tilemap.png" id="1_y78ru"]
 [ext_resource type="FontFile" uid="uid://dwo3w3m0bti6d" path="res://resource/font/YouSheBiaoTiHei.ttf" id="2_kikh1"]
@@ -162,6 +162,52 @@ func _process(delta):
 		get_tree().quit()
 "
 
+[sub_resource type="GDScript" id="GDScript_hh7s6"]
+script/source = "
+extends Sprite2D
+
+func _ready():
+	$AnimationPlayer.play('animation')
+"
+
+[sub_resource type="Animation" id="Animation_q8ih2"]
+resource_name = "animation"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.392157), Color(1, 1, 1, 1), Color(1, 1, 1, 0.392157)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nfpkv"]
+_data = {
+"animation": SubResource("Animation_q8ih2")
+}
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_e1yri"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_d23gl"]
+
+[sub_resource type="GDScript" id="GDScript_jfchg"]
+script/source = "
+extends Button
+
+func _ready():
+	pass
+
+func _process(delta):
+	if is_pressed():
+		# get_tree().change_scene_to_file('res://source/scene/menu_about.tscn')
+		SceneTransition.change_scene('res://source/scene/menu_about.tscn')
+"
+
 [node name="MenuMain" type="Node"]
 script = SubResource("GDScript_0jq38")
 
@@ -265,13 +311,13 @@ text = "花生迷途
 
 [node name="EnTitle" type="Label" parent="."]
 texture_filter = 1
-offset_left = 71.0
+offset_left = 75.0
 offset_top = 183.0
-offset_right = 491.0
+offset_right = 507.0
 offset_bottom = 246.0
 theme_override_fonts/font = ExtResource("3_nvl8e")
 theme_override_font_sizes/font_size = 48
-text = "Peanut'sJourney"
+text = "Peanut's Journey"
 
 [node name="IconX64" type="Sprite2D" parent="."]
 texture_filter = 1
@@ -336,9 +382,25 @@ offset_right = 423.0
 offset_bottom = 966.0
 
 [node name="Logo" type="Sprite2D" parent="VBoxContainer2"]
-modulate = Color(1, 1, 1, 0.588235)
+modulate = Color(1, 1, 1, 0.392157)
 position = Vector2(123, -68)
 texture = ExtResource("5_oh756")
+script = SubResource("GDScript_hh7s6")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="VBoxContainer2/Logo"]
+libraries = {
+"": SubResource("AnimationLibrary_nfpkv")
+}
+
+[node name="Button" type="Button" parent="VBoxContainer2/Logo"]
+offset_left = -40.0
+offset_top = -40.0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_e1yri")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_d23gl")
+flat = true
+script = SubResource("GDScript_jfchg")
 
 [node name="Subtitle" type="Label" parent="VBoxContainer2"]
 self_modulate = Color(1, 1, 1, 0.588235)

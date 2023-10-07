@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dj0c8slaekvqu"]
+[gd_scene load_steps=16 format=3 uid="uid://dj0c8slaekvqu"]
 
 [ext_resource type="Texture2D" uid="uid://dd5qoikkws2ep" path="res://resource/image/enemy0.png" id="1_tbr2s"]
 [ext_resource type="PackedScene" uid="uid://5ygp3ic8vnl6" path="res://source/utility/hurtbox.tscn" id="2_im4fq"]
@@ -70,6 +70,9 @@ func _on_hurt_box_hurt(damage, angle, knock_back_amount):
 		
 "
 
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_tsatu"]
+polygon = PackedVector2Array(6, 12, 6, -12, 18, -12, 18, -24, -12, -24, -12, -12, -18, -12, -18, 12, -12, 12, -12, 24, 18, 24, 18, 12)
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3ay8f"]
 radius = 12.0
 height = 38.0
@@ -121,6 +124,10 @@ collision_layer = 4
 collision_mask = 4
 safe_margin = 0.1
 script = SubResource("GDScript_3nnkj")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+occluder = SubResource("OccluderPolygon2D_tsatu")
+occluder_light_mask = 4
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1

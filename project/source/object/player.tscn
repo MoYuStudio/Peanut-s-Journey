@@ -1,7 +1,8 @@
-[gd_scene load_steps=43 format=3 uid="uid://c1tw37pkcvsy3"]
+[gd_scene load_steps=45 format=3 uid="uid://c1tw37pkcvsy3"]
 
-[ext_resource type="Texture2D" uid="uid://6ndddp5duhfh" path="res://resource/image/light_yellow.png" id="1_fcmov"]
+[ext_resource type="Texture2D" uid="uid://bp5ftg1dlx7hk" path="res://resource/image/light_white.png" id="1_3la6u"]
 [ext_resource type="Texture2D" uid="uid://cciym2m3cx1ij" path="res://resource/image/steam.png" id="1_ouxap"]
+[ext_resource type="Texture2D" uid="uid://8r1s6ng6iids" path="res://resource/image/light.png" id="2_1k24c"]
 [ext_resource type="Texture2D" uid="uid://dehg38xt8tidn" path="res://resource/image/car.png" id="2_dc5sy"]
 [ext_resource type="FontFile" uid="uid://ckmyjvou4nb1f" path="res://resource/font/kenney_pixel.ttf" id="3_75bdf"]
 [ext_resource type="PackedScene" uid="uid://5ygp3ic8vnl6" path="res://source/utility/hurtbox.tscn" id="5_yqutu"]
@@ -264,6 +265,9 @@ func apply_friction():
 	
 "
 
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_kjywa"]
+polygon = PackedVector2Array(-42, -24, 42, -24, 42, -18, 48, -18, 48, 18, 42, 18, 42, 24, -42, 24, -42, 18, -48, 18, -48, -18, -42, -18)
+
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_s0k1v"]
 emission_shape = 3
 emission_box_extents = Vector3(1, 1, 1)
@@ -416,6 +420,35 @@ collision_layer = 15
 collision_mask = 15
 script = SubResource("GDScript_7j67i")
 
+[node name="Light" type="Node2D" parent="Body"]
+
+[node name="BasicsPointLight" type="PointLight2D" parent="Body/Light"]
+color = Color(1, 0.901961, 0.588235, 1)
+range_item_cull_mask = 13
+shadow_enabled = true
+shadow_filter = 1
+shadow_filter_smooth = 6.0
+shadow_item_cull_mask = 13
+texture = ExtResource("2_1k24c")
+texture_scale = 3.0
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Body/Light"]
+occluder = SubResource("OccluderPolygon2D_kjywa")
+occluder_light_mask = 2
+
+[node name="PointLight2D" type="PointLight2D" parent="Body/Light"]
+position = Vector2(48, 1.13687e-13)
+rotation = 1.5708
+scale = Vector2(2.5, 8)
+color = Color(1, 0.901961, 0.588235, 1)
+energy = 3.0
+shadow_enabled = true
+shadow_filter = 1
+shadow_filter_smooth = 6.0
+shadow_item_cull_mask = 13
+texture = ExtResource("1_3la6u")
+offset = Vector2(0, -117.505)
+
 [node name="Sprite2D" type="Sprite2D" parent="Body"]
 texture_filter = 1
 rotation = 1.5708
@@ -434,26 +467,6 @@ visible = false
 position = Vector2(5.36442e-07, -9.53674e-07)
 shape = SubResource("CircleShape2D_stomd")
 disabled = true
-
-[node name="PointLight2D" type="PointLight2D" parent="Body"]
-visible = false
-z_index = 1
-texture_filter = 1
-position = Vector2(144, -15)
-rotation = 1.5708
-scale = Vector2(3, 3)
-energy = 3.0
-texture = ExtResource("1_fcmov")
-
-[node name="PointLight2D2" type="PointLight2D" parent="Body"]
-visible = false
-z_index = 1
-texture_filter = 1
-position = Vector2(144, 15)
-rotation = 1.5708
-scale = Vector2(3, 3)
-energy = 3.0
-texture = ExtResource("1_fcmov")
 
 [node name="HurtBox" parent="Body" instance=ExtResource("5_yqutu")]
 visible = false
