@@ -23,6 +23,12 @@ func _ready():
 	
 	next_part.visible = false
 	next_part.collision.disabled = true
+	
+	var night_mode = Global.night_node
+	if night_mode:
+		night_mode_switch_on()
+	else:
+		night_mode_switch_off()
 
 func _process(delta):
 	pass
@@ -52,6 +58,15 @@ func _physics_process(delta):
 				play.position = Vector2.ZERO
 				play.level_animation.play('animation')
 				play.level_switch = false
+
+func night_mode_switch_on():
+	$CanvasModulate.visible = true
+	$Player/Body/Light.visible = true
+	
+func night_mode_switch_off():
+	$CanvasModulate.visible = false
+	$Player/Body/Light.visible = false
+	
 "
 
 [node name="Main" type="Node"]
@@ -60,6 +75,9 @@ script = SubResource("GDScript_ge11n")
 [node name="Map" parent="." instance=ExtResource("1_g5pqf")]
 
 [node name="Player" parent="." instance=ExtResource("10_phe80")]
+
+[node name="Light" parent="Player/Body" index="0"]
+visible = false
 
 [node name="BulletAttackTimer2" type="Timer" parent="Player/Attack/BulletTimer" index="0"]
 wait_time = 0.2
@@ -70,6 +88,7 @@ volume_db = -10.0
 autoplay = true
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
+visible = false
 color = Color(0, 0, 0, 1)
 
 [editable path="Player"]

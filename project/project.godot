@@ -21,6 +21,7 @@ config/windows_native_icon="res://resource/icon/icon_x64.ico"
 
 [autoload]
 
+Global="*res://source/utility/global.gd"
 SceneTransition="*res://source/transition/scene_transition.tscn"
 
 [display]
