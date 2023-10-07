@@ -70,9 +70,9 @@ func _process(delta):
 	if Input.is_action_just_released('ui_up') or Input.is_action_just_pressed('ui_down'):
 		$AudioStreamPlayer.stop()
 		
-	if Input.is_action_pressed('esc'):
-		# get_tree().change_scene_to_packed(menu_main)
-		SceneTransition.change_scene('res://source/scene/menu_main.tscn')
+	# if Input.is_action_pressed('esc'):
+	# 	# get_tree().change_scene_to_packed(menu_main)
+	# 	SceneTransition.change_scene('res://source/scene/menu_main.tscn')
 		
 func _physics_process(delta):
 	if hp <= 0:
@@ -304,15 +304,15 @@ height = 96.0
 radius = 23.0
 height = 94.0
 
-[sub_resource type="Gradient" id="Gradient_x7f0i"]
+[sub_resource type="Gradient" id="Gradient_go47s"]
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_mha5w"]
-gradient = SubResource("Gradient_x7f0i")
+gradient = SubResource("Gradient_go47s")
 
-[sub_resource type="Gradient" id="Gradient_qqeh2"]
+[sub_resource type="Gradient" id="Gradient_251bv"]
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_oh07r"]
-gradient = SubResource("Gradient_qqeh2")
+gradient = SubResource("Gradient_251bv")
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_t50s3"]
 
