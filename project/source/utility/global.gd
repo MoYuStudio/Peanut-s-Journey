@@ -5,7 +5,16 @@ var fullscreen = true
 
 var night_node = true
 
+var save_dict = {
+	
+		'A':1080,
+		
+		
+	}
+
 func _ready():
+	save_data('game_save',save_dict)
+	print(load_data('game_save'))
 	DisplayServer.window_set_title("花生迷途 Peanut's Journey")
 	
 	# print(DisplayServer.window_get_vsync_mode(0))
@@ -23,3 +32,20 @@ func _physics_process(delta):
 	# print(Engine.get_frames_per_second())
 	pass
 	
+func save_data(slot_name,data):
+	var file = FileAccess.open('res://source/data/'+str(slot_name)+'.moyudata', FileAccess.WRITE)
+	var json_str = JSON.stringify(data)
+	file.store_line(json_str)
+	
+func load_data(slot_name):
+	var path = 'res://source/data/'+str(slot_name)+'.moyudata'
+	var data = {}
+	if not FileAccess.file_exists(path):
+		return
+	var file = FileAccess.open(path, FileAccess.READ)
+	while file.get_position() < file.get_length():
+		var json_str = file.get_line()
+		var json = JSON.new()
+		var parse_result = json.parse(json_str)
+		data = json.get_data()
+	return data

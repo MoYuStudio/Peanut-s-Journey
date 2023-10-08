@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=3 uid="uid://b4u7q3b4vyfbd"]
+[gd_scene load_steps=45 format=3 uid="uid://b4u7q3b4vyfbd"]
 
 [ext_resource type="Texture2D" uid="uid://bcmtvcjpa48fs" path="res://resource/tile/tilemap.png" id="1_y78ru"]
 [ext_resource type="FontFile" uid="uid://dwo3w3m0bti6d" path="res://resource/font/YouSheBiaoTiHei.ttf" id="2_kikh1"]
@@ -20,7 +20,6 @@ script/source = "
 extends Node
 
 @onready var camera = $Camera2D
-@onready var camera_animation = $Camera2D/AnimationPlayer
 
 @onready var about_page = $About
 
@@ -59,16 +58,12 @@ func _on_check_button_pressed():
 
 # 连接关于页面
 func _on_to_about_button_pressed():
-	camera_animation.play('animation')
 	camera.position = Vector2(960,540+1080+1024)
-	camera_animation.play_backwards('animation')
 	about_page.run()
 
 # 关于页面动画结束返回
 func _on_about_animation_player_animation_finished(anim_name):
-	camera_animation.play('animation')
 	camera.position = Vector2(960,540)
-	camera_animation.play_backwards('animation')
 "
 
 [sub_resource type="Gradient" id="Gradient_x7f0i"]
@@ -80,27 +75,6 @@ gradient = SubResource("Gradient_x7f0i")
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_wtesc"]
 gradient = SubResource("Gradient_qqeh2")
-
-[sub_resource type="Animation" id="Animation_aw74g"]
-resource_name = "animation"
-length = 3.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Control:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 3),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_ca7r0"]
-_data = {
-"animation": SubResource("Animation_aw74g")
-}
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_h05tn"]
 texture = ExtResource("1_y78ru")
@@ -334,7 +308,7 @@ rotation_smoothing_enabled = true
 rotation_smoothing_speed = 3.0
 
 [node name="Control" type="Control" parent="Camera2D"]
-modulate = Color(1, 1, 1, 0.833333)
+modulate = Color(1, 1, 1, 0)
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
@@ -344,16 +318,13 @@ offset_bottom = 40.0
 z_index = -1
 texture_filter = 1
 material = ExtResource("4_djhrm")
-position = Vector2(8, -4)
 scale = Vector2(50, 19)
 texture = SubResource("GradientTexture2D_augaf")
 
 [node name="Rain" type="Sprite2D" parent="Camera2D/Control"]
-modulate = Color(1, 1, 1, 0.0117647)
 z_index = 9
 texture_filter = 1
 material = ExtResource("5_ana3l")
-position = Vector2(-2, -13)
 scale = Vector2(50, 19)
 texture = SubResource("GradientTexture2D_wtesc")
 
@@ -368,11 +339,6 @@ offset_top = -47.6291
 offset_right = 2728.37
 offset_bottom = 1666.37
 color = Color(0, 0, 0, 0.137255)
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Camera2D"]
-libraries = {
-"": SubResource("AnimationLibrary_ca7r0")
-}
 
 [node name="Main" type="Control" parent="."]
 layout_mode = 3
@@ -574,11 +540,11 @@ autoplay = true
 
 [node name="CheckButton" type="CheckButton" parent="Main"]
 texture_filter = 1
-offset_left = 1549.0
-offset_top = 833.0
-offset_right = 1581.0
-offset_bottom = 849.0
-scale = Vector2(6, 6)
+offset_left = 1659.0
+offset_top = 881.0
+offset_right = 1691.0
+offset_bottom = 897.0
+scale = Vector2(3, 3)
 theme_override_icons/checked = ExtResource("13_bxml7")
 theme_override_icons/unchecked = ExtResource("12_gm32l")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_vrp1n")
@@ -630,13 +596,16 @@ WilsonVinson
 
 鸣谢
 
+美术
+B.辞鱼
+
 测试
 Eric
 Raoul
 Rui
-
-美术
 B.辞鱼
+
+
 "
 horizontal_alignment = 1
 

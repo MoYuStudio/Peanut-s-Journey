@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dns10t3pjq5ud"
+path="res://.godot/imported/[WV] MoYuLogo.wav-7a59341305fcf3f353f8a1d71230e91d.sample"
+
+[deps]
+
+source_file="res://resource/sound/[WV] MoYuLogo.wav"
+dest_files=["res://.godot/imported/[WV] MoYuLogo.wav-7a59341305fcf3f353f8a1d71230e91d.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

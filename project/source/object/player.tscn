@@ -1,9 +1,9 @@
 [gd_scene load_steps=45 format=3 uid="uid://c1tw37pkcvsy3"]
 
-[ext_resource type="Texture2D" uid="uid://bp5ftg1dlx7hk" path="res://resource/image/light_white.png" id="1_3la6u"]
 [ext_resource type="Texture2D" uid="uid://cciym2m3cx1ij" path="res://resource/image/steam.png" id="1_ouxap"]
 [ext_resource type="Texture2D" uid="uid://8r1s6ng6iids" path="res://resource/image/light.png" id="2_1k24c"]
 [ext_resource type="Texture2D" uid="uid://dehg38xt8tidn" path="res://resource/image/car.png" id="2_dc5sy"]
+[ext_resource type="Texture2D" uid="uid://crncesltob5no" path="res://resource/image/line_light.png" id="2_x74rn"]
 [ext_resource type="FontFile" uid="uid://ckmyjvou4nb1f" path="res://resource/font/kenney_pixel.ttf" id="3_75bdf"]
 [ext_resource type="PackedScene" uid="uid://5ygp3ic8vnl6" path="res://source/utility/hurtbox.tscn" id="5_yqutu"]
 [ext_resource type="Texture2D" uid="uid://bvhr66hwk76fl" path="res://resource/image/hp_bar_under.png" id="6_na1pr"]
@@ -437,29 +437,29 @@ occluder = SubResource("OccluderPolygon2D_kjywa")
 occluder_light_mask = 2
 
 [node name="PointLight2D" type="PointLight2D" parent="Body/Light"]
-position = Vector2(48.0249, 1.08863e-09)
+position = Vector2(48, 0)
 rotation = 1.5708
-scale = Vector2(2, 4)
+scale = Vector2(1.2, 3)
 color = Color(1, 0.901961, 0.588235, 1)
-energy = 2.0
 shadow_enabled = true
 shadow_filter = 1
 shadow_filter_smooth = 6.0
 shadow_item_cull_mask = 13
-texture = ExtResource("1_3la6u")
-offset = Vector2(0, -117.505)
+texture = ExtResource("2_x74rn")
+offset = Vector2(0, -133)
 
 [node name="PointLight2D2" type="PointLight2D" parent="Body/Light"]
 position = Vector2(48, 0)
 rotation = 1.5708
-scale = Vector2(2.5, 2)
+scale = Vector2(1.2, 1.5)
 color = Color(1, 0.901961, 0.588235, 1)
+energy = 0.5
 shadow_enabled = true
 shadow_filter = 1
 shadow_filter_smooth = 6.0
 shadow_item_cull_mask = 13
-texture = ExtResource("1_3la6u")
-offset = Vector2(0, -117.505)
+texture = ExtResource("2_x74rn")
+offset = Vector2(0, -133)
 
 [node name="Sprite2D" type="Sprite2D" parent="Body"]
 texture_filter = 1
