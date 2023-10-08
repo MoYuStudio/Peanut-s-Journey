@@ -7,14 +7,12 @@ var night_node = true
 
 var save_dict = {
 	
-		'A':1080,
-		
+		'window_size':[1280,720],
 		
 	}
 
 func _ready():
-	save_data('game_save',save_dict)
-	print(load_data('game_save'))
+
 	DisplayServer.window_set_title("花生迷途 Peanut's Journey")
 	
 	# print(DisplayServer.window_get_vsync_mode(0))
@@ -25,6 +23,9 @@ func _ready():
 	DisplayServer.window_set_position(Vector2(100,100))
 	DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 	# DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN
+	
+	# save_data('game_save',save_dict)
+	# print(load_data('game_save'))
 	
 	pass
 
