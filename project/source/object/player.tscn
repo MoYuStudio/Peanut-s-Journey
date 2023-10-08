@@ -605,7 +605,7 @@ color = Color(0.611765, 0.8, 0.396078, 1)
 scale = Vector2(0.166667, 0.166667)
 process_callback = 0
 position_smoothing_enabled = true
-position_smoothing_speed = 6.0
+position_smoothing_speed = 3.0
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("11_2uvdb")
@@ -679,7 +679,7 @@ offset_right = 961.0
 offset_bottom = 203.0
 theme_override_fonts/font = ExtResource("16_igcmu")
 theme_override_font_sizes/font_size = 128
-text = "1"
+text = "0"
 script = SubResource("GDScript_d85q8")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="GUI/Level"]

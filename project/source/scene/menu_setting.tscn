@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://bdcbyd1c1daqn"]
+[gd_scene load_steps=7 format=3 uid="uid://bdcbyd1c1daqn"]
 
 [ext_resource type="FontFile" uid="uid://dwo3w3m0bti6d" path="res://resource/font/YouSheBiaoTiHei.ttf" id="1_8ogvg"]
 
@@ -18,6 +18,10 @@ func _process(delta):
 		# get_tree().change_scene_to_file('res://source/scene/menu_main.tscn')
 		SceneTransition.change_scene('res://source/scene/menu_main.tscn')
 "
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pbos4"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_okag6"]
 
 [node name="MenuSetting" type="Node"]
 
@@ -52,18 +56,42 @@ text = "保存并返回"
 flat = true
 script = SubResource("GDScript_syj3h")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="VBoxContainer" type="GridContainer" parent="."]
+texture_filter = 1
 offset_left = 71.0
 offset_top = 234.0
-offset_right = 189.0
-offset_bottom = 321.0
+offset_right = 1783.0
+offset_bottom = 867.0
+columns = 2
 
-[node name="Label" type="Label" parent="VBoxContainer"]
+[node name="WindowModeLabel" type="Label" parent="VBoxContainer"]
 texture_filter = 1
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_8ogvg")
 theme_override_font_sizes/font_size = 64
-text = "全屏"
+text = "屏幕显示模式"
+
+[node name="WindowMode" type="OptionButton" parent="VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_8ogvg")
+theme_override_font_sizes/font_size = 64
+theme_override_styles/focus = SubResource("StyleBoxEmpty_pbos4")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_okag6")
+flat = true
+alignment = 1
+item_count = 5
+selected = 0
+popup/item_0/text = "窗口化"
+popup/item_0/id = 0
+popup/item_1/text = "无边框全屏"
+popup/item_1/id = 1
+popup/item_2/text = "全屏"
+popup/item_2/id = 2
+popup/item_3/text = "最小填充全屏"
+popup/item_3/id = 3
+popup/item_4/text = "最大填充全屏"
+popup/item_4/id = 4
 
 [node name="Label2" type="Label" parent="VBoxContainer"]
 texture_filter = 1
@@ -71,6 +99,9 @@ layout_mode = 2
 theme_override_fonts/font = ExtResource("1_8ogvg")
 theme_override_font_sizes/font_size = 64
 text = "Vsync"
+
+[node name="HSlider2" type="HSlider" parent="VBoxContainer"]
+layout_mode = 2
 
 [node name="Label3" type="Label" parent="VBoxContainer"]
 texture_filter = 1
@@ -92,6 +123,9 @@ layout_mode = 2
 theme_override_fonts/font = ExtResource("1_8ogvg")
 theme_override_font_sizes/font_size = 64
 text = "-"
+
+[node name="HSlider" type="HSlider" parent="VBoxContainer"]
+layout_mode = 2
 
 [node name="Label6" type="Label" parent="VBoxContainer"]
 texture_filter = 1

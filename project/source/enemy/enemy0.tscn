@@ -71,6 +71,7 @@ func _on_hurt_box_hurt(damage, angle, knock_back_amount):
 "
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_tsatu"]
+cull_mode = 1
 polygon = PackedVector2Array(6, 12, 6, -12, 18, -12, 18, -24, -12, -24, -12, -12, -18, -12, -18, 12, -12, 12, -12, 24, 18, 24, 18, 12)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3ay8f"]
@@ -126,6 +127,9 @@ safe_margin = 0.1
 script = SubResource("GDScript_3nnkj")
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+modulate = Color(1, 1, 1, 0.00392157)
+self_modulate = Color(1, 1, 1, 0.00392157)
+texture_filter = 1
 occluder = SubResource("OccluderPolygon2D_tsatu")
 occluder_light_mask = 4
 
