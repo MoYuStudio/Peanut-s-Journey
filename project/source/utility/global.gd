@@ -47,12 +47,12 @@ func _physics_process(delta):
 	pass
 	
 func save_data(slot_name,data):
-	var file = FileAccess.open('user://'+str(slot_name)+'.moyudata', FileAccess.WRITE)
+	var file = FileAccess.open('data/'+str(slot_name)+'.moyudata', FileAccess.WRITE)
 	var json_str = JSON.stringify(data)
 	file.store_line(json_str)
 	
 func load_data(slot_name):
-	var path = 'user://'+str(slot_name)+'.moyudata'
+	var path = 'data/'+str(slot_name)+'.moyudata'
 	var data = {}
 	if not FileAccess.file_exists(path):
 		return
