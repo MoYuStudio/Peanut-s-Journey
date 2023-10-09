@@ -414,6 +414,7 @@ texture = ExtResource("4_630u1")
 
 [node name="Title" type="Label" parent="Main"]
 texture_filter = 1
+layout_mode = 0
 offset_left = 101.0
 offset_top = 79.0
 offset_right = 453.0
@@ -425,6 +426,7 @@ text = "花生迷途
 
 [node name="EnTitle" type="Label" parent="Main"]
 texture_filter = 1
+layout_mode = 0
 offset_left = 75.0
 offset_top = 183.0
 offset_right = 507.0
@@ -440,6 +442,7 @@ rotation = -0.214676
 texture = ExtResource("7_suonw")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Main"]
+layout_mode = 0
 offset_left = 164.0
 offset_top = 350.0
 offset_right = 408.0
@@ -490,6 +493,7 @@ flat = true
 script = SubResource("GDScript_lc1lc")
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="Main"]
+layout_mode = 0
 offset_left = 160.0
 offset_top = 882.0
 offset_right = 423.0
@@ -540,6 +544,7 @@ autoplay = true
 
 [node name="CheckButton" type="CheckButton" parent="Main"]
 texture_filter = 1
+layout_mode = 0
 offset_left = 1659.0
 offset_top = 881.0
 offset_right = 1691.0
@@ -563,6 +568,7 @@ offset_bottom = 3184.0
 script = SubResource("GDScript_pr2eo")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="About"]
+layout_mode = 0
 offset_left = 600.0
 offset_top = 1000.0
 offset_right = 1414.0

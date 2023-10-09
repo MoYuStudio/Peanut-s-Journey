@@ -16,6 +16,7 @@ extends CharacterBody2D
 @export var movement_speed = 100.0
 @export var hp = 10
 @export var knock_back_recovery = 3.5
+@export var damage = 3
 var knock_back = Vector2.ZERO
 
 @onready var player = get_tree().get_first_node_in_group('player')
@@ -27,11 +28,10 @@ var death_coin = preload('res://source/loot/coin.tscn')
 
 @onready var hurt_sign = $HUD/HurtSign
 @onready var hurt_sign_animation = $HUD/HurtSign/AnimationPlayer
-
-# var screen_size
+@onready var hit = $HitBox
 
 func _ready():
-# 	screen_size = get_viewport_rect().size
+	hit.damage = damage
 	pass
 
 func _physics_process(_delta):
@@ -123,7 +123,6 @@ _data = {
 z_index = -1
 collision_layer = 4
 collision_mask = 4
-safe_margin = 0.1
 script = SubResource("GDScript_3nnkj")
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]

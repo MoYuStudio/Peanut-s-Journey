@@ -5,9 +5,21 @@ var fullscreen = true
 
 var night_node = true
 
+var window_mode_list = [DisplayServer.WINDOW_MODE_WINDOWED,
+						DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN,
+						DisplayServer.WINDOW_MODE_FULLSCREEN,
+						DisplayServer.WINDOW_MODE_MINIMIZED,
+						DisplayServer.WINDOW_MODE_MAXIMIZED
+						]
+var window_size_list = [[1920,1080],[1280,720],[360,180]]
+
+var window_vsync_mode_list = []
+
 var save_dict = {
 	
-		'window_size':[1280,720],
+		'window_mode':0,
+		'window_size':0,
+		'window_vsync_mode':0,
 		
 	}
 
@@ -50,3 +62,8 @@ func load_data(slot_name):
 		var parse_result = json.parse(json_str)
 		data = json.get_data()
 	return data
+
+func setting_set():
+	DisplayServer.window_set_mode(window_mode_list[save_dict['window_mode']])
+	DisplayServer.window_set_size(Vector2(window_size_list[save_dict['window_size']][0],window_size_list[save_dict['window_size']][1]))
+	DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_DISABLED)
