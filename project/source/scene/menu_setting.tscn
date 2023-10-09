@@ -13,8 +13,8 @@ extends Node
 
 func _ready():
 	
-	window_mode.selected = int(Global.save_dict['window_mode'])
-	window_size.selected = int(Global.save_dict['window_size'])
+	window_mode.selected = int(Global.setting_dict['window_mode'])
+	window_size.selected = int(Global.setting_dict['window_size'])
 	pass
 
 func _on_save_button_pressed():
@@ -24,10 +24,10 @@ func _on_save_button_pressed():
 	SceneTransition.change_scene('res://source/scene/menu_main.tscn')
 
 func _on_window_mode_item_selected(index):
-	Global.save_dict['window_mode'] = index
+	Global.setting_dict['window_mode'] = index
 
 func _on_window_size_item_selected(index):
-	Global.save_dict['window_size'] = index
+	Global.setting_dict['window_size'] = index
 "
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_530bb"]
@@ -176,6 +176,7 @@ theme_override_fonts/font = ExtResource("1_8ogvg")
 theme_override_font_sizes/font_size = 64
 theme_override_styles/focus = SubResource("StyleBoxEmpty_pbos4")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_okag6")
+disabled = true
 flat = true
 alignment = 1
 item_count = 4

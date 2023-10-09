@@ -15,13 +15,15 @@ var window_size_list = [[1920,1080],[1280,720],[360,180]]
 
 var window_vsync_mode_list = []
 
-var save_dict = {
+var setting_dict = {
 	
 		'window_mode':0,
 		'window_size':1,
 		'window_vsync_mode':0,
 		
 	}
+	
+var player_dict
 
 func _ready():
 
@@ -30,11 +32,10 @@ func _ready():
 	# print(DisplayServer.window_get_vsync_mode(0))
 	# DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_DISABLED)
 	# print(DisplayServer.window_get_vsync_mode(0))
-	
-	DisplayServer.window_set_size(Vector2(1280,720))
-	DisplayServer.window_set_position(Vector2(100,100))
-	DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
-	# DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN
+	if load_data('setting') != null:
+		setting_dict = load_data('setting')
+		setting_set()
+		DisplayServer.window_set_position(Vector2(100,100))
 	
 	# save_data('game_save',save_dict)
 	# print(load_data('game_save'))
@@ -46,12 +47,12 @@ func _physics_process(delta):
 	pass
 	
 func save_data(slot_name,data):
-	var file = FileAccess.open('res://source/data/'+str(slot_name)+'.moyudata', FileAccess.WRITE)
+	var file = FileAccess.open('user://'+str(slot_name)+'.moyudata', FileAccess.WRITE)
 	var json_str = JSON.stringify(data)
 	file.store_line(json_str)
 	
 func load_data(slot_name):
-	var path = 'res://source/data/'+str(slot_name)+'.moyudata'
+	var path = 'user://'+str(slot_name)+'.moyudata'
 	var data = {}
 	if not FileAccess.file_exists(path):
 		return
@@ -64,6 +65,7 @@ func load_data(slot_name):
 	return data
 
 func setting_set():
-	DisplayServer.window_set_mode(window_mode_list[save_dict['window_mode']])
-	DisplayServer.window_set_size(Vector2(window_size_list[save_dict['window_size']][0],window_size_list[save_dict['window_size']][1]))
+	DisplayServer.window_set_mode(window_mode_list[setting_dict['window_mode']])
+	DisplayServer.window_set_size(Vector2(window_size_list[setting_dict['window_size']][0],window_size_list[setting_dict['window_size']][1]))
 	DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_DISABLED)
+	save_data('setting',setting_dict)
