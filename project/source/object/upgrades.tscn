@@ -1,8 +1,9 @@
-[gd_scene load_steps=27 format=3 uid="uid://bcjcxpy5noqj8"]
+[gd_scene load_steps=28 format=3 uid="uid://bcjcxpy5noqj8"]
 
 [ext_resource type="Material" uid="uid://d6qhgh84hwou" path="res://resource/shader/tilt_shift.tres" id="1_0e1eo"]
 [ext_resource type="Texture2D" uid="uid://dehg38xt8tidn" path="res://resource/image/car.png" id="1_h1shc"]
 [ext_resource type="FontFile" uid="uid://dwo3w3m0bti6d" path="res://resource/font/YouSheBiaoTiHei.ttf" id="3_op80d"]
+[ext_resource type="Theme" uid="uid://cwvilb81l6i31" path="res://resource/theme/moyu.tres" id="4_e8fnr"]
 [ext_resource type="Texture2D" uid="uid://dgq6snhbt4tfy" path="res://resource/ui/esc_sprite.png" id="4_grjf5"]
 [ext_resource type="FontFile" uid="uid://ckmyjvou4nb1f" path="res://resource/font/kenney_pixel.ttf" id="4_j3ouc"]
 [ext_resource type="Texture2D" uid="uid://d4fpxy7ab8r70" path="res://resource/image/gun.png" id="6_0naur"]
@@ -224,9 +225,9 @@ script = SubResource("GDScript_k02s4")
 
 [node name="ColorRect2" type="ColorRect" parent="."]
 layout_mode = 0
-offset_left = -1556.0
+offset_left = -2958.0
 offset_top = -843.0
-offset_right = 3530.0
+offset_right = 4920.0
 offset_bottom = 1972.0
 color = Color(0, 0, 0, 0.501961)
 
@@ -267,8 +268,8 @@ libraries = {
 }
 
 [node name="Car" type="Control" parent="."]
-visible = false
 anchors_preset = 0
+theme = ExtResource("4_e8fnr")
 
 [node name="Title" type="Label" parent="Car"]
 layout_mode = 2
@@ -310,6 +311,7 @@ theme_override_font_sizes/font_size = 32
 text = "引擎 Engine Power"
 
 [node name="HSlider" type="HSlider" parent="Car/GridContainer/EnginePower"]
+texture_filter = 1
 layout_mode = 2
 min_value = 500.0
 max_value = 900.0
@@ -411,6 +413,7 @@ expand_icon = true
 script = SubResource("GDScript_swuq2")
 
 [node name="Weapon" type="Control" parent="."]
+visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0

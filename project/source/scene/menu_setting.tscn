@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bdcbyd1c1daqn"]
+[gd_scene load_steps=9 format=3 uid="uid://bdcbyd1c1daqn"]
 
 [ext_resource type="FontFile" uid="uid://dwo3w3m0bti6d" path="res://resource/font/YouSheBiaoTiHei.ttf" id="1_8ogvg"]
 [ext_resource type="Theme" uid="uid://cwvilb81l6i31" path="res://resource/theme/moyu.tres" id="2_81j4f"]
@@ -38,14 +38,22 @@ func _on_window_size_item_selected(index):
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_okag6"]
 
+[sub_resource type="GDScript" id="GDScript_4dl4j"]
+script/source = "
+extends Button
+
+func _pressed():
+	DisplayServer.window_set_position(Vector2(0,32))
+"
+
 [node name="MenuSetting" type="Node"]
 script = SubResource("GDScript_q6h71")
 
 [node name="ColorRect" type="ColorRect" parent="."]
-offset_left = -1531.0
-offset_top = -808.0
-offset_right = 3421.0
-offset_bottom = 1866.0
+offset_left = -1597.0
+offset_top = -742.0
+offset_right = 3355.0
+offset_bottom = 1932.0
 color = Color(0, 0, 0, 1)
 
 [node name="Label" type="Label" parent="."]
@@ -80,6 +88,7 @@ theme = ExtResource("2_81j4f")
 theme_override_constants/side_margin = 36
 
 [node name="显示" type="TabBar" parent="TabContainer"]
+visible = false
 layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="TabContainer/显示"]
@@ -104,14 +113,14 @@ texture_filter = 1
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_8ogvg")
 theme_override_font_sizes/font_size = 64
-text = "屏幕显示模式"
+text = "显示模式"
 
 [node name="WindowSizeLabel" type="Label" parent="TabContainer/显示/MarginContainer/HBoxContainer/SettingLabel"]
 texture_filter = 1
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_8ogvg")
 theme_override_font_sizes/font_size = 64
-text = "屏幕窗口缩放"
+text = "窗口缩放"
 
 [node name="VsyncModeLabel" type="Label" parent="TabContainer/显示/MarginContainer/HBoxContainer/SettingLabel"]
 texture_filter = 1
@@ -190,22 +199,63 @@ popup/item_2/id = 2
 popup/item_3/text = "快速同步"
 popup/item_3/id = 3
 
+[node name="Button" type="Button" parent="TabContainer/显示"]
+layout_mode = 2
+offset_left = 29.0
+offset_top = 359.0
+offset_right = 439.0
+offset_bottom = 455.0
+text = "窗口位置修复"
+script = SubResource("GDScript_4dl4j")
+
 [node name="音效" type="TabBar" parent="TabContainer"]
-visible = false
 layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="TabContainer/音效"]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 1704.0
+offset_bottom = 508.0
 theme_override_constants/margin_left = 25
 theme_override_constants/margin_top = 25
 theme_override_constants/margin_right = 25
 theme_override_constants/margin_bottom = 25
 
 [node name="HBoxContainer" type="HBoxContainer" parent="TabContainer/音效/MarginContainer"]
-visible = false
 layout_mode = 2
+theme_override_constants/separation = 530
+
+[node name="SettingLabel" type="VBoxContainer" parent="TabContainer/音效/MarginContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="TabContainer/音效/MarginContainer/HBoxContainer/SettingLabel"]
+layout_mode = 2
+text = "主音量"
+
+[node name="Label2" type="Label" parent="TabContainer/音效/MarginContainer/HBoxContainer/SettingLabel"]
+layout_mode = 2
+text = "音乐"
+
+[node name="Label3" type="Label" parent="TabContainer/音效/MarginContainer/HBoxContainer/SettingLabel"]
+layout_mode = 2
+text = "音效"
+
+[node name="Setting" type="VBoxContainer" parent="TabContainer/音效/MarginContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="HSlider" type="HSlider" parent="TabContainer/音效/MarginContainer/HBoxContainer/Setting"]
+custom_minimum_size = Vector2(900, 87)
+layout_mode = 2
+value = 50.0
+
+[node name="HSlider2" type="HSlider" parent="TabContainer/音效/MarginContainer/HBoxContainer/Setting"]
+custom_minimum_size = Vector2(900, 87)
+layout_mode = 2
+value = 50.0
+
+[node name="HSlider3" type="HSlider" parent="TabContainer/音效/MarginContainer/HBoxContainer/Setting"]
+custom_minimum_size = Vector2(900, 87)
+layout_mode = 2
+value = 50.0
 
 [connection signal="pressed" from="Button" to="." method="_on_save_button_pressed"]
 [connection signal="item_selected" from="TabContainer/显示/MarginContainer/HBoxContainer/Setting/WindowMode" to="." method="_on_window_mode_item_selected"]

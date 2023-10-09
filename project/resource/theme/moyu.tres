@@ -1,7 +1,9 @@
-[gd_resource type="Theme" load_steps=51 format=3 uid="uid://cwvilb81l6i31"]
+[gd_resource type="Theme" load_steps=57 format=3 uid="uid://cwvilb81l6i31"]
 
 [ext_resource type="FontFile" uid="uid://dwo3w3m0bti6d" path="res://resource/font/YouSheBiaoTiHei.ttf" id="1_ic15d"]
+[ext_resource type="Texture2D" uid="uid://dyx86y4p7h3yi" path="res://resource/ui/grabber.png" id="2_lkjt4"]
 [ext_resource type="Texture2D" uid="uid://uvaf4g4po3xt" path="res://resource/ui/option_button.png" id="2_ryghj"]
+[ext_resource type="Texture2D" uid="uid://b2a6gfpnv3ddr" path="res://resource/ui/grabber_highlight.png" id="3_nv5m5"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6obhp"]
 content_margin_left = 4.0
@@ -71,6 +73,12 @@ corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_101l8"]
+bg_color = Color(1, 1, 1, 0.588235)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_htusk"]
+bg_color = Color(1, 1, 1, 0.784314)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2hsrl"]
 
@@ -259,6 +267,30 @@ corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 corner_detail = 5
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mjiek"]
+content_margin_left = 2.0
+content_margin_top = 2.0
+content_margin_right = 2.0
+content_margin_bottom = 2.0
+bg_color = Color(0.1, 0.1, 0.1, 0.3)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+corner_detail = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uuliy"]
+content_margin_left = 2.0
+content_margin_top = 2.0
+content_margin_right = 2.0
+content_margin_bottom = 2.0
+bg_color = Color(1, 1, 1, 0.4)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+corner_detail = 6
+
 [sub_resource type="Image" id="Image_aytdp"]
 data = {
 "data": PackedByteArray(255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 2, 255, 255, 255, 78, 254, 255, 254, 136, 254, 255, 254, 173, 254, 255, 254, 173, 254, 255, 254, 135, 252, 255, 252, 77, 255, 255, 255, 2, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 21, 255, 255, 255, 144, 254, 255, 254, 191, 254, 255, 254, 191, 254, 255, 254, 191, 254, 255, 254, 191, 254, 255, 254, 191, 254, 255, 254, 191, 254, 255, 254, 143, 255, 255, 255, 20, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 2, 255, 255, 255, 144, 254, 255, 254, 191, 254, 255, 254, 191, 254, 255, 254, 191, 238, 240, 238, 194, 123, 125, 123, 223, 134, 134, 134, 220, 254, 255, 254, 191, 254, 255, 254, 191, 254, 255, 254, 143, 255, 255, 255, 2, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 78, 254, 255, 254, 191, 254, 255, 254, 191, 254, 255, 254, 191, 238, 240, 238, 194, 116, 117, 116, 226, 92, 92, 92, 233, 123, 125, 123, 223, 254, 255, 254, 191, 254, 255, 254, 191, 254, 255, 254, 191, 252, 255, 252, 76, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 254, 255, 254, 136, 254, 255, 254, 191, 254, 255, 254, 191, 238, 240, 238, 194, 116, 117, 116, 226, 92, 92, 92, 233, 116, 117, 116, 226, 238, 240, 238, 194, 254, 255, 254, 191, 254, 255, 254, 191, 254, 255, 254, 191, 255, 255, 255, 133, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 254, 255, 254, 173, 254, 255, 254, 191, 254, 255, 254, 191, 123, 125, 123, 223, 92, 92, 92, 233, 115, 116, 115, 226, 238, 240, 238, 194, 254, 255, 254, 191, 254, 255, 254, 191, 254, 255, 254, 191, 254, 255, 254, 191, 254, 255, 254, 173, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 254, 255, 254, 173, 254, 255, 254, 191, 254, 255, 254, 191, 123, 125, 123, 223, 92, 92, 92, 233, 115, 116, 115, 226, 237, 238, 237, 195, 254, 255, 254, 191, 254, 255, 254, 191, 254, 255, 254, 191, 254, 255, 254, 191, 254, 255, 254, 172, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 254, 255, 254, 135, 254, 255, 254, 191, 254, 255, 254, 191, 238, 240, 238, 194, 115, 116, 115, 226, 92, 92, 92, 233, 115, 116, 115, 226, 238, 240, 238, 194, 254, 255, 254, 191, 254, 255, 254, 191, 254, 255, 254, 191, 255, 255, 255, 133, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 252, 255, 252, 77, 254, 255, 254, 191, 254, 255, 254, 191, 254, 255, 254, 191, 238, 240, 238, 194, 115, 116, 115, 226, 92, 92, 92, 233, 125, 126, 125, 223, 254, 255, 254, 191, 254, 255, 254, 191, 254, 255, 254, 191, 255, 255, 255, 75, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 2, 254, 255, 254, 143, 254, 255, 254, 191, 254, 255, 254, 191, 254, 255, 254, 191, 238, 240, 238, 194, 125, 126, 125, 223, 133, 133, 133, 220, 254, 255, 254, 191, 254, 255, 254, 191, 254, 255, 254, 142, 255, 255, 255, 2, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 20, 254, 255, 254, 143, 254, 255, 254, 191, 254, 255, 254, 191, 254, 255, 254, 191, 254, 255, 254, 191, 254, 255, 254, 191, 254, 255, 254, 191, 254, 255, 254, 142, 255, 255, 255, 19, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 2, 252, 255, 252, 76, 255, 255, 255, 133, 254, 255, 254, 173, 254, 255, 254, 172, 255, 255, 255, 133, 255, 255, 255, 75, 255, 255, 255, 2, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0),
@@ -428,6 +460,15 @@ Button/styles/focus = SubResource("StyleBoxFlat_1e6ah")
 Button/styles/hover = SubResource("StyleBoxFlat_8s4bn")
 Button/styles/normal = SubResource("StyleBoxFlat_sbick")
 Button/styles/pressed = SubResource("StyleBoxFlat_3ojpk")
+HSlider/constants/center_grabber = 500
+HSlider/constants/grabber_offset = 0
+HSlider/icons/grabber = ExtResource("2_lkjt4")
+HSlider/icons/grabber_disabled = ExtResource("3_nv5m5")
+HSlider/icons/grabber_highlight = ExtResource("3_nv5m5")
+HSlider/icons/tick = null
+HSlider/styles/grabber_area = SubResource("StyleBoxFlat_101l8")
+HSlider/styles/grabber_area_highlight = SubResource("StyleBoxFlat_htusk")
+HSlider/styles/slider = null
 Label/colors/font_color = Color(1, 1, 1, 1)
 Label/colors/font_outline_color = Color(1, 1, 1, 1)
 Label/colors/font_shadow_color = Color(0, 0, 0, 0)
@@ -497,6 +538,14 @@ PopupMenu/styles/labeled_separator_right = SubResource("StyleBoxLine_cdpwj")
 PopupMenu/styles/panel = SubResource("StyleBoxFlat_10yhb")
 PopupMenu/styles/panel_disabled = SubResource("StyleBoxFlat_pf8hv")
 PopupMenu/styles/separator = SubResource("StyleBoxLine_cdpwj")
+ProgressBar/colors/font_color = Color(0.95, 0.95, 0.95, 1)
+ProgressBar/colors/font_outline_color = Color(1, 1, 1, 1)
+ProgressBar/colors/font_shadow_color = Color(0, 0, 0, 1)
+ProgressBar/constants/outline_size = 0
+ProgressBar/font_sizes/font_size = 48
+ProgressBar/fonts/font = ExtResource("1_ic15d")
+ProgressBar/styles/background = SubResource("StyleBoxFlat_mjiek")
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_uuliy")
 TabContainer/colors/drop_mark_color = Color(1, 1, 1, 0)
 TabContainer/colors/font_disabled_color = Color(0.875, 0.875, 0.875, 0.5)
 TabContainer/colors/font_hovered_color = Color(0.95, 0.95, 0.95, 1)

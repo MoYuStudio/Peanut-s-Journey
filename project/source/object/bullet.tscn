@@ -106,4 +106,10 @@ volume_db = -10.0
 autoplay = true
 max_polyphony = 100
 
+[node name="PointLight2D" type="PointLight2D" parent="."]
+visible = false
+scale = Vector2(3, 3)
+shadow_enabled = true
+texture = ExtResource("1_uu2r1")
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

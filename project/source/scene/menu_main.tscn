@@ -188,8 +188,8 @@ func _ready():
 
 func _process(delta):
 	if is_pressed():
-		get_tree().change_scene_to_file('res://source/scene/menu_setting.tscn')
-		# SceneTransition.change_scene('res://source/scene/menu_setting.tscn')
+		# get_tree().change_scene_to_file('res://source/scene/menu_setting.tscn')
+		SceneTransition.change_scene('res://source/scene/menu_setting.tscn')
 "
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4n3ja"]
@@ -500,7 +500,6 @@ offset_right = 423.0
 offset_bottom = 966.0
 
 [node name="Logo" type="Sprite2D" parent="Main/VBoxContainer2"]
-modulate = Color(1, 1, 1, 0.392157)
 position = Vector2(123, -68)
 texture = ExtResource("5_oh756")
 script = SubResource("GDScript_hh7s6")
