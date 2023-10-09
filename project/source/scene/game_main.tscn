@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://bsln5r51b15m3"]
+[gd_scene load_steps=7 format=3 uid="uid://bsln5r51b15m3"]
 
 [ext_resource type="PackedScene" uid="uid://dkfvi3tnhl45p" path="res://source/map/map0.tscn" id="1_g5pqf"]
 [ext_resource type="AudioStream" uid="uid://btfgjlj8ct3sr" path="res://resource/music/The Poisoned Princess - Media Right Productions.mp3" id="3_wg65d"]
@@ -13,6 +13,7 @@ extends Node
 @onready var next_part = $Map/TileMap/NextPart
 
 @onready var play = $Player
+@onready var line = $Line
 
 var map_list = []
 
@@ -34,6 +35,8 @@ func _process(delta):
 	pass
 
 func _physics_process(delta):
+	line.run(play.position)
+
 	if enemy_spawner != null:
 		if enemy_spawner.time >= map.map_time and enemy_spawner.my_children.size() <= 1:
 			next_part.visible = true
@@ -69,10 +72,43 @@ func night_mode_switch_off():
 	
 "
 
+[sub_resource type="GDScript" id="GDScript_fscj6"]
+script/source = "
+extends Node2D
+
+@onready var line1 = $Line2D
+
+func run(pos):
+	var line_x = pos.x
+	var line_y = pos.y
+	line1.add_point(Vector2(pos.x,pos.y))
+	if line1.points.size()>=100:
+		line1.remove_point(0)
+"
+
+[sub_resource type="Curve" id="Curve_7nlie"]
+_data = [Vector2(0, 0), 0.0, 1.00518, 0, 0, Vector2(0.994845, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
 [node name="Main" type="Node"]
 script = SubResource("GDScript_ge11n")
 
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
+energy = 0.6
+shadow_color = Color(0.698039, 0.698039, 0.698039, 0)
+shadow_filter = 2
+shadow_filter_smooth = 3.0
+shadow_item_cull_mask = 15
+
 [node name="Map" parent="." instance=ExtResource("1_g5pqf")]
+
+[node name="Line" type="Node2D" parent="."]
+script = SubResource("GDScript_fscj6")
+
+[node name="Line2D" type="Line2D" parent="Line"]
+width = 32.0
+width_curve = SubResource("Curve_7nlie")
+default_color = Color(0, 0, 0, 0.376471)
 
 [node name="Player" parent="." instance=ExtResource("10_phe80")]
 
@@ -88,7 +124,6 @@ volume_db = -10.0
 autoplay = true
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
-visible = false
 color = Color(0.0784314, 0.0784314, 0.0784314, 1)
 
 [editable path="Player"]

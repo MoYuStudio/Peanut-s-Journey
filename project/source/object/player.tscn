@@ -76,6 +76,7 @@ func _process(delta):
 	# 	SceneTransition.change_scene('res://source/scene/menu_main.tscn')
 		
 func _physics_process(delta):
+
 	if hp <= 0:
 		# get_tree().change_scene_to_file('res://source/scene/menu_gameover.tscn')
 		SceneTransition.change_scene('res://source/scene/menu_gameover.tscn')
@@ -304,10 +305,6 @@ radius = 192.0
 radius = 24.0
 height = 96.0
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wmrfs"]
-radius = 23.0
-height = 94.0
-
 [sub_resource type="Gradient" id="Gradient_go47s"]
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_mha5w"]
@@ -317,6 +314,10 @@ gradient = SubResource("Gradient_go47s")
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_oh07r"]
 gradient = SubResource("Gradient_251bv")
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wmrfs"]
+radius = 23.0
+height = 94.0
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_t50s3"]
 
@@ -476,12 +477,13 @@ texture = ExtResource("1_ouxap")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Body"]
 visible = false
+light_mask = 13
+visibility_layer = 13
 position = Vector2(5.36442e-07, -9.53674e-07)
 shape = SubResource("CircleShape2D_stomd")
 disabled = true
 
 [node name="HurtBox" parent="Body" instance=ExtResource("5_yqutu")]
-visible = false
 rotation = 1.5708
 scale = Vector2(0.166667, 0.166667)
 collision_layer = 2
@@ -532,25 +534,46 @@ collision_mask = 8
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Body/CollectArea"]
 shape = SubResource("CapsuleShape2D_odqar")
 
+[node name="Camera2D" type="Camera2D" parent="Body"]
+scale = Vector2(0.166667, 0.166667)
+process_callback = 0
+position_smoothing_enabled = true
+position_smoothing_speed = 3.0
+
+[node name="TiltShift" type="Sprite2D" parent="Body/Camera2D"]
+visible = false
+z_index = 10
+texture_filter = 1
+material = ExtResource("11_yigrs")
+position = Vector2(0, 12)
+scale = Vector2(299.999, 114)
+texture = SubResource("GradientTexture2D_mha5w")
+
+[node name="Rain" type="Sprite2D" parent="Body/Camera2D"]
+modulate = Color(1, 1, 1, 0.0117647)
+z_index = 9
+texture_filter = 1
+material = ExtResource("11_i4vq8")
+position = Vector2(-5.99999, -12)
+scale = Vector2(299.999, 114)
+texture = SubResource("GradientTexture2D_oh07r")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Body/Camera2D/Rain"]
+stream = ExtResource("15_p4a21")
+volume_db = -15.0
+
+[node name="ColorRect" type="ColorRect" parent="Body/Camera2D/Rain"]
+visible = false
+offset_left = -45.6284
+offset_top = -47.6291
+offset_right = 2728.37
+offset_bottom = 1666.37
+color = Color(0, 0, 0, 0.137255)
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_wmrfs")
-
-[node name="Attack" type="Node2D" parent="."]
-
-[node name="BulletTimer" type="Timer" parent="Attack"]
-wait_time = 1.5
-
-[node name="BulletAttackTimer" type="Timer" parent="Attack/BulletTimer"]
-wait_time = 0.2
-
-[node name="Gun" type="Sprite2D" parent="Attack"]
-z_index = 3
-texture_filter = 1
-position = Vector2(0, -9.53674e-07)
-scale = Vector2(3, 3)
-texture = ExtResource("6_wh1gl")
 
 [node name="HUD" type="Control" parent="."]
 texture_filter = 1
@@ -601,45 +624,24 @@ offset_right = 1053.0
 offset_bottom = 649.0
 color = Color(0.611765, 0.8, 0.396078, 1)
 
-[node name="Camera2D" type="Camera2D" parent="."]
-scale = Vector2(0.166667, 0.166667)
-process_callback = 0
-position_smoothing_enabled = true
-position_smoothing_speed = 3.0
-
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("11_2uvdb")
 volume_db = -20.0
 
-[node name="TiltShift" type="Sprite2D" parent="."]
-visible = false
-z_index = 10
+[node name="Attack" type="Node2D" parent="."]
+
+[node name="BulletTimer" type="Timer" parent="Attack"]
+wait_time = 1.5
+
+[node name="BulletAttackTimer" type="Timer" parent="Attack/BulletTimer"]
+wait_time = 0.2
+
+[node name="Gun" type="Sprite2D" parent="Attack"]
+z_index = 3
 texture_filter = 1
-material = ExtResource("11_yigrs")
-position = Vector2(0, 2)
-scale = Vector2(50, 19)
-texture = SubResource("GradientTexture2D_mha5w")
-
-[node name="Rain" type="Sprite2D" parent="."]
-modulate = Color(1, 1, 1, 0.0117647)
-z_index = 9
-texture_filter = 1
-material = ExtResource("11_i4vq8")
-position = Vector2(-1, -2)
-scale = Vector2(50, 19)
-texture = SubResource("GradientTexture2D_oh07r")
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Rain"]
-stream = ExtResource("15_p4a21")
-volume_db = -15.0
-
-[node name="ColorRect" type="ColorRect" parent="Rain"]
-visible = false
-offset_left = -45.6284
-offset_top = -47.6291
-offset_right = 2728.37
-offset_bottom = 1666.37
-color = Color(0, 0, 0, 0.137255)
+position = Vector2(0, -9.53674e-07)
+scale = Vector2(3, 3)
+texture = ExtResource("6_wh1gl")
 
 [node name="GUI" type="CanvasLayer" parent="."]
 

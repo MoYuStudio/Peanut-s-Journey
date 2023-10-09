@@ -85,6 +85,7 @@ script = SubResource("GDScript_2w41h")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
 texture = ExtResource("1_iubyv")
+offset = Vector2(0, -0.3)
 hframes = 6
 vframes = 2
 

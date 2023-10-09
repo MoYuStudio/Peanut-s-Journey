@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://d3q784vdwj5jn"]
+[gd_scene load_steps=7 format=3 uid="uid://d3q784vdwj5jn"]
 
 [ext_resource type="Texture2D" uid="uid://12m1rx27uei8" path="res://resource/image/bullet.png" id="1_uu2r1"]
 [ext_resource type="AudioStream" uid="uid://vc6wr7iugdmp" path="res://resource/sound/gun_01.mp3" id="2_22erm"]
@@ -83,6 +83,21 @@ func _on_timer_timeout():
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pp6ma"]
 size = Vector2(12, 12)
 
+[sub_resource type="Curve" id="Curve_tv0se"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="GDScript" id="GDScript_ikcph"]
+script/source = "
+extends Line2D
+
+func _physics_process(delta):
+	var point = get_parent().position
+	add_point(point)
+	if points.size()>6:
+		remove_point(0)
+"
+
 [node name="Bullet" type="Area2D" groups=["attack"]]
 collision_layer = 4
 collision_mask = 4
@@ -107,9 +122,14 @@ autoplay = true
 max_polyphony = 100
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
-visible = false
 scale = Vector2(3, 3)
 shadow_enabled = true
 texture = ExtResource("1_uu2r1")
+
+[node name="Line2D" type="Line2D" parent="."]
+visible = false
+width_curve = SubResource("Curve_tv0se")
+default_color = Color(1, 0.717647, 0, 1)
+script = SubResource("GDScript_ikcph")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
