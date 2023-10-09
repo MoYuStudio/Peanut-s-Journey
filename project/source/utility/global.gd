@@ -18,7 +18,7 @@ var window_vsync_mode_list = []
 var save_dict = {
 	
 		'window_mode':0,
-		'window_size':0,
+		'window_size':1,
 		'window_vsync_mode':0,
 		
 	}

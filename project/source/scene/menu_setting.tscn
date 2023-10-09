@@ -7,6 +7,16 @@
 script/source = "
 extends Node
 
+@onready var window_mode = $TabContainer/显示/MarginContainer/HBoxContainer/Setting/WindowMode
+@onready var window_size = $TabContainer/显示/MarginContainer/HBoxContainer/Setting/WindowSize
+@onready var vsync_mode = $TabContainer/显示/MarginContainer/HBoxContainer/Setting/VsyncMode
+
+func _ready():
+	
+	window_mode.selected = int(Global.save_dict['window_mode'])
+	window_size.selected = int(Global.save_dict['window_size'])
+	pass
+
 func _on_save_button_pressed():
 	Global.setting_set()
 	
