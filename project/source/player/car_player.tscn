@@ -32,18 +32,18 @@ func physics_process(delta):
 # 自定义函数 =============================================================
 
 func control():
-	if Input.is_action_pressed(\"ui_left\"):
+	if Input.is_action_pressed('ui_left'):
 		current_steering_angle = lerp_angle(current_steering_angle, deg_to_rad(-max_steering_angle), steering_speed)
-	elif Input.is_action_pressed(\"ui_right\"):
+	elif Input.is_action_pressed('ui_right'):
 		current_steering_angle = lerp_angle(current_steering_angle, deg_to_rad(max_steering_angle), steering_speed)
 	else:
 		current_steering_angle = lerp_angle(current_steering_angle, 0, 0.1)
 	
 	var target_acc = Vector2()
-	if Input.is_action_pressed(\"ui_up\"):
+	if Input.is_action_pressed('ui_up'):
 		current_acc = lerpf(current_acc, max_acc, 0.05) # 切换档位
 		target_acc = transform.x * current_acc
-	elif Input.is_action_pressed(\"ui_down\"):
+	elif Input.is_action_pressed('ui_down'):
 		target_acc = transform.x * reverse_acc
 		current_acc = 0 # 如果我在刹车，发动机会关闭
 	else:
@@ -71,7 +71,7 @@ func _on_bullet_timer_timeout():
 		# 获取父级的全局旋转
 		#var parent_global_rotation = rotation#+44
 		# 将子弹的方向与父级的旋转保持一致
-		#bullet_attack.rotation = parent_global_rotation
+		# bullet_attack.rotation = $Attack/Gun.rotation
 		
 		# bullet_attack.look_at(bullet_attack.target)
 		add_child(bullet_attack)
