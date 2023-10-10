@@ -29,6 +29,8 @@ func _ready():
 
 	DisplayServer.window_set_title("花生迷途 Peanut's Journey")
 	
+	Engine.set_max_fps(60)
+	
 	# print(DisplayServer.window_get_vsync_mode(0))
 	# DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_DISABLED)
 	# print(DisplayServer.window_get_vsync_mode(0))
