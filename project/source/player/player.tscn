@@ -266,11 +266,7 @@ position_smoothing_enabled = true
 position_smoothing_speed = 6.0
 
 [node name="Collision" parent="Body" index="1"]
-rotation = 1.5708
 debug_color = Color(0, 0.6, 0.701961, 0.419608)
-
-[node name="Sprite" parent="Body" index="2"]
-rotation = 1.5708
 
 [node name="Attack" type="Node2D" parent="Body"]
 position = Vector2(-3.05176e-05, 0)
@@ -365,7 +361,6 @@ damage = 30
 
 [node name="CollisionShape2D" parent="Body/HitBox" index="0"]
 position = Vector2(-0.00244141, -252.001)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_4r74p")
 disabled = true
 
@@ -402,10 +397,10 @@ shape = SubResource("CapsuleShape2D_5drmx")
 modulate = Color(1, 1, 1, 0.784314)
 z_index = 9
 texture_filter = 1
-offset_left = 831.0
-offset_top = 85.0
-offset_right = 847.0
-offset_bottom = 90.0
+offset_left = 91.0
+offset_top = 68.0
+offset_right = 107.0
+offset_bottom = 73.0
 scale = Vector2(16, 16)
 texture_under = ExtResource("5_xx2dh")
 texture_over = ExtResource("6_rtrqa")
@@ -460,8 +455,9 @@ libraries = {
 [node name="InfoBar" type="Control" parent="GUI"]
 layout_mode = 3
 anchors_preset = 0
+offset_top = 98.0
 offset_right = 40.0
-offset_bottom = 40.0
+offset_bottom = 138.0
 
 [node name="Coin" type="Sprite2D" parent="GUI/InfoBar"]
 texture_filter = 1

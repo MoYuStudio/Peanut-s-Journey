@@ -69,11 +69,11 @@ func _on_bullet_timer_timeout():
 		# gun.look_at(bullet_attack.target)
 		bullet_attack.level = bullet_level
 		# 获取父级的全局旋转
-		# var parent_global_rotation = self.global_rotation+44
+		#var parent_global_rotation = rotation#+44
 		# 将子弹的方向与父级的旋转保持一致
-		bullet_attack.rotation = 44
+		#bullet_attack.rotation = parent_global_rotation
 		
-		bullet_attack.look_at(bullet_attack.target)
+		# bullet_attack.look_at(bullet_attack.target)
 		add_child(bullet_attack)
 			
 func get_random_target():
