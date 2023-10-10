@@ -188,7 +188,7 @@ linear_accel_max = 16.0
 scale_min = 9.0
 scale_max = 16.0
 scale_curve = SubResource("CurveTexture_60px3")
-color = Color(1, 1, 1, 0.0627451)
+color = Color(1, 1, 1, 0.12549)
 turbulence_noise_strength = 20.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_c6bq5"]
