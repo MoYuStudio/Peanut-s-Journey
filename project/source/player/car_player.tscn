@@ -16,6 +16,8 @@ func physics_process(delta):
 	camera.global_position = global_position
 	camera.rotation = lerp_angle(camera.rotation, rotation + deg_to_rad(90), 0.1)
 	
+	move_and_slide()
+	
 func _input(event):
 	if Input.is_action_just_pressed(\"ui_cancel\"):
 		get_tree().quit()
@@ -41,6 +43,8 @@ func control():
 "
 
 [node name="CarPlayer" instance=ExtResource("1_ldj6h")]
+collision_layer = 7
+collision_mask = 7
 script = SubResource("GDScript_tuphj")
 
 [node name="Camera" type="Camera2D" parent="." index="0"]

@@ -19,7 +19,7 @@ func _physics_process(delta):
 	if leave_tracks:
 		point = get_parent().global_position
 		add_point(point)
-		if points.size() > 16:
+		if points.size() > 32:
 			remove_point(0)
 	else:
 		if points.size():
