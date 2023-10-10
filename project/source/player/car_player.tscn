@@ -9,8 +9,19 @@ extends Car
 
 @onready var camera = $Camera
 
+var enemy_close = []
+# Attacks
+@onready var gun = $Attack/Gun
+@onready var bullet = preload('res://source/object/bullet.tscn')
+@onready var bullet_timer = $Attack/BulletTimer
+@onready var bullet_attack_timer = $Attack/BulletTimer/BulletAttackTimer
+var bullet_level = 1
+var bullet_attack_speed = 0.1 # 0.1
+
 func _ready():
 	camera.set_as_top_level(true)
+	gun.rotation = 44
+	attack()
 
 func physics_process(delta):
 	camera.global_position = global_position
@@ -19,6 +30,10 @@ func physics_process(delta):
 func _input(event):
 	if Input.is_action_just_pressed(\"ui_cancel\"):
 		get_tree().quit()
+
+
+
+# 自定义函数 =============================================================
 
 func control():
 	if Input.is_action_pressed(\"ui_left\"):
@@ -38,6 +53,47 @@ func control():
 	else:
 		current_acc = lerpf(current_acc, 0, 0.001) # 如果我释放了加速键，发动机会减速但不会立即停止
 	acc = target_acc
+
+func attack():
+	if bullet_level == 0:
+		gun.hide()
+	if bullet_level > 0:
+		gun.show()
+		bullet_timer.wait_time = bullet_attack_speed
+		if bullet_timer.is_stopped():
+			bullet_timer.start()
+
+# 信号 ================================================================
+	
+# 子弹信号
+func _on_bullet_timer_timeout():
+	if len(enemy_close) > 1:
+		var bullet_attack = bullet.instantiate()
+		bullet_attack.target = get_random_target()
+		gun.look_at(bullet_attack.target)
+		bullet_attack.level = bullet_level
+		add_child(bullet_attack)
+			
+func get_random_target():
+	if enemy_close.size() > 0:
+		return enemy_close.pick_random().global_position
+	else:
+		return Vector2.UP
+
+# 敌人检测区域信号
+func _on_enemy_detection_area_body_entered(body):
+	if not enemy_close.has(body):
+		enemy_close.append(body)
+
+func _on_enemy_detection_area_body_exited(body):
+	if enemy_close.has(body):
+		enemy_close.erase(body)
+
+func _on_grab_area_area_entered(area):
+	if area.is_in_group('loot'):
+		area.target = self
+
+
 "
 
 [node name="CarPlayer" groups=["player"] instance=ExtResource("1_ldj6h")]
