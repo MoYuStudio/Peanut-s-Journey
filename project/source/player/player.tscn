@@ -258,17 +258,6 @@ position = Vector2(960, 540)
 script = SubResource("GDScript_penpb")
 
 [node name="Body" parent="." instance=ExtResource("1_pjecn")]
-max_steering_angle = 10
-steering_speed = 0.1
-max_acc = 1200
-reverse_acc = -450
-max_speed_reverse = 250
-friction = -0.2
-drag = -0.001
-drift_speed = 800
-drift_angle = 9
-traction_fast = 0.001
-traction_slow = 0.995
 
 [node name="Camera" parent="Body" index="0"]
 position_smoothing_enabled = true
