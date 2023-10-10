@@ -1,0 +1,537 @@
+[gd_scene load_steps=36 format=3 uid="uid://532f5h24sdvb"]
+
+[ext_resource type="PackedScene" uid="uid://ivo77piqgdfv" path="res://source/player/car_player.tscn" id="1_pjecn"]
+[ext_resource type="PackedScene" uid="uid://5ygp3ic8vnl6" path="res://source/utility/hurtbox.tscn" id="2_d0h3p"]
+[ext_resource type="Texture2D" uid="uid://8r1s6ng6iids" path="res://resource/image/light.png" id="2_dfw68"]
+[ext_resource type="PackedScene" uid="uid://o84475elvy3" path="res://source/utility/hitbox.tscn" id="3_a75go"]
+[ext_resource type="Texture2D" uid="uid://crncesltob5no" path="res://resource/image/line_light.png" id="3_gmr8e"]
+[ext_resource type="Texture2D" uid="uid://cciym2m3cx1ij" path="res://resource/image/steam.png" id="4_6mhbl"]
+[ext_resource type="Texture2D" uid="uid://d4fpxy7ab8r70" path="res://resource/image/gun.png" id="4_6u55u"]
+[ext_resource type="PackedScene" uid="uid://bcjcxpy5noqj8" path="res://source/object/upgrades.tscn" id="4_o18t6"]
+[ext_resource type="FontFile" uid="uid://briod8qq6bg6o" path="res://resource/font/kenney_mini_square_mono.ttf" id="5_cw8sf"]
+[ext_resource type="Texture2D" uid="uid://bvhr66hwk76fl" path="res://resource/image/hp_bar_under.png" id="5_xx2dh"]
+[ext_resource type="Texture2D" uid="uid://l3vbbpxnu51a" path="res://resource/image/hp_bar_over.png" id="6_rtrqa"]
+[ext_resource type="FontFile" uid="uid://c4xqu78o8tn3h" path="res://resource/font/kenney_blocks.ttf" id="6_v6db3"]
+[ext_resource type="Texture2D" uid="uid://6xhyu1mfusrx" path="res://resource/image/coin_sprite.png" id="7_84y2c"]
+[ext_resource type="Texture2D" uid="uid://bvf7unifbeymv" path="res://resource/image/hp_bar_progress.png" id="7_gpa04"]
+[ext_resource type="FontFile" uid="uid://cyvdvdsbhwc8m" path="res://resource/font/kenney_mini_square.ttf" id="8_et2ic"]
+[ext_resource type="AudioStream" uid="uid://ct1oed1nsolof" path="res://resource/sound/car_run.mp3" id="9_yx8xc"]
+
+[sub_resource type="GDScript" id="GDScript_penpb"]
+script/source = "
+extends CharacterBody2D
+
+@onready var body = $Body
+@onready var collision = $CollisionShape2D
+@onready var upgrades_menu = $GUI/Upgrades
+
+# Attacks
+@onready var gun = $Body/Attack/Gun
+@onready var bullet = preload('res://source/object/bullet.tscn')
+@onready var bullet_timer = $Attack/BulletTimer
+@onready var bullet_attack_timer = $Attack/BulletTimer/BulletAttackTimer
+var bullet_level = 1
+var bullet_attack_speed = 0.1 # 0.1
+
+var hp = 100
+
+var money = 0
+@onready var money_label = $GUI/InfoBar/Money
+
+var enemy_close = []
+
+var level_switch = false
+@onready var level = $GUI/Level
+@onready var level_animation = $GUI/Level/AnimationPlayer
+
+# 进程函数 ==============================================================
+
+func _ready():
+	upgrades_menu.visible = false
+	gun.rotation = 44
+	attack()
+	
+func _process(delta):
+	position = body.position
+		
+	if Input.is_action_just_pressed(\"ui_up\"):
+		$Body/HitBox.collision.disabled = false
+		
+	if Input.is_action_just_released(\"ui_up\"):
+		$Body/HitBox.collision.disabled = true
+		
+	if Input.is_action_just_pressed('ui_up') or Input.is_action_just_pressed('ui_down'):
+		$AudioStreamPlayer.play()
+		
+	if Input.is_action_just_released('ui_up') or Input.is_action_just_pressed('ui_down'):
+		$AudioStreamPlayer.stop()
+		
+func _physics_process(delta):
+
+	if hp <= 0:
+		# get_tree().change_scene_to_file('res://source/scene/menu_gameover.tscn')
+		SceneTransition.change_scene('res://source/scene/menu_gameover.tscn')
+
+	$GUI/HP.value = hp
+	money_label.text = str(money)
+
+# 自定义函数 =============================================================
+		
+func attack():
+	if bullet_level == 0:
+		gun.hide()
+	if bullet_level > 0:
+		gun.show()
+		# bullet_timer.wait_time = bullet_attack_speed
+		# if bullet_timer.is_stopped():
+		# 	bullet_timer.start()
+			
+# 信号 ================================================================
+
+# 受伤箱信号
+func _on_hurt_box_hurt(damage, _angle, _knock_back):
+	hp -= damage
+	
+# 子弹信号
+func _on_bullet_timer_timeout():
+	if len(enemy_close) > 1:
+		var bullet_attack = bullet.instantiate()
+		bullet_attack.target = get_random_target()
+		gun.look_at(bullet_attack.target)
+		bullet_attack.level = bullet_level
+		add_child(bullet_attack)
+			
+func get_random_target():
+	if enemy_close.size() > 0:
+		return enemy_close.pick_random().global_position
+	else:
+		return Vector2.UP
+
+# 敌人检测区域信号
+func _on_enemy_detection_area_body_entered(body):
+	if not enemy_close.has(body):
+		enemy_close.append(body)
+
+func _on_enemy_detection_area_body_exited(body):
+	if enemy_close.has(body):
+		enemy_close.erase(body)
+
+func _on_grab_area_area_entered(area):
+	if area.is_in_group('loot'):
+		area.target = self
+
+func _on_collect_area_area_entered(area):
+	if area.is_in_group('loot'):
+		money += area.collect()
+	if area.is_in_group('shop'):
+		get_tree().paused = true
+		upgrades_menu.visible = true
+	if area.is_in_group('next_part'):
+		level_switch = true
+		level.text = str(int(level.text)+1)
+
+# 引擎升级
+func _on_engine_power_slider_value_changed(value):
+	body.engine_power = value
+
+# 转向机升级
+func _on_steering_angle_slider_value_changed(value):
+	body.steering_angle = value
+	
+# 刹车升级
+func _on_breaking_slider_value_changed(value):
+	body.breaking = value
+	
+# 轮胎抓地力升级
+func _on_wheel_friction_slider_value_changed(value):
+	body.slip_speed = value
+
+# 武器升级
+func _on_weapon_up_pressed():
+	if money >= 100:
+		if bullet_level < 5:
+			bullet_level += 1
+			bullet_attack_speed -= 0.01
+			$GUI/Upgrades/Weapon/Speed/HBoxContainer/Value.text = str(bullet_level)
+			money -= 100
+			money_label.text = str(money)
+
+
+
+
+
+
+"
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_plm26"]
+polygon = PackedVector2Array(-42, -24, 42, -24, 42, -18, 48, -18, 48, 18, 42, 18, 42, 24, -42, 24, -42, 18, -48, 18, -48, -18, -42, -18)
+
+[sub_resource type="Curve" id="Curve_bx2t2"]
+_data = [Vector2(0, 0.252632), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_3pncl"]
+curve = SubResource("Curve_bx2t2")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_43hb4"]
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+particle_flag_disable_z = true
+direction = Vector3(-0.1, 0, 0)
+spread = 16.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 64.0
+initial_velocity_max = 256.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+linear_accel_max = 16.0
+scale_min = 9.0
+scale_max = 16.0
+scale_curve = SubResource("CurveTexture_3pncl")
+color = Color(1, 1, 1, 0.0627451)
+turbulence_noise_strength = 20.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_c6bq5"]
+radius = 150.0
+height = 588.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4r74p"]
+size = Vector2(323.999, 71.9997)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2xs8e"]
+radius = 4038.45
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_68vgr"]
+radius = 192.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5drmx"]
+radius = 24.0
+height = 96.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_th72m"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8nfud"]
+
+[sub_resource type="GDScript" id="GDScript_iii5c"]
+script/source = "
+extends Button
+
+@onready var menu_main = preload('res://source/scene/menu_main.tscn')
+
+func _physics_process(delta):
+	if is_pressed():
+		# get_tree().change_scene_to_packed(menu_main)
+		SceneTransition.change_scene('res://source/scene/menu_main.tscn')
+		
+	var viewport_size = get_viewport_rect().size
+	var logo_size = get_rect().size
+	position.x = viewport_size.x - logo_size.x*1.5
+	position.y = logo_size.y/2
+"
+
+[sub_resource type="GDScript" id="GDScript_8bluy"]
+script/source = "
+extends Label
+
+@onready var animation = $AnimationPlayer
+
+func _ready():
+	animation.play('animation')
+
+func _physics_process(delta):
+	var viewport_size = get_viewport_rect().size
+	var logo_size = get_rect().size
+	position.x = viewport_size.x/2 - logo_size.x/2
+	position.y = logo_size.y/2
+
+"
+
+[sub_resource type="Animation" id="Animation_1dnba"]
+resource_name = "animation"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2.5, 4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.784314), Color(1, 1, 1, 0.784314), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_g6giu"]
+_data = {
+"animation": SubResource("Animation_1dnba")
+}
+
+[sub_resource type="GDScript" id="GDScript_iogjg"]
+script/source = "
+extends Sprite2D
+
+@onready var animation = $AnimationPlayer
+
+func _ready():
+	animation.play('animation')
+"
+
+[sub_resource type="Animation" id="Animation_kfeg8"]
+resource_name = "animation"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0, 11]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_scgp6"]
+_data = {
+"animation": SubResource("Animation_kfeg8")
+}
+
+[node name="Player" type="CharacterBody2D" groups=["player"]]
+position = Vector2(960, 540)
+script = SubResource("GDScript_penpb")
+
+[node name="Body" parent="." instance=ExtResource("1_pjecn")]
+max_acc = 500
+drift_speed = 200
+
+[node name="Attack" type="Node2D" parent="Body"]
+position = Vector2(-960, -540)
+
+[node name="BulletTimer" type="Timer" parent="Body/Attack"]
+wait_time = 1.5
+
+[node name="BulletAttackTimer" type="Timer" parent="Body/Attack/BulletTimer"]
+wait_time = 0.2
+
+[node name="Gun" type="Sprite2D" parent="Body/Attack"]
+z_index = 3
+texture_filter = 1
+position = Vector2(960, 540)
+scale = Vector2(3, 3)
+texture = ExtResource("4_6u55u")
+
+[node name="Camera" parent="Body" index="1"]
+position_smoothing_enabled = true
+position_smoothing_speed = 6.0
+
+[node name="Light" type="Node2D" parent="Body"]
+
+[node name="BasicsPointLight" type="PointLight2D" parent="Body/Light"]
+color = Color(1, 0.901961, 0.588235, 1)
+range_item_cull_mask = 13
+shadow_enabled = true
+shadow_filter = 1
+shadow_filter_smooth = 6.0
+shadow_item_cull_mask = 13
+texture = ExtResource("2_dfw68")
+texture_scale = 2.5
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Body/Light"]
+occluder = SubResource("OccluderPolygon2D_plm26")
+occluder_light_mask = 2
+
+[node name="PointLight2D" type="PointLight2D" parent="Body/Light"]
+position = Vector2(48, 0)
+rotation = 1.5708
+scale = Vector2(1.2, 3)
+color = Color(1, 0.901961, 0.588235, 1)
+shadow_enabled = true
+shadow_filter = 1
+shadow_filter_smooth = 6.0
+shadow_item_cull_mask = 13
+texture = ExtResource("3_gmr8e")
+offset = Vector2(0, -133)
+
+[node name="PointLight2D2" type="PointLight2D" parent="Body/Light"]
+position = Vector2(48, 0)
+rotation = 1.5708
+scale = Vector2(1.2, 1.5)
+color = Color(1, 0.901961, 0.588235, 1)
+energy = 0.5
+shadow_enabled = true
+shadow_filter = 1
+shadow_filter_smooth = 6.0
+shadow_item_cull_mask = 13
+texture = ExtResource("3_gmr8e")
+offset = Vector2(0, -133)
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Body"]
+texture_filter = 1
+position = Vector2(-42, -18)
+amount = 64
+process_material = SubResource("ParticleProcessMaterial_43hb4")
+texture = ExtResource("4_6mhbl")
+
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="Body"]
+texture_filter = 1
+position = Vector2(-42, 18)
+amount = 128
+process_material = SubResource("ParticleProcessMaterial_43hb4")
+texture = ExtResource("4_6mhbl")
+
+[node name="HurtBox" parent="Body" instance=ExtResource("2_d0h3p")]
+visible = false
+rotation = 1.5708
+scale = Vector2(0.166667, 0.166667)
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" parent="Body/HurtBox" index="0"]
+shape = SubResource("CapsuleShape2D_c6bq5")
+
+[node name="HitBox" parent="Body" instance=ExtResource("3_a75go")]
+visible = false
+rotation = 1.5708
+scale = Vector2(0.166667, 0.166667)
+collision_layer = 4
+collision_mask = 4
+damage = 30
+
+[node name="CollisionShape2D" parent="Body/HitBox" index="0"]
+position = Vector2(-0.00102992, -288)
+shape = SubResource("RectangleShape2D_4r74p")
+disabled = true
+
+[node name="EnemyDetectionArea" type="Area2D" parent="Body"]
+visible = false
+rotation = 1.5708
+scale = Vector2(0.166667, 0.166667)
+collision_layer = 4
+collision_mask = 4
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Body/EnemyDetectionArea"]
+shape = SubResource("CircleShape2D_2xs8e")
+
+[node name="GrabArea" type="Area2D" parent="Body"]
+visible = false
+rotation = 1.5708
+collision_layer = 8
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Body/GrabArea"]
+shape = SubResource("CircleShape2D_68vgr")
+
+[node name="CollectArea" type="Area2D" parent="Body"]
+visible = false
+rotation = 1.5708
+collision_layer = 8
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Body/CollectArea"]
+shape = SubResource("CapsuleShape2D_5drmx")
+
+[node name="GUI" type="CanvasLayer" parent="."]
+
+[node name="HP" type="TextureProgressBar" parent="GUI"]
+modulate = Color(1, 1, 1, 0.784314)
+z_index = 9
+texture_filter = 1
+offset_left = 831.0
+offset_top = 85.0
+offset_right = 847.0
+offset_bottom = 90.0
+scale = Vector2(16, 16)
+texture_under = ExtResource("5_xx2dh")
+texture_over = ExtResource("6_rtrqa")
+texture_progress = ExtResource("7_gpa04")
+tint_under = Color(0, 0, 0, 0)
+tint_progress = Color(0.305882, 1, 0.12549, 1)
+
+[node name="Upgrades" parent="GUI" instance=ExtResource("4_o18t6")]
+visible = false
+
+[node name="Title" parent="GUI/Upgrades/Weapon" index="0"]
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 354.0
+offset_bottom = 87.0
+
+[node name="Button" parent="GUI/Upgrades/Weapon" index="3"]
+offset_top = 0.0
+offset_right = 23.0
+offset_bottom = 137.0
+
+[node name="ESCButton" type="Button" parent="GUI"]
+texture_filter = 1
+offset_left = 1705.0
+offset_top = 59.0
+offset_right = 1857.0
+offset_bottom = 149.0
+theme_override_fonts/font = ExtResource("5_cw8sf")
+theme_override_font_sizes/font_size = 64
+theme_override_styles/normal = SubResource("StyleBoxEmpty_th72m")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_8nfud")
+text = "ESC"
+flat = true
+script = SubResource("GDScript_iii5c")
+
+[node name="Level" type="Label" parent="GUI"]
+modulate = Color(1, 1, 1, 0.901961)
+offset_left = 921.0
+offset_top = 177.0
+offset_right = 961.0
+offset_bottom = 203.0
+theme_override_fonts/font = ExtResource("6_v6db3")
+theme_override_font_sizes/font_size = 128
+text = "0"
+script = SubResource("GDScript_8bluy")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="GUI/Level"]
+libraries = {
+"": SubResource("AnimationLibrary_g6giu")
+}
+
+[node name="InfoBar" type="Control" parent="GUI"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Coin" type="Sprite2D" parent="GUI/InfoBar"]
+texture_filter = 1
+position = Vector2(128, 128)
+scale = Vector2(6, 6)
+texture = ExtResource("7_84y2c")
+hframes = 6
+vframes = 2
+script = SubResource("GDScript_iogjg")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="GUI/InfoBar/Coin"]
+libraries = {
+"": SubResource("AnimationLibrary_scgp6")
+}
+
+[node name="Money" type="Label" parent="GUI/InfoBar"]
+modulate = Color(1, 1, 1, 0.901961)
+texture_filter = 1
+layout_mode = 2
+offset_left = 180.0
+offset_top = 60.0
+offset_right = 240.0
+offset_bottom = 183.0
+theme_override_fonts/font = ExtResource("8_et2ic")
+theme_override_font_sizes/font_size = 96
+text = "0"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_yx8xc")
+volume_db = -20.0
+
+[editable path="Body"]
+[editable path="Body/HurtBox"]
+[editable path="Body/HitBox"]
+[editable path="GUI/Upgrades"]

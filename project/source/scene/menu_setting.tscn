@@ -88,7 +88,6 @@ theme = ExtResource("2_81j4f")
 theme_override_constants/side_margin = 36
 
 [node name="显示" type="TabBar" parent="TabContainer"]
-visible = false
 layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="TabContainer/显示"]
@@ -209,6 +208,7 @@ text = "窗口位置修复"
 script = SubResource("GDScript_4dl4j")
 
 [node name="音效" type="TabBar" parent="TabContainer"]
+visible = false
 layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="TabContainer/音效"]

@@ -217,10 +217,10 @@ func _physics_process(delta):
 	
 	velocity += acceleration * delta
 	
-	if player != null:
-		# viewport.position = player.position
-		player.velocity = velocity
-		collision.rotation = rotation+89.535
+	#if player != null:
+	#	# viewport.position = player.position
+	#	player.velocity = velocity
+	#	collision.rotation = rotation+89.535
 	position = Vector2.ZERO
 	
 	move_and_slide()

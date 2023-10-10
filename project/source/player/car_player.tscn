@@ -1,0 +1,67 @@
+[gd_scene load_steps=4 format=3 uid="uid://ivo77piqgdfv"]
+
+[ext_resource type="PackedScene" uid="uid://bi6uykfg167sj" path="res://source/player/car.tscn" id="1_ldj6h"]
+[ext_resource type="Texture2D" uid="uid://dehg38xt8tidn" path="res://resource/image/car.png" id="2_mhcvl"]
+
+[sub_resource type="GDScript" id="GDScript_tuphj"]
+script/source = "
+extends Car
+
+@onready var camera = $Camera
+
+func _ready():
+	camera.set_as_top_level(true)
+
+func physics_process(delta):
+	camera.global_position = global_position
+	camera.rotation = lerp_angle(camera.rotation, rotation + deg_to_rad(90), 0.1)
+	
+func _input(event):
+	if Input.is_action_just_pressed(\"ui_cancel\"):
+		get_tree().quit()
+
+func control():
+	if Input.is_action_pressed(\"ui_left\"):
+		current_steering_angle = lerp_angle(current_steering_angle, deg_to_rad(-max_steering_angle), steering_speed)
+	elif Input.is_action_pressed(\"ui_right\"):
+		current_steering_angle = lerp_angle(current_steering_angle, deg_to_rad(max_steering_angle), steering_speed)
+	else:
+		current_steering_angle = lerp_angle(current_steering_angle, 0, 0.1)
+	
+	var target_acc = Vector2()
+	if Input.is_action_pressed(\"ui_up\"):
+		current_acc = lerpf(current_acc, max_acc, 0.05) # 切换档位
+		target_acc = transform.x * current_acc
+	elif Input.is_action_pressed(\"ui_down\"):
+		target_acc = transform.x * reverse_acc
+		current_acc = 0 # 如果我在刹车，发动机会关闭
+	else:
+		current_acc = lerpf(current_acc, 0, 0.001) # 如果我释放了加速键，发动机会减速但不会立即停止
+	acc = target_acc
+"
+
+[node name="CarPlayer" instance=ExtResource("1_ldj6h")]
+script = SubResource("GDScript_tuphj")
+
+[node name="Camera" type="Camera2D" parent="." index="0"]
+rotation = 1.5708
+scale = Vector2(0.5, 0.5)
+ignore_rotation = false
+position_smoothing_speed = 3.0
+rotation_smoothing_speed = 3.0
+
+[node name="Sprite" parent="." index="2"]
+scale = Vector2(6, 6)
+texture = ExtResource("2_mhcvl")
+
+[node name="TrailPos1" parent="." index="3"]
+position = Vector2(-33, -12)
+
+[node name="TrailPos2" parent="." index="4"]
+position = Vector2(30, -12)
+
+[node name="TrailPos3" parent="." index="5"]
+position = Vector2(-33, 12)
+
+[node name="TrailPos4" parent="." index="6"]
+position = Vector2(30, 12)

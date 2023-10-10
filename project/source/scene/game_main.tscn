@@ -1,8 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://bsln5r51b15m3"]
+[gd_scene load_steps=5 format=3 uid="uid://bsln5r51b15m3"]
 
 [ext_resource type="PackedScene" uid="uid://dkfvi3tnhl45p" path="res://source/map/map0.tscn" id="1_g5pqf"]
+[ext_resource type="PackedScene" uid="uid://532f5h24sdvb" path="res://source/player/player.tscn" id="3_wfkt4"]
 [ext_resource type="AudioStream" uid="uid://btfgjlj8ct3sr" path="res://resource/music/The Poisoned Princess - Media Right Productions.mp3" id="3_wg65d"]
-[ext_resource type="PackedScene" uid="uid://c1tw37pkcvsy3" path="res://source/object/player.tscn" id="10_phe80"]
 
 [sub_resource type="GDScript" id="GDScript_ge11n"]
 script/source = "
@@ -13,7 +13,6 @@ extends Node
 @onready var next_part = $Map/TileMap/NextPart
 
 @onready var play = $Player
-@onready var line = $Line
 
 var map_list = []
 
@@ -35,7 +34,6 @@ func _process(delta):
 	pass
 
 func _physics_process(delta):
-	line.run(play.position)
 
 	if enemy_spawner != null:
 		if enemy_spawner.time >= map.map_time and enemy_spawner.my_children.size() <= 1:
@@ -72,24 +70,6 @@ func night_mode_switch_off():
 	
 "
 
-[sub_resource type="GDScript" id="GDScript_fscj6"]
-script/source = "
-extends Node2D
-
-@onready var line1 = $Line2D
-
-func run(pos):
-	var line_x = pos.x
-	var line_y = pos.y
-	line1.add_point(Vector2(pos.x,pos.y))
-	if line1.points.size()>=100:
-		line1.remove_point(0)
-"
-
-[sub_resource type="Curve" id="Curve_7nlie"]
-_data = [Vector2(0, 0), 0.0, 1.00518, 0, 0, Vector2(0.994845, 1), 0.0, 0.0, 0, 0]
-point_count = 2
-
 [node name="Main" type="Node"]
 script = SubResource("GDScript_ge11n")
 
@@ -102,21 +82,8 @@ shadow_item_cull_mask = 15
 
 [node name="Map" parent="." instance=ExtResource("1_g5pqf")]
 
-[node name="Line" type="Node2D" parent="."]
-script = SubResource("GDScript_fscj6")
-
-[node name="Line2D" type="Line2D" parent="Line"]
-width = 32.0
-width_curve = SubResource("Curve_7nlie")
-default_color = Color(0, 0, 0, 0.376471)
-
-[node name="Player" parent="." instance=ExtResource("10_phe80")]
-
-[node name="Light" parent="Player/Body" index="0"]
-visible = false
-
-[node name="BulletAttackTimer2" type="Timer" parent="Player/Attack/BulletTimer" index="0"]
-wait_time = 0.2
+[node name="Player" parent="." instance=ExtResource("3_wfkt4")]
+position = Vector2(-1, 1)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_wg65d")
@@ -127,6 +94,7 @@ autoplay = true
 color = Color(0.0784314, 0.0784314, 0.0784314, 1)
 
 [editable path="Player"]
+[editable path="Player/Body"]
 [editable path="Player/Body/HurtBox"]
 [editable path="Player/Body/HitBox"]
 [editable path="Player/GUI/Upgrades"]
