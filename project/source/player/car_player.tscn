@@ -20,18 +20,14 @@ var bullet_attack_speed = 0.1 # 0.1
 
 func _ready():
 	camera.set_as_top_level(true)
-	gun.rotation = 44
+	# gun.rotation = 44
 	attack()
 
 func physics_process(delta):
 	camera.global_position = global_position
 	camera.rotation = lerp_angle(camera.rotation, rotation + deg_to_rad(90), 0.1)
 	
-func _input(event):
-	if Input.is_action_just_pressed(\"ui_cancel\"):
-		get_tree().quit()
-
-
+	gun.look_at(get_global_mouse_position())
 
 # 自定义函数 =============================================================
 
@@ -69,9 +65,15 @@ func attack():
 func _on_bullet_timer_timeout():
 	if len(enemy_close) > 1:
 		var bullet_attack = bullet.instantiate()
-		bullet_attack.target = get_random_target()
-		gun.look_at(bullet_attack.target)
+		bullet_attack.target = get_global_mouse_position()# get_random_target()
+		# gun.look_at(bullet_attack.target)
 		bullet_attack.level = bullet_level
+		# 获取父级的全局旋转
+		# var parent_global_rotation = self.global_rotation+44
+		# 将子弹的方向与父级的旋转保持一致
+		bullet_attack.rotation = 44
+		
+		bullet_attack.look_at(bullet_attack.target)
 		add_child(bullet_attack)
 			
 func get_random_target():
@@ -102,7 +104,6 @@ collision_mask = 7
 script = SubResource("GDScript_tuphj")
 
 [node name="Camera" type="Camera2D" parent="." index="0"]
-rotation = 1.5708
 scale = Vector2(0.5, 0.5)
 ignore_rotation = false
 position_smoothing_speed = 3.0

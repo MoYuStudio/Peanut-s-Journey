@@ -75,6 +75,7 @@ func night_mode_switch_off():
 script = SubResource("GDScript_ge11n")
 
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
+visible = false
 energy = 0.6
 shadow_color = Color(0.698039, 0.698039, 0.698039, 0)
 shadow_filter = 2
@@ -92,7 +93,7 @@ volume_db = -20.0
 autoplay = true
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
-color = Color(0.0784314, 0.0784314, 0.0784314, 1)
+color = Color(0.141176, 0.141176, 0.141176, 1)
 
 [editable path="Player"]
 [editable path="Player/Body"]
