@@ -33,7 +33,7 @@ func _on_spawn_timer_timeout():
 				while counter < i.enemy_num:
 					if my_children.size() <= enemy_cap:
 						var enemy_spawn = new_enemy.instantiate()
-						enemy_spawn.global_position = get_random_position()
+						enemy_spawn.position = get_random_position()
 						add_child(enemy_spawn)
 					else :
 						enemies_to_spawn.append(new_enemy)
@@ -44,7 +44,7 @@ func _on_spawn_timer_timeout():
 		var counter = 0
 		while counter < spawn_number:
 			var new_enemy = enemies_to_spawn[0].instantiate()
-			new_enemy.global_position = get_random_position()
+			new_enemy.position = get_random_position()
 			add_child(new_enemy)
 			enemies_to_spawn.remove_at(0)
 			counter += 1
@@ -53,10 +53,10 @@ func _on_spawn_timer_timeout():
 func get_random_position():
 	var vpr = get_viewport_rect().size * randf_range(1.1,1.4)
 	
-	var top_left = Vector2(player.global_position.x - vpr.x/1.5, player.global_position.y - vpr.y/1.5)
-	var top_right = Vector2(player.global_position.x + vpr.x/1.5, player.global_position.y - vpr.y/1.5)
-	var bottom_left = Vector2(player.global_position.x - vpr.x/1.5, player.global_position.y + vpr.y/1.5)
-	var bottom_right = Vector2(player.global_position.x + vpr.x/1.5, player.global_position.y + vpr.y/1.5)
+	var top_left = Vector2(player.position.x - vpr.x/2, player.position.y - vpr.y/2)
+	var top_right = Vector2(player.position.x + vpr.x/2, player.position.y - vpr.y/2)
+	var bottom_left = Vector2(player.position.x - vpr.x/2, player.position.y + vpr.y/2)
+	var bottom_right = Vector2(player.position.x + vpr.x/2, player.position.y + vpr.y/2)
 	
 	var pos_side = ['up','down','right','left'].pick_random()
 	

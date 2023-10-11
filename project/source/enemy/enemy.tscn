@@ -15,7 +15,7 @@ extends CharacterBody2D
 
 @export var movement_speed = 100.0
 @export var hp = 10
-@export var knock_back_recovery = 3.5
+@export var knock_back_recovery = 2.5
 var knock_back = Vector2.ZERO
 
 @onready var player = get_tree().get_first_node_in_group('player')
@@ -35,11 +35,11 @@ func _ready():
 	pass
 
 func _physics_process(_delta):
-	knock_back = knock_back.move_toward(Vector2.ZERO, knock_back_recovery)
-	var direction = position.direction_to(player.position)
-	velocity = direction * movement_speed
-	velocity += knock_back
-	$HUD.rotation = -rotation
+	var direction_to_player = global_transform.origin.direction_to(player.global_transform.origin)
+	var local_knock_back = direction_to_player * knock_back.length()
+	velocity = direction_to_player * movement_speed
+	velocity -= local_knock_back
+
 	
 	$HUD/HP.value = hp
 	look_at(player.position)
