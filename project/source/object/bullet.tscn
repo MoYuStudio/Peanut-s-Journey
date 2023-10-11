@@ -23,7 +23,7 @@ var target = Vector2.ZERO
 var angle = Vector2.ZERO
 
 func _ready():
-	angle = global_position.direction_to(target)
+	angle = position.direction_to(target)
 	# rotation = angle.angle() + deg_to_rad(135)
 	match level:
 		0:
@@ -123,18 +123,13 @@ volume_db = -10.0
 autoplay = true
 max_polyphony = 100
 
-[node name="PointLight2D" type="PointLight2D" parent="."]
-visible = false
-scale = Vector2(3, 3)
-shadow_enabled = true
-texture = ExtResource("1_uu2r1")
-
 [node name="Line2D" type="Line2D" parent="."]
 width_curve = SubResource("Curve_tv0se")
 default_color = Color(1, 0.717647, 0, 1)
 script = SubResource("GDScript_ikcph")
 
-[node name="PointLight2D" type="PointLight2D" parent="Line2D"]
+[node name="PointLight2D" type="PointLight2D" parent="."]
+visible = false
 color = Color(1, 0.788235, 0.0117647, 1)
 energy = 0.1
 shadow_enabled = true
