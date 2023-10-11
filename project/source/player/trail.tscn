@@ -29,7 +29,8 @@ func _physics_process(delta):
 "
 
 [node name="Trail" type="Line2D"]
+modulate = Color(1.5, 1.5, 1.5, 1)
 width = 12.0
 width_curve = SubResource("Curve_quj16")
-default_color = Color(0, 0, 0, 0.25098)
+default_color = Color(0.501961, 0.501961, 0.501961, 0.25098)
 script = SubResource("GDScript_q6r1b")

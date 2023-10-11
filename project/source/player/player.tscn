@@ -1,8 +1,9 @@
-[gd_scene load_steps=37 format=3 uid="uid://532f5h24sdvb"]
+[gd_scene load_steps=38 format=3 uid="uid://532f5h24sdvb"]
 
 [ext_resource type="PackedScene" uid="uid://ivo77piqgdfv" path="res://source/player/car_player.tscn" id="1_pjecn"]
 [ext_resource type="PackedScene" uid="uid://5ygp3ic8vnl6" path="res://source/utility/hurtbox.tscn" id="2_d0h3p"]
 [ext_resource type="Texture2D" uid="uid://8r1s6ng6iids" path="res://resource/image/light.png" id="2_dfw68"]
+[ext_resource type="Texture2D" uid="uid://dehg38xt8tidn" path="res://resource/image/car.png" id="2_o5jat"]
 [ext_resource type="PackedScene" uid="uid://o84475elvy3" path="res://source/utility/hitbox.tscn" id="3_a75go"]
 [ext_resource type="Texture2D" uid="uid://crncesltob5no" path="res://resource/image/line_light.png" id="3_gmr8e"]
 [ext_resource type="Texture2D" uid="uid://cciym2m3cx1ij" path="res://resource/image/steam.png" id="4_6mhbl"]
@@ -260,12 +261,23 @@ script = SubResource("GDScript_penpb")
 [node name="Body" parent="." instance=ExtResource("1_pjecn")]
 
 [node name="Camera" parent="Body" index="0"]
-zoom = Vector2(1.5, 1.5)
 position_smoothing_enabled = true
 position_smoothing_speed = 6.0
+rotation_smoothing_enabled = true
+rotation_smoothing_speed = 6.0
 
 [node name="Collision" parent="Body" index="1"]
 debug_color = Color(0, 0.6, 0.701961, 0.419608)
+
+[node name="Sprite" parent="Body" index="2"]
+modulate = Color(1, 1.5, 1.5, 1)
+
+[node name="PointLight2D" type="PointLight2D" parent="Body"]
+visible = false
+texture_filter = 1
+rotation = 1.5708
+scale = Vector2(6, 6)
+texture = ExtResource("2_o5jat")
 
 [node name="Attack" type="Node2D" parent="Body"]
 position = Vector2(-3.05176e-05, 0)
@@ -282,7 +294,12 @@ texture_filter = 1
 scale = Vector2(3, 3)
 texture = ExtResource("4_6u55u")
 
+[node name="PointLight2D" type="PointLight2D" parent="Body/Attack/Gun"]
+visible = false
+texture = ExtResource("4_6u55u")
+
 [node name="Light" type="Node2D" parent="Body"]
+visible = false
 
 [node name="BasicsPointLight" type="PointLight2D" parent="Body/Light"]
 color = Color(1, 0.901961, 0.588235, 1)

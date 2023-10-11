@@ -3,7 +3,7 @@ extends Node
 
 var fullscreen = true
 
-var night_node = true
+var night_node = false
 
 var window_mode_list = [DisplayServer.WINDOW_MODE_WINDOWED,
 						DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN,

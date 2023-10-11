@@ -27,6 +27,10 @@ func physics_process(delta):
 	camera.global_position = global_position
 	camera.rotation = lerp_angle(camera.rotation, rotation + deg_to_rad(90), 0.1)
 	
+	#var mouse_pos = get_local_mouse_position()
+	#var camera_offset = (mouse_pos - global_position) / Vector2(1920.0/2.0, 1080.0/2.0)
+	#camera.offset = camera_offset
+	
 	gun.look_at(get_global_mouse_position())
 
 # 自定义函数 =============================================================

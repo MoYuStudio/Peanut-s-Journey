@@ -305,15 +305,15 @@ radius = 192.0
 radius = 24.0
 height = 96.0
 
-[sub_resource type="Gradient" id="Gradient_go47s"]
+[sub_resource type="Gradient" id="Gradient_2kb47"]
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_mha5w"]
-gradient = SubResource("Gradient_go47s")
+gradient = SubResource("Gradient_2kb47")
 
-[sub_resource type="Gradient" id="Gradient_251bv"]
+[sub_resource type="Gradient" id="Gradient_pxiww"]
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_oh07r"]
-gradient = SubResource("Gradient_251bv")
+gradient = SubResource("Gradient_pxiww")
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wmrfs"]
 radius = 23.0

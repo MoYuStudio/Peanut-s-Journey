@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://bsln5r51b15m3"]
+[gd_scene load_steps=6 format=3 uid="uid://bsln5r51b15m3"]
 
 [ext_resource type="PackedScene" uid="uid://dv4gxfv4kty63" path="res://source/map/map.tscn" id="1_imo37"]
 [ext_resource type="PackedScene" uid="uid://532f5h24sdvb" path="res://source/player/player.tscn" id="3_wfkt4"]
@@ -24,11 +24,12 @@ func _ready():
 	#next_part.visible = false
 	#next_part.collision.disabled = true
 	
-	var night_mode = Global.night_node
-	if night_mode:
-		night_mode_switch_on()
-	else:
-		night_mode_switch_off()
+	#var night_mode = Global.night_node
+	#if night_mode:
+	#	night_mode_switch_on()
+	#else:
+	#	night_mode_switch_off()
+	pass
 
 func _process(delta):
 	pass
@@ -71,16 +72,25 @@ func night_mode_switch_off():
 	
 "
 
+[sub_resource type="Environment" id="Environment_gdbnm"]
+background_mode = 3
+tonemap_mode = 3
+glow_enabled = true
+glow_levels/1 = 1.5
+glow_levels/2 = 1.5
+glow_levels/3 = 1.5
+glow_levels/4 = 1.5
+glow_levels/5 = 1.5
+glow_levels/6 = 1.5
+glow_levels/7 = 1.5
+glow_intensity = 0.3
+glow_blend_mode = 0
+glow_hdr_threshold = 0.41
+glow_hdr_scale = 1.75
+glow_hdr_luminance_cap = 6.61
+
 [node name="Main" type="Node"]
 script = SubResource("GDScript_ge11n")
-
-[node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
-visible = false
-energy = 0.6
-shadow_color = Color(0.698039, 0.698039, 0.698039, 0)
-shadow_filter = 2
-shadow_filter_smooth = 3.0
-shadow_item_cull_mask = 15
 
 [node name="Map" parent="." instance=ExtResource("1_imo37")]
 
@@ -92,9 +102,8 @@ stream = ExtResource("3_wg65d")
 volume_db = -20.0
 autoplay = true
 
-[node name="CanvasModulate" type="CanvasModulate" parent="."]
-visible = false
-color = Color(0.0392157, 0.0392157, 0.0392157, 1)
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_gdbnm")
 
 [editable path="Player"]
 [editable path="Player/Body"]

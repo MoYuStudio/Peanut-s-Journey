@@ -117,17 +117,24 @@ _data = {
 }
 
 [node name="Enemy" type="CharacterBody2D"]
-z_index = -1
 collision_layer = 4
 collision_mask = 4
 safe_margin = 0.1
 script = SubResource("GDScript_3nnkj")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1, 1.5, 1, 1)
 texture_filter = 1
 rotation = 1.5708
 scale = Vector2(6, 6)
 texture = ExtResource("1_8lrat")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+visible = false
+texture_filter = 1
+rotation = 1.5708
+texture = ExtResource("1_8lrat")
+texture_scale = 6.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_3ay8f")
@@ -161,7 +168,6 @@ offset_bottom = 40.0
 [node name="HP" type="TextureProgressBar" parent="HUD"]
 modulate = Color(1, 1, 1, 0.784314)
 texture_filter = 1
-layout_mode = 0
 offset_left = -24.0
 offset_top = -52.0
 offset_right = -8.0
@@ -180,9 +186,9 @@ z_index = 9
 texture_filter = 1
 layout_mode = 0
 offset_left = -16.0
-offset_top = -130.0
+offset_top = -150.0
 offset_right = 64.0
-offset_bottom = 33.0
+offset_bottom = 13.0
 theme_override_colors/font_color = Color(0.933333, 0.196078, 0.027451, 0.784314)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 0.784314)
 theme_override_constants/outline_size = 9
