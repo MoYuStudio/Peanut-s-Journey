@@ -260,6 +260,7 @@ script = SubResource("GDScript_penpb")
 [node name="Body" parent="." instance=ExtResource("1_pjecn")]
 
 [node name="Camera" parent="Body" index="0"]
+zoom = Vector2(1.5, 1.5)
 position_smoothing_enabled = true
 position_smoothing_speed = 6.0
 
