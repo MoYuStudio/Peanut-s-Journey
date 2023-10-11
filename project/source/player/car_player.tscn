@@ -12,7 +12,7 @@ extends Car
 var enemy_close = []
 # Attacks
 @onready var gun = $Attack/Gun
-@onready var bullet = preload('res://source/object/bullet.tscn')
+@onready var bullet = preload('res://source/attack/bullet.tscn')
 @onready var bullet_timer = $Attack/BulletTimer
 @onready var bullet_attack_timer = $Attack/BulletTimer/BulletAttackTimer
 var bullet_level = 1
@@ -65,7 +65,7 @@ func attack():
 func _on_bullet_timer_timeout():
 	if len(enemy_close) > 1:
 		var bullet_attack = bullet.instantiate()
-		bullet_attack.target = get_global_mouse_position()# get_random_target()
+		bullet_attack.target = get_local_mouse_position()# get_random_target()
 		# gun.look_at(bullet_attack.target)
 		bullet_attack.level = bullet_level
 		# 获取父级的全局旋转

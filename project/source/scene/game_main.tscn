@@ -93,6 +93,7 @@ volume_db = -20.0
 autoplay = true
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
+visible = false
 color = Color(0.0392157, 0.0392157, 0.0392157, 1)
 
 [editable path="Player"]
