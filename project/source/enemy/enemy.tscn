@@ -72,6 +72,31 @@ func _on_hurt_box_hurt(damage, angle, knock_back_amount):
 		
 "
 
+[sub_resource type="Curve" id="Curve_0xrda"]
+_data = [Vector2(0, 0.252632), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_60px3"]
+curve = SubResource("Curve_0xrda")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_xrwva"]
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+particle_flag_disable_z = true
+direction = Vector3(-0.1, 0, 0)
+spread = 16.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 64.0
+initial_velocity_max = 256.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+linear_accel_max = 16.0
+scale_min = 9.0
+scale_max = 16.0
+scale_curve = SubResource("CurveTexture_60px3")
+color = Color(1, 1, 1, 0.12549)
+turbulence_noise_strength = 20.0
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3ay8f"]
 radius = 18.0
 height = 36.0
@@ -117,36 +142,23 @@ _data = {
 "animation": SubResource("Animation_hyu54")
 }
 
-[sub_resource type="Curve" id="Curve_0xrda"]
-_data = [Vector2(0, 0.252632), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="CurveTexture" id="CurveTexture_60px3"]
-curve = SubResource("Curve_0xrda")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_xrwva"]
-emission_shape = 3
-emission_box_extents = Vector3(1, 1, 1)
-particle_flag_disable_z = true
-direction = Vector3(-0.1, 0, 0)
-spread = 16.0
-gravity = Vector3(0, 0, 0)
-initial_velocity_min = 64.0
-initial_velocity_max = 256.0
-orbit_velocity_min = 0.0
-orbit_velocity_max = 0.0
-linear_accel_max = 16.0
-scale_min = 9.0
-scale_max = 16.0
-scale_curve = SubResource("CurveTexture_60px3")
-color = Color(1, 1, 1, 0.12549)
-turbulence_noise_strength = 20.0
-
 [node name="Enemy" type="CharacterBody2D"]
 collision_layer = 4
 collision_mask = 4
 safe_margin = 0.1
 script = SubResource("GDScript_3nnkj")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+texture_filter = 1
+position = Vector2(-18, 0)
+amount = 64
+process_material = SubResource("ParticleProcessMaterial_xrwva")
+texture = ExtResource("8_p548k")
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(-18, 0)
+
+[node name="Trail" parent="Marker2D" instance=ExtResource("9_3wavj")]
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
 color = Color(1.50196, 0.0509804, 2.00392, 1)
@@ -224,18 +236,6 @@ libraries = {
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 volume_db = -30.0
 autoplay = true
-
-[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
-texture_filter = 1
-position = Vector2(-18, 0)
-amount = 64
-process_material = SubResource("ParticleProcessMaterial_xrwva")
-texture = ExtResource("8_p548k")
-
-[node name="Marker2D" type="Marker2D" parent="."]
-position = Vector2(-18, 0)
-
-[node name="Trail" parent="Marker2D" instance=ExtResource("9_3wavj")]
 
 [connection signal="hurt" from="HurtBox" to="." method="_on_hurt_box_hurt"]
 
