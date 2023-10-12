@@ -10,7 +10,7 @@ extends Node2D
 
 var time = 0
 
-var enemy_cap = 500
+var enemy_cap = 70
 var enemies_to_spawn = []
 
 var my_children = []
@@ -48,6 +48,8 @@ func _on_spawn_timer_timeout():
 			add_child(new_enemy)
 			enemies_to_spawn.remove_at(0)
 			counter += 1
+			
+	print(enemies_to_spawn.size(),'   ',my_children.size())
 			
 	
 func get_random_position():

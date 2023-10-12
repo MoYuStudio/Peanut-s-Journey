@@ -412,9 +412,9 @@ script = SubResource("GDScript_pr2eo")
 [node name="VBoxContainer" type="VBoxContainer" parent="About"]
 layout_mode = 0
 offset_left = 550.0
-offset_top = -4000.0
+offset_top = 1000.0
 offset_right = 1364.0
-offset_bottom = -520.0
+offset_bottom = 4480.0
 alignment = 1
 
 [node name="Label2" type="Label" parent="About/VBoxContainer"]

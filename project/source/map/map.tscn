@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://dv4gxfv4kty63"]
+[gd_scene load_steps=12 format=3 uid="uid://dv4gxfv4kty63"]
 
 [ext_resource type="Texture2D" uid="uid://bcmtvcjpa48fs" path="res://resource/tile/tilemap.png" id="1_85kdv"]
 [ext_resource type="PackedScene" uid="uid://ckujg6i1b6ujw" path="res://source/utility/enemy_spawner.tscn" id="1_il36e"]
 [ext_resource type="PackedScene" uid="uid://o0wln7a0f0t3" path="res://source/enemy/enemy.tscn" id="2_815g2"]
 [ext_resource type="Script" path="res://source/utility/spawn_info.gd" id="3_op38k"]
 [ext_resource type="Texture2D" uid="uid://8r1s6ng6iids" path="res://resource/image/light.png" id="4_umj47"]
+[ext_resource type="PackedScene" uid="uid://sgcjnmvldx7w" path="res://source/enemy/enemy0.tscn" id="5_wn6pq"]
 
 [sub_resource type="GDScript" id="GDScript_l1exk"]
 script/source = "
@@ -198,17 +199,17 @@ sources/0 = SubResource("TileSetAtlasSource_4u2sl")
 [sub_resource type="Resource" id="Resource_8ohy7"]
 script = ExtResource("3_op38k")
 time_start = 0
-time_end = 10
+time_end = 100
 enemy = ExtResource("2_815g2")
-enemy_num = 3
+enemy_num = 70
 enemy_spawn_delay = 1
 
 [sub_resource type="Resource" id="Resource_w1y88"]
 script = ExtResource("3_op38k")
-time_start = 20
-time_end = 30
-enemy = ExtResource("2_815g2")
-enemy_num = 5
+time_start = 0
+time_end = 100
+enemy = ExtResource("5_wn6pq")
+enemy_num = 35
 enemy_spawn_delay = 1
 
 [node name="Map" type="Node2D"]
