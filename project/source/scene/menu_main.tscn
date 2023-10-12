@@ -244,7 +244,7 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="Polygon2D" type="Polygon2D" parent="Main"]
-color = Color(0.12549, 0.12549, 0.12549, 1)
+color = Color(0.243137, 0.207843, 0.27451, 1)
 polygon = PackedVector2Array(-3665, -1649, -3685, 7339, 4621, 7359, 4675, -1643)
 
 [node name="Light" type="Node2D" parent="Main"]
@@ -252,7 +252,7 @@ polygon = PackedVector2Array(-3665, -1649, -3685, 7339, 4621, 7359, 4675, -1643)
 [node name="PointLight2D" type="PointLight2D" parent="Main/Light"]
 position = Vector2(-122, -68)
 scale = Vector2(1.48633, 1.39766)
-color = Color(1, 0.517647, 0.25098, 1)
+color = Color(0.984314, 0.419608, 0.113725, 1)
 energy = 6.0
 shadow_enabled = true
 texture = ExtResource("4_noqj4")
@@ -261,7 +261,7 @@ texture_scale = 9.0
 [node name="PointLight2D2" type="PointLight2D" parent="Main/Light"]
 position = Vector2(2062, 1862)
 scale = Vector2(1.48633, 1.39766)
-color = Color(0.458824, 0.682353, 1, 1)
+color = Color(0.027451, 0.607843, 0.901961, 1)
 energy = 6.0
 shadow_enabled = true
 texture = ExtResource("4_noqj4")
@@ -270,7 +270,7 @@ texture_scale = 12.0
 [node name="PointLight2D3" type="PointLight2D" parent="Main/Light"]
 position = Vector2(362, 3723)
 scale = Vector2(1.48633, 1.39766)
-color = Color(1, 1, 0.243137, 1)
+color = Color(0.568627, 0.858824, 0.411765, 1)
 energy = 5.0
 shadow_enabled = true
 texture = ExtResource("4_noqj4")
@@ -412,9 +412,9 @@ script = SubResource("GDScript_pr2eo")
 [node name="VBoxContainer" type="VBoxContainer" parent="About"]
 layout_mode = 0
 offset_left = 550.0
-offset_top = 1000.0
+offset_top = 200.0
 offset_right = 1364.0
-offset_bottom = 4480.0
+offset_bottom = 3680.0
 alignment = 1
 
 [node name="Label2" type="Label" parent="About/VBoxContainer"]

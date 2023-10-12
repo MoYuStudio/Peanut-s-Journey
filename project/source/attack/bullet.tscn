@@ -128,8 +128,8 @@ scale_curve = SubResource("CurveTexture_1jafk")
 color = Color(1.5, 1.5, 0.47, 1)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6tk07"]
-radius = 6.0
-height = 31.0
+radius = 9.0
+height = 32.0
 
 [node name="Bullet" type="Area2D" groups=["attack"]]
 collision_layer = 4
@@ -137,8 +137,8 @@ collision_mask = 4
 script = SubResource("GDScript_n4bwb")
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
-color = Color(2, 0.772549, 0, 1)
-polygon = PackedVector2Array(-6, 0, 20, -6, 25, 0, 20, 6)
+color = Color(0.568627, 0.858824, 0.411765, 1)
+polygon = PackedVector2Array(-7, 0, 20, -9, 26, 0, 20, 9)
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="Polygon2D"]
 visible = false

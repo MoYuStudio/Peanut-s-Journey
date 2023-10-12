@@ -273,7 +273,7 @@ texture_under = ExtResource("5_xx2dh")
 texture_over = ExtResource("6_rtrqa")
 texture_progress = ExtResource("7_gpa04")
 tint_under = Color(0, 0, 0, 0)
-tint_progress = Color(0.227451, 2, 0.137255, 1)
+tint_progress = Color(0.117647, 0.737255, 0.45098, 1)
 
 [node name="Collision" parent="Body" index="1"]
 debug_color = Color(0, 0.6, 0.701961, 0.419608)
@@ -283,7 +283,7 @@ visible = false
 modulate = Color(1, 1.5, 1.5, 1)
 
 [node name="Polygon2D" type="Polygon2D" parent="Body"]
-color = Color(0, 1.5, 1.5, 1)
+color = Color(0.3, 0.61, 2, 1)
 polygon = PackedVector2Array(-48, -18, -48, 18, -42, 24, 42, 24, 48, 18, 48, -18, 42, -24, -42, -24)
 
 [node name="Attack" type="Node2D" parent="Body"]
@@ -296,7 +296,7 @@ wait_time = 1.5
 wait_time = 0.2
 
 [node name="Gun" type="Polygon2D" parent="Body/Attack"]
-color = Color(1.5, 1.5, 1.5, 1)
+color = Color(0.560784, 0.827451, 1, 1)
 polygon = PackedVector2Array(6.10352e-05, -9, -8.99994, 0, 6.10352e-05, 9, 30.0001, 6, 30.0001, -6)
 
 [node name="Light" type="Node2D" parent="Body"]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://cor157qmajir"]
 
-[ext_resource type="Texture2D" uid="uid://cciym2m3cx1ij" path="res://resource/image/steam.png" id="1_cyt01"]
+[ext_resource type="Texture2D" uid="uid://bexf5o5rkdmox" path="res://resource/image/blood_low.png" id="1_4o4o3"]
 
 [sub_resource type="GDScript" id="GDScript_5x7pj"]
 script/source = "
@@ -37,9 +37,9 @@ orbit_velocity_min = 0.0
 orbit_velocity_max = 1.0
 linear_accel_max = 32.0
 linear_accel_curve = SubResource("CurveTexture_xxkdq")
-scale_max = 16.0
+scale_max = 12.0
 scale_curve = SubResource("CurveTexture_ofk72")
-color = Color(1.5, 0.42, 0, 1)
+color = Color(0.909804, 0.231373, 0.231373, 1)
 
 [sub_resource type="Animation" id="Animation_i0fjf"]
 resource_name = "animation"
@@ -64,14 +64,13 @@ _data = {
 }
 
 [node name="Blood" type="Node2D"]
-modulate = Color(1, 1, 1, 0)
 script = SubResource("GDScript_5x7pj")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
 texture_filter = 1
 amount = 64
 process_material = SubResource("ParticleProcessMaterial_x4up4")
-texture = ExtResource("1_cyt01")
+texture = ExtResource("1_4o4o3")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
