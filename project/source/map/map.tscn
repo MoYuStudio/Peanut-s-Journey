@@ -23,7 +23,7 @@ func _process(delta):
 [sub_resource type="Resource" id="Resource_8ohy7"]
 script = ExtResource("3_op38k")
 time_start = 0
-time_end = 1000
+time_end = 10000
 enemy = ExtResource("2_815g2")
 enemy_num = 70
 enemy_spawn_delay = 1
@@ -31,7 +31,7 @@ enemy_spawn_delay = 1
 [sub_resource type="Resource" id="Resource_w1y88"]
 script = ExtResource("3_op38k")
 time_start = 0
-time_end = 1000
+time_end = 10000
 enemy = ExtResource("5_wn6pq")
 enemy_num = 35
 enemy_spawn_delay = 1
