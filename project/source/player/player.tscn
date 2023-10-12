@@ -286,9 +286,8 @@ wait_time = 1.5
 wait_time = 0.2
 
 [node name="Gun" type="Polygon2D" parent="Body/Attack"]
-visible = false
 color = Color(1.5, 1.5, 1.5, 1)
-polygon = PackedVector2Array(6.10352e-05, -9, -8.99994, 0, 6.10352e-05, 9, 54.0001, 3, 54.0001, -3)
+polygon = PackedVector2Array(6.10352e-05, -9, -8.99994, 0, 6.10352e-05, 9, 30.0001, 6, 30.0001, -6)
 
 [node name="Light" type="Node2D" parent="Body"]
 
@@ -362,6 +361,7 @@ shape = SubResource("RectangleShape2D_4r74p")
 disabled = true
 
 [node name="EnemyDetectionArea" type="Area2D" parent="Body"]
+visible = false
 scale = Vector2(0.166667, 0.166667)
 collision_layer = 4
 collision_mask = 4
