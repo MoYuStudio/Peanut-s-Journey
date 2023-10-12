@@ -10,7 +10,7 @@ extends Node2D
 
 var time = 0
 
-var enemy_cap = 70
+var enemy_cap = 60
 var enemies_to_spawn = []
 
 var my_children = []

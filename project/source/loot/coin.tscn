@@ -94,7 +94,7 @@ script = SubResource("GDScript_2w41h")
 [node name="Coin" type="Sprite2D" parent="."]
 modulate = Color(1.5, 1.5, 1, 1)
 texture_filter = 1
-scale = Vector2(0.6, 0.6)
+scale = Vector2(0.3, 0.3)
 texture = ExtResource("2_3c277")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
