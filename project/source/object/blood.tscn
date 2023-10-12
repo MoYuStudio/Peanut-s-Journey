@@ -1,11 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://dnvmjkdpqytsk"]
+[gd_scene load_steps=10 format=3 uid="uid://cor157qmajir"]
 
-[ext_resource type="Texture2D" uid="uid://cmligav026enw" path="res://resource/image/blood.png" id="1_y5lt5"]
-[ext_resource type="AudioStream" uid="uid://bf3u8c1vd25g0" path="res://resource/sound/enemy_death.mp3" id="2_wrdx5"]
+[ext_resource type="Texture2D" uid="uid://cciym2m3cx1ij" path="res://resource/image/steam.png" id="1_cyt01"]
 
-[sub_resource type="GDScript" id="GDScript_afk56"]
+[sub_resource type="GDScript" id="GDScript_5x7pj"]
 script/source = "
-extends Sprite2D
+extends Node2D
 
 func _ready():
 	rotation = randi_range(0,360)
@@ -14,54 +13,79 @@ func _ready():
 	queue_free()
 "
 
-[sub_resource type="Animation" id="Animation_45mdx"]
+[sub_resource type="Curve" id="Curve_q4fre"]
+min_value = -200.0
+max_value = 200.0
+_data = [Vector2(0, -200), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_xxkdq"]
+curve = SubResource("Curve_q4fre")
+
+[sub_resource type="Curve" id="Curve_f6nin"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_ofk72"]
+curve = SubResource("Curve_f6nin")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_x4up4"]
+emission_shape = 3
+emission_box_extents = Vector3(64, 64, 64)
+particle_flag_disable_z = true
+orbit_velocity_min = 0.0
+orbit_velocity_max = 1.0
+linear_accel_max = 32.0
+linear_accel_curve = SubResource("CurveTexture_xxkdq")
+scale_max = 16.0
+scale_curve = SubResource("CurveTexture_ofk72")
+color = Color(1.5, 0.42, 0, 1)
+
+[sub_resource type="Animation" id="Animation_i0fjf"]
 resource_name = "animation"
 length = 12.0
-step = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:scale")
-tracks/0/interp = 2
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.5, 6, 12),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(0, 0), Vector2(6, 6)]
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath(".:modulate")
+tracks/1/path = NodePath(".:scale")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(11, 12),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.5, 6, 12),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 0.784314), Color(1, 1, 1, 0)]
+"values": [Vector2(1e-05, 1e-05), Vector2(1, 1), Vector2(1, 1), Vector2(0, 0)]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_q2fwu"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_43w7n"]
 _data = {
-"animation": SubResource("Animation_45mdx")
+"animation": SubResource("Animation_i0fjf")
 }
 
-[node name="Blood" type="Sprite2D"]
-modulate = Color(1.50196, 1, 1, 1)
-z_index = -1
-texture_filter = 1
+[node name="Blood" type="Node2D"]
+modulate = Color(1, 1, 1, 0)
 scale = Vector2(1e-05, 1e-05)
-texture = ExtResource("1_y5lt5")
-script = SubResource("GDScript_afk56")
+script = SubResource("GDScript_5x7pj")
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("2_wrdx5")
-volume_db = -15.0
-autoplay = true
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+texture_filter = 1
+amount = 64
+process_material = SubResource("ParticleProcessMaterial_x4up4")
+texture = ExtResource("1_cyt01")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_q2fwu")
+"": SubResource("AnimationLibrary_43w7n")
 }

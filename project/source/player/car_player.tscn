@@ -77,7 +77,7 @@ func _on_bullet_timer_timeout():
 		# 将子弹的方向与父级的旋转保持一致
 		# bullet_attack.rotation = $Attack/Gun.rotation
 		
-		# bullet_attack.look_at(bullet_attack.target)
+		bullet_attack.look_at(bullet_attack.target)
 		add_child(bullet_attack)
 			
 func get_random_target():

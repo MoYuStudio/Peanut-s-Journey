@@ -1,19 +1,18 @@
-[gd_scene load_steps=15 format=3 uid="uid://o0wln7a0f0t3"]
+[gd_scene load_steps=14 format=3 uid="uid://o0wln7a0f0t3"]
 
-[ext_resource type="Texture2D" uid="uid://dd5qoikkws2ep" path="res://resource/image/enemy0.png" id="1_8lrat"]
 [ext_resource type="PackedScene" uid="uid://5ygp3ic8vnl6" path="res://source/utility/hurtbox.tscn" id="2_ggsfu"]
 [ext_resource type="PackedScene" uid="uid://o84475elvy3" path="res://source/utility/hitbox.tscn" id="3_1im1y"]
 [ext_resource type="Texture2D" uid="uid://bvhr66hwk76fl" path="res://resource/image/hp_bar_under.png" id="4_4v00r"]
 [ext_resource type="Texture2D" uid="uid://l3vbbpxnu51a" path="res://resource/image/hp_bar_over.png" id="5_ldmkq"]
 [ext_resource type="Texture2D" uid="uid://bvf7unifbeymv" path="res://resource/image/hp_bar_progress.png" id="6_spi3s"]
 [ext_resource type="FontFile" uid="uid://bxkcgrk5xuhuc" path="res://resource/font/kenney_mini.ttf" id="7_heglm"]
-[ext_resource type="AudioStream" uid="uid://cec6ejlhxk36l" path="res://resource/sound/enemy_sound.mp3" id="7_t38y1"]
+[ext_resource type="AudioStream" uid="uid://bjuo3dwiu2kc8" path="res://resource/sound/glass_004.ogg" id="8_tqfgg"]
 
 [sub_resource type="GDScript" id="GDScript_3nnkj"]
 script/source = "
 extends CharacterBody2D
 
-@export var movement_speed = 100.0
+@export var movement_speed = 600.0
 @export var hp = 10
 @export var knock_back_recovery = 2.5
 var knock_back = Vector2.ZERO
@@ -72,16 +71,16 @@ func _on_hurt_box_hurt(damage, angle, knock_back_amount):
 "
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3ay8f"]
-radius = 12.0
-height = 38.0
+radius = 18.0
+height = 36.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_e3hjc"]
 radius = 20.0
-height = 52.0
+height = 40.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5yeo4"]
 radius = 19.0
-height = 50.0
+height = 38.0
 
 [sub_resource type="Animation" id="Animation_hyu54"]
 resource_name = "animation"
@@ -122,19 +121,9 @@ collision_mask = 4
 safe_margin = 0.1
 script = SubResource("GDScript_3nnkj")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-modulate = Color(1, 1.5, 1, 1)
-texture_filter = 1
-rotation = 1.5708
-scale = Vector2(6, 6)
-texture = ExtResource("1_8lrat")
-
-[node name="PointLight2D" type="PointLight2D" parent="."]
-visible = false
-texture_filter = 1
-rotation = 1.5708
-texture = ExtResource("1_8lrat")
-texture_scale = 6.0
+[node name="Polygon2D" type="Polygon2D" parent="."]
+color = Color(1.50196, 0.0509804, 2.00392, 1)
+polygon = PackedVector2Array(-18, -11, -18, 12, 0, 19, 19, 0, 0, -19)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_3ay8f")
@@ -149,6 +138,9 @@ hitbox_type = 1
 position = Vector2(-42.3167, 84.8457)
 shape = SubResource("CapsuleShape2D_e3hjc")
 
+[node name="AudioStreamPlayer2D" parent="HurtBox" index="2"]
+stream = ExtResource("8_tqfgg")
+
 [node name="HitBox" parent="." instance=ExtResource("3_1im1y")]
 position = Vector2(42.3167, -84.8457)
 collision_layer = 2
@@ -160,6 +152,7 @@ position = Vector2(-42.3167, 84.8457)
 shape = SubResource("CapsuleShape2D_5yeo4")
 
 [node name="HUD" type="Control" parent="."]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
@@ -168,6 +161,7 @@ offset_bottom = 40.0
 [node name="HP" type="TextureProgressBar" parent="HUD"]
 modulate = Color(1, 1, 1, 0.784314)
 texture_filter = 1
+layout_mode = 0
 offset_left = -24.0
 offset_top = -52.0
 offset_right = -8.0
@@ -181,14 +175,13 @@ tint_under = Color(0, 0, 0, 0)
 tint_progress = Color(0.305882, 1, 0.12549, 1)
 
 [node name="HurtSign" type="Label" parent="HUD"]
-modulate = Color(1, 1, 1, 0)
 z_index = 9
 texture_filter = 1
 layout_mode = 0
 offset_left = -16.0
-offset_top = -150.0
+offset_top = -130.0
 offset_right = 64.0
-offset_bottom = 13.0
+offset_bottom = 33.0
 theme_override_colors/font_color = Color(0.933333, 0.196078, 0.027451, 0.784314)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 0.784314)
 theme_override_constants/outline_size = 9
@@ -202,7 +195,6 @@ libraries = {
 }
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("7_t38y1")
 volume_db = -30.0
 autoplay = true
 

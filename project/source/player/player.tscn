@@ -1,23 +1,20 @@
-[gd_scene load_steps=38 format=3 uid="uid://532f5h24sdvb"]
+[gd_scene load_steps=35 format=3 uid="uid://532f5h24sdvb"]
 
 [ext_resource type="PackedScene" uid="uid://ivo77piqgdfv" path="res://source/player/car_player.tscn" id="1_pjecn"]
 [ext_resource type="PackedScene" uid="uid://5ygp3ic8vnl6" path="res://source/utility/hurtbox.tscn" id="2_d0h3p"]
-[ext_resource type="Texture2D" uid="uid://8r1s6ng6iids" path="res://resource/image/light.png" id="2_dfw68"]
-[ext_resource type="Texture2D" uid="uid://dehg38xt8tidn" path="res://resource/image/car.png" id="2_o5jat"]
 [ext_resource type="PackedScene" uid="uid://o84475elvy3" path="res://source/utility/hitbox.tscn" id="3_a75go"]
 [ext_resource type="Texture2D" uid="uid://crncesltob5no" path="res://resource/image/line_light.png" id="3_gmr8e"]
 [ext_resource type="Texture2D" uid="uid://cciym2m3cx1ij" path="res://resource/image/steam.png" id="4_6mhbl"]
-[ext_resource type="Texture2D" uid="uid://d4fpxy7ab8r70" path="res://resource/image/gun.png" id="4_6u55u"]
 [ext_resource type="PackedScene" uid="uid://bcjcxpy5noqj8" path="res://source/object/upgrades.tscn" id="4_o18t6"]
 [ext_resource type="FontFile" uid="uid://briod8qq6bg6o" path="res://resource/font/kenney_mini_square_mono.ttf" id="5_cw8sf"]
 [ext_resource type="Texture2D" uid="uid://bvhr66hwk76fl" path="res://resource/image/hp_bar_under.png" id="5_xx2dh"]
 [ext_resource type="Texture2D" uid="uid://l3vbbpxnu51a" path="res://resource/image/hp_bar_over.png" id="6_rtrqa"]
 [ext_resource type="FontFile" uid="uid://c4xqu78o8tn3h" path="res://resource/font/kenney_blocks.ttf" id="6_v6db3"]
-[ext_resource type="Texture2D" uid="uid://6xhyu1mfusrx" path="res://resource/image/coin_sprite.png" id="7_84y2c"]
 [ext_resource type="Texture2D" uid="uid://bvf7unifbeymv" path="res://resource/image/hp_bar_progress.png" id="7_gpa04"]
 [ext_resource type="AudioStream" uid="uid://bi8vm6gy2kx53" path="res://resource/sound/hit.ogg" id="7_hdkaj"]
 [ext_resource type="FontFile" uid="uid://cyvdvdsbhwc8m" path="res://resource/font/kenney_mini_square.ttf" id="8_et2ic"]
 [ext_resource type="AudioStream" uid="uid://ct1oed1nsolof" path="res://resource/sound/car_run.mp3" id="9_yx8xc"]
+[ext_resource type="Texture2D" uid="uid://dtf7belqtuddo" path="res://resource/image/coin.png" id="15_ip6k4"]
 
 [sub_resource type="GDScript" id="GDScript_penpb"]
 script/source = "
@@ -26,6 +23,7 @@ extends Node2D
 @onready var body = $Body
 @onready var collision = $CollisionShape2D
 @onready var upgrades_menu = $GUI/Upgrades
+@onready var hp_bar = $Body/Camera/HP
 
 var hp = 100
 
@@ -62,7 +60,7 @@ func _physics_process(delta):
 		# get_tree().change_scene_to_file('res://source/scene/menu_gameover.tscn')
 		SceneTransition.change_scene('res://source/scene/menu_gameover.tscn')
 
-	$GUI/HP.value = hp
+	hp_bar.value = hp
 	money_label.text = str(money)
 
 
@@ -119,7 +117,7 @@ func _on_weapon_up_pressed():
 "
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_plm26"]
-polygon = PackedVector2Array(-42, -24, 42, -24, 42, -18, 48, -18, 48, 18, 42, 18, 42, 24, -42, 24, -42, 18, -48, 18, -48, -18, -42, -18)
+polygon = PackedVector2Array(-42, -24, 42, -24, 42, -24, 48, -18, 48, 18, 42, 24, 42, 24, -42, 24, -42, 24, -48, 18, -48, -18, -42, -24)
 
 [sub_resource type="Curve" id="Curve_bx2t2"]
 _data = [Vector2(0, 0.252632), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
@@ -222,37 +220,24 @@ _data = {
 "animation": SubResource("Animation_1dnba")
 }
 
-[sub_resource type="GDScript" id="GDScript_iogjg"]
-script/source = "
-extends Sprite2D
+[sub_resource type="Curve" id="Curve_r1g3g"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
 
-@onready var animation = $AnimationPlayer
+[sub_resource type="CurveTexture" id="CurveTexture_ogekt"]
+curve = SubResource("Curve_r1g3g")
 
-func _ready():
-	animation.play('animation')
-"
-
-[sub_resource type="Animation" id="Animation_kfeg8"]
-resource_name = "animation"
-length = 2.0
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0, 11]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_scgp6"]
-_data = {
-"animation": SubResource("Animation_kfeg8")
-}
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_tneac"]
+emission_shape = 3
+emission_box_extents = Vector3(6, 6, 6)
+particle_flag_disable_z = true
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.01
+linear_accel_max = 16.0
+damping_max = 16.0
+scale_max = 6.0
+scale_curve = SubResource("CurveTexture_ogekt")
+color = Color(3, 0.890196, 0, 1)
 
 [node name="Player" type="Node2D"]
 position = Vector2(960, 540)
@@ -266,18 +251,30 @@ position_smoothing_speed = 6.0
 rotation_smoothing_enabled = true
 rotation_smoothing_speed = 6.0
 
+[node name="HP" type="TextureProgressBar" parent="Body/Camera" index="0"]
+z_index = 9
+texture_filter = 1
+offset_left = -126.0
+offset_top = -330.0
+offset_right = -110.0
+offset_bottom = -325.0
+scale = Vector2(16, 16)
+texture_under = ExtResource("5_xx2dh")
+texture_over = ExtResource("6_rtrqa")
+texture_progress = ExtResource("7_gpa04")
+tint_under = Color(0, 0, 0, 0)
+tint_progress = Color(0.39, 1.5, 0.15, 1)
+
 [node name="Collision" parent="Body" index="1"]
 debug_color = Color(0, 0.6, 0.701961, 0.419608)
 
 [node name="Sprite" parent="Body" index="2"]
+visible = false
 modulate = Color(1, 1.5, 1.5, 1)
 
-[node name="PointLight2D" type="PointLight2D" parent="Body"]
-visible = false
-texture_filter = 1
-rotation = 1.5708
-scale = Vector2(6, 6)
-texture = ExtResource("2_o5jat")
+[node name="Polygon2D" type="Polygon2D" parent="Body"]
+color = Color(0, 1.5, 1.5, 1)
+polygon = PackedVector2Array(-48, -18, -48, 18, -42, 24, 42, 24, 48, 18, 48, -18, 42, -24, -42, -24)
 
 [node name="Attack" type="Node2D" parent="Body"]
 position = Vector2(-3.05176e-05, 0)
@@ -288,28 +285,12 @@ wait_time = 1.5
 [node name="BulletAttackTimer" type="Timer" parent="Body/Attack/BulletTimer"]
 wait_time = 0.2
 
-[node name="Gun" type="Sprite2D" parent="Body/Attack"]
-z_index = 3
-texture_filter = 1
-scale = Vector2(3, 3)
-texture = ExtResource("4_6u55u")
-
-[node name="PointLight2D" type="PointLight2D" parent="Body/Attack/Gun"]
+[node name="Gun" type="Polygon2D" parent="Body/Attack"]
 visible = false
-texture = ExtResource("4_6u55u")
+color = Color(1.5, 1.5, 1.5, 1)
+polygon = PackedVector2Array(6.10352e-05, -9, -8.99994, 0, 6.10352e-05, 9, 54.0001, 3, 54.0001, -3)
 
 [node name="Light" type="Node2D" parent="Body"]
-visible = false
-
-[node name="BasicsPointLight" type="PointLight2D" parent="Body/Light"]
-color = Color(1, 0.901961, 0.588235, 1)
-range_item_cull_mask = 13
-shadow_enabled = true
-shadow_filter = 1
-shadow_filter_smooth = 6.0
-shadow_item_cull_mask = 13
-texture = ExtResource("2_dfw68")
-texture_scale = 2.5
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="Body/Light"]
 occluder = SubResource("OccluderPolygon2D_plm26")
@@ -344,14 +325,14 @@ offset = Vector2(0, -133)
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="Body/Smoke"]
 texture_filter = 1
-position = Vector2(-42, -18)
+position = Vector2(-33, -12)
 amount = 64
 process_material = SubResource("ParticleProcessMaterial_43hb4")
 texture = ExtResource("4_6mhbl")
 
 [node name="GPUParticles2D2" type="GPUParticles2D" parent="Body/Smoke"]
 texture_filter = 1
-position = Vector2(-42, 18)
+position = Vector2(-33, 12)
 amount = 128
 process_material = SubResource("ParticleProcessMaterial_43hb4")
 texture = ExtResource("4_6mhbl")
@@ -408,21 +389,6 @@ shape = SubResource("CapsuleShape2D_5drmx")
 
 [node name="GUI" type="CanvasLayer" parent="."]
 
-[node name="HP" type="TextureProgressBar" parent="GUI"]
-modulate = Color(1, 1, 1, 0.784314)
-z_index = 9
-texture_filter = 1
-offset_left = 91.0
-offset_top = 68.0
-offset_right = 107.0
-offset_bottom = 73.0
-scale = Vector2(16, 16)
-texture_under = ExtResource("5_xx2dh")
-texture_over = ExtResource("6_rtrqa")
-texture_progress = ExtResource("7_gpa04")
-tint_under = Color(0, 0, 0, 0)
-tint_progress = Color(0.305882, 1, 0.12549, 1)
-
 [node name="Upgrades" parent="GUI" instance=ExtResource("4_o18t6")]
 visible = false
 
@@ -470,23 +436,15 @@ libraries = {
 [node name="InfoBar" type="Control" parent="GUI"]
 layout_mode = 3
 anchors_preset = 0
-offset_top = 98.0
 offset_right = 40.0
-offset_bottom = 138.0
+offset_bottom = 40.0
 
-[node name="Coin" type="Sprite2D" parent="GUI/InfoBar"]
+[node name="GPUParticles2D" type="GPUParticles2D" parent="GUI/InfoBar"]
 texture_filter = 1
-position = Vector2(128, 128)
-scale = Vector2(6, 6)
-texture = ExtResource("7_84y2c")
-hframes = 6
-vframes = 2
-script = SubResource("GDScript_iogjg")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="GUI/InfoBar/Coin"]
-libraries = {
-"": SubResource("AnimationLibrary_scgp6")
-}
+position = Vector2(122, 132)
+amount = 16
+process_material = SubResource("ParticleProcessMaterial_tneac")
+texture = ExtResource("15_ip6k4")
 
 [node name="Money" type="Label" parent="GUI/InfoBar"]
 modulate = Color(1, 1, 1, 0.901961)
