@@ -57,6 +57,7 @@ func collide(delta):
 	var collision = move_and_collide(vel * delta)
 	if collision:
 		vel = vel.slide(collision.get_normal()) # 使用super.lerp(vel.bounce(collision.normal), 0.1)来滑行
+		
 		rotation = lerp_angle(rotation, vel.angle(), 0.1)
 	
 func apply_friction():

@@ -100,6 +100,7 @@ texture = ExtResource("4_umj47")
 texture_scale = 8.0
 
 [node name="Wall" type="Node2D" parent="."]
+z_index = 3
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Wall"]
 position = Vector2(-1525, 1012)
