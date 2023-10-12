@@ -227,7 +227,7 @@ layer_0/tile_data = PackedInt32Array(-262154, 262144, 1, -196618, 262144, 1, -13
 [node name="Polygon2D" type="Polygon2D" parent="."]
 z_index = -10
 color = Color(0.113725, 0.137255, 0.160784, 1)
-polygon = PackedVector2Array(-44073, -32398, -46889, 30834, 44887, 34162, 40791, -34446)
+polygon = PackedVector2Array(-69651, -44664, -75411, 54280, 65288, 55379, 64520, -46253)
 
 [node name="EnemySpawner" parent="." instance=ExtResource("1_il36e")]
 spawns = Array[ExtResource("3_op38k")]([SubResource("Resource_8ohy7"), SubResource("Resource_w1y88")])

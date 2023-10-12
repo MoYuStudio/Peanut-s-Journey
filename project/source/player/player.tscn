@@ -39,7 +39,6 @@ var level_switch = false
 func _ready():
 	upgrades_menu.visible = false
 	
-	
 func _process(delta):
 		
 	if Input.is_action_just_pressed('ui_up'):
@@ -62,8 +61,6 @@ func _physics_process(delta):
 
 	hp_bar.value = hp
 	money_label.text = str(money)
-
-
 			
 			
 # 信号 ================================================================
@@ -432,8 +429,8 @@ script = SubResource("GDScript_iii5c")
 modulate = Color(1, 1, 1, 0.901961)
 offset_left = 921.0
 offset_top = 177.0
-offset_right = 961.0
-offset_bottom = 203.0
+offset_right = 1017.0
+offset_bottom = 372.0
 theme_override_fonts/font = ExtResource("6_v6db3")
 theme_override_font_sizes/font_size = 128
 text = "0"
@@ -457,7 +454,6 @@ scale = Vector2(6, 6)
 texture = ExtResource("7_84y2c")
 hframes = 6
 vframes = 2
-frame = 1
 script = SubResource("GDScript_n5roj")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="GUI/InfoBar/Sprite2D"]
