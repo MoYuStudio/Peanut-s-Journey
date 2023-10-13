@@ -35,6 +35,16 @@ var level_switch = false
 @onready var level = $GUI/Level
 @onready var level_animation = $GUI/Level/AnimationPlayer
 
+var enemy_close = []
+
+# Attacks
+@onready var gun = $Body/Attack/Gun
+@onready var bullet = preload('res://source/attack/bullet.tscn')
+@onready var bullet_timer = $Body/Attack/BulletTimer
+@onready var bullet_attack_timer = $Body/Attack/BulletTimer/BulletAttackTimer
+var bullet_level = 5
+var bullet_attack_speed = 0.1 # 0.1
+
 @onready var wall = preload('res://source/attack/wall.tscn')
 var wall_level = 1
 
@@ -43,6 +53,7 @@ var wall_level = 1
 func _ready():
 	
 	paused_menu.visible = false
+	attack()
 	
 func _process(delta):
 	if Input.is_action_just_pressed('ui_cancel'):
@@ -70,6 +81,8 @@ func _physics_process(delta):
 	hp_bar.value = hp
 	money_label.text = str(money)
 	
+	gun.look_at(get_global_mouse_position())
+	
 	if Input.is_action_just_pressed('ui_select'):
 		if money >= 50:
 			money -= 50
@@ -82,7 +95,37 @@ func _physics_process(delta):
 			add_child(wall_attack)
 	
 
+func attack():
+	if bullet_level == 0:
+		gun.hide()
+	if bullet_level > 0:
+		gun.show()
+		bullet_timer.wait_time = bullet_attack_speed
+		if bullet_timer.is_stopped():
+			bullet_timer.start()
+
 # 信号 ================================================================
+
+# 子弹信号
+func _on_bullet_timer_timeout():
+	if len(enemy_close) > 1:
+		var bullet_attack = bullet.instantiate()
+		# bullet_attack.target = get_local_mouse_position()# get_random_target()
+		bullet_attack.level = bullet_level
+		bullet_attack.position = body.position
+		# bullet_attack.rotation = gun.rotation + 44
+		bullet_attack.target = get_global_mouse_position() # body.get_global_mouse_position()
+		bullet_attack.look_at(get_global_mouse_position())
+		# gun.look_at(get_global_mouse_position())
+		get_parent().add_child(bullet_attack)
+		
+		
+			
+func get_random_target():
+	if enemy_close.size() > 0:
+		return enemy_close.pick_random().global_position
+	else:
+		return Vector2.UP
 
 # 受伤箱信号
 func _on_hurt_box_hurt(damage, _angle, _knock_back):
@@ -95,6 +138,19 @@ func _on_collect_area_area_entered(area):
 	if area.is_in_group('next_part'):
 		level_switch = true
 		level.text = str(int(level.text)+1)
+
+# 敌人检测区域信号
+func _on_enemy_detection_area_body_entered(body):
+	if not enemy_close.has(body):
+		enemy_close.append(body)
+
+func _on_enemy_detection_area_body_exited(body):
+	if enemy_close.has(body):
+		enemy_close.erase(body)
+
+func _on_grab_area_area_entered(area):
+	if area.is_in_group('loot'):
+		area.target = self
 
 # 引擎升级
 func _on_engine_power_slider_value_changed(value):
@@ -484,11 +540,11 @@ text = "0"
 stream = ExtResource("9_yx8xc")
 volume_db = -20.0
 
-[connection signal="timeout" from="Body/Attack/BulletTimer" to="Body" method="_on_bullet_timer_timeout"]
+[connection signal="timeout" from="Body/Attack/BulletTimer" to="." method="_on_bullet_timer_timeout"]
 [connection signal="hurt" from="Body/HurtBox" to="." method="_on_hurt_box_hurt"]
-[connection signal="body_entered" from="Body/EnemyDetectionArea" to="Body" method="_on_enemy_detection_area_body_entered"]
-[connection signal="body_exited" from="Body/EnemyDetectionArea" to="Body" method="_on_enemy_detection_area_body_exited"]
-[connection signal="area_entered" from="Body/GrabArea" to="Body" method="_on_grab_area_area_entered"]
+[connection signal="body_entered" from="Body/EnemyDetectionArea" to="." method="_on_enemy_detection_area_body_entered"]
+[connection signal="body_exited" from="Body/EnemyDetectionArea" to="." method="_on_enemy_detection_area_body_exited"]
+[connection signal="area_entered" from="Body/GrabArea" to="." method="_on_grab_area_area_entered"]
 [connection signal="area_entered" from="Body/CollectArea" to="." method="_on_collect_area_area_entered"]
 
 [editable path="Body"]

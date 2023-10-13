@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://d3q784vdwj5jn"]
+[gd_scene load_steps=16 format=3 uid="uid://d3q784vdwj5jn"]
 
 [ext_resource type="AudioStream" uid="uid://cp8p0u6eprt76" path="res://resource/sound/glass_002.ogg" id="2_5lsd2"]
+[ext_resource type="Texture2D" uid="uid://bexf5o5rkdmox" path="res://resource/image/blood_low.png" id="2_fohtw"]
 
 [sub_resource type="GDScript" id="GDScript_n4bwb"]
 script/source = "
@@ -85,8 +86,69 @@ func _on_timer_timeout():
 "
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6tk07"]
-radius = 9.0
-height = 32.0
+height = 34.0
+
+[sub_resource type="Curve" id="Curve_lxl2k"]
+min_value = -360.0
+max_value = 360.0
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 64.4211), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_ourq8"]
+curve = SubResource("Curve_lxl2k")
+
+[sub_resource type="Curve" id="Curve_dq3io"]
+min_value = -360.0
+max_value = 360.0
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 360), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_glskc"]
+curve = SubResource("Curve_dq3io")
+
+[sub_resource type="Curve" id="Curve_aiei7"]
+min_value = -200.0
+max_value = 200.0
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 200), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_n7psi"]
+curve = SubResource("Curve_aiei7")
+
+[sub_resource type="Curve" id="Curve_ktsef"]
+min_value = -500.0
+max_value = 500.0
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 194.737), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_012gk"]
+curve = SubResource("Curve_ktsef")
+
+[sub_resource type="Curve" id="Curve_yaesc"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_smvbt"]
+curve = SubResource("Curve_yaesc")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_d0bar"]
+emission_shape = 3
+emission_box_extents = Vector3(3, 3, 3)
+particle_flag_disable_z = true
+direction = Vector3(-10, 0, 0)
+spread = 5.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_max = 1000.0
+angular_velocity_curve = SubResource("CurveTexture_glskc")
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+orbit_velocity_curve = SubResource("CurveTexture_012gk")
+linear_accel_curve = SubResource("CurveTexture_n7psi")
+angle_max = 90.0
+angle_curve = SubResource("CurveTexture_ourq8")
+scale_max = 5.0
+scale_curve = SubResource("CurveTexture_smvbt")
+color = Color(0.984314, 1, 0.52549, 0.784314)
 
 [node name="Bullet" type="Area2D" groups=["attack"]]
 collision_layer = 4
@@ -94,12 +156,10 @@ collision_mask = 4
 script = SubResource("GDScript_n4bwb")
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
-position = Vector2(62, 0)
 color = Color(0.568627, 0.858824, 0.411765, 1)
-polygon = PackedVector2Array(-62, 0, 8, -9, 16, 0, 8, 9)
+polygon = PackedVector2Array(-17, 0, 8, -9, 14, 0, 8, 9)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(62, 0)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_6tk07")
 
@@ -112,5 +172,12 @@ stream = ExtResource("2_5lsd2")
 volume_db = -10.0
 autoplay = true
 max_polyphony = 100
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+texture_filter = 1
+position = Vector2(-17, 0)
+amount = 16
+process_material = SubResource("ParticleProcessMaterial_d0bar")
+texture = ExtResource("2_fohtw")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
