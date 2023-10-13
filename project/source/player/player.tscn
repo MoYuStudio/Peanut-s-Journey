@@ -108,16 +108,16 @@ func attack():
 
 # 子弹信号
 func _on_bullet_timer_timeout():
-	if len(enemy_close) > 1:
-		var bullet_attack = bullet.instantiate()
-		# bullet_attack.target = get_local_mouse_position()# get_random_target()
-		bullet_attack.level = bullet_level
-		bullet_attack.position = body.position
-		# bullet_attack.rotation = gun.rotation + 44
-		bullet_attack.target = get_global_mouse_position() # body.get_global_mouse_position()
-		bullet_attack.look_at(get_global_mouse_position())
-		# gun.look_at(get_global_mouse_position())
-		get_parent().add_child(bullet_attack)
+	# if len(enemy_close) > 1:
+	var bullet_attack = bullet.instantiate()
+	# bullet_attack.target = get_local_mouse_position()# get_random_target()
+	bullet_attack.level = bullet_level
+	bullet_attack.position = body.position
+	# bullet_attack.rotation = gun.rotation + 44
+	bullet_attack.target = get_global_mouse_position() # body.get_global_mouse_position()
+	bullet_attack.look_at(get_global_mouse_position())
+	# gun.look_at(get_global_mouse_position())
+	get_parent().add_child(bullet_attack)
 		
 		
 			
@@ -150,7 +150,7 @@ func _on_enemy_detection_area_body_exited(body):
 
 func _on_grab_area_area_entered(area):
 	if area.is_in_group('loot'):
-		area.target = self
+		area.target = body
 
 # 引擎升级
 func _on_engine_power_slider_value_changed(value):

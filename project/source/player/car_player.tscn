@@ -9,15 +9,10 @@ extends Car
 
 @onready var camera = $Camera
 
-
-
-
-
-
 func _ready():
+	camera.rotation = 90
 	camera.set_as_top_level(true)
 	# gun.rotation = 44
-	
 
 func physics_process(delta):
 	camera.global_position = global_position
