@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://o0wln7a0f0t3" path="res://source/enemy/enemy.tscn" id="1_xwxav"]
 
 [node name="Enemy" instance=ExtResource("1_xwxav")]
-movement_speed = 900.0
+movement_speed = 700.0
 knock_back_recovery = 1.5
 
 [node name="Polygon2D" parent="." index="2"]
