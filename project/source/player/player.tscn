@@ -28,7 +28,7 @@ extends Node2D
 
 var hp = 100
 
-var money = 0
+var money = 10000
 @onready var money_label = $GUI/InfoBar/Money
 
 var level_switch = false
@@ -411,9 +411,17 @@ color = Color(0, 0, 0, 0.25098)
 
 [node name="VBoxContainer" parent="GUI/Paused/Panel/TabContainer/升级/TabContainer/武器升级" index="0"]
 layout_mode = 0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 489.0
+offset_bottom = 638.0
 
 [node name="VBoxContainer" parent="GUI/Paused/Panel/TabContainer/升级/TabContainer/车辆升级" index="0"]
 layout_mode = 0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 797.0
+offset_bottom = 638.0
 
 [node name="ContinueButton" parent="GUI/Paused/VBoxContainer" index="1"]
 theme_override_styles/normal = SubResource("StyleBoxEmpty_tgo26")

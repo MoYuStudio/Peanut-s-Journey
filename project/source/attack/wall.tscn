@@ -1,16 +1,20 @@
-[gd_scene load_steps=3 format=3 uid="uid://d2k1tgb4hoh3"]
+[gd_scene load_steps=5 format=3 uid="uid://d2k1tgb4hoh3"]
+
+[ext_resource type="PackedScene" uid="uid://o84475elvy3" path="res://source/utility/hitbox.tscn" id="1_ke12r"]
 
 [sub_resource type="GDScript" id="GDScript_ov1d2"]
-script/source = "extends Area2D
+script/source = "
+extends StaticBody2D
 
 @onready var player = get_tree().get_first_node_in_group('player')
+@onready var timer = $Timer
 
 signal remove_from_array(object)
 
 var level = 1
-var hp = 50
-var speed = 100
-var damage = 30
+var hp = 1
+var speed = 0
+var damage = 10
 var knock_back = 300
 var attack_size = 1.0
 
@@ -18,7 +22,6 @@ var target = Vector2.ZERO
 var angle = Vector2.ZERO
 
 func _ready():
-	
 	match level:
 		0:
 			hp = 0
@@ -27,9 +30,9 @@ func _ready():
 			knock_back = 0
 			attack_size = 0
 		1:
-			hp = 50
-			speed = 100
-			damage = 30
+			hp = 1
+			speed = 0
+			damage = 10
 			knock_back = 300
 			attack_size = 1.0
 
@@ -42,28 +45,47 @@ func enemy_hit(charge = 1):
 		emit_signal('remove_from_array',self)
 		queue_free()
 		
-
 func _on_timer_timeout():
 	emit_signal('remove_from_array',self)
 	queue_free()
 "
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ltrjx"]
-size = Vector2(32, 256)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bhwpv"]
+radius = 15.0
+height = 254.0
 
-[node name="Wall" type="Area2D" groups=["attack"]]
-collision_layer = 5
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hnm8w"]
+radius = 18.0
+height = 262.0
+
+[node name="Wall" type="StaticBody2D" groups=["attack"]]
 script = SubResource("GDScript_ov1d2")
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
+position = Vector2(-111, 0)
 color = Color(0.560784, 0.972549, 0.886275, 1)
 polygon = PackedVector2Array(16, -101, 0, -128, -16, -102, -16, 103, 0, 128, 16, 103)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_ltrjx")
+position = Vector2(-111, 0)
+shape = SubResource("CapsuleShape2D_bhwpv")
 
 [node name="Timer" type="Timer" parent="."]
+wait_time = 9.0
+one_shot = true
+autostart = true
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 
+[node name="HitBox" parent="." instance=ExtResource("1_ke12r")]
+collision_layer = 4
+collision_mask = 4
+damage = 10
+
+[node name="CollisionShape2D" parent="HitBox" index="0"]
+position = Vector2(-111, 0)
+shape = SubResource("CapsuleShape2D_hnm8w")
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+
+[editable path="HitBox"]
