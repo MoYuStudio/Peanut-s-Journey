@@ -37,7 +37,7 @@ orbit_velocity_min = 0.0
 orbit_velocity_max = 1.0
 linear_accel_max = 32.0
 linear_accel_curve = SubResource("CurveTexture_xxkdq")
-scale_max = 12.0
+scale_max = 16.0
 scale_curve = SubResource("CurveTexture_ofk72")
 color = Color(0.909804, 0.231373, 0.231373, 1)
 
@@ -64,11 +64,12 @@ _data = {
 }
 
 [node name="Blood" type="Node2D"]
+z_index = -3
 script = SubResource("GDScript_5x7pj")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
 texture_filter = 1
-amount = 64
+amount = 16
 process_material = SubResource("ParticleProcessMaterial_x4up4")
 texture = ExtResource("1_4o4o3")
 
