@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://d3q784vdwj5jn"]
+[gd_scene load_steps=4 format=3 uid="uid://d3q784vdwj5jn"]
 
 [ext_resource type="AudioStream" uid="uid://cp8p0u6eprt76" path="res://resource/sound/glass_002.ogg" id="2_5lsd2"]
 
@@ -84,49 +84,6 @@ func _on_timer_timeout():
 	queue_free()
 "
 
-[sub_resource type="Curve" id="Curve_2k70k"]
-min_value = -360.0
-max_value = 360.0
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.975904, 162.947), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="CurveTexture" id="CurveTexture_o2hyq"]
-curve = SubResource("Curve_2k70k")
-
-[sub_resource type="Curve" id="Curve_oy017"]
-min_value = -200.0
-max_value = 200.0
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 23.1579), 16.6415, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="CurveTexture" id="CurveTexture_fqrgk"]
-curve = SubResource("Curve_oy017")
-
-[sub_resource type="Curve" id="Curve_oxr5v"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="CurveTexture" id="CurveTexture_1jafk"]
-curve = SubResource("Curve_oxr5v")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_q8hog"]
-emission_shape = 3
-emission_box_extents = Vector3(6, 6, 1)
-particle_flag_disable_z = true
-direction = Vector3(0, 0, 0)
-gravity = Vector3(-6, 0, 0)
-orbit_velocity_min = 0.0
-orbit_velocity_max = 0.01
-linear_accel_max = 16.0
-linear_accel_curve = SubResource("CurveTexture_fqrgk")
-damping_max = 1.0
-angle_max = 360.0
-angle_curve = SubResource("CurveTexture_o2hyq")
-scale_min = 0.0
-scale_max = 3.0
-scale_curve = SubResource("CurveTexture_1jafk")
-color = Color(1.5, 1.5, 0.47, 1)
-
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6tk07"]
 radius = 9.0
 height = 32.0
@@ -139,12 +96,6 @@ script = SubResource("GDScript_n4bwb")
 [node name="Polygon2D" type="Polygon2D" parent="."]
 color = Color(0.568627, 0.858824, 0.411765, 1)
 polygon = PackedVector2Array(-7, 0, 20, -9, 26, 0, 20, 9)
-
-[node name="GPUParticles2D" type="GPUParticles2D" parent="Polygon2D"]
-visible = false
-position = Vector2(-3, 0)
-amount = 16
-process_material = SubResource("ParticleProcessMaterial_q8hog")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(9.5, 0)

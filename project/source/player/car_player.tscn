@@ -10,6 +10,7 @@ extends Car
 @onready var camera = $Camera
 
 var enemy_close = []
+
 # Attacks
 @onready var gun = $Attack/Gun
 @onready var bullet = preload('res://source/attack/bullet.tscn')
@@ -17,6 +18,7 @@ var enemy_close = []
 @onready var bullet_attack_timer = $Attack/BulletTimer/BulletAttackTimer
 var bullet_level = 5
 var bullet_attack_speed = 0.1 # 0.1
+
 
 func _ready():
 	camera.set_as_top_level(true)
@@ -32,7 +34,9 @@ func physics_process(delta):
 	#camera.offset = camera_offset
 	
 	gun.look_at(get_global_mouse_position())
-
+	
+	
+	
 # 自定义函数 =============================================================
 
 func control():
@@ -70,13 +74,7 @@ func _on_bullet_timer_timeout():
 	if len(enemy_close) > 1:
 		var bullet_attack = bullet.instantiate()
 		bullet_attack.target = get_local_mouse_position()# get_random_target()
-		# gun.look_at(bullet_attack.target)
 		bullet_attack.level = bullet_level
-		# 获取父级的全局旋转
-		#var parent_global_rotation = rotation#+44
-		# 将子弹的方向与父级的旋转保持一致
-		# bullet_attack.rotation = $Attack/Gun.rotation
-		
 		bullet_attack.look_at(bullet_attack.target)
 		add_child(bullet_attack)
 			
@@ -85,7 +83,7 @@ func get_random_target():
 		return enemy_close.pick_random().global_position
 	else:
 		return Vector2.UP
-
+		
 # 敌人检测区域信号
 func _on_enemy_detection_area_body_entered(body):
 	if not enemy_close.has(body):
@@ -98,6 +96,9 @@ func _on_enemy_detection_area_body_exited(body):
 func _on_grab_area_area_entered(area):
 	if area.is_in_group('loot'):
 		area.target = self
+
+
+
 
 
 "

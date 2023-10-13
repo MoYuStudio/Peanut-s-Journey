@@ -34,6 +34,10 @@ var level_switch = false
 @onready var level = $GUI/Level
 @onready var level_animation = $GUI/Level/AnimationPlayer
 
+@onready var wall = preload('res://source/attack/wall.tscn')
+var wall_level = 1
+
+
 # 进程函数 ==============================================================
 
 func _ready():
@@ -54,6 +58,7 @@ func _process(delta):
 		$AudioStreamPlayer.stop()
 		
 func _physics_process(delta):
+	
 
 	if hp <= 0:
 		# get_tree().change_scene_to_file('res://source/scene/menu_gameover.tscn')
@@ -61,6 +66,16 @@ func _physics_process(delta):
 
 	hp_bar.value = hp
 	money_label.text = str(money)
+	
+	if Input.is_action_just_pressed('ui_select'):
+		if money >= 30:
+			money -= 30
+			var wall_attack = wall.instantiate()
+			wall_attack.target = body.position
+			wall_attack.level = wall_level
+			wall_attack.position = body.position
+			wall_attack.rotation = body.rotation
+			add_child(wall_attack)
 			
 			
 # 信号 ================================================================
