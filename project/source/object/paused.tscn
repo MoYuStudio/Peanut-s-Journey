@@ -1,6 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://jyvwhoign4cl"]
+[gd_scene load_steps=9 format=3 uid="uid://jyvwhoign4cl"]
 
+[ext_resource type="Theme" uid="uid://bhr73i44c1buj" path="res://resource/theme/paused.tres" id="1_ngxqj"]
 [ext_resource type="Theme" uid="uid://cwvilb81l6i31" path="res://resource/theme/moyu.tres" id="1_raj6w"]
+[ext_resource type="Texture2D" uid="uid://dehg38xt8tidn" path="res://resource/image/car.png" id="2_0rhkp"]
 
 [sub_resource type="GDScript" id="GDScript_llmkc"]
 script/source = "
@@ -48,19 +50,33 @@ offset_left = 86.0
 offset_top = 76.0
 offset_right = 1444.0
 offset_bottom = 994.0
+theme = ExtResource("1_ngxqj")
 
 [node name="TabContainer" type="TabContainer" parent="Panel"]
 texture_filter = 1
 layout_mode = 2
-offset_left = -5.0
-offset_top = 5.0
-offset_right = 1351.0
+offset_top = 1.0
+offset_right = 1357.0
 offset_bottom = 918.0
-theme = ExtResource("1_raj6w")
+theme = ExtResource("1_ngxqj")
 tab_alignment = 1
 
 [node name="状态" type="TabBar" parent="Panel/TabContainer"]
 layout_mode = 2
+
+[node name="Car" type="Sprite2D" parent="Panel/TabContainer/状态"]
+texture_filter = 1
+position = Vector2(392, 407)
+scale = Vector2(16, 16)
+texture = ExtResource("2_0rhkp")
+
+[node name="Label" type="Label" parent="Panel/TabContainer/状态"]
+layout_mode = 0
+offset_left = 972.0
+offset_top = 705.0
+offset_right = 1236.0
+offset_bottom = 771.0
+text = "空格放置道具"
 
 [node name="升级" type="TabBar" parent="Panel/TabContainer"]
 visible = false
@@ -71,36 +87,134 @@ texture_filter = 1
 layout_mode = 2
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = 31.0
-offset_bottom = 93.0
-theme = ExtResource("1_raj6w")
+offset_left = 36.0
+offset_top = 15.0
+offset_right = -38.0
+offset_bottom = -53.0
+theme = ExtResource("1_ngxqj")
 tab_alignment = 1
 
 [node name="基础升级" type="TabBar" parent="Panel/TabContainer/升级/TabContainer"]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Panel/TabContainer/升级/TabContainer/基础升级"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/TabContainer/升级/TabContainer/基础升级"]
 layout_mode = 0
-offset_right = 670.0
-offset_bottom = 436.0
+offset_left = 40.0
+offset_top = 40.0
+offset_right = 529.0
+offset_bottom = 678.0
+theme = ExtResource("1_ngxqj")
+
+[node name="Label3" type="Label" parent="Panel/TabContainer/升级/TabContainer/基础升级/VBoxContainer"]
+layout_mode = 2
+text = "血量上限"
+
+[node name="Label2" type="Label" parent="Panel/TabContainer/升级/TabContainer/基础升级/VBoxContainer"]
+layout_mode = 2
+text = "回血速度"
+
+[node name="Label" type="Label" parent="Panel/TabContainer/升级/TabContainer/基础升级/VBoxContainer"]
+layout_mode = 2
+text = "拾取范围"
+
+[node name="Label4" type="Label" parent="Panel/TabContainer/升级/TabContainer/基础升级/VBoxContainer"]
+layout_mode = 2
+text = "撞击伤害"
+
+[node name="Label6" type="Label" parent="Panel/TabContainer/升级/TabContainer/基础升级/VBoxContainer"]
+layout_mode = 2
+text = "金钱掉落"
+
+[node name="Label5" type="Label" parent="Panel/TabContainer/升级/TabContainer/基础升级/VBoxContainer"]
+layout_mode = 2
+text = "金钱倍数"
 
 [node name="武器升级" type="TabBar" parent="Panel/TabContainer/升级/TabContainer"]
 visible = false
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Panel/TabContainer/升级/TabContainer/武器升级"]
-layout_mode = 0
-offset_right = 670.0
-offset_bottom = 436.0
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/TabContainer/升级/TabContainer/武器升级"]
+offset_left = 40.0
+offset_top = 40.0
+offset_right = 529.0
+offset_bottom = 678.0
+theme = ExtResource("1_ngxqj")
+
+[node name="Label3" type="Label" parent="Panel/TabContainer/升级/TabContainer/武器升级/VBoxContainer"]
+layout_mode = 2
+text = "机炮"
+
+[node name="Label2" type="Label" parent="Panel/TabContainer/升级/TabContainer/武器升级/VBoxContainer"]
+layout_mode = 2
+text = "冰墙"
 
 [node name="车辆升级" type="TabBar" parent="Panel/TabContainer/升级/TabContainer"]
 visible = false
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Panel/TabContainer/升级/TabContainer/车辆升级"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/TabContainer/升级/TabContainer/车辆升级"]
+offset_left = 40.0
+offset_top = 40.0
+offset_right = 837.0
+offset_bottom = 678.0
+theme = ExtResource("1_ngxqj")
+
+[node name="Label3" type="Label" parent="Panel/TabContainer/升级/TabContainer/车辆升级/VBoxContainer"]
+layout_mode = 2
+text = "前后轮之间的距离 wheel_base"
+
+[node name="Label4" type="Label" parent="Panel/TabContainer/升级/TabContainer/车辆升级/VBoxContainer"]
+layout_mode = 2
+text = "马力 max_acc "
+
+[node name="Label6" type="Label" parent="Panel/TabContainer/升级/TabContainer/车辆升级/VBoxContainer"]
+layout_mode = 2
+text = "倒车马力 reverse_acc"
+
+[node name="Label5" type="Label" parent="Panel/TabContainer/升级/TabContainer/车辆升级/VBoxContainer"]
+layout_mode = 2
+text = "漂移起始速度 drift_speed"
+
+[node name="Label" type="Label" parent="Panel/TabContainer/升级/TabContainer/车辆升级/VBoxContainer"]
+layout_mode = 2
+text = "前轮最大转角 max_steering_angle"
+
+[node name="Label2" type="Label" parent="Panel/TabContainer/升级/TabContainer/车辆升级/VBoxContainer"]
+layout_mode = 2
+text = "转角速度 steering_speed"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Panel/TabContainer/升级/TabContainer/车辆升级"]
 layout_mode = 0
-offset_right = 670.0
-offset_bottom = 436.0
+offset_left = 897.0
+offset_top = 43.0
+offset_right = 1277.0
+offset_bottom = 709.0
+theme = ExtResource("1_raj6w")
+theme_override_constants/separation = 25
+
+[node name="HSlider" type="HSlider" parent="Panel/TabContainer/升级/TabContainer/车辆升级/VBoxContainer2"]
+custom_minimum_size = Vector2(96, 48)
+layout_mode = 2
+
+[node name="HSlider2" type="HSlider" parent="Panel/TabContainer/升级/TabContainer/车辆升级/VBoxContainer2"]
+custom_minimum_size = Vector2(96, 48)
+layout_mode = 2
+
+[node name="HSlider3" type="HSlider" parent="Panel/TabContainer/升级/TabContainer/车辆升级/VBoxContainer2"]
+custom_minimum_size = Vector2(96, 48)
+layout_mode = 2
+
+[node name="HSlider4" type="HSlider" parent="Panel/TabContainer/升级/TabContainer/车辆升级/VBoxContainer2"]
+custom_minimum_size = Vector2(96, 48)
+layout_mode = 2
+
+[node name="HSlider5" type="HSlider" parent="Panel/TabContainer/升级/TabContainer/车辆升级/VBoxContainer2"]
+custom_minimum_size = Vector2(96, 48)
+layout_mode = 2
+
+[node name="HSlider6" type="HSlider" parent="Panel/TabContainer/升级/TabContainer/车辆升级/VBoxContainer2"]
+custom_minimum_size = Vector2(96, 48)
+layout_mode = 2
 
 [node name="设置" type="TabBar" parent="Panel/TabContainer"]
 visible = false

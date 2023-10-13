@@ -7,13 +7,13 @@
 [ext_resource type="Texture2D" uid="uid://cciym2m3cx1ij" path="res://resource/image/steam.png" id="4_6mhbl"]
 [ext_resource type="Texture2D" uid="uid://bvhr66hwk76fl" path="res://resource/image/hp_bar_under.png" id="5_xx2dh"]
 [ext_resource type="Texture2D" uid="uid://l3vbbpxnu51a" path="res://resource/image/hp_bar_over.png" id="6_rtrqa"]
-[ext_resource type="FontFile" uid="uid://c4xqu78o8tn3h" path="res://resource/font/kenney_blocks.ttf" id="6_v6db3"]
 [ext_resource type="Texture2D" uid="uid://6xhyu1mfusrx" path="res://resource/image/coin_sprite.png" id="7_84y2c"]
 [ext_resource type="Texture2D" uid="uid://bvf7unifbeymv" path="res://resource/image/hp_bar_progress.png" id="7_gpa04"]
 [ext_resource type="AudioStream" uid="uid://bi8vm6gy2kx53" path="res://resource/sound/hit.ogg" id="7_hdkaj"]
 [ext_resource type="FontFile" uid="uid://cyvdvdsbhwc8m" path="res://resource/font/kenney_mini_square.ttf" id="8_et2ic"]
 [ext_resource type="AudioStream" uid="uid://ct1oed1nsolof" path="res://resource/sound/car_run.mp3" id="9_yx8xc"]
 [ext_resource type="PackedScene" uid="uid://jyvwhoign4cl" path="res://source/object/paused.tscn" id="10_vioqe"]
+[ext_resource type="FontFile" uid="uid://oruarptxiatl" path="res://resource/font/ZCOOLXiaoWei-Regular.ttf" id="11_m3jf2"]
 
 [sub_resource type="GDScript" id="GDScript_penpb"]
 script/source = "
@@ -37,7 +37,6 @@ var level_switch = false
 
 @onready var wall = preload('res://source/attack/wall.tscn')
 var wall_level = 1
-
 
 # 进程函数 ==============================================================
 
@@ -197,7 +196,7 @@ func _physics_process(delta):
 	var viewport_size = get_viewport_rect().size
 	var logo_size = get_rect().size
 	position.x = viewport_size.x/2 - logo_size.x/2
-	position.y = logo_size.y/2
+	position.y = logo_size.y
 
 "
 
@@ -405,6 +404,16 @@ shape = SubResource("CapsuleShape2D_5drmx")
 [node name="GUI" type="CanvasLayer" parent="."]
 
 [node name="Paused" parent="GUI" instance=ExtResource("10_vioqe")]
+visible = false
+
+[node name="ColorRect" parent="GUI/Paused" index="0"]
+color = Color(0, 0, 0, 0.25098)
+
+[node name="VBoxContainer" parent="GUI/Paused/Panel/TabContainer/升级/TabContainer/武器升级" index="0"]
+layout_mode = 0
+
+[node name="VBoxContainer" parent="GUI/Paused/Panel/TabContainer/升级/TabContainer/车辆升级" index="0"]
+layout_mode = 0
 
 [node name="ContinueButton" parent="GUI/Paused/VBoxContainer" index="1"]
 theme_override_styles/normal = SubResource("StyleBoxEmpty_tgo26")
@@ -416,13 +425,13 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_7sw7j")
 
 [node name="Level" type="Label" parent="GUI"]
 modulate = Color(1, 1, 1, 0.901961)
-offset_left = 921.0
-offset_top = 177.0
-offset_right = 1017.0
-offset_bottom = 372.0
-theme_override_fonts/font = ExtResource("6_v6db3")
+offset_left = 692.0
+offset_top = 192.0
+offset_right = 1216.0
+offset_bottom = 324.0
+theme_override_fonts/font = ExtResource("11_m3jf2")
 theme_override_font_sizes/font_size = 128
-text = "0"
+text = "初始台地"
 script = SubResource("GDScript_8bluy")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="GUI/Level"]
@@ -438,7 +447,7 @@ offset_bottom = 40.0
 
 [node name="Sprite2D" type="Sprite2D" parent="GUI/InfoBar"]
 texture_filter = 1
-position = Vector2(108, 124)
+position = Vector2(145, 133)
 scale = Vector2(6, 6)
 texture = ExtResource("7_84y2c")
 hframes = 6
@@ -454,10 +463,10 @@ libraries = {
 modulate = Color(1, 1, 1, 0.901961)
 texture_filter = 1
 layout_mode = 2
-offset_left = 180.0
-offset_top = 60.0
-offset_right = 240.0
-offset_bottom = 183.0
+offset_left = 194.0
+offset_top = 66.0
+offset_right = 254.0
+offset_bottom = 189.0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("8_et2ic")
 theme_override_font_sizes/font_size = 96

@@ -1,7 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://l6fjqq8ja2ev"]
-
-[ext_resource type="Texture2D" uid="uid://dxyvwnhpxstqp" path="res://resource/image/bonfire.png" id="1_125j1"]
-[ext_resource type="Texture2D" uid="uid://8r1s6ng6iids" path="res://resource/image/light.png" id="2_clx5g"]
+[gd_scene load_steps=2 format=3 uid="uid://ddu8m70h0eavf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5pwgl"]
 size = Vector2(16, 16)
@@ -11,14 +8,9 @@ z_index = -2
 collision_layer = 9
 collision_mask = 9
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture_filter = 1
-texture = ExtResource("1_125j1")
+[node name="Polygon2D" type="Polygon2D" parent="."]
+color = Color(0.984314, 0.72549, 0.329412, 1)
+polygon = PackedVector2Array(-8, 0, -1, 1, 0, 8, 1, 1, 8, 0, 1, -1, 0, -8, -1, -1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_5pwgl")
-
-[node name="PointLight2D" type="PointLight2D" parent="."]
-color = Color(1, 0.603922, 0.364706, 1)
-texture = ExtResource("2_clx5g")
-texture_scale = 0.3
