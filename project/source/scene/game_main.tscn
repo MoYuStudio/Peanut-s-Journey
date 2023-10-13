@@ -102,4 +102,4 @@ environment = SubResource("Environment_gdbnm")
 [editable path="Player/Body"]
 [editable path="Player/Body/HurtBox"]
 [editable path="Player/Body/HitBox"]
-[editable path="Player/GUI/Upgrades"]
+[editable path="Player/GUI/Paused"]

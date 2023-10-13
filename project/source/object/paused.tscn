@@ -1,0 +1,155 @@
+[gd_scene load_steps=7 format=3 uid="uid://jyvwhoign4cl"]
+
+[ext_resource type="Theme" uid="uid://cwvilb81l6i31" path="res://resource/theme/moyu.tres" id="1_raj6w"]
+
+[sub_resource type="GDScript" id="GDScript_llmkc"]
+script/source = "
+extends Control
+
+func _on_continue_button_pressed():
+	visible = false
+	get_tree().paused = false
+
+func _on_quit_button_pressed():
+	get_tree().paused = false
+	# get_tree().change_scene_to_file('res://source/scene/menu_main.tscn')
+	SceneTransition.change_scene('res://source/scene/menu_main.tscn')
+"
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_o2cs8"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kakw1"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_liha4"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_k8rw0"]
+
+[node name="Paused" type="Control"]
+process_mode = 2
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = SubResource("GDScript_llmkc")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = -1702.0
+offset_top = -330.0
+offset_right = 3563.0
+offset_bottom = 1534.0
+color = Color(1, 1, 1, 0.0627451)
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 86.0
+offset_top = 76.0
+offset_right = 1444.0
+offset_bottom = 994.0
+
+[node name="TabContainer" type="TabContainer" parent="Panel"]
+texture_filter = 1
+layout_mode = 2
+offset_left = -5.0
+offset_top = 5.0
+offset_right = 1351.0
+offset_bottom = 918.0
+theme = ExtResource("1_raj6w")
+tab_alignment = 1
+
+[node name="状态" type="TabBar" parent="Panel/TabContainer"]
+layout_mode = 2
+
+[node name="升级" type="TabBar" parent="Panel/TabContainer"]
+visible = false
+layout_mode = 2
+
+[node name="TabContainer" type="TabContainer" parent="Panel/TabContainer/升级"]
+texture_filter = 1
+layout_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 31.0
+offset_bottom = 93.0
+theme = ExtResource("1_raj6w")
+tab_alignment = 1
+
+[node name="基础升级" type="TabBar" parent="Panel/TabContainer/升级/TabContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/TabContainer/升级/TabContainer/基础升级"]
+layout_mode = 0
+offset_right = 670.0
+offset_bottom = 436.0
+
+[node name="武器升级" type="TabBar" parent="Panel/TabContainer/升级/TabContainer"]
+visible = false
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/TabContainer/升级/TabContainer/武器升级"]
+layout_mode = 0
+offset_right = 670.0
+offset_bottom = 436.0
+
+[node name="车辆升级" type="TabBar" parent="Panel/TabContainer/升级/TabContainer"]
+visible = false
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/TabContainer/升级/TabContainer/车辆升级"]
+layout_mode = 0
+offset_right = 670.0
+offset_bottom = 436.0
+
+[node name="设置" type="TabBar" parent="Panel/TabContainer"]
+visible = false
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 1523.0
+offset_top = 83.0
+offset_right = 1826.0
+offset_bottom = 1021.0
+theme = ExtResource("1_raj6w")
+theme_override_constants/separation = 32
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_bottom = 70
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "本局
+获得金币
+N/A
+击杀
+N/A
+发射的子弹
+N/A
+构建的冰墙
+N/A"
+
+[node name="ContinueButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_raj6w")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_o2cs8")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_kakw1")
+text = "保存及继续"
+flat = true
+
+[node name="QuitButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_raj6w")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_liha4")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_k8rw0")
+text = "保存及退出"
+flat = true
+
+[connection signal="pressed" from="VBoxContainer/ContinueButton" to="." method="_on_continue_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

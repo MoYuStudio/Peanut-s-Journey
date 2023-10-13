@@ -69,7 +69,7 @@ script = SubResource("GDScript_5x7pj")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
 texture_filter = 1
-amount = 64
+amount = 16
 process_material = SubResource("ParticleProcessMaterial_x4up4")
 texture = ExtResource("1_4o4o3")
 

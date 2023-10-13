@@ -5,8 +5,6 @@
 [ext_resource type="PackedScene" uid="uid://o84475elvy3" path="res://source/utility/hitbox.tscn" id="3_a75go"]
 [ext_resource type="Texture2D" uid="uid://crncesltob5no" path="res://resource/image/line_light.png" id="3_gmr8e"]
 [ext_resource type="Texture2D" uid="uid://cciym2m3cx1ij" path="res://resource/image/steam.png" id="4_6mhbl"]
-[ext_resource type="PackedScene" uid="uid://bcjcxpy5noqj8" path="res://source/object/upgrades.tscn" id="4_o18t6"]
-[ext_resource type="FontFile" uid="uid://briod8qq6bg6o" path="res://resource/font/kenney_mini_square_mono.ttf" id="5_cw8sf"]
 [ext_resource type="Texture2D" uid="uid://bvhr66hwk76fl" path="res://resource/image/hp_bar_under.png" id="5_xx2dh"]
 [ext_resource type="Texture2D" uid="uid://l3vbbpxnu51a" path="res://resource/image/hp_bar_over.png" id="6_rtrqa"]
 [ext_resource type="FontFile" uid="uid://c4xqu78o8tn3h" path="res://resource/font/kenney_blocks.ttf" id="6_v6db3"]
@@ -15,6 +13,7 @@
 [ext_resource type="AudioStream" uid="uid://bi8vm6gy2kx53" path="res://resource/sound/hit.ogg" id="7_hdkaj"]
 [ext_resource type="FontFile" uid="uid://cyvdvdsbhwc8m" path="res://resource/font/kenney_mini_square.ttf" id="8_et2ic"]
 [ext_resource type="AudioStream" uid="uid://ct1oed1nsolof" path="res://resource/sound/car_run.mp3" id="9_yx8xc"]
+[ext_resource type="PackedScene" uid="uid://jyvwhoign4cl" path="res://source/object/paused.tscn" id="10_vioqe"]
 
 [sub_resource type="GDScript" id="GDScript_penpb"]
 script/source = "
@@ -22,8 +21,10 @@ extends Node2D
 
 @onready var body = $Body
 @onready var collision = $CollisionShape2D
-@onready var upgrades_menu = $GUI/Upgrades
+@onready var paused_menu = $GUI/Paused
 @onready var hp_bar = $Body/Camera/HP
+@onready var camera = $Body/Camera
+@onready var gui = $GUI
 
 var hp = 100
 
@@ -41,9 +42,13 @@ var wall_level = 1
 # 进程函数 ==============================================================
 
 func _ready():
-	upgrades_menu.visible = false
+	
+	paused_menu.visible = false
 	
 func _process(delta):
+	if Input.is_action_just_pressed('ui_cancel'):
+		get_tree().paused = true
+		paused_menu.visible = true
 		
 	if Input.is_action_just_pressed('ui_up'):
 		$Body/HitBox.collision.disabled = false
@@ -59,7 +64,6 @@ func _process(delta):
 		
 func _physics_process(delta):
 	
-
 	if hp <= 0:
 		# get_tree().change_scene_to_file('res://source/scene/menu_gameover.tscn')
 		SceneTransition.change_scene('res://source/scene/menu_gameover.tscn')
@@ -68,16 +72,17 @@ func _physics_process(delta):
 	money_label.text = str(money)
 	
 	if Input.is_action_just_pressed('ui_select'):
-		if money >= 30:
-			money -= 30
+		if money >= 50:
+			money -= 50
+			hp +=10
 			var wall_attack = wall.instantiate()
 			wall_attack.target = body.position
 			wall_attack.level = wall_level
 			wall_attack.position = body.position
 			wall_attack.rotation = body.rotation
 			add_child(wall_attack)
-			
-			
+	
+
 # 信号 ================================================================
 
 # 受伤箱信号
@@ -87,9 +92,7 @@ func _on_hurt_box_hurt(damage, _angle, _knock_back):
 func _on_collect_area_area_entered(area):
 	if area.is_in_group('loot'):
 		money += area.collect()
-	if area.is_in_group('shop'):
-		get_tree().paused = true
-		upgrades_menu.visible = true
+
 	if area.is_in_group('next_part'):
 		level_switch = true
 		level.text = str(int(level.text)+1)
@@ -173,26 +176,13 @@ radius = 256.0
 radius = 24.0
 height = 96.0
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_th72m"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tgo26"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8nfud"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_k6g7m"]
 
-[sub_resource type="GDScript" id="GDScript_iii5c"]
-script/source = "
-extends Button
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_n6r1v"]
 
-@onready var menu_main = preload('res://source/scene/menu_main.tscn')
-
-func _physics_process(delta):
-	if is_pressed():
-		# get_tree().change_scene_to_packed(menu_main)
-		SceneTransition.change_scene('res://source/scene/menu_main.tscn')
-		
-	var viewport_size = get_viewport_rect().size
-	var logo_size = get_rect().size
-	position.x = viewport_size.x - logo_size.x*1.5
-	position.y = logo_size.y/2
-"
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7sw7j"]
 
 [sub_resource type="GDScript" id="GDScript_8bluy"]
 script/source = "
@@ -414,33 +404,15 @@ shape = SubResource("CapsuleShape2D_5drmx")
 
 [node name="GUI" type="CanvasLayer" parent="."]
 
-[node name="Upgrades" parent="GUI" instance=ExtResource("4_o18t6")]
-visible = false
+[node name="Paused" parent="GUI" instance=ExtResource("10_vioqe")]
 
-[node name="Title" parent="GUI/Upgrades/Weapon" index="0"]
-offset_left = 0.0
-offset_top = 0.0
-offset_right = 354.0
-offset_bottom = 87.0
+[node name="ContinueButton" parent="GUI/Paused/VBoxContainer" index="1"]
+theme_override_styles/normal = SubResource("StyleBoxEmpty_tgo26")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_k6g7m")
 
-[node name="Button" parent="GUI/Upgrades/Weapon" index="3"]
-offset_top = 0.0
-offset_right = 23.0
-offset_bottom = 137.0
-
-[node name="ESCButton" type="Button" parent="GUI"]
-texture_filter = 1
-offset_left = 1705.0
-offset_top = 59.0
-offset_right = 1857.0
-offset_bottom = 149.0
-theme_override_fonts/font = ExtResource("5_cw8sf")
-theme_override_font_sizes/font_size = 64
-theme_override_styles/normal = SubResource("StyleBoxEmpty_th72m")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_8nfud")
-text = "ESC"
-flat = true
-script = SubResource("GDScript_iii5c")
+[node name="QuitButton" parent="GUI/Paused/VBoxContainer" index="2"]
+theme_override_styles/normal = SubResource("StyleBoxEmpty_n6r1v")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_7sw7j")
 
 [node name="Level" type="Label" parent="GUI"]
 modulate = Color(1, 1, 1, 0.901961)
@@ -505,4 +477,4 @@ volume_db = -20.0
 [editable path="Body"]
 [editable path="Body/HurtBox"]
 [editable path="Body/HitBox"]
-[editable path="GUI/Upgrades"]
+[editable path="GUI/Paused"]
