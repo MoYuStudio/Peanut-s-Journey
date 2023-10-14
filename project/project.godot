@@ -33,6 +33,7 @@ window/stretch/aspect="expand"
 
 [editor]
 
+movie_writer/mjpeg_quality=1.0
 movie_writer/movie_file="C:/Users/WilsonVinson/Desktop/Peanut's Journey Movie/1.avi"
 
 [input]

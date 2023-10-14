@@ -26,9 +26,6 @@ extends Node2D
 @onready var camera = $Body/Camera
 @onready var gui = $GUI
 
-var hp = 100
-
-var money = 10000
 @onready var money_label = $GUI/InfoBar/Money
 
 var level_switch = false
@@ -74,19 +71,21 @@ func _process(delta):
 		
 func _physics_process(delta):
 	
-	if hp <= 0:
+	hp_bar.max_value = Global.player_dict['hp_max']
+	
+	if Global.player_dict['hp'] <= 0:
 		# get_tree().change_scene_to_file('res://source/scene/menu_gameover.tscn')
 		SceneTransition.change_scene('res://source/scene/menu_gameover.tscn')
 
-	hp_bar.value = hp
-	money_label.text = str(money)
+	hp_bar.value = Global.player_dict['hp']
+	money_label.text = str(Global.player_dict['money'])
 	
 	gun.look_at(get_global_mouse_position())
 	
 	if Input.is_action_just_pressed('ui_select'):
-		if money >= 50:
-			money -= 50
-			hp +=10
+		if Global.player_dict['money'] >= 50:
+			Global.player_dict['money'] -= 50
+			Global.player_dict['hp'] +=10
 			var wall_attack = wall.instantiate()
 			wall_attack.target = body.position
 			wall_attack.level = wall_level
@@ -129,11 +128,11 @@ func get_random_target():
 
 # 受伤箱信号
 func _on_hurt_box_hurt(damage, _angle, _knock_back):
-	hp -= damage
+	Global.player_dict['hp'] -= damage
 	
 func _on_collect_area_area_entered(area):
 	if area.is_in_group('loot'):
-		money += area.collect()
+		Global.player_dict['money'] += area.collect()
 
 	if area.is_in_group('next_part'):
 		level_switch = true
@@ -465,15 +464,26 @@ visible = false
 [node name="ColorRect" parent="GUI/Paused" index="0"]
 color = Color(0, 0, 0, 0.25098)
 
-[node name="VBoxContainer" parent="GUI/Paused/Panel/TabContainer/升级/TabContainer/武器升级" index="0"]
+[node name="状态" parent="GUI/Paused/Panel/TabContainer" index="1"]
+visible = true
+
+[node name="HP" parent="GUI/Paused/Panel/TabContainer/状态" index="2"]
 layout_mode = 0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 16.0
+offset_bottom = 5.0
+
+[node name="升级" parent="GUI/Paused/Panel/TabContainer" index="2"]
+visible = false
+
+[node name="VBoxContainer" parent="GUI/Paused/Panel/TabContainer/升级/TabContainer/武器升级" index="0"]
 offset_left = 0.0
 offset_top = 0.0
 offset_right = 489.0
 offset_bottom = 638.0
 
 [node name="VBoxContainer" parent="GUI/Paused/Panel/TabContainer/升级/TabContainer/车辆升级" index="0"]
-layout_mode = 0
 offset_left = 0.0
 offset_top = 0.0
 offset_right = 797.0

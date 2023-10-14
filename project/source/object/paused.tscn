@@ -1,8 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://jyvwhoign4cl"]
+[gd_scene load_steps=14 format=3 uid="uid://jyvwhoign4cl"]
 
 [ext_resource type="Theme" uid="uid://bhr73i44c1buj" path="res://resource/theme/paused.tres" id="1_ngxqj"]
 [ext_resource type="Theme" uid="uid://cwvilb81l6i31" path="res://resource/theme/moyu.tres" id="1_raj6w"]
 [ext_resource type="Texture2D" uid="uid://dehg38xt8tidn" path="res://resource/image/car.png" id="2_0rhkp"]
+[ext_resource type="Texture2D" uid="uid://bvhr66hwk76fl" path="res://resource/image/hp_bar_under.png" id="3_rypgr"]
+[ext_resource type="Texture2D" uid="uid://l3vbbpxnu51a" path="res://resource/image/hp_bar_over.png" id="4_dj2ga"]
+[ext_resource type="Texture2D" uid="uid://bvf7unifbeymv" path="res://resource/image/hp_bar_progress.png" id="5_sbi5e"]
 
 [sub_resource type="GDScript" id="GDScript_llmkc"]
 script/source = "
@@ -16,6 +19,54 @@ func _on_quit_button_pressed():
 	get_tree().paused = false
 	# get_tree().change_scene_to_file('res://source/scene/menu_main.tscn')
 	SceneTransition.change_scene('res://source/scene/menu_main.tscn')
+"
+
+[sub_resource type="GDScript" id="GDScript_y52n6"]
+script/source = "
+extends TabBar
+
+@onready var hp = $HBoxContainer/Value/HP
+@onready var hp_max = $HBoxContainer/Value/HPMax
+
+func _ready():
+	pass
+
+func _process(_delta):
+	pass
+
+func _physics_process(_delta):
+	hp.text = str(Global.player_dict['hp'])
+	hp_max.text = str(Global.player_dict['hp_max'])
+"
+
+[sub_resource type="GDScript" id="GDScript_reoxn"]
+script/source = "
+extends TabBar
+
+func _ready():
+	pass
+		
+func _process(_delta):
+	pass
+
+func _on_button_1_pressed():
+	Global.player_dict['hp_max'] += 10
+
+func _on_button_2_pressed():
+	pass # Replace with function body.
+
+func _on_button_3_pressed():
+	pass # Replace with function body.
+
+func _on_button_4_pressed():
+	pass # Replace with function body.
+
+func _on_button_5_pressed():
+	pass # Replace with function body.
+
+func _on_button_6_pressed():
+	pass # Replace with function body.
+
 "
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_o2cs8"]
@@ -42,7 +93,7 @@ offset_left = -1702.0
 offset_top = -330.0
 offset_right = 3563.0
 offset_bottom = 1534.0
-color = Color(1, 1, 1, 0.0627451)
+color = Color(0, 0, 0, 0.501961)
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 0
@@ -53,6 +104,7 @@ offset_bottom = 994.0
 theme = ExtResource("1_ngxqj")
 
 [node name="TabContainer" type="TabContainer" parent="Panel"]
+process_mode = 2
 texture_filter = 1
 layout_mode = 2
 offset_top = 1.0
@@ -63,10 +115,11 @@ tab_alignment = 1
 
 [node name="状态" type="TabBar" parent="Panel/TabContainer"]
 layout_mode = 2
+script = SubResource("GDScript_y52n6")
 
 [node name="Car" type="Sprite2D" parent="Panel/TabContainer/状态"]
 texture_filter = 1
-position = Vector2(392, 407)
+position = Vector2(364, 324)
 scale = Vector2(16, 16)
 texture = ExtResource("2_0rhkp")
 
@@ -77,6 +130,48 @@ offset_top = 705.0
 offset_right = 1236.0
 offset_bottom = 771.0
 text = "空格放置道具"
+
+[node name="HP" type="TextureProgressBar" parent="Panel/TabContainer/状态"]
+z_index = 9
+texture_filter = 1
+offset_left = 239.0
+offset_top = 540.0
+offset_right = 255.0
+offset_bottom = 545.0
+scale = Vector2(16, 16)
+texture_under = ExtResource("3_rypgr")
+texture_over = ExtResource("4_dj2ga")
+texture_progress = ExtResource("5_sbi5e")
+tint_under = Color(0, 0, 0, 0)
+tint_progress = Color(0.117647, 0.737255, 0.45098, 1)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/TabContainer/状态"]
+layout_mode = 0
+offset_left = 714.0
+offset_top = 117.0
+offset_right = 895.0
+offset_bottom = 183.0
+theme_override_constants/separation = 32
+
+[node name="Label" type="VBoxContainer" parent="Panel/TabContainer/状态/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="Panel/TabContainer/状态/HBoxContainer/Label"]
+layout_mode = 2
+text = "血量"
+
+[node name="Label" type="Label" parent="Panel/TabContainer/状态/HBoxContainer/Label"]
+layout_mode = 2
+text = "血量上限"
+
+[node name="Value" type="VBoxContainer" parent="Panel/TabContainer/状态/HBoxContainer"]
+layout_mode = 2
+
+[node name="HP" type="Label" parent="Panel/TabContainer/状态/HBoxContainer/Value"]
+layout_mode = 2
+
+[node name="HPMax" type="Label" parent="Panel/TabContainer/状态/HBoxContainer/Value"]
+layout_mode = 2
 
 [node name="升级" type="TabBar" parent="Panel/TabContainer"]
 visible = false
@@ -95,45 +190,131 @@ theme = ExtResource("1_ngxqj")
 tab_alignment = 1
 
 [node name="基础升级" type="TabBar" parent="Panel/TabContainer/升级/TabContainer"]
+process_mode = 2
+layout_mode = 2
+script = SubResource("GDScript_reoxn")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/TabContainer/升级/TabContainer/基础升级"]
+process_mode = 2
+layout_mode = 0
+offset_left = 63.0
+offset_top = 47.0
+offset_right = 339.0
+offset_bottom = 613.0
+theme_override_constants/separation = 80
+
+[node name="Name" type="MarginContainer" parent="Panel/TabContainer/升级/TabContainer/基础升级/HBoxContainer"]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel/TabContainer/升级/TabContainer/基础升级"]
-layout_mode = 0
-offset_left = 40.0
-offset_top = 40.0
-offset_right = 529.0
-offset_bottom = 678.0
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/TabContainer/升级/TabContainer/基础升级/HBoxContainer/Name"]
+layout_mode = 2
 theme = ExtResource("1_ngxqj")
+theme_override_constants/separation = 32
 
-[node name="Label3" type="Label" parent="Panel/TabContainer/升级/TabContainer/基础升级/VBoxContainer"]
+[node name="Label3" type="Label" parent="Panel/TabContainer/升级/TabContainer/基础升级/HBoxContainer/Name/VBoxContainer"]
 layout_mode = 2
 text = "血量上限"
 
-[node name="Label2" type="Label" parent="Panel/TabContainer/升级/TabContainer/基础升级/VBoxContainer"]
+[node name="Label2" type="Label" parent="Panel/TabContainer/升级/TabContainer/基础升级/HBoxContainer/Name/VBoxContainer"]
 layout_mode = 2
 text = "回血速度"
 
-[node name="Label" type="Label" parent="Panel/TabContainer/升级/TabContainer/基础升级/VBoxContainer"]
+[node name="Label" type="Label" parent="Panel/TabContainer/升级/TabContainer/基础升级/HBoxContainer/Name/VBoxContainer"]
 layout_mode = 2
 text = "拾取范围"
 
-[node name="Label4" type="Label" parent="Panel/TabContainer/升级/TabContainer/基础升级/VBoxContainer"]
+[node name="Label4" type="Label" parent="Panel/TabContainer/升级/TabContainer/基础升级/HBoxContainer/Name/VBoxContainer"]
 layout_mode = 2
 text = "撞击伤害"
 
-[node name="Label6" type="Label" parent="Panel/TabContainer/升级/TabContainer/基础升级/VBoxContainer"]
+[node name="Label6" type="Label" parent="Panel/TabContainer/升级/TabContainer/基础升级/HBoxContainer/Name/VBoxContainer"]
 layout_mode = 2
 text = "金钱掉落"
 
-[node name="Label5" type="Label" parent="Panel/TabContainer/升级/TabContainer/基础升级/VBoxContainer"]
+[node name="Label5" type="Label" parent="Panel/TabContainer/升级/TabContainer/基础升级/HBoxContainer/Name/VBoxContainer"]
 layout_mode = 2
 text = "金钱倍数"
+
+[node name="Price" type="MarginContainer" parent="Panel/TabContainer/升级/TabContainer/基础升级/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/TabContainer/升级/TabContainer/基础升级/HBoxContainer/Price"]
+layout_mode = 2
+theme_override_constants/separation = 55
+
+[node name="Label3" type="Label" parent="Panel/TabContainer/升级/TabContainer/基础升级/HBoxContainer/Price/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "花费100"
+
+[node name="Label4" type="Label" parent="Panel/TabContainer/升级/TabContainer/基础升级/HBoxContainer/Price/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "花费100"
+
+[node name="Label5" type="Label" parent="Panel/TabContainer/升级/TabContainer/基础升级/HBoxContainer/Price/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "花费100"
+
+[node name="Label6" type="Label" parent="Panel/TabContainer/升级/TabContainer/基础升级/HBoxContainer/Price/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "花费100"
+
+[node name="Label7" type="Label" parent="Panel/TabContainer/升级/TabContainer/基础升级/HBoxContainer/Price/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "花费100"
+
+[node name="Label8" type="Label" parent="Panel/TabContainer/升级/TabContainer/基础升级/HBoxContainer/Price/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "花费100"
+
+[node name="Pay" type="MarginContainer" parent="Panel/TabContainer/升级/TabContainer/基础升级/HBoxContainer"]
+process_mode = 2
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = -10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/TabContainer/升级/TabContainer/基础升级/HBoxContainer/Pay"]
+process_mode = 2
+layout_mode = 2
+theme = ExtResource("1_ngxqj")
+theme_override_constants/separation = 28
+
+[node name="Button1" type="Button" parent="Panel/TabContainer/升级/TabContainer/基础升级/HBoxContainer/Pay/VBoxContainer"]
+layout_mode = 2
+text = "升级"
+
+[node name="Button2" type="Button" parent="Panel/TabContainer/升级/TabContainer/基础升级/HBoxContainer/Pay/VBoxContainer"]
+layout_mode = 2
+text = "升级"
+
+[node name="Button3" type="Button" parent="Panel/TabContainer/升级/TabContainer/基础升级/HBoxContainer/Pay/VBoxContainer"]
+layout_mode = 2
+text = "升级"
+
+[node name="Button4" type="Button" parent="Panel/TabContainer/升级/TabContainer/基础升级/HBoxContainer/Pay/VBoxContainer"]
+layout_mode = 2
+text = "升级"
+
+[node name="Button5" type="Button" parent="Panel/TabContainer/升级/TabContainer/基础升级/HBoxContainer/Pay/VBoxContainer"]
+layout_mode = 2
+text = "升级"
+
+[node name="Button6" type="Button" parent="Panel/TabContainer/升级/TabContainer/基础升级/HBoxContainer/Pay/VBoxContainer"]
+layout_mode = 2
+text = "升级"
 
 [node name="武器升级" type="TabBar" parent="Panel/TabContainer/升级/TabContainer"]
 visible = false
 layout_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Panel/TabContainer/升级/TabContainer/武器升级"]
+layout_mode = 0
 offset_left = 40.0
 offset_top = 40.0
 offset_right = 529.0
@@ -153,6 +334,7 @@ visible = false
 layout_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Panel/TabContainer/升级/TabContainer/车辆升级"]
+layout_mode = 0
 offset_left = 40.0
 offset_top = 40.0
 offset_right = 837.0
@@ -265,5 +447,11 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_k8rw0")
 text = "保存及退出"
 flat = true
 
+[connection signal="pressed" from="Panel/TabContainer/升级/TabContainer/基础升级/HBoxContainer/Pay/VBoxContainer/Button1" to="Panel/TabContainer/升级/TabContainer/基础升级" method="_on_button_1_pressed"]
+[connection signal="pressed" from="Panel/TabContainer/升级/TabContainer/基础升级/HBoxContainer/Pay/VBoxContainer/Button2" to="Panel/TabContainer/升级/TabContainer/基础升级" method="_on_button_2_pressed"]
+[connection signal="pressed" from="Panel/TabContainer/升级/TabContainer/基础升级/HBoxContainer/Pay/VBoxContainer/Button3" to="Panel/TabContainer/升级/TabContainer/基础升级" method="_on_button_3_pressed"]
+[connection signal="pressed" from="Panel/TabContainer/升级/TabContainer/基础升级/HBoxContainer/Pay/VBoxContainer/Button4" to="Panel/TabContainer/升级/TabContainer/基础升级" method="_on_button_4_pressed"]
+[connection signal="pressed" from="Panel/TabContainer/升级/TabContainer/基础升级/HBoxContainer/Pay/VBoxContainer/Button5" to="Panel/TabContainer/升级/TabContainer/基础升级" method="_on_button_5_pressed"]
+[connection signal="pressed" from="Panel/TabContainer/升级/TabContainer/基础升级/HBoxContainer/Pay/VBoxContainer/Button6" to="Panel/TabContainer/升级/TabContainer/基础升级" method="_on_button_6_pressed"]
 [connection signal="pressed" from="VBoxContainer/ContinueButton" to="." method="_on_continue_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
