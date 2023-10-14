@@ -87,7 +87,7 @@ script/source = "extends VBoxContainer
 
 @onready var total_money = $TotalMoney
 @onready var kill = $Kill
-@onready var wall = $wall
+@onready var wall = $Wall
 
 func _physics_process(delta):
 	total_money.text = str(Global.player_dict['total_money'])
@@ -428,7 +428,7 @@ theme_override_constants/margin_bottom = 30
 layout_mode = 2
 script = SubResource("GDScript_eavw7")
 
-[node name="Total_Money" type="Label" parent="VBoxContainer/MarginContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="VBoxContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 48
 text = "本局
@@ -451,7 +451,7 @@ layout_mode = 2
 text = "构建的冰墙
 "
 
-[node name="wall" type="Label" parent="VBoxContainer/MarginContainer/VBoxContainer"]
+[node name="Wall" type="Label" parent="VBoxContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
 [node name="ContinueButton" type="Button" parent="VBoxContainer"]
