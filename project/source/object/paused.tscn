@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://jyvwhoign4cl"]
+[gd_scene load_steps=12 format=3 uid="uid://jyvwhoign4cl"]
 
 [ext_resource type="Theme" uid="uid://bhr73i44c1buj" path="res://resource/theme/paused.tres" id="1_ngxqj"]
 [ext_resource type="Theme" uid="uid://cwvilb81l6i31" path="res://resource/theme/moyu.tres" id="1_raj6w"]
@@ -24,21 +24,28 @@ extends TabBar
 
 @onready var hp = $HBoxContainer/Value/HP
 @onready var hp_max = $HBoxContainer/Value/HPMax
+@onready var hit_damage = $HBoxContainer/Value/HitDamage
+@onready var grab_area_size = $HBoxContainer/Value/GrabAreaSize
+@onready var money_drop = $HBoxContainer/Value/MoneyDrop
+@onready var money_multiple = $HBoxContainer/Value/MonryMultiple
 
 func _ready():
 	pass
 
-func _process(_delta):
+func _process(delta):
 	pass
 
-func _physics_process(_delta):
+func _physics_process(delta):
 	hp.text = str(Global.player_dict['hp'])
 	hp_max.text = str(Global.player_dict['hp_max'])
+	grab_area_size.text = str(Global.player_dict['grab_area_size'])
+	hit_damage.text = str(Global.player_dict['hit_damage'])
+	money_drop.text = str(Global.player_dict['money_drop'])
+	money_multiple.text = str(Global.player_dict['money_multiple'])
 "
 
-[sub_resource type="GDScript" id="GDScript_reoxn"]
-script/source = "
-extends TabBar
+[sub_resource type="GDScript" id="GDScript_wb3h0"]
+script/source = "extends TabBar
 
 var upgrade_price = 100
 var upgrade_debuff = 1.2
@@ -46,14 +53,14 @@ var upgrade_debuff = 1.2
 func _ready():
 	pass
 		
-func _process(_delta):
+func _process(delta):
 	$Label.text = str(upgrade_price)
 	
 func upgrade_fn(value,value_plus):
 	if Global.player_dict['money'] >= upgrade_price:
 		value += value_plus
 		Global.player_dict['money'] -= upgrade_price
-		upgrade_price = int(upgrade_price*upgrade_debuff)
+		upgrade_price = round(upgrade_price*upgrade_debuff)
 	return value
 
 func _on_button_1_pressed():
@@ -66,14 +73,26 @@ func _on_button_3_pressed():
 	Global.player_dict['grab_area_size'] = upgrade_fn(Global.player_dict['grab_area_size'],16)
 
 func _on_button_4_pressed():
-	pass # Replace with function body.
+	Global.player_dict['hit_damage'] = upgrade_fn(Global.player_dict['hit_damage'],5)
 
 func _on_button_5_pressed():
-	pass # Replace with function body.
+	Global.player_dict['money_drop'] = upgrade_fn(Global.player_dict['money_drop'],5)
 
 func _on_button_6_pressed():
-	pass # Replace with function body.
+	Global.player_dict['money_multiple'] = upgrade_fn(Global.player_dict['money_multiple'],0.1)
+"
 
+[sub_resource type="GDScript" id="GDScript_eavw7"]
+script/source = "extends VBoxContainer
+
+@onready var total_money = $TotalMoney
+@onready var kill = $Kill
+@onready var wall = $wall
+
+func _physics_process(delta):
+	total_money.text = str(Global.player_dict['total_money'])
+	kill.text = str(Global.player_dict['kill'])
+	wall.text = str(Global.player_dict['wall'])
 "
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_o2cs8"]
@@ -121,7 +140,6 @@ theme = ExtResource("1_ngxqj")
 tab_alignment = 1
 
 [node name="状态" type="TabBar" parent="Panel/TabContainer"]
-visible = false
 layout_mode = 2
 script = SubResource("GDScript_y52n6")
 
@@ -158,6 +176,22 @@ text = "血量"
 layout_mode = 2
 text = "血量上限"
 
+[node name="Label4" type="Label" parent="Panel/TabContainer/状态/HBoxContainer/Label"]
+layout_mode = 2
+text = "拾取范围"
+
+[node name="Label3" type="Label" parent="Panel/TabContainer/状态/HBoxContainer/Label"]
+layout_mode = 2
+text = "撞击伤害"
+
+[node name="Label5" type="Label" parent="Panel/TabContainer/状态/HBoxContainer/Label"]
+layout_mode = 2
+text = "金钱掉率"
+
+[node name="Label6" type="Label" parent="Panel/TabContainer/状态/HBoxContainer/Label"]
+layout_mode = 2
+text = "金币倍数"
+
 [node name="Value" type="VBoxContainer" parent="Panel/TabContainer/状态/HBoxContainer"]
 layout_mode = 2
 
@@ -167,7 +201,20 @@ layout_mode = 2
 [node name="HPMax" type="Label" parent="Panel/TabContainer/状态/HBoxContainer/Value"]
 layout_mode = 2
 
+[node name="GrabAreaSize" type="Label" parent="Panel/TabContainer/状态/HBoxContainer/Value"]
+layout_mode = 2
+
+[node name="HitDamage" type="Label" parent="Panel/TabContainer/状态/HBoxContainer/Value"]
+layout_mode = 2
+
+[node name="MoneyDrop" type="Label" parent="Panel/TabContainer/状态/HBoxContainer/Value"]
+layout_mode = 2
+
+[node name="MonryMultiple" type="Label" parent="Panel/TabContainer/状态/HBoxContainer/Value"]
+layout_mode = 2
+
 [node name="升级" type="TabBar" parent="Panel/TabContainer"]
+visible = false
 layout_mode = 2
 
 [node name="TabContainer" type="TabContainer" parent="Panel/TabContainer/升级"]
@@ -185,7 +232,7 @@ tab_alignment = 1
 [node name="基础升级" type="TabBar" parent="Panel/TabContainer/升级/TabContainer"]
 process_mode = 2
 layout_mode = 2
-script = SubResource("GDScript_reoxn")
+script = SubResource("GDScript_wb3h0")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Panel/TabContainer/升级/TabContainer/基础升级"]
 process_mode = 2
@@ -254,17 +301,14 @@ text = "升级"
 
 [node name="Button4" type="Button" parent="Panel/TabContainer/升级/TabContainer/基础升级/HBoxContainer/Pay/VBoxContainer"]
 layout_mode = 2
-disabled = true
 text = "升级"
 
 [node name="Button5" type="Button" parent="Panel/TabContainer/升级/TabContainer/基础升级/HBoxContainer/Pay/VBoxContainer"]
 layout_mode = 2
-disabled = true
 text = "升级"
 
 [node name="Button6" type="Button" parent="Panel/TabContainer/升级/TabContainer/基础升级/HBoxContainer/Pay/VBoxContainer"]
 layout_mode = 2
-disabled = true
 text = "升级"
 
 [node name="Label" type="Label" parent="Panel/TabContainer/升级/TabContainer/基础升级"]
@@ -378,23 +422,37 @@ theme_override_constants/separation = 32
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
 layout_mode = 2
-theme_override_constants/margin_bottom = 70
+theme_override_constants/margin_bottom = 30
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/MarginContainer"]
 layout_mode = 2
+script = SubResource("GDScript_eavw7")
 
-[node name="Label" type="Label" parent="VBoxContainer/MarginContainer/VBoxContainer"]
+[node name="Total_Money" type="Label" parent="VBoxContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 48
 text = "本局
 获得金币
-N/A
-击杀
-N/A
-发射的子弹
-N/A
-构建的冰墙
-N/A"
+"
+
+[node name="TotalMoney" type="Label" parent="VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label3" type="Label" parent="VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "击杀
+"
+
+[node name="Kill" type="Label" parent="VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "构建的冰墙
+"
+
+[node name="wall" type="Label" parent="VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
 
 [node name="ContinueButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2

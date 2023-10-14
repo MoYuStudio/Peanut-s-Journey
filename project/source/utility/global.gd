@@ -25,16 +25,19 @@ var setting_dict = {
 	
 var player_dict = {
 	# 玩家信息
-	'money':10000,
+	'money':10000.0,
 	'hp':100,
 	# 基础升级
 	'hp_max':100,
 	'hp_auto_add':0,
 	'grab_area_size':256,
-	'hit_damage':30,
-	'money_drop':70,
-	'monry_multiple':1,
-	
+	'hit_damage':10,
+	'money_drop':50,
+	'money_multiple':1.0,
+	# 统计信息
+	'total_money':0,
+	'kill':0,
+	'wall':0,
 }
 
 func _ready():

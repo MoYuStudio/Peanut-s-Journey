@@ -11,7 +11,7 @@ extends Area2D
 @onready var collision = $CollisionShape2D
 @onready var audio = $AudioStreamPlayer
 
-@export var money = 1
+@export var money = 1.0
 
 var target = null
 var speed = 0
