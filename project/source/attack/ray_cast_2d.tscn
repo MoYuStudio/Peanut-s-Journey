@@ -73,12 +73,14 @@ size = Vector2(100, 2)
 script = SubResource("GDScript_1lnn4")
 
 [node name="Line2D" type="Line2D" parent="."]
-scale = Vector2(7, 7)
+texture_filter = 1
+scale = Vector2(17.4712, 7)
 points = PackedVector2Array(0, 0, 100, 0)
 width = 2.0
 default_color = Color(0.486275, 0.741176, 0.988235, 1)
 
 [node name="StartParticles2D" type="GPUParticles2D" parent="."]
+texture_filter = 1
 amount = 32
 sub_emitter = NodePath(".")
 process_material = SubResource("ParticleProcessMaterial_iaq8l")
