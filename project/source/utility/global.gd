@@ -26,7 +26,7 @@ var setting_dict = {
 var player_dict = {
 	# 玩家信息
 	'money':10000.0,
-	'hp':100,
+	'hp':100000,
 	# 基础升级
 	'hp_max':100,
 	'hp_auto_add':0,

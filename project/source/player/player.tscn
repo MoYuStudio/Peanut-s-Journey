@@ -105,9 +105,9 @@ func attack():
 		gun.hide()
 	if bullet_level > 0:
 		gun.show()
-		bullet_timer.wait_time = bullet_attack_speed
-		if bullet_timer.is_stopped():
-			bullet_timer.start()
+		# bullet_timer.wait_time = bullet_attack_speed
+		# if bullet_timer.is_stopped():
+		#	bullet_timer.start()
 
 # 信号 ================================================================
 

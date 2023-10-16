@@ -9,11 +9,18 @@ extends Car
 
 @onready var camera = $Camera
 
+@onready var ray_cast = preload('res://source/attack/ray_cast.tscn')
+var ray_cast_level = 1
+
+var ray_cast_attack
+
 func _ready():
 	camera.rotation = 90
 	camera.set_as_top_level(true)
 	# gun.rotation = 44
-
+	
+	
+	
 func physics_process(delta):
 	camera.global_position = global_position
 	camera.rotation = lerp_angle(camera.rotation, rotation + deg_to_rad(90), 0.1)
@@ -21,6 +28,29 @@ func physics_process(delta):
 	#var mouse_pos = get_local_mouse_position()
 	#var camera_offset = (mouse_pos - global_position) / Vector2(1920.0/2.0, 1080.0/2.0)
 	#camera.offset = camera_offset
+	
+	if Input.is_action_just_pressed('mouse_left'):
+		if $RayCast != null:
+			pass
+		else:
+			ray_cast_attack = ray_cast.instantiate()
+			ray_cast_attack.target = get_local_mouse_position()
+			ray_cast_attack.level = ray_cast_level
+			ray_cast_attack.name = 'RayCast'
+			# ray_cast_attack.position = body.position
+			# ray_cast_attack.rotation = get_local_mouse_position()
+			# ray_cast_attack.look_at(get_local_mouse_position())
+			add_child(ray_cast_attack)
+		
+		
+	if Input.is_action_just_released('mouse_left'):
+		if $RayCast != null:
+			$RayCast.switch = false
+
+		
+	if Input.is_action_pressed('mouse_left'):
+		if $RayCast != null:
+			ray_cast_attack.look_at(get_global_mouse_position())
 	
 # 自定义函数 =============================================================
 
