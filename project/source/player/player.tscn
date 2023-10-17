@@ -332,7 +332,7 @@ func _physics_process(delta):
 "
 
 [node name="Player" type="Node2D"]
-position = Vector2(960, 540)
+position = Vector2(1920, 1080)
 script = SubResource("GDScript_penpb")
 
 [node name="Body" parent="." instance=ExtResource("1_pjecn")]
