@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://djxky8bdiaorh"]
+[gd_scene load_steps=7 format=3 uid="uid://djxky8bdiaorh"]
 
 [ext_resource type="Texture2D" uid="uid://cx36yq3v1q7rd" path="res://resource/image/medicine.png" id="1_hjyhn"]
 
@@ -6,11 +6,21 @@
 script/source = "
 extends Area2D
 
+@onready var animation = $Sprite2D/AnimationPlayer
+@onready var collision = $CollisionShape2D
+
+var target = null
+var speed = 0
+
 func _ready():
-	pass
+	animation.play(\"animation\")
+	animation.play(\"RESET\")
 
 func _process(delta):
 	pass
+
+	
+
 
 func _on_body_entered(body):
 	$AudioStreamPlayer.play()
@@ -19,6 +29,68 @@ func _on_body_entered(body):
 	queue_free()
 
 "
+
+[sub_resource type="Animation" id="Animation_0p3ne"]
+length = 4.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-6.28319, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2, 4),
+"transitions": PackedFloat32Array(1, 0.659754, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.3, 1.3), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_mfgxe"]
+resource_name = "animation"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-6.28319, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:scale")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2, 4),
+"transitions": PackedFloat32Array(1, 0.482968, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.3, 1.3), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mqxpj"]
+_data = {
+"RESET": SubResource("Animation_0p3ne"),
+"animation": SubResource("Animation_mfgxe")
+}
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_elho4"]
 radius = 10.3333
@@ -31,7 +103,14 @@ script = SubResource("GDScript_2w41h")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
+rotation = -6.28319
 texture = ExtResource("1_hjyhn")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D"]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_mqxpj")
+}
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_elho4")
