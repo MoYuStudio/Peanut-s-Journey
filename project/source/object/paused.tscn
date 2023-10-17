@@ -90,7 +90,7 @@ script/source = "extends VBoxContainer
 @onready var wall = $Wall
 
 func _physics_process(delta):
-	total_money.text = str(Global.player_dict['total_money'])
+	total_money.text = str(round(Global.player_dict['total_money']*10)/10)
 	kill.text = str(Global.player_dict['kill'])
 	wall.text = str(Global.player_dict['wall'])
 "
