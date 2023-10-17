@@ -11,7 +11,7 @@ var window_mode_list = [DisplayServer.WINDOW_MODE_WINDOWED,
 						DisplayServer.WINDOW_MODE_MINIMIZED,
 						DisplayServer.WINDOW_MODE_MAXIMIZED
 						]
-var window_size_list = [[1920,1080],[1280,720],[360,180]]
+var window_size_list = [[3840,2160],[1920,1080],[1280,720],[360,180]]
 
 var window_vsync_mode_list = []
 

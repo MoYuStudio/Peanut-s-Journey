@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://b4u7q3b4vyfbd"]
+[gd_scene load_steps=37 format=3 uid="uid://b4u7q3b4vyfbd"]
 
 [ext_resource type="FontFile" uid="uid://dwo3w3m0bti6d" path="res://resource/font/YouSheBiaoTiHei.ttf" id="2_kikh1"]
 [ext_resource type="FontFile" uid="uid://cyvdvdsbhwc8m" path="res://resource/font/kenney_mini_square.ttf" id="3_nvl8e"]
@@ -37,7 +37,7 @@ func night_mode_switch_off():
 
 # 连接关于页面
 func _on_to_about_button_pressed():
-	camera.position = Vector2(960,540+1080+1024)
+	camera.position = Vector2(960,540+2160+1024)
 	about_page.run()
 
 # 关于页面动画结束返回
@@ -54,6 +54,18 @@ gradient = SubResource("Gradient_x7f0i")
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_wtesc"]
 gradient = SubResource("Gradient_qqeh2")
+
+[sub_resource type="GDScript" id="GDScript_sy4qt"]
+script/source = "
+extends Control
+
+func _physics_process(delta):
+	var viewport_size = get_viewport_rect().size
+	var logo_size = get_rect().size
+	position.x = viewport_size.x/2 - logo_size.x*1.25
+	position.y = - logo_size.y/4
+
+"
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ajq0g"]
 
@@ -244,131 +256,144 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="Polygon2D" type="Polygon2D" parent="Main"]
+position = Vector2(-1125.81, -331.418)
+scale = Vector2(0.694487, 0.922782)
 color = Color(0.243137, 0.207843, 0.27451, 1)
-polygon = PackedVector2Array(-3665, -1649, -3685, 7339, 4621, 7359, 4675, -1643)
+polygon = PackedVector2Array(-4164.49, -4044.92, -4370.4, 13082.6, 13385.1, 13113, 12128, -4292)
 
 [node name="Light" type="Node2D" parent="Main"]
 
 [node name="PointLight2D" type="PointLight2D" parent="Main/Light"]
-position = Vector2(-122, -68)
+position = Vector2(334, 227)
 scale = Vector2(1.48633, 1.39766)
 color = Color(0.984314, 0.419608, 0.113725, 1)
 energy = 6.0
 shadow_enabled = true
 texture = ExtResource("4_noqj4")
-texture_scale = 9.0
+texture_scale = 12.0
 
 [node name="PointLight2D2" type="PointLight2D" parent="Main/Light"]
-position = Vector2(2062, 1862)
+position = Vector2(3554, 2204)
 scale = Vector2(1.48633, 1.39766)
 color = Color(0.027451, 0.607843, 0.901961, 1)
 energy = 6.0
 shadow_enabled = true
 texture = ExtResource("4_noqj4")
-texture_scale = 12.0
+texture_scale = 16.0
 
 [node name="PointLight2D3" type="PointLight2D" parent="Main/Light"]
-position = Vector2(362, 3723)
+position = Vector2(419, 4693)
 scale = Vector2(1.48633, 1.39766)
 color = Color(0.568627, 0.858824, 0.411765, 1)
 energy = 5.0
 shadow_enabled = true
 texture = ExtResource("4_noqj4")
-texture_scale = 8.0
+texture_scale = 12.0
 
-[node name="Title" type="Label" parent="Main"]
+[node name="Control" type="Control" parent="Main"]
+anchors_preset = 0
+offset_left = 1220.0
+offset_top = 81.0
+offset_right = 2460.0
+offset_bottom = 1965.0
+script = SubResource("GDScript_sy4qt")
+
+[node name="Title" type="Label" parent="Main/Control"]
 texture_filter = 1
 layout_mode = 0
-offset_left = 754.0
-offset_top = 85.0
-offset_right = 1106.0
-offset_bottom = 259.0
+offset_left = 157.0
+offset_top = 90.0
+offset_right = 1101.0
+offset_bottom = 426.0
 theme_override_fonts/font = ExtResource("2_kikh1")
-theme_override_font_sizes/font_size = 96
+theme_override_font_sizes/font_size = 256
 text = "花生迷途
 "
 
-[node name="EnTitle" type="Label" parent="Main"]
+[node name="EnTitle" type="Label" parent="Main/Control"]
 texture_filter = 1
 layout_mode = 0
-offset_left = 728.0
-offset_top = 189.0
-offset_right = 1160.0
-offset_bottom = 252.0
+offset_left = 187.0
+offset_top = 376.0
+offset_right = 1051.0
+offset_bottom = 499.0
 theme_override_fonts/font = ExtResource("3_nvl8e")
-theme_override_font_sizes/font_size = 48
+theme_override_font_sizes/font_size = 96
 text = "Peanut's Journey"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Main"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Main/Control"]
 layout_mode = 0
-offset_left = 817.0
-offset_top = 356.0
-offset_right = 1061.0
-offset_bottom = 736.0
+offset_left = 404.0
+offset_top = 678.0
+offset_right = 876.0
+offset_bottom = 1358.0
 
-[node name="FastStartButton" type="Button" parent="Main/VBoxContainer"]
+[node name="FastStartButton" type="Button" parent="Main/Control/VBoxContainer"]
 texture_filter = 1
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_kikh1")
-theme_override_font_sizes/font_size = 64
+theme_override_font_sizes/font_size = 128
 theme_override_styles/normal = SubResource("StyleBoxEmpty_ajq0g")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_fx3mi")
 text = "快速开始"
 flat = true
 script = SubResource("GDScript_o3aco")
 
-[node name="StartButton" type="Button" parent="Main/VBoxContainer"]
+[node name="StartButton" type="Button" parent="Main/Control/VBoxContainer"]
 texture_filter = 1
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_kikh1")
-theme_override_font_sizes/font_size = 64
+theme_override_font_sizes/font_size = 128
 theme_override_styles/normal = SubResource("StyleBoxEmpty_rx25s")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_qvrj6")
 disabled = true
 text = "开始"
 flat = true
 
-[node name="SettingButton" type="Button" parent="Main/VBoxContainer"]
+[node name="SettingButton" type="Button" parent="Main/Control/VBoxContainer"]
 texture_filter = 1
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_kikh1")
-theme_override_font_sizes/font_size = 64
+theme_override_font_sizes/font_size = 128
 theme_override_styles/normal = SubResource("StyleBoxEmpty_rtrfq")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_eb8v3")
 text = "设置"
 flat = true
 script = SubResource("GDScript_fjrho")
 
-[node name="ESCButton" type="Button" parent="Main/VBoxContainer"]
+[node name="ESCButton" type="Button" parent="Main/Control/VBoxContainer"]
 texture_filter = 1
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_kikh1")
-theme_override_font_sizes/font_size = 64
+theme_override_font_sizes/font_size = 128
 theme_override_styles/normal = SubResource("StyleBoxEmpty_4n3ja")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_u26vq")
 text = "退出"
 flat = true
 script = SubResource("GDScript_lc1lc")
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="Main"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="Main/Control"]
 layout_mode = 0
-offset_left = 813.0
-offset_top = 888.0
-offset_right = 1076.0
-offset_bottom = 972.0
+offset_left = 393.0
+offset_top = 1708.0
+offset_right = 921.0
+offset_bottom = 1865.0
+alignment = 1
 
-[node name="Logo" type="Sprite2D" parent="Main/VBoxContainer2"]
+[node name="Logo" type="Sprite2D" parent="Main/Control/VBoxContainer2"]
 modulate = Color(1, 1, 1, 0.392157)
-position = Vector2(123, -68)
+texture_filter = 1
+position = Vector2(248, -126)
+scale = Vector2(2, 2)
 texture = ExtResource("5_oh756")
 script = SubResource("GDScript_hh7s6")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Main/VBoxContainer2/Logo"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Main/Control/VBoxContainer2/Logo"]
 libraries = {
 "": SubResource("AnimationLibrary_nfpkv")
 }
 
-[node name="Button" type="Button" parent="Main/VBoxContainer2/Logo"]
+[node name="Button" type="Button" parent="Main/Control/VBoxContainer2/Logo"]
 offset_left = -40.0
 offset_top = -40.0
 offset_right = 40.0
@@ -378,20 +403,20 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_d23gl")
 flat = true
 script = SubResource("GDScript_jfchg")
 
-[node name="Subtitle" type="Label" parent="Main/VBoxContainer2"]
+[node name="Subtitle" type="Label" parent="Main/Control/VBoxContainer2"]
 self_modulate = Color(1, 1, 1, 0.588235)
 texture_filter = 1
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_kikh1")
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 64
 text = "MOYU STUDIO"
 
-[node name="Web" type="Label" parent="Main/VBoxContainer2"]
+[node name="Web" type="Label" parent="Main/Control/VBoxContainer2"]
 self_modulate = Color(1, 1, 1, 0.588235)
 texture_filter = 1
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_kikh1")
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 48
 text = "www.moyu-stuido.com
 "
 
@@ -411,10 +436,10 @@ script = SubResource("GDScript_pr2eo")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="About"]
 layout_mode = 0
-offset_left = 550.0
-offset_top = 200.0
-offset_right = 1364.0
-offset_bottom = 3680.0
+offset_left = 1473.0
+offset_top = 2930.0
+offset_right = 2417.0
+offset_bottom = 7850.0
 alignment = 1
 
 [node name="Label2" type="Label" parent="About/VBoxContainer"]
@@ -422,7 +447,7 @@ texture_filter = 1
 layout_mode = 2
 theme = ExtResource("9_ttu0s")
 theme_override_fonts/font = ExtResource("2_kikh1")
-theme_override_font_sizes/font_size = 128
+theme_override_font_sizes/font_size = 256
 text = "花生迷途
 "
 horizontal_alignment = 1
@@ -432,14 +457,14 @@ texture_filter = 1
 layout_mode = 2
 theme = ExtResource("9_ttu0s")
 theme_override_fonts/font = ExtResource("3_nvl8e")
-theme_override_font_sizes/font_size = 64
+theme_override_font_sizes/font_size = 96
 text = "Peanut's Journey"
 horizontal_alignment = 1
 
 [node name="Logo" type="Sprite2D" parent="About/VBoxContainer"]
 texture_filter = 1
-position = Vector2(408, 832)
-scale = Vector2(1.6, 1.6)
+position = Vector2(466, 835)
+scale = Vector2(3, 3)
 texture = ExtResource("5_oh756")
 
 [node name="Label5" type="Label" parent="About/VBoxContainer"]
@@ -447,8 +472,9 @@ texture_filter = 1
 layout_mode = 2
 theme = ExtResource("9_ttu0s")
 theme_override_fonts/font = ExtResource("10_g8yvp")
-theme_override_font_sizes/font_size = 64
+theme_override_font_sizes/font_size = 96
 text = "
+
 
 
 MoYuStudio"
@@ -459,7 +485,7 @@ texture_filter = 1
 layout_mode = 2
 theme = ExtResource("9_ttu0s")
 theme_override_fonts/font = ExtResource("2_kikh1")
-theme_override_font_sizes/font_size = 96
+theme_override_font_sizes/font_size = 128
 text = "摸鱼社"
 horizontal_alignment = 1
 
@@ -468,7 +494,7 @@ texture_filter = 1
 layout_mode = 2
 theme = ExtResource("9_ttu0s")
 theme_override_fonts/font = ExtResource("2_kikh1")
-theme_override_font_sizes/font_size = 64
+theme_override_font_sizes/font_size = 96
 text = "倾情呈现"
 horizontal_alignment = 1
 
@@ -477,7 +503,7 @@ texture_filter = 1
 layout_mode = 2
 theme = ExtResource("9_ttu0s")
 theme_override_fonts/font = ExtResource("2_kikh1")
-theme_override_font_sizes/font_size = 64
+theme_override_font_sizes/font_size = 96
 text = "
 人员"
 horizontal_alignment = 1
@@ -486,7 +512,7 @@ horizontal_alignment = 1
 texture_filter = 1
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_kikh1")
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 64
 text = "
 策划
 WilsonVinson
@@ -516,7 +542,7 @@ texture_filter = 1
 layout_mode = 2
 theme = ExtResource("9_ttu0s")
 theme_override_fonts/font = ExtResource("2_kikh1")
-theme_override_font_sizes/font_size = 64
+theme_override_font_sizes/font_size = 96
 text = "鸣谢"
 horizontal_alignment = 1
 
@@ -525,7 +551,7 @@ texture_filter = 1
 layout_mode = 2
 theme = ExtResource("9_ttu0s")
 theme_override_fonts/font = ExtResource("2_kikh1")
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 64
 text = "
 美术
 B.辞鱼
@@ -549,5 +575,5 @@ libraries = {
 "": SubResource("AnimationLibrary_pcxl5")
 }
 
-[connection signal="pressed" from="Main/VBoxContainer2/Logo/Button" to="." method="_on_to_about_button_pressed"]
+[connection signal="pressed" from="Main/Control/VBoxContainer2/Logo/Button" to="." method="_on_to_about_button_pressed"]
 [connection signal="animation_finished" from="About/AnimationPlayer" to="." method="_on_about_animation_player_animation_finished"]
