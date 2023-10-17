@@ -46,7 +46,7 @@ var IS_ONLINE: bool = false
 var STEAM_APP_ID: int = 2636960
 var STEAM_ID: int = 0
 
-var ACHIEVEMENTS: Dictionary = {"Welcome":false, "achieve2":false, "achieve3":false}
+var ACHIEVEMENTS: Dictionary = {'Welcome':false, "achieve2":false, "achieve3":false}
 
 func _init() -> void:
 	# Set your game's Steam app ID here
