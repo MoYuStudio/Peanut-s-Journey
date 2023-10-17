@@ -115,18 +115,18 @@ script = SubResource("GDScript_llmkc")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 0
-offset_left = -1702.0
-offset_top = -330.0
-offset_right = 3563.0
-offset_bottom = 1534.0
+offset_left = -5409.0
+offset_top = -2500.0
+offset_right = 8897.0
+offset_bottom = 4973.0
 color = Color(0, 0, 0, 0.784314)
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 0
-offset_left = 86.0
-offset_top = 76.0
-offset_right = 1444.0
-offset_bottom = 994.0
+offset_left = 178.0
+offset_top = 192.0
+offset_right = 3034.0
+offset_bottom = 1929.0
 theme = ExtResource("1_ngxqj")
 
 [node name="TabContainer" type="TabContainer" parent="Panel"]
@@ -134,36 +134,37 @@ process_mode = 2
 texture_filter = 1
 layout_mode = 2
 offset_top = 1.0
-offset_right = 1357.0
-offset_bottom = 918.0
+offset_right = 2859.0
+offset_bottom = 1708.0
 theme = ExtResource("1_ngxqj")
 tab_alignment = 1
 
 [node name="状态" type="TabBar" parent="Panel/TabContainer"]
+visible = false
 layout_mode = 2
 script = SubResource("GDScript_y52n6")
 
 [node name="Car" type="Sprite2D" parent="Panel/TabContainer/状态"]
 texture_filter = 1
-position = Vector2(364, 324)
-scale = Vector2(16, 16)
+position = Vector2(879, 689)
+scale = Vector2(36, 36)
 texture = ExtResource("2_0rhkp")
 
 [node name="Label" type="Label" parent="Panel/TabContainer/状态"]
 layout_mode = 0
-offset_left = 996.0
-offset_top = 643.0
-offset_right = 1260.0
-offset_bottom = 775.0
+offset_left = 2150.0
+offset_top = 1186.0
+offset_right = 2678.0
+offset_bottom = 1442.0
 text = "左键释放激光
 空格构建冰墙"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Panel/TabContainer/状态"]
 layout_mode = 0
-offset_left = 714.0
-offset_top = 117.0
-offset_right = 895.0
-offset_bottom = 183.0
+offset_left = 1573.0
+offset_top = 260.0
+offset_right = 1958.0
+offset_bottom = 1048.0
 theme_override_constants/separation = 32
 
 [node name="Label" type="VBoxContainer" parent="Panel/TabContainer/状态/HBoxContainer"]
@@ -215,7 +216,6 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="升级" type="TabBar" parent="Panel/TabContainer"]
-visible = false
 layout_mode = 2
 
 [node name="TabContainer" type="TabContainer" parent="Panel/TabContainer/升级"]
@@ -314,10 +314,10 @@ text = "升级"
 
 [node name="Label" type="Label" parent="Panel/TabContainer/升级/TabContainer/基础升级"]
 layout_mode = 0
-offset_left = 61.0
-offset_top = 643.0
-offset_right = 236.0
-offset_bottom = 706.0
+offset_left = 106.0
+offset_top = 1128.0
+offset_right = 281.0
+offset_bottom = 1253.0
 
 [node name="武器升级" type="TabBar" parent="Panel/TabContainer/升级/TabContainer"]
 visible = false
@@ -414,16 +414,16 @@ layout_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 0
-offset_left = 1523.0
-offset_top = 83.0
-offset_right = 1826.0
-offset_bottom = 1021.0
-theme = ExtResource("1_raj6w")
+offset_left = 3206.0
+offset_top = 224.0
+offset_right = 3646.0
+offset_bottom = 1921.0
+theme = ExtResource("1_ngxqj")
 theme_override_constants/separation = 32
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
 layout_mode = 2
-theme_override_constants/margin_bottom = 30
+theme_override_constants/margin_bottom = 485
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/MarginContainer"]
 layout_mode = 2
@@ -431,7 +431,7 @@ script = SubResource("GDScript_eavw7")
 
 [node name="Label" type="Label" parent="VBoxContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 48
+theme_override_font_sizes/font_size = 96
 text = "本局
 获得金币
 "
@@ -458,6 +458,7 @@ layout_mode = 2
 [node name="ContinueButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("1_raj6w")
+theme_override_font_sizes/font_size = 96
 theme_override_styles/normal = SubResource("StyleBoxEmpty_o2cs8")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_kakw1")
 text = "保存及继续"
@@ -466,6 +467,7 @@ flat = true
 [node name="QuitButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("1_raj6w")
+theme_override_font_sizes/font_size = 96
 theme_override_styles/normal = SubResource("StyleBoxEmpty_liha4")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_k8rw0")
 text = "保存及退出"

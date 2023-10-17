@@ -63,27 +63,27 @@ offset_top = 39.0
 offset_right = 226.0
 offset_bottom = 126.0
 theme_override_fonts/font = ExtResource("1_8ogvg")
-theme_override_font_sizes/font_size = 128
+theme_override_font_sizes/font_size = 256
 text = "设置"
 
 [node name="Button" type="Button" parent="."]
 texture_filter = 1
-offset_left = 1521.0
-offset_top = 910.0
-offset_right = 1824.0
-offset_bottom = 1002.0
+offset_left = 3039.0
+offset_top = 1806.0
+offset_right = 3629.0
+offset_bottom = 1973.0
 theme_override_fonts/font = ExtResource("1_8ogvg")
-theme_override_font_sizes/font_size = 64
+theme_override_font_sizes/font_size = 128
 theme_override_styles/normal = SubResource("StyleBoxEmpty_530bb")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_j7wtq")
 text = "保存并返回"
 flat = true
 
 [node name="TabContainer" type="TabContainer" parent="."]
-offset_left = 77.0
-offset_top = 250.0
-offset_right = 1825.0
-offset_bottom = 868.0
+offset_left = 241.0
+offset_top = 438.0
+offset_right = 3555.0
+offset_bottom = 1755.0
 theme = ExtResource("2_81j4f")
 theme_override_constants/side_margin = 36
 
@@ -111,21 +111,21 @@ layout_mode = 2
 texture_filter = 1
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_8ogvg")
-theme_override_font_sizes/font_size = 64
+theme_override_font_sizes/font_size = 96
 text = "显示模式"
 
 [node name="WindowSizeLabel" type="Label" parent="TabContainer/显示/MarginContainer/HBoxContainer/SettingLabel"]
 texture_filter = 1
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_8ogvg")
-theme_override_font_sizes/font_size = 64
+theme_override_font_sizes/font_size = 96
 text = "窗口缩放"
 
 [node name="VsyncModeLabel" type="Label" parent="TabContainer/显示/MarginContainer/HBoxContainer/SettingLabel"]
 texture_filter = 1
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_8ogvg")
-theme_override_font_sizes/font_size = 64
+theme_override_font_sizes/font_size = 96
 text = "垂直同步"
 
 [node name="Setting" type="VBoxContainer" parent="TabContainer/显示/MarginContainer/HBoxContainer"]
@@ -137,7 +137,7 @@ layout_mode = 2
 theme = ExtResource("2_81j4f")
 theme_override_constants/h_separation = 128
 theme_override_fonts/font = ExtResource("1_8ogvg")
-theme_override_font_sizes/font_size = 64
+theme_override_font_sizes/font_size = 96
 theme_override_styles/focus = SubResource("StyleBoxEmpty_pbos4")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_okag6")
 flat = true
@@ -161,7 +161,7 @@ layout_mode = 2
 theme = ExtResource("2_81j4f")
 theme_override_constants/h_separation = 128
 theme_override_fonts/font = ExtResource("1_8ogvg")
-theme_override_font_sizes/font_size = 64
+theme_override_font_sizes/font_size = 96
 theme_override_styles/focus = SubResource("StyleBoxEmpty_pbos4")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_okag6")
 flat = true
@@ -183,7 +183,7 @@ layout_mode = 2
 theme = ExtResource("2_81j4f")
 theme_override_constants/h_separation = 128
 theme_override_fonts/font = ExtResource("1_8ogvg")
-theme_override_font_sizes/font_size = 64
+theme_override_font_sizes/font_size = 96
 theme_override_styles/focus = SubResource("StyleBoxEmpty_pbos4")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_okag6")
 disabled = true
@@ -202,10 +202,11 @@ popup/item_3/id = 3
 
 [node name="Button" type="Button" parent="TabContainer/显示"]
 layout_mode = 2
-offset_left = 29.0
-offset_top = 359.0
-offset_right = 439.0
-offset_bottom = 455.0
+offset_left = 86.0
+offset_top = 961.0
+offset_right = 802.0
+offset_bottom = 1136.0
+theme_override_font_sizes/font_size = 128
 text = "窗口位置修复"
 script = SubResource("GDScript_4dl4j")
 
