@@ -37,35 +37,35 @@ func _ready():
 			attack_size = 0
 		1:
 			hp = 1
-			speed = 800
+			speed = 1200
 			damage = 2
 			knock_back = 100
 			attack_size = 1.0
 			
 		2:
 			hp = 1
-			speed = 1000
+			speed = 1400
 			damage = 3
 			knock_back = 120
 			attack_size = 1.0
 			
 		3:
 			hp = 2
-			speed = 1200
+			speed = 1600
 			damage = 6
 			knock_back = 140
 			attack_size = 1.0
 			
 		4:
 			hp = 3
-			speed = 1400
+			speed = 1800
 			damage = 9
 			knock_back = 160
 			attack_size = 1.0
 			
 		5:
 			hp = 5
-			speed = 1600
+			speed = 2000
 			damage = 16
 			knock_back = 200
 			attack_size = 1.0

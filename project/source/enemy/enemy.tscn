@@ -1,11 +1,7 @@
-[gd_scene load_steps=19 format=3 uid="uid://o0wln7a0f0t3"]
+[gd_scene load_steps=13 format=3 uid="uid://o0wln7a0f0t3"]
 
 [ext_resource type="PackedScene" uid="uid://5ygp3ic8vnl6" path="res://source/utility/hurtbox.tscn" id="2_ggsfu"]
 [ext_resource type="PackedScene" uid="uid://o84475elvy3" path="res://source/utility/hitbox.tscn" id="3_1im1y"]
-[ext_resource type="Texture2D" uid="uid://bvhr66hwk76fl" path="res://resource/image/hp_bar_under.png" id="4_4v00r"]
-[ext_resource type="Texture2D" uid="uid://l3vbbpxnu51a" path="res://resource/image/hp_bar_over.png" id="5_ldmkq"]
-[ext_resource type="Texture2D" uid="uid://bvf7unifbeymv" path="res://resource/image/hp_bar_progress.png" id="6_spi3s"]
-[ext_resource type="FontFile" uid="uid://bxkcgrk5xuhuc" path="res://resource/font/kenney_mini.ttf" id="7_heglm"]
 [ext_resource type="Texture2D" uid="uid://cciym2m3cx1ij" path="res://resource/image/steam.png" id="8_p548k"]
 [ext_resource type="AudioStream" uid="uid://bjuo3dwiu2kc8" path="res://resource/sound/glass_004.ogg" id="8_tqfgg"]
 [ext_resource type="PackedScene" uid="uid://cg241ljt7tomh" path="res://source/player/trail.tscn" id="9_3wavj"]
@@ -26,11 +22,6 @@ signal remove_from_array(object)
 var death_animation = preload('res://source/object/blood.tscn')
 var death_coin = preload('res://source/loot/coin.tscn')
 
-@onready var hurt_sign = $HUD/HurtSign
-@onready var hurt_sign_animation = $HUD/HurtSign/AnimationPlayer
-
-
-
 # var screen_size
 
 func _ready():
@@ -44,9 +35,6 @@ func _physics_process(_delta):
 	velocity = direction_to_player * movement_speed
 	velocity -= local_knock_back
 
-	
-	$HUD/HP.value = hp
-	look_at(player.position)
 	move_and_slide()
 	
 func death():
@@ -63,13 +51,10 @@ func death():
 	
 	Global.player_dict['kill'] += 1
 	queue_free()
-	
 
 func _on_hurt_box_hurt(damage, angle, knock_back_amount):
 	hp -= damage
 	knock_back = angle * knock_back_amount
-	hurt_sign.text = str(damage)
-	hurt_sign_animation.play('animation')
 	if hp <= 0:
 		death()
 		
@@ -111,39 +96,6 @@ height = 40.0
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5yeo4"]
 radius = 19.0
 height = 38.0
-
-[sub_resource type="Animation" id="Animation_hyu54"]
-resource_name = "animation"
-length = 0.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(-16, -130), Vector2(-16, -150)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_f4qk8"]
-_data = {
-"animation": SubResource("Animation_hyu54")
-}
 
 [node name="Enemy" type="CharacterBody2D"]
 collision_layer = 4
@@ -193,49 +145,6 @@ damage = 3
 [node name="CollisionShape2D" parent="HitBox" index="0"]
 position = Vector2(-42.3167, 84.8457)
 shape = SubResource("CapsuleShape2D_5yeo4")
-
-[node name="HUD" type="Control" parent="."]
-visible = false
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="HP" type="TextureProgressBar" parent="HUD"]
-modulate = Color(1, 1, 1, 0.784314)
-texture_filter = 1
-layout_mode = 0
-offset_left = -24.0
-offset_top = -52.0
-offset_right = -8.0
-offset_bottom = -47.0
-scale = Vector2(3, 3)
-max_value = 10.0
-texture_under = ExtResource("4_4v00r")
-texture_over = ExtResource("5_ldmkq")
-texture_progress = ExtResource("6_spi3s")
-tint_under = Color(0, 0, 0, 0)
-tint_progress = Color(0.305882, 1, 0.12549, 1)
-
-[node name="HurtSign" type="Label" parent="HUD"]
-z_index = 9
-texture_filter = 1
-layout_mode = 0
-offset_left = -16.0
-offset_top = -130.0
-offset_right = 64.0
-offset_bottom = 33.0
-theme_override_colors/font_color = Color(0.933333, 0.196078, 0.027451, 0.784314)
-theme_override_colors/font_outline_color = Color(1, 1, 1, 0.784314)
-theme_override_constants/outline_size = 9
-theme_override_fonts/font = ExtResource("7_heglm")
-theme_override_font_sizes/font_size = 64
-text = "0"
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="HUD/HurtSign"]
-libraries = {
-"": SubResource("AnimationLibrary_f4qk8")
-}
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 volume_db = -30.0

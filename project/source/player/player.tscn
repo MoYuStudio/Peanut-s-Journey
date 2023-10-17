@@ -43,7 +43,7 @@ var enemy_close = []
 @onready var bullet = preload('res://source/attack/bullet.tscn')
 @onready var bullet_timer = $Body/Attack/BulletTimer
 @onready var bullet_attack_timer = $Body/Attack/BulletTimer/BulletAttackTimer
-var bullet_level = 5
+var bullet_level = 1
 var bullet_attack_speed = 0.1 # 0.1
 
 @onready var wall = preload('res://source/attack/wall.tscn')
@@ -491,6 +491,12 @@ visible = false
 
 [node name="ColorRect" parent="GUI/Paused" index="0"]
 color = Color(0, 0, 0, 0.25098)
+
+[node name="状态" parent="GUI/Paused/Panel/TabContainer" index="1"]
+visible = true
+
+[node name="升级" parent="GUI/Paused/Panel/TabContainer" index="2"]
+visible = false
 
 [node name="VBoxContainer" parent="GUI/Paused/Panel/TabContainer/升级/TabContainer/武器升级" index="0"]
 offset_left = 0.0

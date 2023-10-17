@@ -1,10 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://dv4gxfv4kty63"]
+[gd_scene load_steps=9 format=3 uid="uid://dv4gxfv4kty63"]
 
 [ext_resource type="PackedScene" uid="uid://ckujg6i1b6ujw" path="res://source/utility/enemy_spawner.tscn" id="1_il36e"]
 [ext_resource type="PackedScene" uid="uid://o0wln7a0f0t3" path="res://source/enemy/enemy.tscn" id="2_815g2"]
 [ext_resource type="Script" path="res://source/utility/spawn_info.gd" id="3_op38k"]
 [ext_resource type="Texture2D" uid="uid://8r1s6ng6iids" path="res://resource/image/light.png" id="4_umj47"]
-[ext_resource type="PackedScene" uid="uid://sgcjnmvldx7w" path="res://source/enemy/enemy0.tscn" id="5_wn6pq"]
 
 [sub_resource type="GDScript" id="GDScript_l1exk"]
 script/source = "
@@ -26,14 +25,6 @@ time_start = 0
 time_end = 10000
 enemy = ExtResource("2_815g2")
 enemy_num = 70
-enemy_spawn_delay = 10
-
-[sub_resource type="Resource" id="Resource_w1y88"]
-script = ExtResource("3_op38k")
-time_start = 0
-time_end = 10000
-enemy = ExtResource("5_wn6pq")
-enemy_num = 35
 enemy_spawn_delay = 10
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bf0sd"]
@@ -63,7 +54,7 @@ position = Vector2(288, -96)
 polygon = PackedVector2Array(2312, 2096, -2904, 2127, -3888, 96, -2888, -1904, 2312, -1904, 3312, 96, 2312, 2096, 8712, 6096, 8712, -5904, -9288, -5904, -9288, 6096, 8712, 6096)
 
 [node name="EnemySpawner" parent="." instance=ExtResource("1_il36e")]
-spawns = Array[ExtResource("3_op38k")]([SubResource("Resource_8ohy7"), SubResource("Resource_w1y88")])
+spawns = Array[ExtResource("3_op38k")]([SubResource("Resource_8ohy7")])
 
 [node name="Light" type="Node2D" parent="."]
 
