@@ -1,31 +1,33 @@
-[gd_scene load_steps=9 format=3 uid="uid://dv4gxfv4kty63"]
+[gd_scene load_steps=6 format=3 uid="uid://dv4gxfv4kty63"]
 
 [ext_resource type="PackedScene" uid="uid://ckujg6i1b6ujw" path="res://source/utility/enemy_spawner.tscn" id="1_il36e"]
-[ext_resource type="PackedScene" uid="uid://o0wln7a0f0t3" path="res://source/enemy/enemy.tscn" id="2_815g2"]
-[ext_resource type="Script" path="res://source/utility/spawn_info.gd" id="3_op38k"]
 [ext_resource type="Texture2D" uid="uid://8r1s6ng6iids" path="res://resource/image/light.png" id="4_umj47"]
 
 [sub_resource type="GDScript" id="GDScript_l1exk"]
 script/source = "
 extends Node2D
 
+@onready var enemy = preload(\"res://source/enemy/enemy.tscn\")
+
+@onready var enemy_spawner = $EnemySpawner
+
 @onready var map_level = 0
 @onready var map_time = 10
 
 func _ready():
+	# 创建SpawnInfo资源
+	var spawn_info = SpawnInfo.new()
+	spawn_info.time_start = 0
+	spawn_info.time_end = 1000
+	spawn_info.enemy = enemy
+	spawn_info.enemy_num = 70
+	spawn_info.enemy_spawn_delay = 1
+	enemy_spawner.spawns.append(spawn_info)
 	pass
 
 func _process(delta):
 	pass
 "
-
-[sub_resource type="Resource" id="Resource_8ohy7"]
-script = ExtResource("3_op38k")
-time_start = 0
-time_end = 10000
-enemy = ExtResource("2_815g2")
-enemy_num = 70
-enemy_spawn_delay = 10
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bf0sd"]
 size = Vector2(256, 256)
@@ -54,7 +56,6 @@ position = Vector2(288, -96)
 polygon = PackedVector2Array(2312, 2096, -2904, 2127, -3888, 96, -2888, -1904, 2312, -1904, 3312, 96, 2312, 2096, 8712, 6096, 8712, -5904, -9288, -5904, -9288, 6096, 8712, 6096)
 
 [node name="EnemySpawner" parent="." instance=ExtResource("1_il36e")]
-spawns = Array[ExtResource("3_op38k")]([SubResource("Resource_8ohy7")])
 
 [node name="Light" type="Node2D" parent="."]
 

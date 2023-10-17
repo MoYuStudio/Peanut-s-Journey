@@ -55,7 +55,7 @@ func _init() -> void:
 
 func _initialize_Steam() -> void:
 	var INIT: Dictionary = Steam.steamInit()
-	print("Did Steam initialize?: "+str(INIT))
+	# print("Did Steam initialize?: "+str(INIT))
 	
 	#if INIT['status'] > 0:
 	#	print("Failed to initialize Steam. "+str(INIT['verbal'])+" Shutting down...")
