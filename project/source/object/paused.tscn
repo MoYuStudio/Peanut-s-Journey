@@ -54,7 +54,7 @@ func _ready():
 	pass
 		
 func _process(delta):
-	$Label.text = str(upgrade_price)
+	$Label.text = '升级所需(升级惩罚倍率'+str(upgrade_debuff)+')：'+str(upgrade_price)
 	
 func upgrade_fn(value,value_plus):
 	if Global.player_dict['money'] >= upgrade_price:
@@ -140,6 +140,7 @@ theme = ExtResource("1_ngxqj")
 tab_alignment = 1
 
 [node name="状态" type="TabBar" parent="Panel/TabContainer"]
+visible = false
 layout_mode = 2
 script = SubResource("GDScript_y52n6")
 
@@ -151,11 +152,12 @@ texture = ExtResource("2_0rhkp")
 
 [node name="Label" type="Label" parent="Panel/TabContainer/状态"]
 layout_mode = 0
-offset_left = 972.0
-offset_top = 705.0
-offset_right = 1236.0
-offset_bottom = 771.0
-text = "空格放置道具"
+offset_left = 996.0
+offset_top = 643.0
+offset_right = 1260.0
+offset_bottom = 775.0
+text = "左键释放激光
+空格构建冰墙"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Panel/TabContainer/状态"]
 layout_mode = 0
@@ -214,7 +216,6 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="升级" type="TabBar" parent="Panel/TabContainer"]
-visible = false
 layout_mode = 2
 
 [node name="TabContainer" type="TabContainer" parent="Panel/TabContainer/升级"]
@@ -313,10 +314,10 @@ text = "升级"
 
 [node name="Label" type="Label" parent="Panel/TabContainer/升级/TabContainer/基础升级"]
 layout_mode = 0
-offset_left = 984.0
-offset_top = 528.0
-offset_right = 1159.0
-offset_bottom = 591.0
+offset_left = 61.0
+offset_top = 643.0
+offset_right = 236.0
+offset_bottom = 706.0
 
 [node name="武器升级" type="TabBar" parent="Panel/TabContainer/升级/TabContainer"]
 visible = false

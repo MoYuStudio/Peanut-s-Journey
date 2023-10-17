@@ -24,7 +24,7 @@ var angle = Vector2.ZERO
 func _ready():
 	angle = position.direction_to(target)
 	
-	var random_offset = deg_to_rad(randf() * 10 - 10)
+	var random_offset = deg_to_rad(randf() * 5 - 5)
 	angle = angle.rotated(random_offset)
 	
 	# rotation = angle.angle() + deg_to_rad(135)
@@ -156,10 +156,12 @@ collision_mask = 4
 script = SubResource("GDScript_n4bwb")
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
+position = Vector2(35, 0)
 color = Color(0.568627, 0.858824, 0.411765, 1)
 polygon = PackedVector2Array(-17, 0, 8, -9, 14, 0, 8, 9)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(34, 0)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_6tk07")
 
@@ -175,7 +177,7 @@ max_polyphony = 100
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
 texture_filter = 1
-position = Vector2(-17, 0)
+position = Vector2(18, 0)
 amount = 16
 process_material = SubResource("ParticleProcessMaterial_d0bar")
 texture = ExtResource("2_fohtw")

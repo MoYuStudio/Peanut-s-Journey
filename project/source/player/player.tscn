@@ -105,9 +105,9 @@ func attack():
 		gun.hide()
 	if bullet_level > 0:
 		gun.show()
-		# bullet_timer.wait_time = bullet_attack_speed
-		# if bullet_timer.is_stopped():
-		#	bullet_timer.start()
+		bullet_timer.wait_time = bullet_attack_speed
+		if bullet_timer.is_stopped():
+			bullet_timer.start()
 
 # 信号 ================================================================
 
@@ -117,7 +117,8 @@ func _on_bullet_timer_timeout():
 	var bullet_attack = bullet.instantiate()
 	# bullet_attack.target = get_local_mouse_position()# get_random_target()
 	bullet_attack.level = bullet_level
-	bullet_attack.position = body.position
+	bullet_attack.position.x = body.position.x+3
+	bullet_attack.position.y = body.position.y
 	# bullet_attack.rotation = gun.rotation + 44
 	bullet_attack.target = get_global_mouse_position() # body.get_global_mouse_position()
 	bullet_attack.look_at(get_global_mouse_position())
