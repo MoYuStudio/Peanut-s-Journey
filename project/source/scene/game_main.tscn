@@ -90,6 +90,17 @@ script = SubResource("GDScript_ge11n")
 [node name="Player" parent="." instance=ExtResource("3_wfkt4")]
 position = Vector2(0, 0)
 
+[node name="Camera" parent="Player/Body" index="0"]
+zoom = Vector2(2, 2)
+
+[node name="Level" parent="Player/GUI" index="1"]
+texture_filter = 1
+offset_left = 1396.0
+offset_top = 256.0
+offset_right = 2444.0
+offset_bottom = 516.0
+theme_override_font_sizes/font_size = 256
+
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_wg65d")
 volume_db = -20.0
