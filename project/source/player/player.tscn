@@ -57,9 +57,6 @@ func _ready():
 	attack()
 	
 func _process(delta):
-	if Input.is_action_just_pressed('ui_cancel'):
-		get_tree().paused = true
-		paused_menu.visible = true
 		
 	if Input.is_action_just_pressed('ui_up'):
 		$Body/HitBox.collision.disabled = false
