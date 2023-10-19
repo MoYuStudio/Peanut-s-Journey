@@ -59,7 +59,7 @@ script = SubResource("GDScript_l1exk")
 [node name="Polygon2D" type="Polygon2D" parent="."]
 z_index = -10
 color = Color(0.25098, 0.207843, 0.27451, 1)
-polygon = PackedVector2Array(-9980, -6919, -10001, 6747, 10089, 6595, 10075, -6902)
+polygon = PackedVector2Array(-10000, -7000, -10000, 7000, 10000, 7000, 10000, -7000)
 
 [node name="Area2D" type="StaticBody2D" parent="."]
 collision_layer = 15
