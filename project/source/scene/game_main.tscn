@@ -8,11 +8,16 @@
 script/source = "
 extends Node
 
-#@onready var map = $Map
+@onready var map = $Map
+@onready var map_door = $Map/Door
+@onready var map_door_animation = $Map/Door/AnimationPlayer
 #@onready var enemy_spawner = $Map/EnemySpawner
-#@onready var next_part = $Map/TileMap/NextPart
+@onready var next_part = $Map/NextPart
 
 @onready var play = $Player
+@onready var play_body = $Player/Body
+@onready var play_camera = $Player/Body/Camera
+@onready var play_hp = $Player/Body/Camera/HP
 
 var map_list = []
 
@@ -32,9 +37,21 @@ func _ready():
 	pass
 
 func _process(delta):
+	if map.door_switch == true:
+		play_camera.position = Vector2(map_door.position.x,map_door.position.y-250)
+		play_camera.rotation = map_door.rotation
+		play_hp.visible = false
+		await map_door_animation.animation_finished
+		play_camera.position = play_body.position
+		play_camera.rotation = play_body.rotation
+		map.door_switch = false
+		play_hp.visible = true
 	pass
 
 func _physics_process(delta):
+	
+	if play.level_switch == true:
+		play_body.position = Vector2(0,5000)
 	'''
 	if enemy_spawner != null:
 		if enemy_spawner.time >= map.map_time and enemy_spawner.my_children.size() <= 1:

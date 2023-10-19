@@ -13,7 +13,7 @@
 [ext_resource type="FontFile" uid="uid://cyvdvdsbhwc8m" path="res://resource/font/kenney_mini_square.ttf" id="8_et2ic"]
 [ext_resource type="AudioStream" uid="uid://ct1oed1nsolof" path="res://resource/sound/car_run.mp3" id="9_yx8xc"]
 [ext_resource type="PackedScene" uid="uid://jyvwhoign4cl" path="res://source/object/paused.tscn" id="10_vioqe"]
-[ext_resource type="FontFile" uid="uid://oruarptxiatl" path="res://resource/font/ZCOOLXiaoWei-Regular.ttf" id="11_m3jf2"]
+[ext_resource type="FontFile" uid="uid://c4xqu78o8tn3h" path="res://resource/font/kenney_blocks.ttf" id="11_oxdnj"]
 
 [sub_resource type="GDScript" id="GDScript_penpb"]
 script/source = "
@@ -516,9 +516,10 @@ offset_left = 1376.0
 offset_top = 378.0
 offset_right = 2424.0
 offset_bottom = 638.0
-theme_override_fonts/font = ExtResource("11_m3jf2")
+theme_override_fonts/font = ExtResource("11_oxdnj")
 theme_override_font_sizes/font_size = 256
-text = "初始台地"
+text = "0"
+horizontal_alignment = 1
 script = SubResource("GDScript_8bluy")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="GUI/Level"]

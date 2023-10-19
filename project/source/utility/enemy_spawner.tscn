@@ -51,8 +51,6 @@ func _on_spawn_timer_timeout():
 			
 	# print(enemies_to_spawn.size(),'   ',my_children.size())
 	
-	print(my_children.size())
-	
 func get_random_position():
 	var vpr = get_viewport_rect().size * randf_range(1.1,1.4)
 	
