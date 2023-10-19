@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dv4gxfv4kty63"]
+[gd_scene load_steps=11 format=3 uid="uid://dv4gxfv4kty63"]
 
 [ext_resource type="PackedScene" uid="uid://ckujg6i1b6ujw" path="res://source/utility/enemy_spawner.tscn" id="1_il36e"]
 [ext_resource type="PackedScene" uid="uid://o84475elvy3" path="res://source/utility/hitbox.tscn" id="3_3dblv"]
@@ -36,6 +36,18 @@ size = Vector2(256, 256)
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_eu15v"]
 polygon = PackedVector2Array(-128, -128, 128, -128, 128, 129, -128, 128)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g12ng"]
+size = Vector2(260, 260)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2ugrn"]
+size = Vector2(260, 260)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7boi0"]
+size = Vector2(260, 260)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hm51w"]
+size = Vector2(260, 260)
 
 [node name="Map" type="Node2D"]
 script = SubResource("GDScript_l1exk")
@@ -112,6 +124,7 @@ offset_left = -128.0
 offset_top = -128.0
 offset_right = 128.0
 offset_bottom = 128.0
+color = Color(0.56, 0.83, 2, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Wall/StaticBody2D"]
 shape = SubResource("RectangleShape2D_bf0sd")
@@ -120,7 +133,11 @@ shape = SubResource("RectangleShape2D_bf0sd")
 occluder = SubResource("OccluderPolygon2D_eu15v")
 
 [node name="HitBox" parent="Wall/StaticBody2D" instance=ExtResource("3_3dblv")]
-position = Vector2(5290.9, -891.014)
+collision_layer = 4
+damage = 10
+
+[node name="CollisionShape2D" parent="Wall/StaticBody2D/HitBox" index="0"]
+shape = SubResource("RectangleShape2D_g12ng")
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="Wall"]
 position = Vector2(-1600, -1000)
@@ -132,6 +149,7 @@ offset_left = -128.0
 offset_top = -128.0
 offset_right = 128.0
 offset_bottom = 128.0
+color = Color(0.56, 0.83, 2, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Wall/StaticBody2D2"]
 shape = SubResource("RectangleShape2D_bf0sd")
@@ -140,7 +158,11 @@ shape = SubResource("RectangleShape2D_bf0sd")
 occluder = SubResource("OccluderPolygon2D_eu15v")
 
 [node name="HitBox" parent="Wall/StaticBody2D2" instance=ExtResource("3_3dblv")]
-position = Vector2(5290.9, 1108.99)
+collision_layer = 4
+damage = 10
+
+[node name="CollisionShape2D" parent="Wall/StaticBody2D2/HitBox" index="0"]
+shape = SubResource("RectangleShape2D_2ugrn")
 
 [node name="StaticBody2D3" type="StaticBody2D" parent="Wall"]
 position = Vector2(1600, -1000)
@@ -152,6 +174,7 @@ offset_left = -128.0
 offset_top = -128.0
 offset_right = 128.0
 offset_bottom = 128.0
+color = Color(0.56, 0.83, 2, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Wall/StaticBody2D3"]
 shape = SubResource("RectangleShape2D_bf0sd")
@@ -160,7 +183,11 @@ shape = SubResource("RectangleShape2D_bf0sd")
 occluder = SubResource("OccluderPolygon2D_eu15v")
 
 [node name="HitBox" parent="Wall/StaticBody2D3" instance=ExtResource("3_3dblv")]
-position = Vector2(2090.9, 1108.99)
+collision_layer = 4
+damage = 10
+
+[node name="CollisionShape2D" parent="Wall/StaticBody2D3/HitBox" index="0"]
+shape = SubResource("RectangleShape2D_7boi0")
 
 [node name="StaticBody2D4" type="StaticBody2D" parent="Wall"]
 position = Vector2(1600, 1000)
@@ -172,6 +199,7 @@ offset_left = -128.0
 offset_top = -128.0
 offset_right = 128.0
 offset_bottom = 128.0
+color = Color(0.56, 0.83, 100, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Wall/StaticBody2D4"]
 shape = SubResource("RectangleShape2D_bf0sd")
@@ -180,4 +208,13 @@ shape = SubResource("RectangleShape2D_bf0sd")
 occluder = SubResource("OccluderPolygon2D_eu15v")
 
 [node name="HitBox" parent="Wall/StaticBody2D4" instance=ExtResource("3_3dblv")]
-position = Vector2(2090.9, -891.014)
+collision_layer = 4
+damage = 10
+
+[node name="CollisionShape2D" parent="Wall/StaticBody2D4/HitBox" index="0"]
+shape = SubResource("RectangleShape2D_hm51w")
+
+[editable path="Wall/StaticBody2D/HitBox"]
+[editable path="Wall/StaticBody2D2/HitBox"]
+[editable path="Wall/StaticBody2D3/HitBox"]
+[editable path="Wall/StaticBody2D4/HitBox"]
