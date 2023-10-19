@@ -1,10 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://dv4gxfv4kty63"]
+[gd_scene load_steps=14 format=3 uid="uid://dv4gxfv4kty63"]
 
 [ext_resource type="PackedScene" uid="uid://ckujg6i1b6ujw" path="res://source/utility/enemy_spawner.tscn" id="1_il36e"]
 [ext_resource type="PackedScene" uid="uid://o84475elvy3" path="res://source/utility/hitbox.tscn" id="3_3dblv"]
 [ext_resource type="PackedScene" uid="uid://bh83v2nngnstf" path="res://source/object/door.tscn" id="4_bixg0"]
 [ext_resource type="Texture2D" uid="uid://8r1s6ng6iids" path="res://resource/image/light.png" id="4_umj47"]
 [ext_resource type="PackedScene" uid="uid://b4g43o3dnrfc0" path="res://source/object/next_part.tscn" id="5_ddc4g"]
+[ext_resource type="PackedScene" uid="uid://djxky8bdiaorh" path="res://source/loot/medicine.tscn" id="6_tiaxy"]
 
 [sub_resource type="GDScript" id="GDScript_l1exk"]
 script/source = "
@@ -230,6 +231,9 @@ position = Vector2(0, 2600)
 
 [node name="NextPart" parent="." instance=ExtResource("5_ddc4g")]
 position = Vector2(-1, -4488)
+
+[node name="Medicine" parent="." instance=ExtResource("6_tiaxy")]
+position = Vector2(-476, -368)
 
 [editable path="Wall/StaticBody2D/HitBox"]
 [editable path="Wall/StaticBody2D2/HitBox"]

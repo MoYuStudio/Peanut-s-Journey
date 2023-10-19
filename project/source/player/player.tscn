@@ -87,7 +87,7 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed('ui_select'):
 		if Global.player_dict['money'] >= 50:
 			Global.player_dict['money'] -= 50
-			Global.player_dict['hp'] +=10
+			Global.player_dict['hp'] -= 10
 			var wall_attack = wall.instantiate()
 			wall_attack.target = body.position
 			wall_attack.level = wall_level
@@ -136,9 +136,21 @@ func _on_hurt_box_hurt(damage, _angle, _knock_back):
 	
 func _on_collect_area_area_entered(area):
 	if area.is_in_group('loot'):
-		var money_now = round(area.collect()*Global.player_dict['money_multiple']*10)/10
-		Global.player_dict['money'] += money_now
-		Global.player_dict['total_money'] += money_now
+		match area.type:
+			'coin':
+				var money_now = round(area.collect()*Global.player_dict['money_multiple']*10)/10
+				Global.player_dict['money'] += money_now
+				Global.player_dict['total_money'] += money_now
+			'medicine':
+				var hp_now = area.collect()
+				
+				if Global.player_dict['hp']+hp_now >= Global.player_dict['hp_max']:
+					Global.player_dict['total_hp'] += Global.player_dict['hp_max'] - Global.player_dict['hp']
+					Global.player_dict['hp'] = Global.player_dict['hp_max']
+				else:
+					Global.player_dict['hp'] += hp_now
+					Global.player_dict['total_hp'] += hp_now
+				
 
 	if area.is_in_group('next_part'):
 		level_switch = true

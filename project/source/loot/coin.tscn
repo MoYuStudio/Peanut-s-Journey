@@ -13,6 +13,8 @@ extends Area2D
 
 @export var money = 1.0
 
+var type = 'coin'
+
 var target = null
 var speed = 0
 

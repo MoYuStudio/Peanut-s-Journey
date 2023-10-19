@@ -28,7 +28,7 @@ var player_dict = {
 	'money':1000,
 	'hp':100,
 	# 基础升级
-	'hp_max':100,
+	'hp_max':100, 
 	'hp_auto_add':0,
 	'grab_area_size':256,
 	'hit_damage':10,
@@ -36,6 +36,7 @@ var player_dict = {
 	'money_multiple':1.0,
 	# 统计信息
 	'total_money':0,
+	'total_hp':0,
 	'kill':0,
 	'wall':0,
 }
