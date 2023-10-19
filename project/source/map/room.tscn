@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3 uid="uid://dw2s1rbfcc3fj"]
+
+[sub_resource type="GDScript" id="GDScript_ga88g"]
+script/source = "
+extends RigidBody2D
+
+var size
+
+func set_room(pos,size):
+	position = pos
+	var s = RectangleShape2D.new()
+	s.extents = size
+	$CollisionShape2D.shape = s
+"
+
+[node name="Room" type="RigidBody2D"]
+lock_rotation = true
+script = SubResource("GDScript_ga88g")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
