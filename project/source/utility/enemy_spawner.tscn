@@ -50,7 +50,8 @@ func _on_spawn_timer_timeout():
 			counter += 1
 			
 	# print(enemies_to_spawn.size(),'   ',my_children.size())
-			
+	
+	print(my_children.size())
 	
 func get_random_position():
 	var vpr = get_viewport_rect().size * randf_range(1.1,1.4)
@@ -82,6 +83,7 @@ func get_random_position():
 	var x_spawn = randf_range(spawn_pos1.x,spawn_pos2.x)
 	var y_spawn = randf_range(spawn_pos1.y,spawn_pos2.y)
 	return Vector2(x_spawn,y_spawn)
+
 "
 
 [node name="EnemySpawner" type="Node2D"]

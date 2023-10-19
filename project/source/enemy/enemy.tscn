@@ -34,6 +34,7 @@ func _physics_process(_delta):
 	var local_knock_back = direction_to_player * knock_back.length()
 	velocity = direction_to_player * movement_speed
 	velocity -= local_knock_back
+	look_at(player.position)
 
 	move_and_slide()
 	
