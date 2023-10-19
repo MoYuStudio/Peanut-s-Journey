@@ -90,7 +90,7 @@ script = SubResource("GDScript_ov1d2")
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
 position = Vector2(-111, 0)
-color = Color(0.560784, 0.972549, 0.886275, 1)
+color = Color(0.560784, 0.827451, 1, 1)
 polygon = PackedVector2Array(16, -101, 0, -128, -16, -102, -16, 103, 0, 128, 16, 103)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Polygon2D"]
