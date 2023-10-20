@@ -84,10 +84,10 @@ script = SubResource("GDScript_u48wl")
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
-offset_left = 2670.0
-offset_top = 1797.0
-offset_right = 2710.0
-offset_bottom = 1837.0
+offset_left = 178.0
+offset_top = 1810.0
+offset_right = 218.0
+offset_bottom = 1850.0
 
 [node name="Panel" type="Panel" parent="Control"]
 layout_mode = 0
