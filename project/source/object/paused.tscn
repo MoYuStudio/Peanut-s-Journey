@@ -106,7 +106,7 @@ func _on_button_6_pressed():
 script/source = "
 extends TabBar
 
-@onready var rune_0 = $TextureRect/Label
+@onready var rune_0 = $VBoxContainer/Label
 @onready var rune_1 = $GridContainer/VBoxContainer1/Label
 @onready var rune_2 = $GridContainer/VBoxContainer2/Label
 @onready var rune_3 = $GridContainer/VBoxContainer3/Label
@@ -191,6 +191,7 @@ theme = ExtResource("1_ngxqj")
 tab_alignment = 1
 
 [node name="状态" type="TabBar" parent="Panel/TabContainer"]
+visible = false
 layout_mode = 2
 script = SubResource("GDScript_y52n6")
 
@@ -460,7 +461,6 @@ custom_minimum_size = Vector2(96, 48)
 layout_mode = 2
 
 [node name="符文" type="TabBar" parent="Panel/TabContainer"]
-visible = false
 layout_mode = 2
 script = SubResource("GDScript_nyuno")
 
@@ -601,21 +601,22 @@ layout_mode = 2
 text = "0"
 horizontal_alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="Panel/TabContainer/符文"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/TabContainer/符文"]
+layout_mode = 2
+offset_left = 1850.0
+offset_top = 524.0
+offset_right = 2150.0
+offset_bottom = 956.0
+
+[node name="TextureRect" type="TextureRect" parent="Panel/TabContainer/符文/VBoxContainer"]
 custom_minimum_size = Vector2(300, 300)
-layout_mode = 0
-offset_left = 1863.0
-offset_top = 534.0
-offset_right = 2163.0
-offset_bottom = 834.0
+layout_mode = 2
 texture = ExtResource("13_pvggv")
 
-[node name="Label" type="Label" parent="Panel/TabContainer/符文/TextureRect"]
-offset_left = 110.0
-offset_top = 320.0
-offset_right = 181.0
-offset_bottom = 448.0
+[node name="Label" type="Label" parent="Panel/TabContainer/符文/VBoxContainer"]
+layout_mode = 2
 text = "0"
+horizontal_alignment = 1
 
 [node name="设置" type="TabBar" parent="Panel/TabContainer"]
 visible = false
