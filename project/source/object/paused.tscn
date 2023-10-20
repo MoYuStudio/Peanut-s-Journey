@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://jyvwhoign4cl"]
+[gd_scene load_steps=23 format=3 uid="uid://jyvwhoign4cl"]
 
 [ext_resource type="Theme" uid="uid://bhr73i44c1buj" path="res://resource/theme/paused.tres" id="1_ngxqj"]
 [ext_resource type="Theme" uid="uid://cwvilb81l6i31" path="res://resource/theme/moyu.tres" id="1_raj6w"]
@@ -102,6 +102,37 @@ func _on_button_6_pressed():
 	Global.player_dict['money_multiple'] = upgrade_fn(Global.player_dict['money_multiple'],0.1)
 "
 
+[sub_resource type="GDScript" id="GDScript_nyuno"]
+script/source = "
+extends TabBar
+
+@onready var rune_0 = $TextureRect/Label
+@onready var rune_1 = $GridContainer/TextureRect1/Label
+@onready var rune_2 = $GridContainer/TextureRect2/Label
+@onready var rune_3 = $GridContainer/TextureRect3/Label
+@onready var rune_4 = $GridContainer/TextureRect4/Label
+@onready var rune_5 = $GridContainer/TextureRect5/Label
+@onready var rune_6 = $GridContainer/TextureRect6/Label
+@onready var rune_7 = $GridContainer/TextureRect7/Label
+@onready var rune_8 = $GridContainer/TextureRect8/Label
+@onready var rune_9 = $GridContainer/TextureRect9/Label
+
+func _ready():
+	pass
+
+func _physics_process(delta):
+	rune_0.text = str(Global.player_dict['rune_0'])
+	rune_1.text = str(Global.player_dict['rune_1'])
+	rune_2.text = str(Global.player_dict['rune_2'])
+	rune_3.text = str(Global.player_dict['rune_3'])
+	rune_4.text = str(Global.player_dict['rune_4'])
+	rune_5.text = str(Global.player_dict['rune_5'])
+	rune_6.text = str(Global.player_dict['rune_6'])
+	rune_7.text = str(Global.player_dict['rune_7'])
+	rune_8.text = str(Global.player_dict['rune_8'])
+	rune_9.text = str(Global.player_dict['rune_9'])
+"
+
 [sub_resource type="GDScript" id="GDScript_eavw7"]
 script/source = "extends VBoxContainer
 
@@ -160,6 +191,7 @@ theme = ExtResource("1_ngxqj")
 tab_alignment = 1
 
 [node name="状态" type="TabBar" parent="Panel/TabContainer"]
+visible = false
 layout_mode = 2
 script = SubResource("GDScript_y52n6")
 
@@ -429,8 +461,8 @@ custom_minimum_size = Vector2(96, 48)
 layout_mode = 2
 
 [node name="符文" type="TabBar" parent="Panel/TabContainer"]
-visible = false
 layout_mode = 2
+script = SubResource("GDScript_nyuno")
 
 [node name="GridContainer" type="GridContainer" parent="Panel/TabContainer/符文"]
 layout_mode = 0

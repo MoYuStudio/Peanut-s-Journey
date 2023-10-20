@@ -34,6 +34,17 @@ var player_dict = {
 	'hit_damage':10,
 	'money_drop':50,
 	'money_multiple':1.0,
+	# 符文
+	'rune_0':0,
+	'rune_1':0,
+	'rune_2':0,
+	'rune_3':0,
+	'rune_4':0,
+	'rune_5':0,
+	'rune_6':0,
+	'rune_7':0,
+	'rune_8':0,
+	'rune_9':0,
 	# 统计信息
 	'total_money':0,
 	'total_hp':0,

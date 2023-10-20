@@ -23,17 +23,25 @@ func _ready():
 	MusicPlayer.hide()
 	rune_dict = Global.traverse(path)
 	
-	rune_slot_1.texture = load(path+rune_dict[randi_range(0,len(rune_dict)-1)])
-	rune_slot_2.texture = load(path+rune_dict[randi_range(0,len(rune_dict)-1)])
-	rune_slot_3.texture = load(path+rune_dict[randi_range(0,len(rune_dict)-1)])
+	var num_1 = randi_range(0,len(rune_dict)-1)
+	var num_2 = randi_range(0,len(rune_dict)-1)
+	var num_3 = randi_range(0,len(rune_dict)-1)
+	
+	rune_slot_1.texture = load(path+rune_dict[num_1])
+	rune_slot_2.texture = load(path+rune_dict[num_2])
+	rune_slot_3.texture = load(path+rune_dict[num_3])
+	
+	Global.player_dict['rune_'+str(num_1)] += 1
+	Global.player_dict['rune_'+str(num_2)] += 1
+	Global.player_dict['rune_'+str(num_3)] += 1
 	
 	animation.play(\"animation\")
 	await animation.animation_finished
 	
 	$Button.visible = true
 
-
 func _on_button_pressed():
+	MusicPlayer.show()
 	get_tree().paused = false
 	queue_free()
 "
