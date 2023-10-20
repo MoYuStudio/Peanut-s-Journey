@@ -17,20 +17,30 @@ extends CanvasLayer
 
 var path = 'res://resource/rune/'
 
-var rune_dict = []
+var rune_dict = [
+	preload(\"res://resource/rune/rune_0.png\"),
+	preload(\"res://resource/rune/rune_1.png\"),
+	preload(\"res://resource/rune/rune_2.png\"),
+	preload(\"res://resource/rune/rune_3.png\"),
+	preload(\"res://resource/rune/rune_4.png\"),
+	preload(\"res://resource/rune/rune_5.png\"),
+	preload(\"res://resource/rune/rune_6.png\"),
+	preload(\"res://resource/rune/rune_7.png\"),
+	preload(\"res://resource/rune/rune_8.png\"),
+	preload(\"res://resource/rune/rune_9.png\"),
+]
 
 func _ready():
 	MusicPlayer.hide()
 	MusicPlayer.player.stream_paused = true
-	rune_dict = Global.traverse(path)
 	
 	var num_1 = randi_range(0,len(rune_dict)-1)
 	var num_2 = randi_range(0,len(rune_dict)-1)
 	var num_3 = randi_range(0,len(rune_dict)-1)
 	
-	rune_slot_1.texture = load(path+rune_dict[num_1])
-	rune_slot_2.texture = load(path+rune_dict[num_2])
-	rune_slot_3.texture = load(path+rune_dict[num_3])
+	rune_slot_1.texture = rune_dict[num_1]
+	rune_slot_2.texture = rune_dict[num_2]
+	rune_slot_3.texture = rune_dict[num_3]
 	
 	Global.player_dict['rune_'+str(num_1)] += 1
 	Global.player_dict['rune_'+str(num_2)] += 1

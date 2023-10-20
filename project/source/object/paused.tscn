@@ -107,15 +107,15 @@ script/source = "
 extends TabBar
 
 @onready var rune_0 = $TextureRect/Label
-@onready var rune_1 = $GridContainer/TextureRect1/Label
-@onready var rune_2 = $GridContainer/TextureRect2/Label
-@onready var rune_3 = $GridContainer/TextureRect3/Label
-@onready var rune_4 = $GridContainer/TextureRect4/Label
-@onready var rune_5 = $GridContainer/TextureRect5/Label
-@onready var rune_6 = $GridContainer/TextureRect6/Label
-@onready var rune_7 = $GridContainer/TextureRect7/Label
-@onready var rune_8 = $GridContainer/TextureRect8/Label
-@onready var rune_9 = $GridContainer/TextureRect9/Label
+@onready var rune_1 = $GridContainer/VBoxContainer1/Label
+@onready var rune_2 = $GridContainer/VBoxContainer2/Label
+@onready var rune_3 = $GridContainer/VBoxContainer3/Label
+@onready var rune_4 = $GridContainer/VBoxContainer4/Label
+@onready var rune_5 = $GridContainer/VBoxContainer5/Label
+@onready var rune_6 = $GridContainer/VBoxContainer6/Label
+@onready var rune_7 = $GridContainer/VBoxContainer7/Label
+@onready var rune_8 = $GridContainer/VBoxContainer8/Label
+@onready var rune_9 = $GridContainer/VBoxContainer9/Label
 
 func _ready():
 	pass
@@ -191,7 +191,6 @@ theme = ExtResource("1_ngxqj")
 tab_alignment = 1
 
 [node name="状态" type="TabBar" parent="Panel/TabContainer"]
-visible = false
 layout_mode = 2
 script = SubResource("GDScript_y52n6")
 
@@ -461,6 +460,7 @@ custom_minimum_size = Vector2(96, 48)
 layout_mode = 2
 
 [node name="符文" type="TabBar" parent="Panel/TabContainer"]
+visible = false
 layout_mode = 2
 script = SubResource("GDScript_nyuno")
 
@@ -471,126 +471,135 @@ offset_top = 69.0
 offset_right = 1523.0
 offset_bottom = 1394.0
 theme_override_constants/h_separation = 150
-theme_override_constants/v_separation = 150
+theme_override_constants/v_separation = 10
 columns = 3
 
-[node name="TextureRect1" type="TextureRect" parent="Panel/TabContainer/符文/GridContainer"]
+[node name="VBoxContainer1" type="VBoxContainer" parent="Panel/TabContainer/符文/GridContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="TextureRect1" type="TextureRect" parent="Panel/TabContainer/符文/GridContainer/VBoxContainer1"]
 custom_minimum_size = Vector2(300, 300)
 layout_mode = 2
 texture = ExtResource("4_5dqks")
 expand_mode = 1
 
-[node name="Label" type="Label" parent="Panel/TabContainer/符文/GridContainer/TextureRect1"]
-layout_mode = 0
-offset_left = 110.0
-offset_top = 320.0
-offset_right = 181.0
-offset_bottom = 448.0
+[node name="Label" type="Label" parent="Panel/TabContainer/符文/GridContainer/VBoxContainer1"]
+layout_mode = 2
 text = "0"
+horizontal_alignment = 1
 
-[node name="TextureRect2" type="TextureRect" parent="Panel/TabContainer/符文/GridContainer"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="Panel/TabContainer/符文/GridContainer"]
+layout_mode = 2
+
+[node name="TextureRect2" type="TextureRect" parent="Panel/TabContainer/符文/GridContainer/VBoxContainer2"]
 custom_minimum_size = Vector2(300, 300)
 layout_mode = 2
 texture = ExtResource("5_s1s2m")
 expand_mode = 1
 
-[node name="Label" type="Label" parent="Panel/TabContainer/符文/GridContainer/TextureRect2"]
-offset_left = 110.0
-offset_top = 320.0
-offset_right = 181.0
-offset_bottom = 448.0
+[node name="Label" type="Label" parent="Panel/TabContainer/符文/GridContainer/VBoxContainer2"]
+layout_mode = 2
 text = "0"
+horizontal_alignment = 1
 
-[node name="TextureRect3" type="TextureRect" parent="Panel/TabContainer/符文/GridContainer"]
+[node name="VBoxContainer3" type="VBoxContainer" parent="Panel/TabContainer/符文/GridContainer"]
+layout_mode = 2
+
+[node name="TextureRect3" type="TextureRect" parent="Panel/TabContainer/符文/GridContainer/VBoxContainer3"]
 custom_minimum_size = Vector2(300, 300)
 layout_mode = 2
 texture = ExtResource("6_cdgev")
 expand_mode = 1
 
-[node name="Label" type="Label" parent="Panel/TabContainer/符文/GridContainer/TextureRect3"]
-offset_left = 110.0
-offset_top = 320.0
-offset_right = 181.0
-offset_bottom = 448.0
+[node name="Label" type="Label" parent="Panel/TabContainer/符文/GridContainer/VBoxContainer3"]
+layout_mode = 2
 text = "0"
+horizontal_alignment = 1
 
-[node name="TextureRect4" type="TextureRect" parent="Panel/TabContainer/符文/GridContainer"]
+[node name="VBoxContainer4" type="VBoxContainer" parent="Panel/TabContainer/符文/GridContainer"]
+layout_mode = 2
+
+[node name="TextureRect4" type="TextureRect" parent="Panel/TabContainer/符文/GridContainer/VBoxContainer4"]
 custom_minimum_size = Vector2(300, 300)
 layout_mode = 2
 texture = ExtResource("7_ugvtx")
 expand_mode = 1
 
-[node name="Label" type="Label" parent="Panel/TabContainer/符文/GridContainer/TextureRect4"]
-offset_left = 110.0
-offset_top = 320.0
-offset_right = 181.0
-offset_bottom = 448.0
+[node name="Label" type="Label" parent="Panel/TabContainer/符文/GridContainer/VBoxContainer4"]
+layout_mode = 2
 text = "0"
+horizontal_alignment = 1
 
-[node name="TextureRect5" type="TextureRect" parent="Panel/TabContainer/符文/GridContainer"]
+[node name="VBoxContainer5" type="VBoxContainer" parent="Panel/TabContainer/符文/GridContainer"]
+layout_mode = 2
+
+[node name="TextureRect5" type="TextureRect" parent="Panel/TabContainer/符文/GridContainer/VBoxContainer5"]
 custom_minimum_size = Vector2(300, 300)
 layout_mode = 2
 texture = ExtResource("8_of4l2")
 expand_mode = 1
 
-[node name="Label" type="Label" parent="Panel/TabContainer/符文/GridContainer/TextureRect5"]
-offset_left = 110.0
-offset_top = 320.0
-offset_right = 181.0
-offset_bottom = 448.0
+[node name="Label" type="Label" parent="Panel/TabContainer/符文/GridContainer/VBoxContainer5"]
+layout_mode = 2
 text = "0"
+horizontal_alignment = 1
 
-[node name="TextureRect6" type="TextureRect" parent="Panel/TabContainer/符文/GridContainer"]
+[node name="VBoxContainer6" type="VBoxContainer" parent="Panel/TabContainer/符文/GridContainer"]
+layout_mode = 2
+
+[node name="TextureRect6" type="TextureRect" parent="Panel/TabContainer/符文/GridContainer/VBoxContainer6"]
 custom_minimum_size = Vector2(300, 300)
 layout_mode = 2
 texture = ExtResource("9_305k1")
 expand_mode = 1
 
-[node name="Label" type="Label" parent="Panel/TabContainer/符文/GridContainer/TextureRect6"]
-offset_left = 110.0
-offset_top = 320.0
-offset_right = 181.0
-offset_bottom = 448.0
+[node name="Label" type="Label" parent="Panel/TabContainer/符文/GridContainer/VBoxContainer6"]
+layout_mode = 2
 text = "0"
+horizontal_alignment = 1
 
-[node name="TextureRect7" type="TextureRect" parent="Panel/TabContainer/符文/GridContainer"]
+[node name="VBoxContainer7" type="VBoxContainer" parent="Panel/TabContainer/符文/GridContainer"]
+layout_mode = 2
+
+[node name="TextureRect7" type="TextureRect" parent="Panel/TabContainer/符文/GridContainer/VBoxContainer7"]
 custom_minimum_size = Vector2(300, 300)
 layout_mode = 2
 texture = ExtResource("10_nfuyl")
 expand_mode = 1
 
-[node name="Label" type="Label" parent="Panel/TabContainer/符文/GridContainer/TextureRect7"]
-offset_left = 110.0
-offset_top = 320.0
-offset_right = 181.0
-offset_bottom = 448.0
+[node name="Label" type="Label" parent="Panel/TabContainer/符文/GridContainer/VBoxContainer7"]
+layout_mode = 2
 text = "0"
+horizontal_alignment = 1
 
-[node name="TextureRect8" type="TextureRect" parent="Panel/TabContainer/符文/GridContainer"]
+[node name="VBoxContainer8" type="VBoxContainer" parent="Panel/TabContainer/符文/GridContainer"]
+layout_mode = 2
+
+[node name="TextureRect8" type="TextureRect" parent="Panel/TabContainer/符文/GridContainer/VBoxContainer8"]
 custom_minimum_size = Vector2(300, 300)
 layout_mode = 2
 texture = ExtResource("11_64hkt")
 expand_mode = 1
 
-[node name="Label" type="Label" parent="Panel/TabContainer/符文/GridContainer/TextureRect8"]
-offset_left = 110.0
-offset_top = 320.0
-offset_right = 181.0
-offset_bottom = 448.0
+[node name="Label" type="Label" parent="Panel/TabContainer/符文/GridContainer/VBoxContainer8"]
+layout_mode = 2
 text = "0"
+horizontal_alignment = 1
 
-[node name="TextureRect9" type="TextureRect" parent="Panel/TabContainer/符文/GridContainer"]
+[node name="VBoxContainer9" type="VBoxContainer" parent="Panel/TabContainer/符文/GridContainer"]
+layout_mode = 2
+
+[node name="TextureRect9" type="TextureRect" parent="Panel/TabContainer/符文/GridContainer/VBoxContainer9"]
 custom_minimum_size = Vector2(300, 300)
 layout_mode = 2
 texture = ExtResource("12_gyk8u")
 expand_mode = 1
 
-[node name="Label" type="Label" parent="Panel/TabContainer/符文/GridContainer/TextureRect9"]
-offset_left = 110.0
-offset_top = 320.0
-offset_right = 181.0
-offset_bottom = 448.0
+[node name="Label" type="Label" parent="Panel/TabContainer/符文/GridContainer/VBoxContainer9"]
+layout_mode = 2
 text = "0"
+horizontal_alignment = 1
 
 [node name="TextureRect" type="TextureRect" parent="Panel/TabContainer/符文"]
 custom_minimum_size = Vector2(300, 300)

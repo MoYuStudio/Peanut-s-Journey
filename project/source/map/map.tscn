@@ -68,6 +68,7 @@ size = Vector2(260, 260)
 size = Vector2(260, 260)
 
 [node name="Map" type="Node2D"]
+rotation = 1.5708
 script = SubResource("GDScript_l1exk")
 
 [node name="Rooms" type="Node2D" parent="."]
