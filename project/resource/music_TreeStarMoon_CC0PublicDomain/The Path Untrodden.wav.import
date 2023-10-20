@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bjjb6vd4yfqn6"
+path="res://.godot/imported/The Path Untrodden.wav-b942cdd8902ba0121365fdda0bc1051e.sample"
+
+[deps]
+
+source_file="res://resource/music_TreeStarMoon_CC0PublicDomain/The Path Untrodden.wav"
+dest_files=["res://.godot/imported/The Path Untrodden.wav-b942cdd8902ba0121365fdda0bc1051e.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

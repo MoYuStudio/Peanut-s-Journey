@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://b4u7q3b4vyfbd"]
+[gd_scene load_steps=36 format=3 uid="uid://b4u7q3b4vyfbd"]
 
 [ext_resource type="FontFile" uid="uid://dwo3w3m0bti6d" path="res://resource/font/YouSheBiaoTiHei.ttf" id="2_kikh1"]
 [ext_resource type="FontFile" uid="uid://cyvdvdsbhwc8m" path="res://resource/font/kenney_mini_square.ttf" id="3_nvl8e"]
@@ -7,7 +7,6 @@
 [ext_resource type="Material" uid="uid://bss0l0sqbcfrj" path="res://resource/shader/rain.tres" id="5_ana3l"]
 [ext_resource type="Texture2D" uid="uid://bnmx8pt0nk4u2" path="res://resource/logo/logo.png" id="5_oh756"]
 [ext_resource type="AudioStream" uid="uid://om43vjvq3531" path="res://resource/sound/rain.mp3" id="6_5yxqh"]
-[ext_resource type="AudioStream" uid="uid://dbmskiya572dy" path="res://resource/music/Always Hopeful - Silent Partner.mp3" id="6_a3elk"]
 [ext_resource type="Theme" uid="uid://cwvilb81l6i31" path="res://resource/theme/moyu.tres" id="9_ttu0s"]
 [ext_resource type="FontFile" uid="uid://briod8qq6bg6o" path="res://resource/font/kenney_mini_square_mono.ttf" id="10_g8yvp"]
 
@@ -421,7 +420,6 @@ text = "www.moyu-stuido.com
 "
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Main"]
-stream = ExtResource("6_a3elk")
 volume_db = -20.0
 autoplay = true
 
@@ -436,10 +434,10 @@ script = SubResource("GDScript_pr2eo")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="About"]
 layout_mode = 0
-offset_left = 1473.0
-offset_top = 2930.0
-offset_right = 2417.0
-offset_bottom = 7850.0
+offset_left = 550.0
+offset_top = 1000.0
+offset_right = 1494.0
+offset_bottom = 5920.0
 alignment = 1
 
 [node name="Label2" type="Label" parent="About/VBoxContainer"]

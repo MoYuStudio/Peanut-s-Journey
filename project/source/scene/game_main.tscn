@@ -1,8 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://bsln5r51b15m3"]
+[gd_scene load_steps=5 format=3 uid="uid://bsln5r51b15m3"]
 
 [ext_resource type="PackedScene" uid="uid://dv4gxfv4kty63" path="res://source/map/map.tscn" id="1_imo37"]
 [ext_resource type="PackedScene" uid="uid://532f5h24sdvb" path="res://source/player/player.tscn" id="3_wfkt4"]
-[ext_resource type="AudioStream" uid="uid://btfgjlj8ct3sr" path="res://resource/music/The Poisoned Princess - Media Right Productions.mp3" id="3_wg65d"]
 
 [sub_resource type="GDScript" id="GDScript_ge11n"]
 script/source = "
@@ -118,8 +117,7 @@ offset_right = 2444.0
 offset_bottom = 516.0
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_wg65d")
-volume_db = -20.0
+volume_db = -10.0
 autoplay = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]

@@ -23,6 +23,7 @@ config/windows_native_icon="res://resource/icon/icon_x64.ico"
 
 Global="*res://source/utility/global.gd"
 SceneTransition="*res://source/utility/scene_transition.tscn"
+MusicPlayer="*res://source/utility/music_player.tscn"
 
 [display]
 

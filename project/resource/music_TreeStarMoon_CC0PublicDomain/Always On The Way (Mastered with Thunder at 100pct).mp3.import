@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cw4vprkdys0oi"
+path="res://.godot/imported/Always On The Way (Mastered with Thunder at 100pct).mp3-38d38e791d9b2e4250f4f87a577919d8.mp3str"
+
+[deps]
+
+source_file="res://resource/music_TreeStarMoon_CC0PublicDomain/Always On The Way (Mastered with Thunder at 100pct).mp3"
+dest_files=["res://.godot/imported/Always On The Way (Mastered with Thunder at 100pct).mp3-38d38e791d9b2e4250f4f87a577919d8.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
