@@ -1,10 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://dv4gxfv4kty63"]
+[gd_scene load_steps=14 format=3 uid="uid://dv4gxfv4kty63"]
 
 [ext_resource type="PackedScene" uid="uid://ckujg6i1b6ujw" path="res://source/utility/enemy_spawner.tscn" id="1_il36e"]
 [ext_resource type="PackedScene" uid="uid://o84475elvy3" path="res://source/utility/hitbox.tscn" id="3_3dblv"]
 [ext_resource type="PackedScene" uid="uid://bh83v2nngnstf" path="res://source/object/door.tscn" id="4_bixg0"]
 [ext_resource type="Texture2D" uid="uid://8r1s6ng6iids" path="res://resource/image/light.png" id="4_umj47"]
 [ext_resource type="PackedScene" uid="uid://b4g43o3dnrfc0" path="res://source/object/next_part.tscn" id="5_ddc4g"]
+[ext_resource type="PackedScene" uid="uid://bt20nfo2fxodp" path="res://source/loot/chest.tscn" id="6_b5fh6"]
 
 [sub_resource type="GDScript" id="GDScript_l1exk"]
 script/source = "
@@ -24,7 +25,7 @@ func _ready():
 	# 创建SpawnInfo资源
 	var spawn_info = SpawnInfo.new()
 	spawn_info.time_start = 0
-	spawn_info.time_end = 30
+	spawn_info.time_end = 10
 	spawn_info.enemy = enemy
 	spawn_info.enemy_num = 70
 	spawn_info.enemy_spawn_delay = 1
@@ -32,7 +33,7 @@ func _ready():
 	
 	spawn_info = SpawnInfo.new()
 	spawn_info.time_start = 0
-	spawn_info.time_end = 30
+	spawn_info.time_end = 10
 	spawn_info.enemy = enemy1
 	spawn_info.enemy_num = 20
 	spawn_info.enemy_spawn_delay = 1
@@ -42,7 +43,7 @@ func _process(delta):
 	pass
 	
 func _physics_process(delta):
-	if enemy_spawner.time >= 30 and enemy_spawner.my_children.size() <= 1 and door_switch == false and door_once == 0:
+	if enemy_spawner.time >= 10 and enemy_spawner.my_children.size() <= 1 and door_switch == false and door_once == 0:
 		$Door.open()
 		door_switch = true
 		door_once += 1
@@ -239,6 +240,12 @@ position = Vector2(0, 2600)
 
 [node name="NextPart" parent="." instance=ExtResource("5_ddc4g")]
 position = Vector2(-1, -4488)
+
+[node name="Chest" parent="." instance=ExtResource("6_b5fh6")]
+position = Vector2(-7, -3318)
+
+[node name="Chest2" parent="." instance=ExtResource("6_b5fh6")]
+position = Vector2(0, -1288)
 
 [editable path="Wall/StaticBody2D/HitBox"]
 [editable path="Wall/StaticBody2D2/HitBox"]

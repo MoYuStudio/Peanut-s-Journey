@@ -137,3 +137,21 @@ func setting_set():
 	DisplayServer.window_set_size(Vector2(window_size_list[setting_dict['window_size']][0],window_size_list[setting_dict['window_size']][1]))
 	DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_DISABLED)
 	save_data('setting',setting_dict)
+	
+func traverse(path):
+	var dict = []
+	var dir = DirAccess.open(path)
+	if dir:
+		dir.list_dir_begin()
+		var file_name = dir.get_next()
+		while file_name != "":
+			if dir.current_is_dir():
+				print("Found directory: " + file_name)
+			else:
+				if file_name[-7] != '.' and file_name[-6] != 'i':
+					dict.append(file_name)
+			file_name = dir.get_next()
+	else:
+		print("An error occurred when trying to access the path.")
+		
+	return dict

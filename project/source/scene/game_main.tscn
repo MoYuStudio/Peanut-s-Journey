@@ -102,6 +102,7 @@ glow_hdr_luminance_cap = 6.0
 script = SubResource("GDScript_ge11n")
 
 [node name="Map" parent="." instance=ExtResource("1_imo37")]
+rotation = 1.5708
 
 [node name="Player" parent="." instance=ExtResource("3_wfkt4")]
 position = Vector2(0, 0)

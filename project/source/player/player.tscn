@@ -36,6 +36,8 @@ var level_switch = false
 @onready var level = $GUI/Level
 @onready var level_animation = $GUI/Level/AnimationPlayer
 
+@onready var prize_draw = preload('res://source/object/prize_draw.tscn')
+
 var enemy_close = []
 
 # Attacks
@@ -150,7 +152,11 @@ func _on_collect_area_area_entered(area):
 				else:
 					Global.player_dict['hp'] += hp_now
 					Global.player_dict['total_hp'] += hp_now
-				
+			'chest':
+				var chest_level_now = area.collect()
+				var prize_draw_page = prize_draw.instantiate()
+				call_deferred('add_child', prize_draw_page)
+				get_tree().paused = true
 
 	if area.is_in_group('next_part'):
 		level_switch = true
