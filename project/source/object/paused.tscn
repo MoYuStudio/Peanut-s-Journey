@@ -1,8 +1,18 @@
-[gd_scene load_steps=12 format=3 uid="uid://jyvwhoign4cl"]
+[gd_scene load_steps=22 format=3 uid="uid://jyvwhoign4cl"]
 
 [ext_resource type="Theme" uid="uid://bhr73i44c1buj" path="res://resource/theme/paused.tres" id="1_ngxqj"]
 [ext_resource type="Theme" uid="uid://cwvilb81l6i31" path="res://resource/theme/moyu.tres" id="1_raj6w"]
 [ext_resource type="Texture2D" uid="uid://dehg38xt8tidn" path="res://resource/image/car.png" id="2_0rhkp"]
+[ext_resource type="Texture2D" uid="uid://y2nfw2ju5m2t" path="res://resource/rune/rune_1.png" id="4_5dqks"]
+[ext_resource type="Texture2D" uid="uid://dd8x6h7wfm52n" path="res://resource/rune/rune_2.png" id="5_s1s2m"]
+[ext_resource type="Texture2D" uid="uid://dt1xrhxljxylw" path="res://resource/rune/rune_3.png" id="6_cdgev"]
+[ext_resource type="Texture2D" uid="uid://b3ag2iohkgn8v" path="res://resource/rune/rune_4.png" id="7_ugvtx"]
+[ext_resource type="Texture2D" uid="uid://bpcv7fvc4ptdt" path="res://resource/rune/rune_5.png" id="8_of4l2"]
+[ext_resource type="Texture2D" uid="uid://kojglmtwp4df" path="res://resource/rune/rune_6.png" id="9_305k1"]
+[ext_resource type="Texture2D" uid="uid://br5iiw6k3qfah" path="res://resource/rune/rune_7.png" id="10_nfuyl"]
+[ext_resource type="Texture2D" uid="uid://o0p8mf2a7mom" path="res://resource/rune/rune_8.png" id="11_64hkt"]
+[ext_resource type="Texture2D" uid="uid://cw3bvgs2clxo7" path="res://resource/rune/rune_9.png" id="12_gyk8u"]
+[ext_resource type="Texture2D" uid="uid://btq8xgnfm2o0v" path="res://resource/rune/rune_0.png" id="13_pvggv"]
 
 [sub_resource type="GDScript" id="GDScript_llmkc"]
 script/source = "
@@ -136,7 +146,7 @@ layout_mode = 0
 offset_left = 178.0
 offset_top = 192.0
 offset_right = 3034.0
-offset_bottom = 1929.0
+offset_bottom = 1776.0
 theme = ExtResource("1_ngxqj")
 
 [node name="TabContainer" type="TabContainer" parent="Panel"]
@@ -145,7 +155,7 @@ texture_filter = 1
 layout_mode = 2
 offset_top = 1.0
 offset_right = 2859.0
-offset_bottom = 1708.0
+offset_bottom = 1596.0
 theme = ExtResource("1_ngxqj")
 tab_alignment = 1
 
@@ -155,25 +165,25 @@ script = SubResource("GDScript_y52n6")
 
 [node name="Car" type="Sprite2D" parent="Panel/TabContainer/状态"]
 texture_filter = 1
-position = Vector2(879, 689)
+position = Vector2(808, 674)
 scale = Vector2(36, 36)
 texture = ExtResource("2_0rhkp")
 
 [node name="Label" type="Label" parent="Panel/TabContainer/状态"]
 layout_mode = 0
-offset_left = 2150.0
-offset_top = 1186.0
-offset_right = 2678.0
-offset_bottom = 1442.0
+offset_left = 2165.0
+offset_top = 1060.0
+offset_right = 2693.0
+offset_bottom = 1316.0
 text = "左键释放激光
 空格构建冰墙"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Panel/TabContainer/状态"]
 layout_mode = 0
-offset_left = 1573.0
-offset_top = 260.0
-offset_right = 1958.0
-offset_bottom = 1048.0
+offset_left = 1759.0
+offset_top = 144.0
+offset_right = 2144.0
+offset_bottom = 932.0
 theme_override_constants/separation = 32
 
 [node name="Label" type="VBoxContainer" parent="Panel/TabContainer/状态/HBoxContainer"]
@@ -418,6 +428,154 @@ layout_mode = 2
 custom_minimum_size = Vector2(96, 48)
 layout_mode = 2
 
+[node name="符文" type="TabBar" parent="Panel/TabContainer"]
+visible = false
+layout_mode = 2
+
+[node name="GridContainer" type="GridContainer" parent="Panel/TabContainer/符文"]
+layout_mode = 0
+offset_left = 202.0
+offset_top = 69.0
+offset_right = 1523.0
+offset_bottom = 1394.0
+theme_override_constants/h_separation = 150
+theme_override_constants/v_separation = 150
+columns = 3
+
+[node name="TextureRect1" type="TextureRect" parent="Panel/TabContainer/符文/GridContainer"]
+custom_minimum_size = Vector2(300, 300)
+layout_mode = 2
+texture = ExtResource("4_5dqks")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="Panel/TabContainer/符文/GridContainer/TextureRect1"]
+layout_mode = 0
+offset_left = 110.0
+offset_top = 320.0
+offset_right = 181.0
+offset_bottom = 448.0
+text = "0"
+
+[node name="TextureRect2" type="TextureRect" parent="Panel/TabContainer/符文/GridContainer"]
+custom_minimum_size = Vector2(300, 300)
+layout_mode = 2
+texture = ExtResource("5_s1s2m")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="Panel/TabContainer/符文/GridContainer/TextureRect2"]
+offset_left = 110.0
+offset_top = 320.0
+offset_right = 181.0
+offset_bottom = 448.0
+text = "0"
+
+[node name="TextureRect3" type="TextureRect" parent="Panel/TabContainer/符文/GridContainer"]
+custom_minimum_size = Vector2(300, 300)
+layout_mode = 2
+texture = ExtResource("6_cdgev")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="Panel/TabContainer/符文/GridContainer/TextureRect3"]
+offset_left = 110.0
+offset_top = 320.0
+offset_right = 181.0
+offset_bottom = 448.0
+text = "0"
+
+[node name="TextureRect4" type="TextureRect" parent="Panel/TabContainer/符文/GridContainer"]
+custom_minimum_size = Vector2(300, 300)
+layout_mode = 2
+texture = ExtResource("7_ugvtx")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="Panel/TabContainer/符文/GridContainer/TextureRect4"]
+offset_left = 110.0
+offset_top = 320.0
+offset_right = 181.0
+offset_bottom = 448.0
+text = "0"
+
+[node name="TextureRect5" type="TextureRect" parent="Panel/TabContainer/符文/GridContainer"]
+custom_minimum_size = Vector2(300, 300)
+layout_mode = 2
+texture = ExtResource("8_of4l2")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="Panel/TabContainer/符文/GridContainer/TextureRect5"]
+offset_left = 110.0
+offset_top = 320.0
+offset_right = 181.0
+offset_bottom = 448.0
+text = "0"
+
+[node name="TextureRect6" type="TextureRect" parent="Panel/TabContainer/符文/GridContainer"]
+custom_minimum_size = Vector2(300, 300)
+layout_mode = 2
+texture = ExtResource("9_305k1")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="Panel/TabContainer/符文/GridContainer/TextureRect6"]
+offset_left = 110.0
+offset_top = 320.0
+offset_right = 181.0
+offset_bottom = 448.0
+text = "0"
+
+[node name="TextureRect7" type="TextureRect" parent="Panel/TabContainer/符文/GridContainer"]
+custom_minimum_size = Vector2(300, 300)
+layout_mode = 2
+texture = ExtResource("10_nfuyl")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="Panel/TabContainer/符文/GridContainer/TextureRect7"]
+offset_left = 110.0
+offset_top = 320.0
+offset_right = 181.0
+offset_bottom = 448.0
+text = "0"
+
+[node name="TextureRect8" type="TextureRect" parent="Panel/TabContainer/符文/GridContainer"]
+custom_minimum_size = Vector2(300, 300)
+layout_mode = 2
+texture = ExtResource("11_64hkt")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="Panel/TabContainer/符文/GridContainer/TextureRect8"]
+offset_left = 110.0
+offset_top = 320.0
+offset_right = 181.0
+offset_bottom = 448.0
+text = "0"
+
+[node name="TextureRect9" type="TextureRect" parent="Panel/TabContainer/符文/GridContainer"]
+custom_minimum_size = Vector2(300, 300)
+layout_mode = 2
+texture = ExtResource("12_gyk8u")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="Panel/TabContainer/符文/GridContainer/TextureRect9"]
+offset_left = 110.0
+offset_top = 320.0
+offset_right = 181.0
+offset_bottom = 448.0
+text = "0"
+
+[node name="TextureRect" type="TextureRect" parent="Panel/TabContainer/符文"]
+custom_minimum_size = Vector2(300, 300)
+layout_mode = 0
+offset_left = 1863.0
+offset_top = 534.0
+offset_right = 2163.0
+offset_bottom = 834.0
+texture = ExtResource("13_pvggv")
+
+[node name="Label" type="Label" parent="Panel/TabContainer/符文/TextureRect"]
+offset_left = 110.0
+offset_top = 320.0
+offset_right = 181.0
+offset_bottom = 448.0
+text = "0"
+
 [node name="设置" type="TabBar" parent="Panel/TabContainer"]
 visible = false
 layout_mode = 2
@@ -465,7 +623,15 @@ text = "构建的冰墙
 [node name="Wall" type="Label" parent="VBoxContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="ContinueButton" type="Button" parent="VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 1940.0
+offset_top = 1839.0
+offset_right = 3000.0
+offset_bottom = 1964.0
+theme_override_constants/separation = 180
+
+[node name="ContinueButton" type="Button" parent="HBoxContainer"]
 layout_mode = 2
 theme = ExtResource("1_raj6w")
 theme_override_font_sizes/font_size = 96
@@ -474,7 +640,7 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_kakw1")
 text = "保存及继续"
 flat = true
 
-[node name="QuitButton" type="Button" parent="VBoxContainer"]
+[node name="QuitButton" type="Button" parent="HBoxContainer"]
 layout_mode = 2
 theme = ExtResource("1_raj6w")
 theme_override_font_sizes/font_size = 96
@@ -489,5 +655,5 @@ flat = true
 [connection signal="pressed" from="Panel/TabContainer/升级/TabContainer/基础升级/HBoxContainer/Pay/VBoxContainer/Button4" to="Panel/TabContainer/升级/TabContainer/基础升级" method="_on_button_4_pressed"]
 [connection signal="pressed" from="Panel/TabContainer/升级/TabContainer/基础升级/HBoxContainer/Pay/VBoxContainer/Button5" to="Panel/TabContainer/升级/TabContainer/基础升级" method="_on_button_5_pressed"]
 [connection signal="pressed" from="Panel/TabContainer/升级/TabContainer/基础升级/HBoxContainer/Pay/VBoxContainer/Button6" to="Panel/TabContainer/升级/TabContainer/基础升级" method="_on_button_6_pressed"]
-[connection signal="pressed" from="VBoxContainer/ContinueButton" to="." method="_on_continue_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/ContinueButton" to="." method="_on_continue_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
