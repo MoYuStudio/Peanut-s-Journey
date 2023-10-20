@@ -24,7 +24,7 @@ func _ready():
 	# 创建SpawnInfo资源
 	var spawn_info = SpawnInfo.new()
 	spawn_info.time_start = 0
-	spawn_info.time_end = 100
+	spawn_info.time_end = 30
 	spawn_info.enemy = enemy
 	spawn_info.enemy_num = 70
 	spawn_info.enemy_spawn_delay = 1
@@ -32,7 +32,7 @@ func _ready():
 	
 	spawn_info = SpawnInfo.new()
 	spawn_info.time_start = 0
-	spawn_info.time_end = 100
+	spawn_info.time_end = 30
 	spawn_info.enemy = enemy1
 	spawn_info.enemy_num = 20
 	spawn_info.enemy_spawn_delay = 1
@@ -42,7 +42,7 @@ func _process(delta):
 	pass
 	
 func _physics_process(delta):
-	if enemy_spawner.time >= 100 and enemy_spawner.my_children.size() <= 1 and door_switch == false and door_once == 0:
+	if enemy_spawner.time >= 30 and enemy_spawner.my_children.size() <= 1 and door_switch == false and door_once == 0:
 		$Door.open()
 		door_switch = true
 		door_once += 1
