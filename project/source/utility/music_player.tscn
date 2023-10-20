@@ -166,7 +166,7 @@ icon_alignment = 1
 expand_icon = true
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-volume_db = -10.0
+volume_db = -15.0
 autoplay = true
 
 [connection signal="pressed" from="Control/Panel/HBoxContainer/Button2" to="." method="_on_player_stop_pressed"]
