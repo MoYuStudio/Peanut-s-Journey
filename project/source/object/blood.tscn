@@ -89,7 +89,6 @@ z_index = -3
 script = SubResource("GDScript_5x7pj")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
-modulate = Color(1, 1, 1, 0)
 texture_filter = 1
 amount = 16
 process_material = SubResource("ParticleProcessMaterial_x4up4")

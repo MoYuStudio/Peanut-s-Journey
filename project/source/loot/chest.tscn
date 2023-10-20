@@ -1,0 +1,53 @@
+[gd_scene load_steps=4 format=3 uid="uid://bt20nfo2fxodp"]
+
+[ext_resource type="Texture2D" uid="uid://bf3ms33sny8cl" path="res://resource/image/chest.png" id="1_6jjbl"]
+
+[sub_resource type="GDScript" id="GDScript_1tuoq"]
+script/source = "
+extends Node2D
+
+
+@onready var animation = $AnimationPlayer
+@onready var collision = $CollisionShape2D
+@onready var audio = $AudioStreamPlayer
+
+@export var money = 1.0
+
+var type = 'coin'
+
+var target = null
+var speed = 0
+
+func _ready():
+	rotation = randi_range(0,360)
+	pass
+
+func _process(delta):
+	pass
+	
+func _physics_process(delta):
+	pass
+
+func collect():
+	animation.play('animation')
+	audio.play()
+	collision.call_deferred('set', 'disable', true)
+	# hide()
+	queue_free()
+	
+	return money
+"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tl86a"]
+radius = 51.0882
+
+[node name="Chest" type="Area2D" groups=["loot"]]
+script = SubResource("GDScript_1tuoq")
+
+[node name="Chest" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(3, 3)
+texture = ExtResource("1_6jjbl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_tl86a")

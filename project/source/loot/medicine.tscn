@@ -1,7 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://djxky8bdiaorh"]
+[gd_scene load_steps=13 format=3 uid="uid://djxky8bdiaorh"]
 
 [ext_resource type="Texture2D" uid="uid://cx36yq3v1q7rd" path="res://resource/image/medicine.png" id="1_hjyhn"]
-[ext_resource type="Texture2D" uid="uid://bdd3kpg7fvtqr" path="res://resource/image/circle.png" id="1_mrs6j"]
+[ext_resource type="Texture2D" uid="uid://c8xj7kowm8bry" path="res://resource/particle/circle_01.png" id="2_64cch"]
 
 [sub_resource type="GDScript" id="GDScript_2w41h"]
 script/source = "
@@ -104,6 +104,30 @@ _data = {
 "animation": SubResource("Animation_mfgxe")
 }
 
+[sub_resource type="Curve" id="Curve_i8lbs"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_ffwdt"]
+curve = SubResource("Curve_i8lbs")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_rmt6d"]
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 1.0
+emission_ring_radius = 1.0
+emission_ring_inner_radius = 0.0
+particle_flag_disable_z = true
+direction = Vector3(0, 0, 0)
+spread = 0.0
+gravity = Vector3(0, 0, 0)
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+scale_min = 0.1
+scale_max = 0.5
+scale_curve = SubResource("CurveTexture_ffwdt")
+color = Color(0.568627, 2, 0.411765, 0.588235)
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_elho4"]
 radius = 12.5521
 
@@ -122,12 +146,6 @@ collision_layer = 8
 collision_mask = 8
 script = SubResource("GDScript_2w41h")
 
-[node name="Circle" type="Sprite2D" parent="."]
-modulate = Color(0.568627, 0.858824, 0.411765, 0.360784)
-texture_filter = 1
-scale = Vector2(0.304727, 0.298217)
-texture = ExtResource("1_mrs6j")
-
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
 rotation = -6.28319
@@ -138,6 +156,13 @@ root_node = NodePath("../..")
 libraries = {
 "": SubResource("AnimationLibrary_mqxpj")
 }
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Sprite2D"]
+texture_filter = 1
+amount = 1
+process_material = SubResource("ParticleProcessMaterial_rmt6d")
+texture = ExtResource("2_64cch")
+lifetime = 0.3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_elho4")
