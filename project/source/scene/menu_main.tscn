@@ -19,6 +19,7 @@ extends Node
 @onready var about_page = $About
 
 func _ready():
+	MusicPlayer.show()
 	pass
 
 func _physics_process(delta):

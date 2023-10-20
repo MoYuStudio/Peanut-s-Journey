@@ -45,7 +45,7 @@ func death():
 	enemy_death_animation.global_position = global_position
 	get_parent().get_parent().call_deferred('add_child', enemy_death_animation)
 	
-	if randi_range(0,100) <= Global.player_dict['money_drop']: # %概率产生金币
+	if randi_range(0,100) <= 10 :#Global.player_dict['money_drop']: # %概率产生金币
 		var enemy_death_coin = death_coin.instantiate()
 		enemy_death_coin.global_position = global_position
 		get_parent().get_parent().call_deferred('add_child', enemy_death_coin)

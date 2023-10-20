@@ -8,12 +8,14 @@ script/source = "
 extends Node
 
 func _ready():
+	MusicPlayer.hide()
 	# $Audio/AnimationPlayer.play('init')
 	$Logo/AnimationPlayer.play('init')
 	$Mask/AnimationPlayer.play('init')
 	await $Mask/AnimationPlayer.animation_finished
 	# get_tree().change_scene_to_file('res://source/scene/menu_main.tscn')
 	SceneTransition.change_scene('res://source/scene/menu_main.tscn')
+	
 "
 
 [sub_resource type="GDScript" id="GDScript_r6bpv"]
