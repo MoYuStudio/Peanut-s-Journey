@@ -102,75 +102,12 @@ glow_hdr_luminance_cap = 6.0
 script = SubResource("GDScript_ge11n")
 
 [node name="Map" parent="." instance=ExtResource("1_imo37")]
-rotation = 0.0
 
 [node name="Player" parent="." instance=ExtResource("3_wfkt4")]
 position = Vector2(0, 0)
 
 [node name="Camera" parent="Player/Body" index="0"]
 zoom = Vector2(2, 2)
-
-[node name="状态" parent="Player/GUI/Paused/Panel/TabContainer" index="1"]
-visible = true
-
-[node name="符文" parent="Player/GUI/Paused/Panel/TabContainer" index="3"]
-visible = false
-
-[node name="Label" parent="Player/GUI/Paused/Panel/TabContainer/符文/GridContainer/TextureRect2" index="0"]
-layout_mode = 0
-offset_left = 0.0
-offset_top = 0.0
-offset_right = 71.0
-offset_bottom = 128.0
-
-[node name="Label" parent="Player/GUI/Paused/Panel/TabContainer/符文/GridContainer/TextureRect3" index="0"]
-layout_mode = 0
-offset_left = 0.0
-offset_top = 0.0
-offset_right = 71.0
-offset_bottom = 128.0
-
-[node name="Label" parent="Player/GUI/Paused/Panel/TabContainer/符文/GridContainer/TextureRect4" index="0"]
-layout_mode = 0
-offset_left = 0.0
-offset_top = 0.0
-offset_right = 71.0
-offset_bottom = 128.0
-
-[node name="Label" parent="Player/GUI/Paused/Panel/TabContainer/符文/GridContainer/TextureRect5" index="0"]
-layout_mode = 0
-offset_left = 0.0
-offset_top = 0.0
-offset_right = 71.0
-offset_bottom = 128.0
-
-[node name="Label" parent="Player/GUI/Paused/Panel/TabContainer/符文/GridContainer/TextureRect6" index="0"]
-layout_mode = 0
-offset_left = 0.0
-offset_top = 0.0
-offset_right = 71.0
-offset_bottom = 128.0
-
-[node name="Label" parent="Player/GUI/Paused/Panel/TabContainer/符文/GridContainer/TextureRect7" index="0"]
-layout_mode = 0
-offset_left = 0.0
-offset_top = 0.0
-offset_right = 71.0
-offset_bottom = 128.0
-
-[node name="Label" parent="Player/GUI/Paused/Panel/TabContainer/符文/GridContainer/TextureRect8" index="0"]
-layout_mode = 0
-offset_left = 0.0
-offset_top = 0.0
-offset_right = 71.0
-offset_bottom = 128.0
-
-[node name="Label" parent="Player/GUI/Paused/Panel/TabContainer/符文/GridContainer/TextureRect9" index="0"]
-layout_mode = 0
-offset_left = 0.0
-offset_top = 0.0
-offset_right = 71.0
-offset_bottom = 128.0
 
 [node name="Label" parent="Player/GUI/Paused/Panel/TabContainer/符文/TextureRect" index="0"]
 layout_mode = 0
