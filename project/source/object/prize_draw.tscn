@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dhari1nll3jlj"]
+[gd_scene load_steps=13 format=3 uid="uid://dhari1nll3jlj"]
 
 [ext_resource type="Texture2D" uid="uid://btq8xgnfm2o0v" path="res://resource/rune/rune_0.png" id="1_kts70"]
 [ext_resource type="Texture2D" uid="uid://bylqgxss8sx2p" path="res://resource/image/rune_white.png" id="2_ovv2l"]
@@ -21,6 +21,7 @@ var rune_dict = []
 
 func _ready():
 	MusicPlayer.hide()
+	MusicPlayer.player.stream_paused = true
 	rune_dict = Global.traverse(path)
 	
 	var num_1 = randi_range(0,len(rune_dict)-1)
@@ -42,6 +43,7 @@ func _ready():
 
 func _on_button_pressed():
 	MusicPlayer.show()
+	MusicPlayer.player.stream_paused = false
 	get_tree().paused = false
 	queue_free()
 "
@@ -91,16 +93,26 @@ _data = {
 "animation": SubResource("Animation_5l445")
 }
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ee1nb"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xsj0f"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8mmx7"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5xe4t"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_og7nn"]
+
 [node name="PrizeDraw" type="CanvasLayer"]
 process_mode = 2
 script = SubResource("GDScript_f83fe")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 offset_left = -1834.0
-offset_top = -725.0
+offset_top = -868.0
 offset_right = 5617.0
 offset_bottom = 3311.0
-color = Color(1, 1, 1, 0.501961)
+color = Color(0, 0, 0, 0.501961)
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 offset_left = 778.0
@@ -165,6 +177,12 @@ offset_right = 2149.0
 offset_bottom = 1766.0
 theme = ExtResource("4_pc5qx")
 theme_override_font_sizes/font_size = 128
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ee1nb")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_xsj0f")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_8mmx7")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_5xe4t")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_og7nn")
 text = "确认"
+flat = true
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

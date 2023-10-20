@@ -20,6 +20,7 @@ extends Node
 
 func _ready():
 	MusicPlayer.show()
+	MusicPlayer.player.stream_paused = false
 	pass
 
 func _physics_process(delta):

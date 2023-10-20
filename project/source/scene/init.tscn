@@ -9,6 +9,7 @@ extends Node
 
 func _ready():
 	MusicPlayer.hide()
+	MusicPlayer.player.stream_paused = true
 	# $Audio/AnimationPlayer.play('init')
 	$Logo/AnimationPlayer.play('init')
 	$Mask/AnimationPlayer.play('init')
