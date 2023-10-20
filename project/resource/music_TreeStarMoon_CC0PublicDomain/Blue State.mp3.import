@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://pc87dt68agy"
+path="res://.godot/imported/Blue State.mp3-011a9d5e78cf04e7f4c8faebd1e996b8.mp3str"
+
+[deps]
+
+source_file="res://resource/music_TreeStarMoon_CC0PublicDomain/Blue State.mp3"
+dest_files=["res://.godot/imported/Blue State.mp3-011a9d5e78cf04e7f4c8faebd1e996b8.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

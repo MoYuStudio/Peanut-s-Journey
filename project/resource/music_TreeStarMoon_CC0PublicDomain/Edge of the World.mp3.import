@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://mcawux24lthd"
+path="res://.godot/imported/Edge of the World.mp3-457287d53f91d2b7bd9ffd181ab75521.mp3str"
+
+[deps]
+
+source_file="res://resource/music_TreeStarMoon_CC0PublicDomain/Edge of the World.mp3"
+dest_files=["res://.godot/imported/Edge of the World.mp3-457287d53f91d2b7bd9ffd181ab75521.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

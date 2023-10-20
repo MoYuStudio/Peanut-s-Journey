@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://ms60m4ascty8"
+path="res://.godot/imported/Roaming The Desert With Brendan Fraser_1.mp3-f299d1b4996fb2a99370e62b6580f415.mp3str"
+
+[deps]
+
+source_file="res://resource/music_TreeStarMoon_CC0PublicDomain/Roaming The Desert With Brendan Fraser_1.mp3"
+dest_files=["res://.godot/imported/Roaming The Desert With Brendan Fraser_1.mp3-f299d1b4996fb2a99370e62b6580f415.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
