@@ -15,6 +15,7 @@ extends Node
 @onready var sound_name = $Control/Panel/Label
 @onready var player = $AudioStreamPlayer
 
+var wv123
 var wilson123123
 var sadasdsadsda
 
