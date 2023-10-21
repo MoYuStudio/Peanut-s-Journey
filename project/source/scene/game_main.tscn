@@ -110,14 +110,12 @@ position = Vector2(0, 0)
 zoom = Vector2(2, 2)
 
 [node name="Level" parent="Player/GUI/Control" index="0"]
-layout_mode = 0
 offset_left = 0.0
 offset_top = 0.0
 offset_right = 1048.0
 offset_bottom = 387.0
 
 [node name="Panel" parent="Player/GUI/Control" index="2"]
-layout_mode = 0
 offset_left = 0.0
 offset_top = 0.0
 offset_right = 600.0

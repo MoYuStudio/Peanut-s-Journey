@@ -32,7 +32,6 @@ extends Node2D
 @onready var grab_area = $Body/GrabArea/CollisionShape2D
 @onready var hit_box = $Body/HitBox
 
-
 @onready var money_label = $GUI/InfoBar/Money
 
 var level_switch = false
@@ -61,7 +60,7 @@ func _ready():
 	#position.x = float(Global.player_dict['position'][0])
 	#position.y = float(Global.player_dict['position'][1])
 	#rotation = float(Global.player_dict['rotation'])
-		
+	
 	paused_menu.visible = false
 	attack()
 	
@@ -553,6 +552,7 @@ script = SubResource("GDScript_v55cw")
 
 [node name="Level" type="Label" parent="GUI/Control"]
 modulate = Color(1, 1, 1, 0.784314)
+layout_mode = 0
 offset_left = 1376.0
 offset_top = 378.0
 offset_right = 2424.0
@@ -605,6 +605,7 @@ text = "0"
 script = SubResource("GDScript_pbsv1")
 
 [node name="Panel" type="Panel" parent="GUI/Control"]
+layout_mode = 0
 offset_left = 128.0
 offset_top = 128.0
 offset_right = 728.0

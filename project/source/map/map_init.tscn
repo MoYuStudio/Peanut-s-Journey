@@ -1,81 +1,32 @@
-[gd_scene load_steps=16 format=3 uid="uid://dv4gxfv4kty63"]
+[gd_scene load_steps=9 format=3 uid="uid://boorlk0l20e1p"]
 
-[ext_resource type="PackedScene" uid="uid://ckujg6i1b6ujw" path="res://source/utility/enemy_spawner.tscn" id="1_il36e"]
-[ext_resource type="PackedScene" uid="uid://o84475elvy3" path="res://source/utility/hitbox.tscn" id="3_3dblv"]
-[ext_resource type="PackedScene" uid="uid://bh83v2nngnstf" path="res://source/object/door.tscn" id="4_bixg0"]
-[ext_resource type="Texture2D" uid="uid://8r1s6ng6iids" path="res://resource/image/light.png" id="4_umj47"]
-[ext_resource type="PackedScene" uid="uid://b4g43o3dnrfc0" path="res://source/object/next_part.tscn" id="5_ddc4g"]
-[ext_resource type="PackedScene" uid="uid://bt20nfo2fxodp" path="res://source/loot/chest.tscn" id="6_b5fh6"]
-[ext_resource type="PackedScene" uid="uid://qcttmugv5t4j" path="res://source/loot/shield.tscn" id="7_xansp"]
-[ext_resource type="PackedScene" uid="uid://pmvr1krbxs15" path="res://source/enemy/boss.tscn" id="8_kihfw"]
+[ext_resource type="Texture2D" uid="uid://8r1s6ng6iids" path="res://resource/image/light.png" id="1_ktyyc"]
+[ext_resource type="PackedScene" uid="uid://o84475elvy3" path="res://source/utility/hitbox.tscn" id="2_gvo62"]
 
-[sub_resource type="GDScript" id="GDScript_l1exk"]
-script/source = "
-extends Node2D
-
-@onready var enemy = preload(\"res://source/enemy/enemy.tscn\")
-@onready var enemy1 = preload(\"res://source/enemy/enemy1.tscn\")
-
-@onready var rooms = $Rooms
-@onready var enemy_spawner = $EnemySpawner
-
-var door_once = 0
-var door_switch = false
-
-func _ready():
-	
-	# 创建SpawnInfo资源
-	var spawn_info = SpawnInfo.new()
-	spawn_info.time_start = 0
-	spawn_info.time_end = 30
-	spawn_info.enemy = enemy
-	spawn_info.enemy_num = 70
-	spawn_info.enemy_spawn_delay = 1
-	enemy_spawner.spawns.append(spawn_info)
-	
-	spawn_info = SpawnInfo.new()
-	spawn_info.time_start = 0
-	spawn_info.time_end = 30
-	spawn_info.enemy = enemy1
-	spawn_info.enemy_num = 20
-	spawn_info.enemy_spawn_delay = 1
-	enemy_spawner.spawns.append(spawn_info)
-	
-func _process(delta):
-	pass
-	
-func _physics_process(delta):
-	if enemy_spawner.time >= 30 and enemy_spawner.my_children.size() <= 1 and door_switch == false and door_once == 0:
-		$Door.open()
-		door_switch = true
-		door_once += 1
-"
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_bf0sd"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nj4wx"]
 size = Vector2(256, 256)
 
-[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_eu15v"]
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_e0bg5"]
 polygon = PackedVector2Array(-128, -128, 128, -128, 128, 129, -128, 128)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_g12ng"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x4lhq"]
 size = Vector2(260, 260)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_2ugrn"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h158p"]
 size = Vector2(260, 260)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_7boi0"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g5p5n"]
 size = Vector2(260, 260)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_hm51w"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i8tkb"]
 size = Vector2(260, 260)
 
-[node name="Map" type="Node2D"]
-script = SubResource("GDScript_l1exk")
-
-[node name="EnemySpawner" parent="." instance=ExtResource("1_il36e")]
+[node name="MapInit" type="Node2D"]
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
 z_index = -10
+position = Vector2(1862, 997)
+scale = Vector2(3.09165, 3.89693)
 color = Color(0.25098, 0.207843, 0.27451, 1)
 polygon = PackedVector2Array(-10000, -7000, -10000, 7000, 10000, 7000, 10000, -7000)
 
@@ -102,7 +53,7 @@ position = Vector2(-2000, -1600)
 scale = Vector2(1.6, 1.6)
 shadow_enabled = true
 shadow_filter = 1
-texture = ExtResource("4_umj47")
+texture = ExtResource("1_ktyyc")
 texture_scale = 8.0
 
 [node name="PointLight2D2" type="PointLight2D" parent="Light"]
@@ -110,7 +61,7 @@ position = Vector2(2000, -1600)
 scale = Vector2(1.6, 1.6)
 shadow_enabled = true
 shadow_filter = 1
-texture = ExtResource("4_umj47")
+texture = ExtResource("1_ktyyc")
 texture_scale = 8.0
 
 [node name="PointLight2D3" type="PointLight2D" parent="Light"]
@@ -118,7 +69,7 @@ position = Vector2(2000, 1600)
 scale = Vector2(1.6, 1.6)
 shadow_enabled = true
 shadow_filter = 1
-texture = ExtResource("4_umj47")
+texture = ExtResource("1_ktyyc")
 texture_scale = 8.0
 
 [node name="PointLight2D4" type="PointLight2D" parent="Light"]
@@ -126,7 +77,7 @@ position = Vector2(-2000, 1600)
 scale = Vector2(1.6, 1.6)
 shadow_enabled = true
 shadow_filter = 1
-texture = ExtResource("4_umj47")
+texture = ExtResource("1_ktyyc")
 texture_scale = 8.0
 
 [node name="Wall" type="Node2D" parent="."]
@@ -145,17 +96,17 @@ offset_bottom = 128.0
 color = Color(0.56, 0.83, 2, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Wall/StaticBody2D"]
-shape = SubResource("RectangleShape2D_bf0sd")
+shape = SubResource("RectangleShape2D_nj4wx")
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="Wall/StaticBody2D"]
-occluder = SubResource("OccluderPolygon2D_eu15v")
+occluder = SubResource("OccluderPolygon2D_e0bg5")
 
-[node name="HitBox" parent="Wall/StaticBody2D" instance=ExtResource("3_3dblv")]
+[node name="HitBox" parent="Wall/StaticBody2D" instance=ExtResource("2_gvo62")]
 collision_layer = 4
 damage = 10
 
 [node name="CollisionShape2D" parent="Wall/StaticBody2D/HitBox" index="0"]
-shape = SubResource("RectangleShape2D_g12ng")
+shape = SubResource("RectangleShape2D_x4lhq")
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="Wall"]
 position = Vector2(-1600, -1000)
@@ -170,17 +121,17 @@ offset_bottom = 128.0
 color = Color(0.56, 0.83, 2, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Wall/StaticBody2D2"]
-shape = SubResource("RectangleShape2D_bf0sd")
+shape = SubResource("RectangleShape2D_nj4wx")
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="Wall/StaticBody2D2"]
-occluder = SubResource("OccluderPolygon2D_eu15v")
+occluder = SubResource("OccluderPolygon2D_e0bg5")
 
-[node name="HitBox" parent="Wall/StaticBody2D2" instance=ExtResource("3_3dblv")]
+[node name="HitBox" parent="Wall/StaticBody2D2" instance=ExtResource("2_gvo62")]
 collision_layer = 4
 damage = 10
 
 [node name="CollisionShape2D" parent="Wall/StaticBody2D2/HitBox" index="0"]
-shape = SubResource("RectangleShape2D_2ugrn")
+shape = SubResource("RectangleShape2D_h158p")
 
 [node name="StaticBody2D3" type="StaticBody2D" parent="Wall"]
 position = Vector2(1600, -1000)
@@ -195,17 +146,17 @@ offset_bottom = 128.0
 color = Color(0.56, 0.83, 2, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Wall/StaticBody2D3"]
-shape = SubResource("RectangleShape2D_bf0sd")
+shape = SubResource("RectangleShape2D_nj4wx")
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="Wall/StaticBody2D3"]
-occluder = SubResource("OccluderPolygon2D_eu15v")
+occluder = SubResource("OccluderPolygon2D_e0bg5")
 
-[node name="HitBox" parent="Wall/StaticBody2D3" instance=ExtResource("3_3dblv")]
+[node name="HitBox" parent="Wall/StaticBody2D3" instance=ExtResource("2_gvo62")]
 collision_layer = 4
 damage = 10
 
 [node name="CollisionShape2D" parent="Wall/StaticBody2D3/HitBox" index="0"]
-shape = SubResource("RectangleShape2D_7boi0")
+shape = SubResource("RectangleShape2D_g5p5n")
 
 [node name="StaticBody2D4" type="StaticBody2D" parent="Wall"]
 position = Vector2(1600, 1000)
@@ -220,35 +171,17 @@ offset_bottom = 128.0
 color = Color(0.56, 0.83, 100, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Wall/StaticBody2D4"]
-shape = SubResource("RectangleShape2D_bf0sd")
+shape = SubResource("RectangleShape2D_nj4wx")
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="Wall/StaticBody2D4"]
-occluder = SubResource("OccluderPolygon2D_eu15v")
+occluder = SubResource("OccluderPolygon2D_e0bg5")
 
-[node name="HitBox" parent="Wall/StaticBody2D4" instance=ExtResource("3_3dblv")]
+[node name="HitBox" parent="Wall/StaticBody2D4" instance=ExtResource("2_gvo62")]
 collision_layer = 4
 damage = 10
 
 [node name="CollisionShape2D" parent="Wall/StaticBody2D4/HitBox" index="0"]
-shape = SubResource("RectangleShape2D_hm51w")
-
-[node name="Door" parent="." instance=ExtResource("4_bixg0")]
-position = Vector2(0, -2100)
-
-[node name="Door2" parent="." instance=ExtResource("4_bixg0")]
-position = Vector2(0, 2600)
-
-[node name="NextPart" parent="." instance=ExtResource("5_ddc4g")]
-position = Vector2(-1, -4488)
-
-[node name="Chest" parent="." instance=ExtResource("6_b5fh6")]
-position = Vector2(-7, -3318)
-
-[node name="Shield" parent="." instance=ExtResource("7_xansp")]
-position = Vector2(956, 25)
-
-[node name="Boss" parent="." instance=ExtResource("8_kihfw")]
-position = Vector2(-702, 1420)
+shape = SubResource("RectangleShape2D_i8tkb")
 
 [editable path="Wall/StaticBody2D/HitBox"]
 [editable path="Wall/StaticBody2D2/HitBox"]
