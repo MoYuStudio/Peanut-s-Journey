@@ -15,7 +15,6 @@ extends Node
 @onready var sound_name = $Control/Panel/Label
 @onready var player = $AudioStreamPlayer
 
-var wilson
 
 var path = \"resource/music_TreeStarMoon_CC0PublicDomain/\"
 var music_dict = {
