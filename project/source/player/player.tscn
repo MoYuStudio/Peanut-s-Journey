@@ -597,25 +597,29 @@ offset_right = 728.0
 offset_bottom = 728.0
 theme = ExtResource("14_k4l4r")
 
-[node name="SubViewportContainer" type="SubViewportContainer" parent="GUI/Panel"]
-offset_left = 43.0
-offset_top = 43.0
-offset_right = 555.0
-offset_bottom = 555.0
+[node name="MarginContainer" type="MarginContainer" parent="GUI/Panel"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 42
+theme_override_constants/margin_top = 42
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="GUI/Panel/MarginContainer"]
+layout_mode = 2
 script = SubResource("GDScript_sdadq")
 
-[node name="SubViewport" type="SubViewport" parent="GUI/Panel/SubViewportContainer"]
+[node name="SubViewport" type="SubViewport" parent="GUI/Panel/MarginContainer/SubViewportContainer"]
 handle_input_locally = false
 render_target_update_mode = 4
 
-[node name="Camera2D" type="Camera2D" parent="GUI/Panel/SubViewportContainer/SubViewport"]
+[node name="Camera2D" type="Camera2D" parent="GUI/Panel/MarginContainer/SubViewportContainer/SubViewport"]
 zoom = Vector2(0.1, 0.1)
 
-[node name="Map" type="Sprite2D" parent="GUI/Panel/SubViewportContainer/SubViewport"]
+[node name="Map" type="Sprite2D" parent="GUI/Panel/MarginContainer/SubViewportContainer/SubViewport"]
 scale = Vector2(16, 16)
 texture = ExtResource("14_aavxw")
 
-[node name="Sprite" type="Sprite2D" parent="GUI/Panel/SubViewportContainer"]
+[node name="Sprite" type="Sprite2D" parent="GUI/Panel/MarginContainer/SubViewportContainer"]
 modulate = Color(1, 1.5, 1.5, 1)
 z_index = 1
 texture_filter = 1

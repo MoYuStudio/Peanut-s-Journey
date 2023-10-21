@@ -7,7 +7,7 @@
 [ext_resource type="Material" uid="uid://bss0l0sqbcfrj" path="res://resource/shader/rain.tres" id="5_ana3l"]
 [ext_resource type="Texture2D" uid="uid://bnmx8pt0nk4u2" path="res://resource/logo/logo.png" id="5_oh756"]
 [ext_resource type="AudioStream" uid="uid://om43vjvq3531" path="res://resource/sound/rain.mp3" id="6_5yxqh"]
-[ext_resource type="Texture2D" uid="uid://cs4nwibgx4yyn" path="res://resource/image/mousex400.png" id="8_m8le5"]
+[ext_resource type="Texture2D" uid="uid://swijnsgm7kps" path="res://resource/image/zh.png" id="9_hii05"]
 [ext_resource type="Theme" uid="uid://cwvilb81l6i31" path="res://resource/theme/moyu.tres" id="9_ttu0s"]
 [ext_resource type="FontFile" uid="uid://briod8qq6bg6o" path="res://resource/font/kenney_mini_square_mono.ttf" id="10_g8yvp"]
 
@@ -183,6 +183,13 @@ func _process(delta):
 script/source = "
 extends Button
 
+@onready var texture = $TextureRect
+
+var language_flag_list = [
+	preload(\"res://resource/image/zh.png\"),
+	preload(\"res://resource/image/en.png\")
+]
+
 var language_list = ['zh','en']
 var language_id = 0
 
@@ -195,6 +202,7 @@ func _on_pressed():
 	else:
 		language_id = 0
 	TranslationServer.set_locale(language_list[language_id])
+	texture.texture = language_flag_list[language_id]
 "
 
 [sub_resource type="GDScript" id="GDScript_pr2eo"]
@@ -450,24 +458,25 @@ theme_override_font_sizes/font_size = 48
 text = "www.moyu-stuido.com
 "
 
-[node name="Button" type="Button" parent="Main"]
-layout_mode = 0
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Main"]
+volume_db = -20.0
+autoplay = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Main"]
+
+[node name="Button" type="Button" parent="Main/CanvasLayer"]
 offset_left = 3465.0
 offset_top = 1814.0
 offset_right = 3680.0
 offset_bottom = 2021.0
 script = SubResource("GDScript_ahv81")
 
-[node name="TextureRect" type="TextureRect" parent="Main/Button"]
+[node name="TextureRect" type="TextureRect" parent="Main/CanvasLayer/Button"]
 texture_filter = 1
 layout_mode = 0
 offset_right = 217.0
 offset_bottom = 207.0
-texture = ExtResource("8_m8le5")
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Main"]
-volume_db = -20.0
-autoplay = true
+texture = ExtResource("9_hii05")
 
 [node name="About" type="Control" parent="."]
 layout_mode = 3
@@ -620,5 +629,5 @@ libraries = {
 }
 
 [connection signal="pressed" from="Main/Control/VBoxContainer2/Logo/Button" to="." method="_on_to_about_button_pressed"]
-[connection signal="pressed" from="Main/Button" to="Main/Button" method="_on_pressed"]
+[connection signal="pressed" from="Main/CanvasLayer/Button" to="Main/CanvasLayer/Button" method="_on_pressed"]
 [connection signal="animation_finished" from="About/AnimationPlayer" to="." method="_on_about_animation_player_animation_finished"]
