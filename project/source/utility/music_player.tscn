@@ -17,6 +17,7 @@ extends Node
 
 var wilson123
 var sadasdsadsda
+var asdsdawdwadaadsdsadsa
 
 var path = \"resource/music_TreeStarMoon_CC0PublicDomain/\"
 var music_dict = {
