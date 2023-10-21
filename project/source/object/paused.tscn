@@ -644,8 +644,7 @@ script = SubResource("GDScript_eavw7")
 [node name="Label" type="Label" parent="VBoxContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 96
-text = "本局
-获得金币
+text = "获得金币
 "
 
 [node name="TotalMoney" type="Label" parent="VBoxContainer/MarginContainer/VBoxContainer"]

@@ -373,7 +373,7 @@ theme_override_styles/hover = SubResource("StyleBoxEmpty_jyg1r")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_6lj1p")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_lrxpa")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_e8vda")
-text = "新游戏"
+text = "新开始"
 flat = true
 script = SubResource("GDScript_g7vop")
 
