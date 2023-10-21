@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://532f5h24sdvb"]
+[gd_scene load_steps=35 format=3 uid="uid://532f5h24sdvb"]
 
 [ext_resource type="PackedScene" uid="uid://ivo77piqgdfv" path="res://source/player/car_player.tscn" id="1_pjecn"]
 [ext_resource type="PackedScene" uid="uid://5ygp3ic8vnl6" path="res://source/utility/hurtbox.tscn" id="2_d0h3p"]
@@ -14,6 +14,8 @@
 [ext_resource type="AudioStream" uid="uid://ct1oed1nsolof" path="res://resource/sound/car_run.mp3" id="9_yx8xc"]
 [ext_resource type="PackedScene" uid="uid://jyvwhoign4cl" path="res://source/object/paused.tscn" id="10_vioqe"]
 [ext_resource type="FontFile" uid="uid://c4xqu78o8tn3h" path="res://resource/font/kenney_blocks.ttf" id="11_oxdnj"]
+[ext_resource type="Texture2D" uid="uid://d3sl8fd8r86n7" path="res://resource/image/map.png" id="14_aavxw"]
+[ext_resource type="Texture2D" uid="uid://dehg38xt8tidn" path="res://resource/image/car.png" id="14_t4f0r"]
 
 [sub_resource type="GDScript" id="GDScript_penpb"]
 script/source = "
@@ -348,6 +350,16 @@ func _physics_process(delta):
 	text = str(round(Global.player_dict['money']*10)/10)
 "
 
+[sub_resource type="GDScript" id="GDScript_sdadq"]
+script/source = "
+extends SubViewportContainer
+
+@onready var camera = $SubViewport/Camera2D
+
+func _physics_process(delta):
+	camera.position = owner.find_child('Body').position
+"
+
 [node name="Player" type="Node2D"]
 position = Vector2(1920, 1080)
 script = SubResource("GDScript_penpb")
@@ -574,6 +586,32 @@ theme_override_fonts/font = ExtResource("8_et2ic")
 theme_override_font_sizes/font_size = 128
 text = "0"
 script = SubResource("GDScript_pbsv1")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="GUI"]
+offset_left = 3287.0
+offset_top = 199.0
+offset_right = 3624.0
+offset_bottom = 473.0
+script = SubResource("GDScript_sdadq")
+
+[node name="SubViewport" type="SubViewport" parent="GUI/SubViewportContainer"]
+handle_input_locally = false
+render_target_update_mode = 4
+
+[node name="Camera2D" type="Camera2D" parent="GUI/SubViewportContainer/SubViewport"]
+
+[node name="Map" type="Sprite2D" parent="GUI/SubViewportContainer/SubViewport"]
+position = Vector2(3118, 396)
+texture = ExtResource("14_aavxw")
+
+[node name="Sprite" type="Sprite2D" parent="GUI/SubViewportContainer"]
+modulate = Color(1, 1.5, 1.5, 1)
+z_index = 1
+texture_filter = 1
+position = Vector2(105, 42)
+rotation = 1.5708
+scale = Vector2(6, 6)
+texture = ExtResource("14_t4f0r")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("9_yx8xc")
