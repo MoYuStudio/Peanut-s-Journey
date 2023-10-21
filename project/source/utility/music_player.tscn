@@ -71,6 +71,7 @@ process_mode = 3
 script = SubResource("GDScript_u48wl")
 
 [node name="Control" type="Control" parent="."]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 0
 offset_left = 178.0
@@ -79,12 +80,14 @@ offset_right = 218.0
 offset_bottom = 1850.0
 
 [node name="Panel" type="Panel" parent="Control"]
+process_mode = 3
 layout_mode = 0
 offset_right = 990.0
 offset_bottom = 160.0
 theme = ExtResource("1_1vtqd")
 
 [node name="TextureRect" type="TextureRect" parent="Control/Panel"]
+process_mode = 3
 texture_filter = 1
 layout_mode = 0
 offset_left = 15.0
@@ -95,6 +98,7 @@ texture = ExtResource("2_yt1af")
 expand_mode = 1
 
 [node name="Label" type="Label" parent="Control/Panel"]
+process_mode = 3
 modulate = Color(1, 1, 1, 0.784314)
 texture_filter = 1
 layout_mode = 0
@@ -106,6 +110,7 @@ text = "Music Name"
 clip_text = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Control/Panel"]
+process_mode = 3
 layout_mode = 0
 offset_left = 580.0
 offset_top = 32.0

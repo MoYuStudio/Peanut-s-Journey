@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://532f5h24sdvb"]
+[gd_scene load_steps=37 format=3 uid="uid://532f5h24sdvb"]
 
 [ext_resource type="PackedScene" uid="uid://ivo77piqgdfv" path="res://source/player/car_player.tscn" id="1_pjecn"]
 [ext_resource type="PackedScene" uid="uid://5ygp3ic8vnl6" path="res://source/utility/hurtbox.tscn" id="2_d0h3p"]
@@ -268,6 +268,20 @@ radius = 256.0
 radius = 24.0
 height = 96.0
 
+[sub_resource type="GDScript" id="GDScript_v55cw"]
+script/source = "
+extends Control
+
+func _ready():
+	pass
+
+func _physics_process(delta):
+	if get_tree().paused:
+		hide()
+	else:
+		show()
+"
+
 [sub_resource type="GDScript" id="GDScript_8bluy"]
 script/source = "
 extends Label
@@ -282,11 +296,6 @@ func _physics_process(delta):
 	var logo_size = get_rect().size
 	position.x = viewport_size.x/2 - logo_size.x/2
 	position.y = logo_size.y
-
-	if get_tree().paused:
-		visible = false
-	else:
-		visible = true
 "
 
 [sub_resource type="Animation" id="Animation_1dnba"]
@@ -534,25 +543,32 @@ offset_top = 0.0
 offset_right = 797.0
 offset_bottom = 638.0
 
-[node name="Level" type="Label" parent="GUI"]
+[node name="Control" type="Control" parent="GUI"]
 process_mode = 3
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = SubResource("GDScript_v55cw")
+
+[node name="Level" type="Label" parent="GUI/Control"]
 modulate = Color(1, 1, 1, 0.784314)
 offset_left = 1376.0
 offset_top = 378.0
 offset_right = 2424.0
-offset_bottom = 638.0
+offset_bottom = 765.0
 theme_override_fonts/font = ExtResource("11_oxdnj")
 theme_override_font_sizes/font_size = 256
 text = "0"
 horizontal_alignment = 1
 script = SubResource("GDScript_8bluy")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="GUI/Level"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="GUI/Control/Level"]
 libraries = {
 "": SubResource("AnimationLibrary_g6giu")
 }
 
-[node name="InfoBar" type="Control" parent="GUI"]
+[node name="InfoBar" type="Control" parent="GUI/Control"]
 layout_mode = 3
 anchors_preset = 0
 offset_left = 107.0
@@ -560,7 +576,7 @@ offset_top = 794.0
 offset_right = 1236.0
 offset_bottom = 965.0
 
-[node name="Sprite2D" type="Sprite2D" parent="GUI/InfoBar"]
+[node name="Sprite2D" type="Sprite2D" parent="GUI/Control/InfoBar"]
 texture_filter = 1
 position = Vector2(90, 87)
 scale = Vector2(6, 6)
@@ -569,14 +585,12 @@ hframes = 6
 vframes = 2
 script = SubResource("GDScript_n5roj")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="GUI/InfoBar/Sprite2D"]
-process_mode = 3
+[node name="AnimationPlayer" type="AnimationPlayer" parent="GUI/Control/InfoBar/Sprite2D"]
 libraries = {
 "": SubResource("AnimationLibrary_6luij")
 }
 
-[node name="Money" type="Label" parent="GUI/InfoBar"]
-process_mode = 3
+[node name="Money" type="Label" parent="GUI/Control/InfoBar"]
 modulate = Color(1, 1, 1, 0.901961)
 texture_filter = 1
 layout_mode = 2
@@ -590,36 +604,36 @@ theme_override_font_sizes/font_size = 128
 text = "0"
 script = SubResource("GDScript_pbsv1")
 
-[node name="Panel" type="Panel" parent="GUI"]
+[node name="Panel" type="Panel" parent="GUI/Control"]
 offset_left = 128.0
 offset_top = 128.0
 offset_right = 728.0
 offset_bottom = 728.0
 theme = ExtResource("14_k4l4r")
 
-[node name="MarginContainer" type="MarginContainer" parent="GUI/Panel"]
+[node name="MarginContainer" type="MarginContainer" parent="GUI/Control/Panel"]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 theme_override_constants/margin_left = 42
 theme_override_constants/margin_top = 42
 
-[node name="SubViewportContainer" type="SubViewportContainer" parent="GUI/Panel/MarginContainer"]
+[node name="SubViewportContainer" type="SubViewportContainer" parent="GUI/Control/Panel/MarginContainer"]
 layout_mode = 2
 script = SubResource("GDScript_sdadq")
 
-[node name="SubViewport" type="SubViewport" parent="GUI/Panel/MarginContainer/SubViewportContainer"]
+[node name="SubViewport" type="SubViewport" parent="GUI/Control/Panel/MarginContainer/SubViewportContainer"]
 handle_input_locally = false
 render_target_update_mode = 4
 
-[node name="Camera2D" type="Camera2D" parent="GUI/Panel/MarginContainer/SubViewportContainer/SubViewport"]
+[node name="Camera2D" type="Camera2D" parent="GUI/Control/Panel/MarginContainer/SubViewportContainer/SubViewport"]
 zoom = Vector2(0.1, 0.1)
 
-[node name="Map" type="Sprite2D" parent="GUI/Panel/MarginContainer/SubViewportContainer/SubViewport"]
+[node name="Map" type="Sprite2D" parent="GUI/Control/Panel/MarginContainer/SubViewportContainer/SubViewport"]
 scale = Vector2(16, 16)
 texture = ExtResource("14_aavxw")
 
-[node name="Sprite" type="Sprite2D" parent="GUI/Panel/MarginContainer/SubViewportContainer"]
+[node name="Sprite" type="Sprite2D" parent="GUI/Control/Panel/MarginContainer/SubViewportContainer"]
 modulate = Color(1, 1.5, 1.5, 1)
 z_index = 1
 texture_filter = 1

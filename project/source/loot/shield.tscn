@@ -100,7 +100,6 @@ script = SubResource("GDScript_pecro")
 [node name="Circle01" type="Sprite2D" parent="."]
 texture_filter = 1
 position = Vector2(0, 2)
-scale = Vector2(1e-05, 1e-05)
 texture = ExtResource("1_8ads1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -110,7 +109,7 @@ disabled = true
 [node name="Circle03" type="Sprite2D" parent="."]
 modulate = Color(0.560784, 0.827451, 1, 0.392157)
 texture_filter = 1
-scale = Vector2(3, 3)
+scale = Vector2(1e-05, 1e-05)
 texture = ExtResource("2_unvmw")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -126,6 +125,7 @@ collision_layer = 16
 collision_mask = 16
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+scale = Vector2(1e-05, 1e-05)
 shape = SubResource("CircleShape2D_i4sos")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
