@@ -105,17 +105,14 @@ scale_curve = SubResource("CurveTexture_4avvf")
 color = Color(1, 1, 1, 0.12549)
 turbulence_noise_strength = 20.0
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3ay8f"]
-radius = 18.0
-height = 36.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_edhxe"]
+radius = 94.3663
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_e3hjc"]
-radius = 20.0
-height = 40.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_e53nk"]
+radius = 100.045
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5yeo4"]
-radius = 19.0
-height = 38.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_ebskx"]
+radius = 105.575
 
 [node name="Boss" type="CharacterBody2D" groups=["boss"]]
 collision_layer = 20
@@ -140,10 +137,10 @@ position = Vector2(-18, 0)
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
 color = Color(0.984314, 0.72549, 0.329412, 1)
-polygon = PackedVector2Array(-135, 25, -21, 32, -24, 123, -1, 75, 25, 123, 32, 23, 145, 23, 98, 2, 147, -18, 27, -19, 22, -109, -1, -69, -24, -105, -26, -21, -136, -23, -83, 2)
+polygon = PackedVector2Array(-135, 25, -30, 32, -25, 132, -1, 75, 29, 133, 30, 32, 139, 30, 97, 0, 142, -21, 30, -24, 25, -122, -1, -69, -30, -123, -33, -23, -136, -23, -83, 2)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CapsuleShape2D_3ay8f")
+shape = SubResource("CircleShape2D_edhxe")
 
 [node name="HurtBox" parent="." instance=ExtResource("3_w53yv")]
 collision_layer = 4
@@ -151,7 +148,7 @@ collision_mask = 4
 hitbox_type = 1
 
 [node name="CollisionShape2D" parent="HurtBox" index="0"]
-shape = SubResource("CapsuleShape2D_e3hjc")
+shape = SubResource("CircleShape2D_e53nk")
 
 [node name="AudioStreamPlayer2D" parent="HurtBox" index="2"]
 stream = ExtResource("4_d64p2")
@@ -162,7 +159,7 @@ collision_mask = 2
 damage = 3
 
 [node name="CollisionShape2D" parent="HitBox" index="0"]
-shape = SubResource("CapsuleShape2D_5yeo4")
+shape = SubResource("CircleShape2D_ebskx")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 volume_db = -30.0
