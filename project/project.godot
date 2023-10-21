@@ -82,6 +82,10 @@ mouse_left={
 ]
 }
 
+[internationalization]
+
+locale/test="en"
+
 [layer_names]
 
 2d_render/layer_1="World"

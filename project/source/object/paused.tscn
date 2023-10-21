@@ -191,7 +191,6 @@ theme = ExtResource("1_ngxqj")
 tab_alignment = 1
 
 [node name="状态" type="TabBar" parent="Panel/TabContainer"]
-visible = false
 layout_mode = 2
 script = SubResource("GDScript_y52n6")
 
@@ -461,6 +460,7 @@ custom_minimum_size = Vector2(96, 48)
 layout_mode = 2
 
 [node name="符文" type="TabBar" parent="Panel/TabContainer"]
+visible = false
 layout_mode = 2
 script = SubResource("GDScript_nyuno")
 
