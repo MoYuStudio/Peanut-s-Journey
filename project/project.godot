@@ -84,6 +84,7 @@ mouse_left={
 
 [internationalization]
 
+locale/translations=PackedStringArray("res://data/language.en.translation", "res://data/language.zh.translation")
 locale/test="en"
 
 [layer_names]
