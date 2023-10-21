@@ -424,15 +424,6 @@ theme_override_font_sizes/font_size = 48
 text = "www.moyu-stuido.com
 "
 
-[node name="Label" type="Label" parent="Main/Control"]
-layout_mode = 0
-offset_left = -861.0
-offset_top = 134.0
-offset_right = 83.0
-offset_bottom = 486.0
-theme_override_font_sizes/font_size = 256
-text = "greet"
-
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Main"]
 volume_db = -20.0
 autoplay = true
