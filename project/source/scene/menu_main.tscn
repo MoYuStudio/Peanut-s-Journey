@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://b4u7q3b4vyfbd"]
+[gd_scene load_steps=41 format=3 uid="uid://b4u7q3b4vyfbd"]
 
 [ext_resource type="FontFile" uid="uid://dwo3w3m0bti6d" path="res://resource/font/YouSheBiaoTiHei.ttf" id="2_kikh1"]
 [ext_resource type="FontFile" uid="uid://cyvdvdsbhwc8m" path="res://resource/font/kenney_mini_square.ttf" id="3_nvl8e"]
@@ -7,6 +7,7 @@
 [ext_resource type="Material" uid="uid://bss0l0sqbcfrj" path="res://resource/shader/rain.tres" id="5_ana3l"]
 [ext_resource type="Texture2D" uid="uid://bnmx8pt0nk4u2" path="res://resource/logo/logo.png" id="5_oh756"]
 [ext_resource type="AudioStream" uid="uid://om43vjvq3531" path="res://resource/sound/rain.mp3" id="6_5yxqh"]
+[ext_resource type="Texture2D" uid="uid://cs4nwibgx4yyn" path="res://resource/image/mousex400.png" id="8_m8le5"]
 [ext_resource type="Theme" uid="uid://cwvilb81l6i31" path="res://resource/theme/moyu.tres" id="9_ttu0s"]
 [ext_resource type="FontFile" uid="uid://briod8qq6bg6o" path="res://resource/font/kenney_mini_square_mono.ttf" id="10_g8yvp"]
 
@@ -56,24 +57,17 @@ gradient = SubResource("Gradient_x7f0i")
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_wtesc"]
 gradient = SubResource("Gradient_qqeh2")
 
-[sub_resource type="GDScript" id="GDScript_sy4qt"]
-script/source = "
-extends Control
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_eroln"]
 
-func _physics_process(delta):
-	pass
-	#var viewport_size = get_viewport_rect().size
-	#var logo_size = get_rect().size
-	#position.x = viewport_size.x/2 - viewport_size.x/2.3# - logo_size.x*1.25
-	#position.y = - logo_size.y/4
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jyg1r"]
 
-"
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6lj1p"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ajq0g"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lrxpa"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fx3mi"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_e8vda"]
 
-[sub_resource type="GDScript" id="GDScript_o3aco"]
+[sub_resource type="GDScript" id="GDScript_g7vop"]
 script/source = "
 extends Button
 
@@ -82,6 +76,7 @@ func _ready():
 
 func _process(delta):
 	if is_pressed():
+		# Global.player_dict = Global.load_data('player')
 		get_tree().change_scene_to_file('res://source/scene/game_main.tscn')
 		# SceneTransition.change_scene('res://source/scene/game_main.tscn')
 "
@@ -89,6 +84,20 @@ func _process(delta):
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rx25s"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qvrj6"]
+
+[sub_resource type="GDScript" id="GDScript_4v60i"]
+script/source = "
+extends Button
+
+func _ready():
+	pass
+
+func _process(delta):
+	if is_pressed():
+		Global.player_dict = Global.load_data('player')
+		get_tree().change_scene_to_file('res://source/scene/game_main.tscn')
+		# SceneTransition.change_scene('res://source/scene/game_main.tscn')
+"
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rtrfq"]
 
@@ -168,8 +177,24 @@ func _process(delta):
 	# if is_pressed():
 	# 	# get_tree().change_scene_to_file('res://source/scene/menu_about.tscn')
 	# 	SceneTransition.change_scene('res://source/scene/menu_about.tscn')
-	
-	
+"
+
+[sub_resource type="GDScript" id="GDScript_ahv81"]
+script/source = "
+extends Button
+
+var language_list = ['zh','en']
+var language_id = 0
+
+func _ready():
+	TranslationServer.set_locale(language_list[language_id])
+
+func _on_pressed():
+	if language_id < len(language_list)-1:
+		language_id += 1
+	else:
+		language_id = 0
+	TranslationServer.set_locale(language_list[language_id])
 "
 
 [sub_resource type="GDScript" id="GDScript_pr2eo"]
@@ -261,7 +286,7 @@ offset_bottom = 40.0
 position = Vector2(-1125.81, -331.418)
 scale = Vector2(0.694487, 0.922782)
 color = Color(0.243137, 0.207843, 0.27451, 1)
-polygon = PackedVector2Array(-4164.49, -4044.92, -4370.4, 13082.6, 13385.1, 13113, 12128, -4292)
+polygon = PackedVector2Array(-4164.49, -4044.92, -4370.4, 13082.6, 13385.1, 13113, 13313.2, -4230.23)
 
 [node name="Light" type="Node2D" parent="Main"]
 
@@ -300,7 +325,6 @@ offset_top = 138.0
 offset_right = 2540.0
 offset_bottom = 2022.0
 pivot_offset = Vector2(620, 942)
-script = SubResource("GDScript_sy4qt")
 
 [node name="Title" type="Label" parent="Main/Control"]
 texture_filter = 1
@@ -332,16 +356,18 @@ offset_top = 678.0
 offset_right = 876.0
 offset_bottom = 1358.0
 
-[node name="FastStartButton" type="Button" parent="Main/Control/VBoxContainer"]
-texture_filter = 1
+[node name="NewGameButton" type="Button" parent="Main/Control/VBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_kikh1")
+theme = ExtResource("9_ttu0s")
 theme_override_font_sizes/font_size = 128
-theme_override_styles/normal = SubResource("StyleBoxEmpty_ajq0g")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_fx3mi")
-text = "快速开始"
+theme_override_styles/normal = SubResource("StyleBoxEmpty_eroln")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_jyg1r")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_6lj1p")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_lrxpa")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_e8vda")
+text = "新游戏"
 flat = true
-script = SubResource("GDScript_o3aco")
+script = SubResource("GDScript_g7vop")
 
 [node name="StartButton" type="Button" parent="Main/Control/VBoxContainer"]
 texture_filter = 1
@@ -350,9 +376,9 @@ theme_override_fonts/font = ExtResource("2_kikh1")
 theme_override_font_sizes/font_size = 128
 theme_override_styles/normal = SubResource("StyleBoxEmpty_rx25s")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_qvrj6")
-disabled = true
 text = "开始"
 flat = true
+script = SubResource("GDScript_4v60i")
 
 [node name="SettingButton" type="Button" parent="Main/Control/VBoxContainer"]
 texture_filter = 1
@@ -423,6 +449,21 @@ theme_override_fonts/font = ExtResource("2_kikh1")
 theme_override_font_sizes/font_size = 48
 text = "www.moyu-stuido.com
 "
+
+[node name="Button" type="Button" parent="Main"]
+layout_mode = 0
+offset_left = 3465.0
+offset_top = 1814.0
+offset_right = 3680.0
+offset_bottom = 2021.0
+script = SubResource("GDScript_ahv81")
+
+[node name="TextureRect" type="TextureRect" parent="Main/Button"]
+texture_filter = 1
+layout_mode = 0
+offset_right = 217.0
+offset_bottom = 207.0
+texture = ExtResource("8_m8le5")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Main"]
 volume_db = -20.0
@@ -579,4 +620,5 @@ libraries = {
 }
 
 [connection signal="pressed" from="Main/Control/VBoxContainer2/Logo/Button" to="." method="_on_to_about_button_pressed"]
+[connection signal="pressed" from="Main/Button" to="Main/Button" method="_on_pressed"]
 [connection signal="animation_finished" from="About/AnimationPlayer" to="." method="_on_about_animation_player_animation_finished"]

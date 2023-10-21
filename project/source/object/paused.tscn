@@ -29,10 +29,12 @@ func _process(delta):
 			get_tree().paused = false
 
 func _on_continue_button_pressed():
+	Global.save_data('player',Global.player_dict)
 	visible = false
 	get_tree().paused = false
 
 func _on_quit_button_pressed():
+	Global.save_data('player',Global.player_dict)
 	get_tree().paused = false
 	# get_tree().change_scene_to_file('res://source/scene/menu_main.tscn')
 	SceneTransition.change_scene('res://source/scene/menu_main.tscn')

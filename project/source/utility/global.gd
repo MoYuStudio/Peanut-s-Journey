@@ -25,6 +25,9 @@ var setting_dict = {
 	
 var player_dict = {
 	# 玩家信息
+	'position':[0.0,0.0],
+	'rotation':0.0,
+	
 	'money':1000,
 	'hp':100,
 	# 基础升级

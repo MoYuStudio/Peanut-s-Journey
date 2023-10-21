@@ -1,0 +1,30 @@
+[gd_scene load_steps=2 format=3 uid="uid://dponi130l5e8w"]
+
+[ext_resource type="Theme" uid="uid://cwvilb81l6i31" path="res://resource/theme/moyu.tres" id="1_n4usl"]
+
+[node name="MenuSaveSelect" type="Node"]
+
+[node name="Panel" type="Panel" parent="."]
+offset_left = 1215.0
+offset_top = 293.0
+offset_right = 2753.0
+offset_bottom = 1771.0
+theme = ExtResource("1_n4usl")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+offset_left = 51.0
+offset_top = 51.0
+offset_right = 1487.0
+offset_bottom = 1438.0
+
+[node name="Panel" type="Panel" parent="Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 300)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel/VBoxContainer/Panel"]
+layout_mode = 0
+offset_left = 47.0
+offset_top = 35.0
+offset_right = 186.0
+offset_bottom = 122.0
+text = "存档"
