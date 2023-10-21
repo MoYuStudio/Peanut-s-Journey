@@ -99,8 +99,8 @@ radius = 19.0
 height = 38.0
 
 [node name="Enemy" type="CharacterBody2D"]
-collision_layer = 4
-collision_mask = 4
+collision_layer = 20
+collision_mask = 20
 safe_margin = 0.1
 script = SubResource("GDScript_3nnkj")
 movement_speed = 500.0

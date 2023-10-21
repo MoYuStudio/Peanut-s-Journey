@@ -1,21 +1,21 @@
-[gd_scene load_steps=9 format=3 uid="uid://qcttmugv5t4j"]
+[gd_scene load_steps=8 format=3 uid="uid://qcttmugv5t4j"]
 
 [ext_resource type="Texture2D" uid="uid://c8xj7kowm8bry" path="res://resource/particle/circle_01.png" id="1_8ads1"]
 [ext_resource type="Texture2D" uid="uid://dc8rxcejhpmx6" path="res://resource/particle/circle_03.png" id="2_unvmw"]
-[ext_resource type="PackedScene" uid="uid://o84475elvy3" path="res://source/utility/hitbox.tscn" id="3_aqpuo"]
 
 [sub_resource type="GDScript" id="GDScript_pecro"]
 script/source = "extends Area2D
 
-@onready var animation = $CollisionShape2D2/AnimationPlayer
+@onready var animation = $AnimationPlayer
 @onready var collision = $CollisionShape2D
-@onready var collision2 = $CollisionShape2D2
 @onready var timer = $Timer
 
 var type = 'shield'
 
+var target = Vector2.ZERO
+
 func _ready():
-	pass
+	collision.disabled = false
 
 
 func _process(delta):
@@ -23,7 +23,7 @@ func _process(delta):
 
 func collect():
 	animation.play('animation')
-	Timer.start
+	timer.start()
 	
 
 func _on_timer_timeout():
@@ -31,31 +31,68 @@ func _on_timer_timeout():
 "
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_pnfhv"]
-radius = 120.0
+radius = 120.017
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_1hrwr"]
-
-[sub_resource type="Animation" id="Animation_c2hng"]
+[sub_resource type="Animation" id="Animation_3wocg"]
 resource_name = "animation"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:scale")
+tracks/0/path = NodePath("Circle03:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(0, 0), Vector2(20, 20)]
+"values": [Vector2(0, 0), Vector2(2, 2)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("StaticBody2D/CollisionShape2D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Circle01:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0.3, 0.3), Vector2(0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CollisionShape2D:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_8j51k"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_n2t1e"]
 _data = {
-"animation": SubResource("Animation_c2hng")
+"animation": SubResource("Animation_3wocg")
 }
 
-[node name="shield" type="Area2D" groups=["loot"]]
+[sub_resource type="CircleShape2D" id="CircleShape2D_i4sos"]
+radius = 360.251
+
+[node name="Shield" type="Area2D" groups=["loot"]]
 collision_layer = 8
 collision_mask = 8
 script = SubResource("GDScript_pecro")
@@ -69,23 +106,24 @@ texture = ExtResource("1_8ads1")
 shape = SubResource("CircleShape2D_pnfhv")
 disabled = true
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+[node name="Circle03" type="Sprite2D" parent="."]
 scale = Vector2(1e-05, 1e-05)
-shape = SubResource("CircleShape2D_1hrwr")
-
-[node name="Circle03" type="Sprite2D" parent="CollisionShape2D2"]
-scale = Vector2(0.05, 0.05)
 texture = ExtResource("2_unvmw")
 
-[node name="HitBox" parent="CollisionShape2D2" instance=ExtResource("3_aqpuo")]
-collision_layer = 4
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="CollisionShape2D2"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_8j51k")
+"": SubResource("AnimationLibrary_n2t1e")
 }
 
-[node name="Timer" type="Timer" parent="CollisionShape2D2"]
-wait_time = 10.0
+[node name="Timer" type="Timer" parent="."]
+wait_time = 9.0
 
-[connection signal="timeout" from="CollisionShape2D2/Timer" to="." method="_on_timer_timeout"]
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 16
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+scale = Vector2(1e-05, 1e-05)
+shape = SubResource("CircleShape2D_i4sos")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
