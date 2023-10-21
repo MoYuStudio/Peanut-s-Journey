@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://boorlk0l20e1p"]
+[gd_scene load_steps=11 format=3 uid="uid://boorlk0l20e1p"]
 
 [ext_resource type="Texture2D" uid="uid://8r1s6ng6iids" path="res://resource/image/light.png" id="1_ktyyc"]
 [ext_resource type="PackedScene" uid="uid://o84475elvy3" path="res://source/utility/hitbox.tscn" id="2_gvo62"]
+[ext_resource type="Theme" uid="uid://cwvilb81l6i31" path="res://resource/theme/moyu.tres" id="3_bstat"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nj4wx"]
 size = Vector2(256, 256)
@@ -21,14 +22,35 @@ size = Vector2(260, 260)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i8tkb"]
 size = Vector2(260, 260)
 
+[sub_resource type="GDScript" id="GDScript_5y8tc"]
+script/source = "
+extends Label
+
+
+func _ready():
+	pass
+
+func _process(delta):
+	if Input.is_action_just_pressed('Q'):
+		get_tree().change_scene_to_file('res://source/scene/game_main.tscn')
+		# SceneTransition.change_scene('res://source/scene/game_main.tscn')
+
+"
+
 [node name="MapInit" type="Node2D"]
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
 z_index = -10
-position = Vector2(1862, 997)
-scale = Vector2(3.09165, 3.89693)
+position = Vector2(34940.2, -2040.46)
+scale = Vector2(6.48152, 1.317)
 color = Color(0.25098, 0.207843, 0.27451, 1)
-polygon = PackedVector2Array(-10000, -7000, -10000, 7000, 10000, 7000, 10000, -7000)
+polygon = PackedVector2Array(-7353.09, -26152.3, -5972.08, 3997.79, -4694.45, 4654.87, -3811.48, -25905.3)
+
+[node name="Polygon2D2" type="Polygon2D" parent="."]
+z_index = -10
+position = Vector2(19087, -38042)
+scale = Vector2(5.46189, 2.9749)
+polygon = PackedVector2Array(-6224.49, -6970.16, -6221.7, 5898.85, -424.308, 5417.19, -387.874, -6720.4)
 
 [node name="Area2D" type="StaticBody2D" parent="."]
 collision_layer = 11
@@ -36,17 +58,22 @@ collision_mask = 11
 
 [node name="Polygon2D" type="Polygon2D" parent="Area2D"]
 z_index = 3
-polygon = PackedVector2Array(-500, 2000, -2600, 2000, -3600, 0, -2600, -2000, -500, -2000, -500, -6000, -9000, -6000, -9000, 6000, -500, 6000)
+position = Vector2(49313, -9239)
+scale = Vector2(3.80965, 1)
+polygon = PackedVector2Array(-9142.32, -22315, -12651.8, -22819, -12594.3, 3745, -10916.2, 8251)
 
 [node name="Polygon2D2" type="Polygon2D" parent="Area2D"]
 z_index = 3
-position = Vector2(9500, 0)
-polygon = PackedVector2Array(-500, -6000, -9000, -6000, -9000, -2000, -7000, -2000, -6000, 0, -7000, 2000, -9000, 2000, -9000, 6000, -500, 6000)
+position = Vector2(960, -30278)
+scale = Vector2(3.41478, 1)
+polygon = PackedVector2Array(-514.82, -1276, -3902.74, -971, -2761.52, 28194, -461.523, 24419)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+position = Vector2(30164, -30061)
 polygon = PackedVector2Array(2500, 2000, 500, 2000, 500, 5500, -500, 5500, -500, 2000, -2600, 2000, -3600, 0, -2600, -2000, -500, -2000, -500, -5500, 0, -5500, 0, -6000, -9000, -6000, -9000, 6000, 9000, 6000, 9000, -6000, 0, -6000, 0, -5500, 500, -5500, 500, -2000, 2500, -2000, 3500, 0)
 
 [node name="Light" type="Node2D" parent="."]
+position = Vector2(49178, -30463)
 
 [node name="PointLight2D" type="PointLight2D" parent="Light"]
 position = Vector2(-2000, -1600)
@@ -82,6 +109,7 @@ texture_scale = 8.0
 
 [node name="Wall" type="Node2D" parent="."]
 z_index = 3
+position = Vector2(48765, -25847)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Wall"]
 position = Vector2(-1600, 1000)
@@ -182,6 +210,27 @@ damage = 10
 
 [node name="CollisionShape2D" parent="Wall/StaticBody2D4/HitBox" index="0"]
 shape = SubResource("RectangleShape2D_i8tkb")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -71.0
+offset_top = -567.0
+offset_right = 47.0
+offset_bottom = -397.0
+theme = ExtResource("3_bstat")
+theme_override_font_sizes/font_size = 128
+text = "来"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+modulate = Color(1, 1, 1, 0.392157)
+offset_left = 1688.0
+offset_top = 1960.0
+offset_right = 2277.0
+offset_bottom = 2063.0
+theme = ExtResource("3_bstat")
+text = "按 Q 跳过 剧情模式"
+script = SubResource("GDScript_5y8tc")
 
 [editable path="Wall/StaticBody2D/HitBox"]
 [editable path="Wall/StaticBody2D2/HitBox"]

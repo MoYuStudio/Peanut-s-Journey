@@ -27,7 +27,11 @@ glow_hdr_luminance_cap = 6.0
 script = SubResource("GDScript_ayg21")
 
 [node name="MapInit" parent="." instance=ExtResource("1_o4mu8")]
-rotation = 1.5708
+
+[node name="Polygon2D" parent="MapInit" index="0"]
+position = Vector2(64468, 640)
+scale = Vector2(11.2253, 0.74116)
+polygon = PackedVector2Array(-6224.49, -6970.16, -6221.7, 5898.85, 4880.24, 5839.71, 4731.45, -6859.5)
 
 [node name="Player" parent="." instance=ExtResource("1_uw1gq")]
 position = Vector2(0, 0)
@@ -58,6 +62,11 @@ render_target_update_mode = 0
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_mrucn")
 
+[editable path="MapInit"]
+[editable path="MapInit/Wall/StaticBody2D/HitBox"]
+[editable path="MapInit/Wall/StaticBody2D2/HitBox"]
+[editable path="MapInit/Wall/StaticBody2D3/HitBox"]
+[editable path="MapInit/Wall/StaticBody2D4/HitBox"]
 [editable path="Player"]
 [editable path="Player/Body"]
 [editable path="Player/Body/HurtBox"]
