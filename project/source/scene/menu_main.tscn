@@ -465,17 +465,21 @@ autoplay = true
 [node name="CanvasLayer" type="CanvasLayer" parent="Main"]
 
 [node name="Button" type="Button" parent="Main/CanvasLayer"]
-offset_left = 3465.0
-offset_top = 1814.0
-offset_right = 3680.0
-offset_bottom = 2021.0
+offset_left = 3534.0
+offset_top = 1871.0
+offset_right = 3647.0
+offset_bottom = 1988.0
+flat = true
 script = SubResource("GDScript_ahv81")
 
 [node name="TextureRect" type="TextureRect" parent="Main/CanvasLayer/Button"]
 texture_filter = 1
 layout_mode = 0
-offset_right = 217.0
-offset_bottom = 207.0
+offset_left = -3.0
+offset_top = 3.0
+offset_right = 187.0
+offset_bottom = 193.0
+scale = Vector2(0.6, 0.6)
 texture = ExtResource("9_hii05")
 
 [node name="About" type="Control" parent="."]

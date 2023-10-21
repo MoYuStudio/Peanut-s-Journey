@@ -29,7 +29,7 @@ var player_dict = {
 	'rotation':0.0,
 	
 	'money':1000,
-	'hp':100,
+	'hp':1000,
 	# 基础升级
 	'hp_max':100, 
 	'hp_auto_add':0,

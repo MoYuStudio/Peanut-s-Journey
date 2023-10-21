@@ -1,0 +1,180 @@
+[gd_scene load_steps=13 format=3 uid="uid://pmvr1krbxs15"]
+
+[ext_resource type="Texture2D" uid="uid://cciym2m3cx1ij" path="res://resource/image/steam.png" id="1_wsleu"]
+[ext_resource type="PackedScene" uid="uid://cg241ljt7tomh" path="res://source/player/trail.tscn" id="2_773vj"]
+[ext_resource type="PackedScene" uid="uid://5ygp3ic8vnl6" path="res://source/utility/hurtbox.tscn" id="3_w53yv"]
+[ext_resource type="AudioStream" uid="uid://bjuo3dwiu2kc8" path="res://resource/sound/glass_004.ogg" id="4_d64p2"]
+[ext_resource type="PackedScene" uid="uid://o84475elvy3" path="res://source/utility/hitbox.tscn" id="5_wvh2a"]
+
+[sub_resource type="GDScript" id="GDScript_3nnkj"]
+script/source = "
+extends CharacterBody2D
+
+@export var movement_speed = 600.0
+@export var hp = 10
+@export var knock_back_recovery = 2.5
+var knock_back = Vector2.ZERO
+
+@onready var player = get_tree().get_first_node_in_group('player')
+@onready var boss = get_tree().get_first_node_in_group('boss')
+
+signal remove_from_array(object)
+
+var death_animation = preload('res://source/object/blood.tscn')
+var death_coin = preload('res://source/loot/coin.tscn')
+
+@onready var fire_ball = preload('res://source/attack/fire_ball.tscn')
+@onready var fire_ball_timer = $Attack/FireBallTimer
+var fire_ball_level = 1
+var fire_ball_attack_speed = 9 # 0.1
+
+# var screen_size
+
+func _ready():
+	fire_ball_timer.wait_time = fire_ball_attack_speed
+	if fire_ball_timer.is_stopped():
+		fire_ball_timer.start()
+
+func _physics_process(_delta):
+	knock_back = knock_back.move_toward(Vector2.ZERO, knock_back_recovery)
+	var direction_to_player = global_transform.origin.direction_to(player.position)
+	var local_knock_back = direction_to_player * knock_back.length()
+	velocity = direction_to_player * movement_speed
+	velocity -= local_knock_back
+	look_at(player.position)
+
+	move_and_slide()
+	
+func death():
+	emit_signal('remove_from_array',self)
+	
+	var enemy_death_animation = death_animation.instantiate()
+	enemy_death_animation.global_position = global_position
+	get_parent().get_parent().call_deferred('add_child', enemy_death_animation)
+	
+	if randi_range(0,100) <= Global.player_dict['money_drop']: # %概率产生金币
+		var enemy_death_coin = death_coin.instantiate()
+		enemy_death_coin.global_position = global_position
+		get_parent().get_parent().call_deferred('add_child', enemy_death_coin)
+	
+	Global.player_dict['kill'] += 1
+	queue_free()
+
+func _on_hurt_box_hurt(damage, angle, knock_back_amount):
+	hp -= damage
+	knock_back = angle * knock_back_amount
+	if hp <= 0:
+		death()
+		
+
+func _on_fire_ball_timer_timeout():
+	# if len(enemy_close) > 1:
+	var fire_ball_attack = fire_ball.instantiate()
+	# bullet_attack.target = get_local_mouse_position()# get_random_target()
+	fire_ball_attack.level = fire_ball_level
+	fire_ball_attack.position = position
+	# bullet_attack.rotation = gun.rotation + 44
+	fire_ball_attack.target = player.position # body.get_global_mouse_position()
+	fire_ball_attack.look_at(player.position)
+	# gun.look_at(get_global_mouse_position())
+	get_parent().add_child(fire_ball_attack)
+"
+
+[sub_resource type="Curve" id="Curve_0xrda"]
+_data = [Vector2(0, 0.252632), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_4avvf"]
+curve = SubResource("Curve_0xrda")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_xrwva"]
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+particle_flag_disable_z = true
+direction = Vector3(-0.1, 0, 0)
+spread = 16.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 64.0
+initial_velocity_max = 256.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+linear_accel_max = 16.0
+scale_min = 9.0
+scale_max = 16.0
+scale_curve = SubResource("CurveTexture_4avvf")
+color = Color(1, 1, 1, 0.12549)
+turbulence_noise_strength = 20.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3ay8f"]
+radius = 18.0
+height = 36.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_e3hjc"]
+radius = 20.0
+height = 40.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5yeo4"]
+radius = 19.0
+height = 38.0
+
+[node name="Boss" type="CharacterBody2D" groups=["boss"]]
+collision_layer = 20
+collision_mask = 20
+safe_margin = 0.1
+script = SubResource("GDScript_3nnkj")
+movement_speed = 100.0
+hp = 1000
+knock_back_recovery = 3.5
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+texture_filter = 1
+position = Vector2(-18, 0)
+amount = 64
+process_material = SubResource("ParticleProcessMaterial_xrwva")
+texture = ExtResource("1_wsleu")
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(-18, 0)
+
+[node name="Trail" parent="Marker2D" instance=ExtResource("2_773vj")]
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+color = Color(0.984314, 0.72549, 0.329412, 1)
+polygon = PackedVector2Array(-135, 25, -21, 32, -24, 123, -1, 75, 25, 123, 32, 23, 145, 23, 98, 2, 147, -18, 27, -19, 22, -109, -1, -69, -24, -105, -26, -21, -136, -23, -83, 2)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_3ay8f")
+
+[node name="HurtBox" parent="." instance=ExtResource("3_w53yv")]
+collision_layer = 4
+collision_mask = 4
+hitbox_type = 1
+
+[node name="CollisionShape2D" parent="HurtBox" index="0"]
+shape = SubResource("CapsuleShape2D_e3hjc")
+
+[node name="AudioStreamPlayer2D" parent="HurtBox" index="2"]
+stream = ExtResource("4_d64p2")
+
+[node name="HitBox" parent="." instance=ExtResource("5_wvh2a")]
+collision_layer = 2
+collision_mask = 2
+damage = 3
+
+[node name="CollisionShape2D" parent="HitBox" index="0"]
+shape = SubResource("CapsuleShape2D_5yeo4")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+volume_db = -30.0
+autoplay = true
+
+[node name="Attack" type="Node2D" parent="."]
+
+[node name="FireBallTimer" type="Timer" parent="Attack"]
+wait_time = 9.0
+
+[connection signal="hurt" from="HurtBox" to="." method="_on_hurt_box_hurt"]
+[connection signal="timeout" from="Attack/FireBallTimer" to="." method="_on_fire_ball_timer_timeout"]
+
+[editable path="HurtBox"]
+[editable path="HitBox"]
