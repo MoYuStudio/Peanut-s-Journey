@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://532f5h24sdvb"]
+[gd_scene load_steps=32 format=3 uid="uid://532f5h24sdvb"]
 
 [ext_resource type="PackedScene" uid="uid://ivo77piqgdfv" path="res://source/player/car_player.tscn" id="1_pjecn"]
 [ext_resource type="PackedScene" uid="uid://5ygp3ic8vnl6" path="res://source/utility/hurtbox.tscn" id="2_d0h3p"]
@@ -157,6 +157,8 @@ func _on_collect_area_area_entered(area):
 				var prize_draw_page = prize_draw.instantiate()
 				call_deferred('add_child', prize_draw_page)
 				get_tree().paused = true
+			'shield':
+				area.collect()
 
 	if area.is_in_group('next_part'):
 		level_switch = true
@@ -254,14 +256,6 @@ radius = 256.0
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5drmx"]
 radius = 24.0
 height = 96.0
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tgo26"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_k6g7m"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_n6r1v"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7sw7j"]
 
 [sub_resource type="GDScript" id="GDScript_8bluy"]
 script/source = "
@@ -507,6 +501,9 @@ visible = false
 [node name="ColorRect" parent="GUI/Paused" index="0"]
 color = Color(0, 0, 0, 0.25098)
 
+[node name="状态" parent="GUI/Paused/Panel/TabContainer" index="1"]
+visible = true
+
 [node name="VBoxContainer" parent="GUI/Paused/Panel/TabContainer/升级/TabContainer/武器升级" index="0"]
 offset_left = 0.0
 offset_top = 0.0
@@ -519,13 +516,8 @@ offset_top = 0.0
 offset_right = 797.0
 offset_bottom = 638.0
 
-[node name="ContinueButton" parent="GUI/Paused/VBoxContainer" index="1"]
-theme_override_styles/normal = SubResource("StyleBoxEmpty_tgo26")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_k6g7m")
-
-[node name="QuitButton" parent="GUI/Paused/VBoxContainer" index="2"]
-theme_override_styles/normal = SubResource("StyleBoxEmpty_n6r1v")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_7sw7j")
+[node name="符文" parent="GUI/Paused/Panel/TabContainer" index="3"]
+visible = false
 
 [node name="Level" type="Label" parent="GUI"]
 process_mode = 3
