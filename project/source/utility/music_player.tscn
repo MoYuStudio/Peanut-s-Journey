@@ -16,6 +16,7 @@ extends Node
 @onready var player = $AudioStreamPlayer
 
 var wilson
+var sadasdsadsda
 
 var path = \"resource/music_TreeStarMoon_CC0PublicDomain/\"
 var music_dict = {
