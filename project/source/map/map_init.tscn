@@ -343,9 +343,9 @@ autowrap_mode = 2
 [node name="VBoxContainer2" type="VBoxContainer" parent="Control"]
 texture_filter = 1
 layout_mode = 0
-offset_left = -549.0
+offset_left = -536.0
 offset_top = -7392.0
-offset_right = 523.0
+offset_right = 536.0
 offset_bottom = -4792.0
 theme_override_constants/separation = 960
 
@@ -376,10 +376,10 @@ autowrap_mode = 2
 [node name="VBoxContainer3" type="VBoxContainer" parent="Control"]
 texture_filter = 1
 layout_mode = 0
-offset_left = -394.0
-offset_top = -18473.0
-offset_right = 432.0
-offset_bottom = -13443.0
+offset_left = -413.0
+offset_top = -18474.0
+offset_right = 413.0
+offset_bottom = -13444.0
 theme_override_constants/separation = 960
 
 [node name="Label13" type="Label" parent="Control/VBoxContainer3"]
@@ -424,10 +424,10 @@ autowrap_mode = 2
 [node name="VBoxContainer4" type="VBoxContainer" parent="Control"]
 texture_filter = 1
 layout_mode = 0
-offset_left = -268.0
-offset_top = -27850.0
-offset_right = 297.0
-offset_bottom = -26269.0
+offset_left = -283.0
+offset_top = -27852.0
+offset_right = 282.0
+offset_bottom = -25702.0
 theme_override_constants/separation = 960
 
 [node name="Label15" type="Label" parent="Control/VBoxContainer4"]
@@ -449,10 +449,10 @@ autowrap_mode = 2
 [node name="VBoxContainer5" type="VBoxContainer" parent="Control"]
 texture_filter = 1
 layout_mode = 0
-offset_left = -458.0
-offset_top = -29029.0
-offset_right = 453.0
-offset_bottom = -28673.0
+offset_left = -456.0
+offset_top = -29028.0
+offset_right = 455.0
+offset_bottom = -28672.0
 
 [node name="Label16" type="Label" parent="Control/VBoxContainer5"]
 layout_mode = 2
@@ -473,9 +473,9 @@ autowrap_mode = 2
 [node name="VBoxContainer6" type="VBoxContainer" parent="Control"]
 texture_filter = 1
 layout_mode = 0
-offset_left = -456.0
+offset_left = -460.0
 offset_top = -37345.0
-offset_right = 468.0
+offset_right = 464.0
 offset_bottom = -36140.0
 theme_override_constants/separation = 360
 
@@ -498,10 +498,10 @@ autowrap_mode = 2
 [node name="VBoxContainer7" type="VBoxContainer" parent="Control"]
 texture_filter = 1
 layout_mode = 0
-offset_left = -471.0
-offset_top = -41930.0
-offset_right = 447.0
-offset_bottom = -39036.0
+offset_left = -458.0
+offset_top = -41929.0
+offset_right = 460.0
+offset_bottom = -39035.0
 theme_override_constants/separation = 2048
 
 [node name="Label20" type="Label" parent="Control/VBoxContainer7"]
@@ -523,10 +523,10 @@ autowrap_mode = 2
 [node name="VBoxContainer8" type="VBoxContainer" parent="Control"]
 texture_filter = 1
 layout_mode = 0
-offset_left = -496.0
+offset_left = -476.0
 offset_top = -70887.0
-offset_right = 495.0
-offset_bottom = -45594.0
+offset_right = 474.0
+offset_bottom = -45591.0
 theme_override_constants/separation = 720
 
 [node name="Label47" type="Label" parent="Control/VBoxContainer8"]
@@ -748,9 +748,9 @@ autowrap_mode = 2
 [node name="VBoxContainer9" type="VBoxContainer" parent="Control"]
 texture_filter = 1
 layout_mode = 0
-offset_left = -492.0
+offset_left = -499.0
 offset_top = -71763.0
-offset_right = 507.0
+offset_right = 500.0
 offset_bottom = -71577.0
 
 [node name="Label48" type="Label" parent="Control/VBoxContainer9"]
@@ -764,10 +764,10 @@ autowrap_mode = 2
 [node name="VBoxContainer10" type="VBoxContainer" parent="Control"]
 texture_filter = 1
 layout_mode = 0
-offset_left = -468.0
-offset_top = -79843.0
-offset_right = 476.0
-offset_bottom = -74813.0
+offset_left = -472.0
+offset_top = -79844.0
+offset_right = 472.0
+offset_bottom = -74814.0
 theme_override_constants/separation = 960
 
 [node name="Label53" type="Label" parent="Control/VBoxContainer10"]
@@ -813,10 +813,10 @@ autowrap_mode = 2
 [node name="VBoxContainer11" type="VBoxContainer" parent="Control"]
 texture_filter = 1
 layout_mode = 0
-offset_left = -683.0
-offset_top = -86413.0
-offset_right = 733.0
-offset_bottom = -82853.0
+offset_left = -707.0
+offset_top = -86415.0
+offset_right = 709.0
+offset_bottom = -82855.0
 theme_override_constants/separation = 960
 
 [node name="Label57" type="Label" parent="Control/VBoxContainer11"]
@@ -851,7 +851,7 @@ modulate = Color(0, 0, 0, 1)
 layout_mode = 2
 theme = ExtResource("3_bstat")
 theme_override_font_sizes/font_size = 128
-text = "嗯？。怎么快"
+text = "嗯？。这么快"
 horizontal_alignment = 1
 autowrap_mode = 2
 

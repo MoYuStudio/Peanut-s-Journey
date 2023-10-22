@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://b4u7q3b4vyfbd"]
+[gd_scene load_steps=46 format=3 uid="uid://b4u7q3b4vyfbd"]
 
 [ext_resource type="FontFile" uid="uid://dwo3w3m0bti6d" path="res://resource/font/YouSheBiaoTiHei.ttf" id="2_kikh1"]
 [ext_resource type="FontFile" uid="uid://cyvdvdsbhwc8m" path="res://resource/font/kenney_mini_square.ttf" id="3_nvl8e"]
@@ -179,6 +179,16 @@ func _process(delta):
 	# 	SceneTransition.change_scene('res://source/scene/menu_about.tscn')
 "
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bh7hm"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_j7mfy"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jr025"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_munqs"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xugsn"]
+
 [sub_resource type="GDScript" id="GDScript_ahv81"]
 script/source = "
 extends Button
@@ -195,6 +205,12 @@ var language_id = 0
 
 func _ready():
 	TranslationServer.set_locale(language_list[language_id])
+	
+func _physics_process(delta):
+	var viewport_size = get_viewport_rect().size
+	var logo_size = get_rect().size
+	position.x = viewport_size.x - logo_size.x*2
+	position.y = viewport_size.y - logo_size.y*2
 
 func _on_pressed():
 	if language_id < len(language_list)-1:
@@ -232,7 +248,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 9),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(1500, 1000), Vector2(1500, -3300)]
+"values": [Vector2(1450, 3000), Vector2(1450, -3500)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_pcxl5"]
@@ -359,10 +375,10 @@ text = "Peanut's Journey"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Main/Control"]
 layout_mode = 0
-offset_left = 404.0
-offset_top = 678.0
-offset_right = 876.0
-offset_bottom = 1358.0
+offset_left = 153.0
+offset_top = 671.0
+offset_right = 1090.0
+offset_bottom = 1351.0
 
 [node name="NewGameButton" type="Button" parent="Main/Control/VBoxContainer"]
 layout_mode = 2
@@ -373,8 +389,9 @@ theme_override_styles/hover = SubResource("StyleBoxEmpty_jyg1r")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_6lj1p")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_lrxpa")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_e8vda")
-text = "新开始"
+text = "新游戏"
 flat = true
+icon_alignment = 1
 script = SubResource("GDScript_g7vop")
 
 [node name="StartButton" type="Button" parent="Main/Control/VBoxContainer"]
@@ -412,10 +429,10 @@ script = SubResource("GDScript_lc1lc")
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="Main/Control"]
 layout_mode = 0
-offset_left = 393.0
-offset_top = 1708.0
-offset_right = 921.0
-offset_bottom = 1865.0
+offset_left = 368.0
+offset_top = 1701.0
+offset_right = 896.0
+offset_bottom = 1858.0
 alignment = 1
 
 [node name="Logo" type="Sprite2D" parent="Main/Control/VBoxContainer2"]
@@ -469,6 +486,11 @@ offset_left = 3534.0
 offset_top = 1871.0
 offset_right = 3647.0
 offset_bottom = 1988.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_bh7hm")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_j7mfy")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_jr025")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_munqs")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_xugsn")
 flat = true
 script = SubResource("GDScript_ahv81")
 
@@ -493,9 +515,9 @@ script = SubResource("GDScript_pr2eo")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="About"]
 layout_mode = 0
-offset_left = 1500.0
+offset_left = 1450.0
 offset_top = 1000.0
-offset_right = 2444.0
+offset_right = 2394.0
 offset_bottom = 5920.0
 alignment = 1
 
