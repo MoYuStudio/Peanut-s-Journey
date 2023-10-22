@@ -1,0 +1,181 @@
+[gd_scene load_steps=13 format=3 uid="uid://c0v2i2qplfq1v"]
+
+[ext_resource type="Texture2D" uid="uid://cciym2m3cx1ij" path="res://resource/image/steam.png" id="1_gjvnb"]
+[ext_resource type="PackedScene" uid="uid://cg241ljt7tomh" path="res://source/player/trail.tscn" id="2_sm3hj"]
+[ext_resource type="PackedScene" uid="uid://5ygp3ic8vnl6" path="res://source/utility/hurtbox.tscn" id="3_k0pqb"]
+[ext_resource type="AudioStream" uid="uid://bjuo3dwiu2kc8" path="res://resource/sound/glass_004.ogg" id="4_ucccm"]
+[ext_resource type="PackedScene" uid="uid://o84475elvy3" path="res://source/utility/hitbox.tscn" id="5_pptr4"]
+
+[sub_resource type="GDScript" id="GDScript_3nnkj"]
+script/source = "# 怪物形状额可以改一下，
+extends CharacterBody2D
+
+@export var movement_speed = 600.0
+@export var hp = 10
+@export var knock_back_recovery = 2.5
+var knock_back = Vector2.ZERO
+
+@onready var player = get_tree().get_first_node_in_group('player')
+@onready var boss = get_tree().get_first_node_in_group('boss')
+
+signal remove_from_array(object)
+
+var death_animation = preload('res://source/object/blood.tscn')
+var death_coin = preload('res://source/loot/coin.tscn')
+
+@onready var arrow = preload('res://source/attack/arrow.tscn')
+@onready var arrow_timer = $Attack/ArrowTimer
+var arrow_level = 1
+var arrow_attack_speed = 1 # 0.1
+
+# var screen_size
+
+func _ready():
+	arrow_timer.wait_time = arrow_attack_speed
+	if arrow_timer.is_stopped():
+		arrow_timer.start()
+
+func _physics_process(_delta):
+	knock_back = knock_back.move_toward(Vector2.ZERO, knock_back_recovery)
+	var direction_to_player = global_transform.origin.direction_to(player.position)
+	var local_knock_back = direction_to_player * knock_back.length()
+	velocity = direction_to_player * movement_speed
+	velocity -= local_knock_back
+	look_at(player.position)
+
+	move_and_slide()
+	
+func death():
+	emit_signal('remove_from_array',self)
+	
+	var enemy_death_animation = death_animation.instantiate()
+	enemy_death_animation.global_position = global_position
+	get_parent().get_parent().call_deferred('add_child', enemy_death_animation)
+	
+	if randi_range(0,100) <= Global.player_dict['money_drop']: # %概率产生金币
+		var enemy_death_coin = death_coin.instantiate()
+		enemy_death_coin.global_position = global_position
+		get_parent().get_parent().call_deferred('add_child', enemy_death_coin)
+	
+	Global.player_dict['kill'] += 1
+	queue_free()
+
+func _on_hurt_box_hurt(damage, angle, knock_back_amount):
+	hp -= damage
+	knock_back = angle * knock_back_amount
+	if hp <= 0:
+		death()
+		
+
+func _on_arrow_timer_timeout():
+	# if len(enemy_close) > 1:
+	var arrow_attack = arrow.instantiate()
+	# bullet_attack.target = get_local_mouse_position()# get_random_target()
+	arrow_attack.level = arrow_level
+	arrow_attack.position = position
+	# bullet_attack.rotation = gun.rotation + 44
+	arrow_attack.target = player.position # body.get_global_mouse_position()
+	arrow_attack.look_at(player.position)
+	# gun.look_at(get_global_mouse_position())
+	get_parent().add_child(arrow_attack)
+"
+
+[sub_resource type="Curve" id="Curve_0xrda"]
+_data = [Vector2(0, 0.252632), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_4avvf"]
+curve = SubResource("Curve_0xrda")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_xrwva"]
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+particle_flag_disable_z = true
+direction = Vector3(-0.1, 0, 0)
+spread = 16.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 64.0
+initial_velocity_max = 256.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+linear_accel_max = 16.0
+scale_min = 9.0
+scale_max = 16.0
+scale_curve = SubResource("CurveTexture_4avvf")
+color = Color(1, 1, 1, 0.12549)
+turbulence_noise_strength = 20.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_edhxe"]
+radius = 94.3663
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_e53nk"]
+radius = 100.045
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ebskx"]
+radius = 105.575
+
+[node name="Archer" type="CharacterBody2D" groups=["boss"]]
+collision_layer = 20
+collision_mask = 20
+safe_margin = 0.1
+script = SubResource("GDScript_3nnkj")
+movement_speed = 100.0
+hp = 1000
+knock_back_recovery = 3.5
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+texture_filter = 1
+position = Vector2(-18, 0)
+amount = 64
+process_material = SubResource("ParticleProcessMaterial_xrwva")
+texture = ExtResource("1_gjvnb")
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(-18, 0)
+
+[node name="Trail" parent="Marker2D" instance=ExtResource("2_sm3hj")]
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+scale = Vector2(0.630137, 1.55645)
+color = Color(0.984314, 0.254902, 0.329412, 1)
+polygon = PackedVector2Array(-100, 50, 200, 0, -100, -50)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(28, 0)
+shape = SubResource("CircleShape2D_edhxe")
+
+[node name="HurtBox" parent="." instance=ExtResource("3_k0pqb")]
+collision_layer = 4
+collision_mask = 4
+hitbox_type = 1
+
+[node name="CollisionShape2D" parent="HurtBox" index="0"]
+position = Vector2(28, -2)
+shape = SubResource("CircleShape2D_e53nk")
+
+[node name="AudioStreamPlayer2D" parent="HurtBox" index="2"]
+stream = ExtResource("4_ucccm")
+
+[node name="HitBox" parent="." instance=ExtResource("5_pptr4")]
+collision_layer = 2
+collision_mask = 2
+damage = 3
+
+[node name="CollisionShape2D" parent="HitBox" index="0"]
+position = Vector2(29, 0)
+shape = SubResource("CircleShape2D_ebskx")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+volume_db = -30.0
+autoplay = true
+
+[node name="Attack" type="Node2D" parent="."]
+
+[node name="ArrowTimer" type="Timer" parent="Attack"]
+wait_time = 10.0
+
+[connection signal="hurt" from="HurtBox" to="." method="_on_hurt_box_hurt"]
+[connection signal="timeout" from="Attack/ArrowTimer" to="." method="_on_arrow_timer_timeout"]
+
+[editable path="HurtBox"]
+[editable path="HitBox"]
