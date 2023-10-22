@@ -25,7 +25,7 @@ func _ready():
 	# 创建SpawnInfo资源
 	var spawn_info = SpawnInfo.new()
 	spawn_info.time_start = 0
-	spawn_info.time_end = 30
+	spawn_info.time_end = 10
 	spawn_info.enemy = enemy
 	spawn_info.enemy_num = 70
 	spawn_info.enemy_spawn_delay = 1
@@ -33,7 +33,7 @@ func _ready():
 	
 	spawn_info = SpawnInfo.new()
 	spawn_info.time_start = 0
-	spawn_info.time_end = 30
+	spawn_info.time_end = 10
 	spawn_info.enemy = enemy1
 	spawn_info.enemy_num = 20
 	spawn_info.enemy_spawn_delay = 1
@@ -241,6 +241,9 @@ position = Vector2(-1, -4488)
 
 [node name="Chest" parent="." instance=ExtResource("6_b5fh6")]
 position = Vector2(-7, -3318)
+
+[node name="Chest2" parent="." instance=ExtResource("6_b5fh6")]
+position = Vector2(999, -31)
 
 [editable path="Wall/StaticBody2D/HitBox"]
 [editable path="Wall/StaticBody2D2/HitBox"]

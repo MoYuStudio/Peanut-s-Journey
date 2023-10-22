@@ -1,9 +1,10 @@
-[gd_scene load_steps=23 format=3 uid="uid://jyvwhoign4cl"]
+[gd_scene load_steps=24 format=3 uid="uid://jyvwhoign4cl"]
 
 [ext_resource type="Theme" uid="uid://bhr73i44c1buj" path="res://resource/theme/paused.tres" id="1_ngxqj"]
 [ext_resource type="Theme" uid="uid://cwvilb81l6i31" path="res://resource/theme/moyu.tres" id="1_raj6w"]
 [ext_resource type="Texture2D" uid="uid://dehg38xt8tidn" path="res://resource/image/car.png" id="2_0rhkp"]
 [ext_resource type="Texture2D" uid="uid://y2nfw2ju5m2t" path="res://resource/rune/rune_1.png" id="4_5dqks"]
+[ext_resource type="Script" path="res://source/utility/backpack_panel_container.gd" id="4_6an57"]
 [ext_resource type="Texture2D" uid="uid://dd8x6h7wfm52n" path="res://resource/rune/rune_2.png" id="5_s1s2m"]
 [ext_resource type="Texture2D" uid="uid://dt1xrhxljxylw" path="res://resource/rune/rune_3.png" id="6_cdgev"]
 [ext_resource type="Texture2D" uid="uid://b3ag2iohkgn8v" path="res://resource/rune/rune_4.png" id="7_ugvtx"]
@@ -108,16 +109,16 @@ func _on_button_6_pressed():
 script/source = "
 extends TabBar
 
-@onready var rune_0 = $VBoxContainer/Label
-@onready var rune_1 = $GridContainer/VBoxContainer1/Label
-@onready var rune_2 = $GridContainer/VBoxContainer2/Label
-@onready var rune_3 = $GridContainer/VBoxContainer3/Label
-@onready var rune_4 = $GridContainer/VBoxContainer4/Label
-@onready var rune_5 = $GridContainer/VBoxContainer5/Label
-@onready var rune_6 = $GridContainer/VBoxContainer6/Label
-@onready var rune_7 = $GridContainer/VBoxContainer7/Label
-@onready var rune_8 = $GridContainer/VBoxContainer8/Label
-@onready var rune_9 = $GridContainer/VBoxContainer9/Label
+@onready var rune_0 = $GridContainer/PanelContainer1/MarginContainer/Label
+@onready var rune_1 = $GridContainer/PanelContainer2/MarginContainer/Label
+@onready var rune_2 = $GridContainer/PanelContainer3/MarginContainer/Label
+@onready var rune_3 = $GridContainer/PanelContainer4/MarginContainer/Label
+@onready var rune_4 = $GridContainer/PanelContainer5/MarginContainer/Label
+@onready var rune_5 = $GridContainer/PanelContainer6/MarginContainer/Label
+@onready var rune_6 = $GridContainer/PanelContainer7/MarginContainer/Label
+@onready var rune_7 = $GridContainer/PanelContainer8/MarginContainer/Label
+@onready var rune_8 = $GridContainer/PanelContainer9/MarginContainer/Label
+@onready var rune_9 = $GridContainer/PanelContainer10/MarginContainer/Label
 
 func _ready():
 	pass
@@ -193,7 +194,6 @@ theme = ExtResource("1_ngxqj")
 tab_alignment = 1
 
 [node name="状态" type="TabBar" parent="Panel/TabContainer"]
-visible = false
 layout_mode = 2
 script = SubResource("GDScript_y52n6")
 
@@ -269,6 +269,7 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="升级" type="TabBar" parent="Panel/TabContainer"]
+visible = false
 layout_mode = 2
 
 [node name="TabContainer" type="TabContainer" parent="Panel/TabContainer/升级"]
@@ -285,7 +286,6 @@ tab_alignment = 1
 
 [node name="基础升级" type="TabBar" parent="Panel/TabContainer/升级/TabContainer"]
 process_mode = 2
-visible = false
 layout_mode = 2
 script = SubResource("GDScript_wb3h0")
 
@@ -374,6 +374,7 @@ offset_right = 281.0
 offset_bottom = 1253.0
 
 [node name="武器升级" type="TabBar" parent="Panel/TabContainer/升级/TabContainer"]
+visible = false
 layout_mode = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Panel/TabContainer/升级/TabContainer/武器升级"]
@@ -490,158 +491,338 @@ layout_mode = 2
 script = SubResource("GDScript_nyuno")
 
 [node name="GridContainer" type="GridContainer" parent="Panel/TabContainer/符文"]
-layout_mode = 0
-offset_left = 202.0
-offset_top = 69.0
-offset_right = 1523.0
-offset_bottom = 1394.0
-theme_override_constants/h_separation = 150
-theme_override_constants/v_separation = 10
-columns = 3
-
-[node name="VBoxContainer1" type="VBoxContainer" parent="Panel/TabContainer/符文/GridContainer"]
 layout_mode = 2
-alignment = 1
+offset_left = 201.0
+offset_top = 324.0
+offset_right = 977.0
+offset_bottom = 1100.0
+theme_override_constants/h_separation = 24
+theme_override_constants/v_separation = 24
+columns = 5
 
-[node name="TextureRect1" type="TextureRect" parent="Panel/TabContainer/符文/GridContainer/VBoxContainer1"]
-custom_minimum_size = Vector2(300, 300)
+[node name="PanelContainer1" type="PanelContainer" parent="Panel/TabContainer/符文/GridContainer"]
+custom_minimum_size = Vector2(256, 256)
 layout_mode = 2
-texture = ExtResource("4_5dqks")
-expand_mode = 1
+script = ExtResource("4_6an57")
 
-[node name="Label" type="Label" parent="Panel/TabContainer/符文/GridContainer/VBoxContainer1"]
-layout_mode = 2
-text = "0"
-horizontal_alignment = 1
-
-[node name="VBoxContainer2" type="VBoxContainer" parent="Panel/TabContainer/符文/GridContainer"]
-layout_mode = 2
-
-[node name="TextureRect2" type="TextureRect" parent="Panel/TabContainer/符文/GridContainer/VBoxContainer2"]
-custom_minimum_size = Vector2(300, 300)
-layout_mode = 2
-texture = ExtResource("5_s1s2m")
-expand_mode = 1
-
-[node name="Label" type="Label" parent="Panel/TabContainer/符文/GridContainer/VBoxContainer2"]
-layout_mode = 2
-text = "0"
-horizontal_alignment = 1
-
-[node name="VBoxContainer3" type="VBoxContainer" parent="Panel/TabContainer/符文/GridContainer"]
-layout_mode = 2
-
-[node name="TextureRect3" type="TextureRect" parent="Panel/TabContainer/符文/GridContainer/VBoxContainer3"]
-custom_minimum_size = Vector2(300, 300)
-layout_mode = 2
-texture = ExtResource("6_cdgev")
-expand_mode = 1
-
-[node name="Label" type="Label" parent="Panel/TabContainer/符文/GridContainer/VBoxContainer3"]
-layout_mode = 2
-text = "0"
-horizontal_alignment = 1
-
-[node name="VBoxContainer4" type="VBoxContainer" parent="Panel/TabContainer/符文/GridContainer"]
-layout_mode = 2
-
-[node name="TextureRect4" type="TextureRect" parent="Panel/TabContainer/符文/GridContainer/VBoxContainer4"]
-custom_minimum_size = Vector2(300, 300)
-layout_mode = 2
-texture = ExtResource("7_ugvtx")
-expand_mode = 1
-
-[node name="Label" type="Label" parent="Panel/TabContainer/符文/GridContainer/VBoxContainer4"]
-layout_mode = 2
-text = "0"
-horizontal_alignment = 1
-
-[node name="VBoxContainer5" type="VBoxContainer" parent="Panel/TabContainer/符文/GridContainer"]
-layout_mode = 2
-
-[node name="TextureRect5" type="TextureRect" parent="Panel/TabContainer/符文/GridContainer/VBoxContainer5"]
-custom_minimum_size = Vector2(300, 300)
-layout_mode = 2
-texture = ExtResource("8_of4l2")
-expand_mode = 1
-
-[node name="Label" type="Label" parent="Panel/TabContainer/符文/GridContainer/VBoxContainer5"]
-layout_mode = 2
-text = "0"
-horizontal_alignment = 1
-
-[node name="VBoxContainer6" type="VBoxContainer" parent="Panel/TabContainer/符文/GridContainer"]
-layout_mode = 2
-
-[node name="TextureRect6" type="TextureRect" parent="Panel/TabContainer/符文/GridContainer/VBoxContainer6"]
-custom_minimum_size = Vector2(300, 300)
-layout_mode = 2
-texture = ExtResource("9_305k1")
-expand_mode = 1
-
-[node name="Label" type="Label" parent="Panel/TabContainer/符文/GridContainer/VBoxContainer6"]
-layout_mode = 2
-text = "0"
-horizontal_alignment = 1
-
-[node name="VBoxContainer7" type="VBoxContainer" parent="Panel/TabContainer/符文/GridContainer"]
-layout_mode = 2
-
-[node name="TextureRect7" type="TextureRect" parent="Panel/TabContainer/符文/GridContainer/VBoxContainer7"]
-custom_minimum_size = Vector2(300, 300)
-layout_mode = 2
-texture = ExtResource("10_nfuyl")
-expand_mode = 1
-
-[node name="Label" type="Label" parent="Panel/TabContainer/符文/GridContainer/VBoxContainer7"]
-layout_mode = 2
-text = "0"
-horizontal_alignment = 1
-
-[node name="VBoxContainer8" type="VBoxContainer" parent="Panel/TabContainer/符文/GridContainer"]
-layout_mode = 2
-
-[node name="TextureRect8" type="TextureRect" parent="Panel/TabContainer/符文/GridContainer/VBoxContainer8"]
-custom_minimum_size = Vector2(300, 300)
-layout_mode = 2
-texture = ExtResource("11_64hkt")
-expand_mode = 1
-
-[node name="Label" type="Label" parent="Panel/TabContainer/符文/GridContainer/VBoxContainer8"]
-layout_mode = 2
-text = "0"
-horizontal_alignment = 1
-
-[node name="VBoxContainer9" type="VBoxContainer" parent="Panel/TabContainer/符文/GridContainer"]
-layout_mode = 2
-
-[node name="TextureRect9" type="TextureRect" parent="Panel/TabContainer/符文/GridContainer/VBoxContainer9"]
-custom_minimum_size = Vector2(300, 300)
-layout_mode = 2
-texture = ExtResource("12_gyk8u")
-expand_mode = 1
-
-[node name="Label" type="Label" parent="Panel/TabContainer/符文/GridContainer/VBoxContainer9"]
-layout_mode = 2
-text = "0"
-horizontal_alignment = 1
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel/TabContainer/符文"]
-layout_mode = 2
-offset_left = 1850.0
-offset_top = 524.0
-offset_right = 2150.0
-offset_bottom = 956.0
-
-[node name="TextureRect" type="TextureRect" parent="Panel/TabContainer/符文/VBoxContainer"]
-custom_minimum_size = Vector2(300, 300)
-layout_mode = 2
+[node name="Sprite2D" type="Sprite2D" parent="Panel/TabContainer/符文/GridContainer/PanelContainer1"]
+texture_filter = 1
+position = Vector2(128, 128)
+scale = Vector2(12, 12)
 texture = ExtResource("13_pvggv")
 
-[node name="Label" type="Label" parent="Panel/TabContainer/符文/VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="Panel/TabContainer/符文/GridContainer/PanelContainer1"]
+layout_mode = 2
+theme_override_constants/margin_left = -128
+theme_override_constants/margin_top = 128
+
+[node name="Label" type="Label" parent="Panel/TabContainer/符文/GridContainer/PanelContainer1/MarginContainer"]
+z_index = 1
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "0"
+horizontal_alignment = 1
+
+[node name="PanelContainer2" type="PanelContainer" parent="Panel/TabContainer/符文/GridContainer"]
+custom_minimum_size = Vector2(256, 256)
+layout_mode = 2
+theme = ExtResource("1_raj6w")
+script = ExtResource("4_6an57")
+
+[node name="Sprite2D" type="Sprite2D" parent="Panel/TabContainer/符文/GridContainer/PanelContainer2"]
+texture_filter = 1
+position = Vector2(128, 128)
+scale = Vector2(12, 12)
+texture = ExtResource("4_5dqks")
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel/TabContainer/符文/GridContainer/PanelContainer2"]
+layout_mode = 2
+theme_override_constants/margin_left = -128
+theme_override_constants/margin_top = 128
+
+[node name="Label" type="Label" parent="Panel/TabContainer/符文/GridContainer/PanelContainer2/MarginContainer"]
+z_index = 1
 layout_mode = 2
 text = "0"
 horizontal_alignment = 1
+
+[node name="PanelContainer3" type="PanelContainer" parent="Panel/TabContainer/符文/GridContainer"]
+custom_minimum_size = Vector2(256, 256)
+layout_mode = 2
+theme = ExtResource("1_raj6w")
+script = ExtResource("4_6an57")
+
+[node name="Sprite2D" type="Sprite2D" parent="Panel/TabContainer/符文/GridContainer/PanelContainer3"]
+texture_filter = 1
+position = Vector2(128, 128)
+scale = Vector2(12, 12)
+texture = ExtResource("5_s1s2m")
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel/TabContainer/符文/GridContainer/PanelContainer3"]
+layout_mode = 2
+theme_override_constants/margin_left = -128
+theme_override_constants/margin_top = 128
+
+[node name="Label" type="Label" parent="Panel/TabContainer/符文/GridContainer/PanelContainer3/MarginContainer"]
+z_index = 1
+layout_mode = 2
+text = "0"
+horizontal_alignment = 1
+
+[node name="PanelContainer4" type="PanelContainer" parent="Panel/TabContainer/符文/GridContainer"]
+custom_minimum_size = Vector2(256, 256)
+layout_mode = 2
+theme = ExtResource("1_raj6w")
+script = ExtResource("4_6an57")
+
+[node name="Sprite2D" type="Sprite2D" parent="Panel/TabContainer/符文/GridContainer/PanelContainer4"]
+texture_filter = 1
+position = Vector2(128, 128)
+scale = Vector2(12, 12)
+texture = ExtResource("6_cdgev")
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel/TabContainer/符文/GridContainer/PanelContainer4"]
+layout_mode = 2
+theme_override_constants/margin_left = -128
+theme_override_constants/margin_top = 128
+
+[node name="Label" type="Label" parent="Panel/TabContainer/符文/GridContainer/PanelContainer4/MarginContainer"]
+z_index = 1
+layout_mode = 2
+text = "0"
+horizontal_alignment = 1
+
+[node name="PanelContainer5" type="PanelContainer" parent="Panel/TabContainer/符文/GridContainer"]
+custom_minimum_size = Vector2(256, 256)
+layout_mode = 2
+theme = ExtResource("1_raj6w")
+script = ExtResource("4_6an57")
+
+[node name="Sprite2D" type="Sprite2D" parent="Panel/TabContainer/符文/GridContainer/PanelContainer5"]
+texture_filter = 1
+position = Vector2(128, 128)
+scale = Vector2(12, 12)
+texture = ExtResource("7_ugvtx")
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel/TabContainer/符文/GridContainer/PanelContainer5"]
+layout_mode = 2
+theme_override_constants/margin_left = -128
+theme_override_constants/margin_top = 128
+
+[node name="Label" type="Label" parent="Panel/TabContainer/符文/GridContainer/PanelContainer5/MarginContainer"]
+z_index = 1
+layout_mode = 2
+text = "0"
+horizontal_alignment = 1
+
+[node name="PanelContainer6" type="PanelContainer" parent="Panel/TabContainer/符文/GridContainer"]
+custom_minimum_size = Vector2(256, 256)
+layout_mode = 2
+theme = ExtResource("1_raj6w")
+script = ExtResource("4_6an57")
+
+[node name="Sprite2D" type="Sprite2D" parent="Panel/TabContainer/符文/GridContainer/PanelContainer6"]
+texture_filter = 1
+position = Vector2(128, 128)
+scale = Vector2(12, 12)
+texture = ExtResource("8_of4l2")
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel/TabContainer/符文/GridContainer/PanelContainer6"]
+layout_mode = 2
+theme_override_constants/margin_left = -128
+theme_override_constants/margin_top = 128
+
+[node name="Label" type="Label" parent="Panel/TabContainer/符文/GridContainer/PanelContainer6/MarginContainer"]
+z_index = 1
+layout_mode = 2
+text = "0"
+horizontal_alignment = 1
+
+[node name="PanelContainer7" type="PanelContainer" parent="Panel/TabContainer/符文/GridContainer"]
+custom_minimum_size = Vector2(256, 256)
+layout_mode = 2
+theme = ExtResource("1_raj6w")
+script = ExtResource("4_6an57")
+
+[node name="Sprite2D" type="Sprite2D" parent="Panel/TabContainer/符文/GridContainer/PanelContainer7"]
+texture_filter = 1
+position = Vector2(128, 128)
+scale = Vector2(12, 12)
+texture = ExtResource("9_305k1")
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel/TabContainer/符文/GridContainer/PanelContainer7"]
+layout_mode = 2
+theme_override_constants/margin_left = -128
+theme_override_constants/margin_top = 128
+
+[node name="Label" type="Label" parent="Panel/TabContainer/符文/GridContainer/PanelContainer7/MarginContainer"]
+z_index = 1
+layout_mode = 2
+text = "0"
+horizontal_alignment = 1
+
+[node name="PanelContainer8" type="PanelContainer" parent="Panel/TabContainer/符文/GridContainer"]
+custom_minimum_size = Vector2(256, 256)
+layout_mode = 2
+theme = ExtResource("1_raj6w")
+script = ExtResource("4_6an57")
+
+[node name="Sprite2D" type="Sprite2D" parent="Panel/TabContainer/符文/GridContainer/PanelContainer8"]
+texture_filter = 1
+position = Vector2(128, 128)
+scale = Vector2(12, 12)
+texture = ExtResource("10_nfuyl")
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel/TabContainer/符文/GridContainer/PanelContainer8"]
+layout_mode = 2
+theme_override_constants/margin_left = -128
+theme_override_constants/margin_top = 128
+
+[node name="Label" type="Label" parent="Panel/TabContainer/符文/GridContainer/PanelContainer8/MarginContainer"]
+z_index = 1
+layout_mode = 2
+text = "0"
+horizontal_alignment = 1
+
+[node name="PanelContainer9" type="PanelContainer" parent="Panel/TabContainer/符文/GridContainer"]
+custom_minimum_size = Vector2(256, 256)
+layout_mode = 2
+theme = ExtResource("1_raj6w")
+script = ExtResource("4_6an57")
+
+[node name="Sprite2D" type="Sprite2D" parent="Panel/TabContainer/符文/GridContainer/PanelContainer9"]
+texture_filter = 1
+position = Vector2(128, 128)
+scale = Vector2(12, 12)
+texture = ExtResource("11_64hkt")
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel/TabContainer/符文/GridContainer/PanelContainer9"]
+layout_mode = 2
+theme_override_constants/margin_left = -128
+theme_override_constants/margin_top = 128
+
+[node name="Label" type="Label" parent="Panel/TabContainer/符文/GridContainer/PanelContainer9/MarginContainer"]
+z_index = 1
+layout_mode = 2
+text = "0"
+horizontal_alignment = 1
+
+[node name="PanelContainer10" type="PanelContainer" parent="Panel/TabContainer/符文/GridContainer"]
+custom_minimum_size = Vector2(256, 256)
+layout_mode = 2
+theme = ExtResource("1_raj6w")
+script = ExtResource("4_6an57")
+
+[node name="Sprite2D" type="Sprite2D" parent="Panel/TabContainer/符文/GridContainer/PanelContainer10"]
+texture_filter = 1
+position = Vector2(128, 128)
+scale = Vector2(12, 12)
+texture = ExtResource("12_gyk8u")
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel/TabContainer/符文/GridContainer/PanelContainer10"]
+layout_mode = 2
+theme_override_constants/margin_left = -128
+theme_override_constants/margin_top = 128
+
+[node name="Label" type="Label" parent="Panel/TabContainer/符文/GridContainer/PanelContainer10/MarginContainer"]
+z_index = 1
+layout_mode = 2
+text = "0"
+horizontal_alignment = 1
+
+[node name="PanelContainer11" type="PanelContainer" parent="Panel/TabContainer/符文/GridContainer"]
+custom_minimum_size = Vector2(256, 256)
+layout_mode = 2
+theme = ExtResource("1_raj6w")
+script = ExtResource("4_6an57")
+
+[node name="PanelContainer12" type="PanelContainer" parent="Panel/TabContainer/符文/GridContainer"]
+custom_minimum_size = Vector2(256, 256)
+layout_mode = 2
+theme = ExtResource("1_raj6w")
+script = ExtResource("4_6an57")
+
+[node name="PanelContainer13" type="PanelContainer" parent="Panel/TabContainer/符文/GridContainer"]
+custom_minimum_size = Vector2(256, 256)
+layout_mode = 2
+theme = ExtResource("1_raj6w")
+script = ExtResource("4_6an57")
+
+[node name="PanelContainer14" type="PanelContainer" parent="Panel/TabContainer/符文/GridContainer"]
+custom_minimum_size = Vector2(256, 256)
+layout_mode = 2
+theme = ExtResource("1_raj6w")
+script = ExtResource("4_6an57")
+
+[node name="PanelContainer15" type="PanelContainer" parent="Panel/TabContainer/符文/GridContainer"]
+custom_minimum_size = Vector2(256, 256)
+layout_mode = 2
+theme = ExtResource("1_raj6w")
+script = ExtResource("4_6an57")
+
+[node name="GridContainer2" type="GridContainer" parent="Panel/TabContainer/符文"]
+layout_mode = 0
+offset_left = 1824.0
+offset_top = 327.0
+offset_right = 2649.0
+offset_bottom = 1143.0
+theme_override_constants/h_separation = 24
+theme_override_constants/v_separation = 24
+columns = 3
+
+[node name="PanelContainer1" type="PanelContainer" parent="Panel/TabContainer/符文/GridContainer2"]
+custom_minimum_size = Vector2(256, 256)
+layout_mode = 2
+theme = ExtResource("1_raj6w")
+script = ExtResource("4_6an57")
+
+[node name="PanelContainer2" type="PanelContainer" parent="Panel/TabContainer/符文/GridContainer2"]
+custom_minimum_size = Vector2(256, 256)
+layout_mode = 2
+theme = ExtResource("1_raj6w")
+script = ExtResource("4_6an57")
+
+[node name="PanelContainer3" type="PanelContainer" parent="Panel/TabContainer/符文/GridContainer2"]
+custom_minimum_size = Vector2(256, 256)
+layout_mode = 2
+theme = ExtResource("1_raj6w")
+script = ExtResource("4_6an57")
+
+[node name="PanelContainer4" type="PanelContainer" parent="Panel/TabContainer/符文/GridContainer2"]
+custom_minimum_size = Vector2(256, 256)
+layout_mode = 2
+theme = ExtResource("1_raj6w")
+script = ExtResource("4_6an57")
+
+[node name="PanelContainer5" type="PanelContainer" parent="Panel/TabContainer/符文/GridContainer2"]
+custom_minimum_size = Vector2(256, 256)
+layout_mode = 2
+theme = ExtResource("1_raj6w")
+script = ExtResource("4_6an57")
+
+[node name="PanelContainer6" type="PanelContainer" parent="Panel/TabContainer/符文/GridContainer2"]
+custom_minimum_size = Vector2(256, 256)
+layout_mode = 2
+theme = ExtResource("1_raj6w")
+script = ExtResource("4_6an57")
+
+[node name="PanelContainer7" type="PanelContainer" parent="Panel/TabContainer/符文/GridContainer2"]
+custom_minimum_size = Vector2(256, 256)
+layout_mode = 2
+theme = ExtResource("1_raj6w")
+script = ExtResource("4_6an57")
+
+[node name="PanelContainer8" type="PanelContainer" parent="Panel/TabContainer/符文/GridContainer2"]
+custom_minimum_size = Vector2(256, 256)
+layout_mode = 2
+theme = ExtResource("1_raj6w")
+script = ExtResource("4_6an57")
+
+[node name="PanelContainer9" type="PanelContainer" parent="Panel/TabContainer/符文/GridContainer2"]
+custom_minimum_size = Vector2(256, 256)
+layout_mode = 2
+theme = ExtResource("1_raj6w")
+script = ExtResource("4_6an57")
 
 [node name="设置" type="TabBar" parent="Panel/TabContainer"]
 visible = false
