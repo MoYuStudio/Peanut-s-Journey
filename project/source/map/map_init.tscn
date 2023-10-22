@@ -32,6 +32,7 @@ func _ready():
 
 func _process(delta):
 	if Input.is_action_just_pressed('Q'):
+		Global.player_dict['movement_lock'] = false
 		get_tree().change_scene_to_file('res://source/scene/game_main.tscn')
 		# SceneTransition.change_scene('res://source/scene/game_main.tscn')
 
@@ -218,52 +219,53 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="Label" type="Label" parent="Control"]
-offset_left = -71.0
-offset_top = -567.0
-offset_right = 47.0
-offset_bottom = -397.0
+[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
+layout_mode = 0
+offset_left = -481.0
+offset_top = -2556.0
+offset_right = 463.0
+offset_bottom = -706.0
 theme = ExtResource("3_bstat")
-theme_override_font_sizes/font_size = 128
-text = "来"
+theme_override_constants/separation = 250
+alignment = 1
 
-[node name="Label2" type="Label" parent="Control"]
-offset_left = -231.0
-offset_top = -1062.0
-offset_right = 241.0
-offset_bottom = -892.0
-theme = ExtResource("3_bstat")
-theme_override_font_sizes/font_size = 128
-text = "到这里来"
-
-[node name="Label3" type="Label" parent="Control"]
-offset_left = -162.0
-offset_top = -1571.0
-offset_right = 192.0
-offset_bottom = -1401.0
-theme = ExtResource("3_bstat")
-theme_override_font_sizes/font_size = 128
-text = "一直走"
-
-[node name="Label4" type="Label" parent="Control"]
-offset_left = -163.0
-offset_top = -2104.0
-offset_right = 191.0
-offset_bottom = -1934.0
-theme = ExtResource("3_bstat")
-theme_override_font_sizes/font_size = 128
-text = "不要停"
-
-[node name="Label5" type="Label" parent="Control"]
-offset_left = -467.0
-offset_top = -2630.0
-offset_right = 477.0
-offset_bottom = -2460.0
+[node name="Label5" type="Label" parent="Control/VBoxContainer"]
+layout_mode = 2
 theme = ExtResource("3_bstat")
 theme_override_font_sizes/font_size = 128
 text = "停下将被黑暗吞噬"
+horizontal_alignment = 1
+
+[node name="Label4" type="Label" parent="Control/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_bstat")
+theme_override_font_sizes/font_size = 128
+text = "不要停"
+horizontal_alignment = 1
+
+[node name="Label3" type="Label" parent="Control/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_bstat")
+theme_override_font_sizes/font_size = 128
+text = "一直走"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="Control/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_bstat")
+theme_override_font_sizes/font_size = 128
+text = "到这里来"
+horizontal_alignment = 1
+
+[node name="Label" type="Label" parent="Control/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_bstat")
+theme_override_font_sizes/font_size = 128
+text = "来"
+horizontal_alignment = 1
 
 [node name="Label6" type="Label" parent="Control"]
+layout_mode = 0
 offset_left = -533.0
 offset_top = -4887.0
 offset_right = 539.0
@@ -274,6 +276,7 @@ text = "你为什么按照指示？"
 horizontal_alignment = 1
 
 [node name="Label7" type="Label" parent="Control"]
+layout_mode = 0
 offset_left = -525.0
 offset_top = -5691.0
 offset_right = 530.0
@@ -285,6 +288,7 @@ horizontal_alignment = 1
 autowrap_mode = 1
 
 [node name="Label8" type="Label" parent="Control"]
+layout_mode = 0
 offset_left = -415.0
 offset_top = -6335.0
 offset_right = 421.0
@@ -295,6 +299,7 @@ text = "你还会坚持吗？"
 horizontal_alignment = 1
 
 [node name="Label9" type="Label" parent="Control"]
+layout_mode = 0
 offset_left = -409.0
 offset_top = -8439.0
 offset_right = 427.0
@@ -304,6 +309,7 @@ theme_override_font_sizes/font_size = 128
 text = "这条路狭窄的很"
 
 [node name="Label10" type="Label" parent="Control"]
+layout_mode = 0
 offset_left = -539.0
 offset_top = -9998.0
 offset_right = 552.0
@@ -315,6 +321,7 @@ horizontal_alignment = 1
 autowrap_mode = 1
 
 [node name="Label11" type="Label" parent="Control"]
+layout_mode = 0
 offset_left = -591.0
 offset_top = -11119.0
 offset_right = 612.0
@@ -326,6 +333,7 @@ horizontal_alignment = 1
 autowrap_mode = 1
 
 [node name="Label12" type="Label" parent="Control"]
+layout_mode = 0
 offset_left = -357.0
 offset_top = -12257.0
 offset_right = 358.0
@@ -337,6 +345,7 @@ horizontal_alignment = 1
 autowrap_mode = 1
 
 [node name="Label13" type="Label" parent="Control"]
+layout_mode = 0
 offset_left = -250.0
 offset_top = -13150.0
 offset_right = 258.0
@@ -348,6 +357,7 @@ horizontal_alignment = 1
 autowrap_mode = 1
 
 [node name="Label14" type="Label" parent="Control"]
+layout_mode = 0
 offset_left = -292.0
 offset_top = -26518.0
 offset_right = 292.0
@@ -359,6 +369,7 @@ horizontal_alignment = 1
 autowrap_mode = 1
 
 [node name="Label15" type="Label" parent="Control"]
+layout_mode = 0
 offset_left = -272.0
 offset_top = -27976.0
 offset_right = 267.0
@@ -370,6 +381,7 @@ horizontal_alignment = 1
 autowrap_mode = 1
 
 [node name="Label16" type="Label" parent="Control"]
+layout_mode = 0
 offset_left = -534.0
 offset_top = -28944.0
 offset_right = 537.0
@@ -382,6 +394,7 @@ horizontal_alignment = 1
 autowrap_mode = 1
 
 [node name="Label17" type="Label" parent="Control"]
+layout_mode = 0
 offset_left = -312.0
 offset_top = -36673.0
 offset_right = 481.0
@@ -394,6 +407,7 @@ horizontal_alignment = 1
 autowrap_mode = 1
 
 [node name="Label18" type="Label" parent="Control"]
+layout_mode = 0
 offset_left = -456.0
 offset_top = -37924.0
 offset_right = 484.0
@@ -405,6 +419,7 @@ horizontal_alignment = 1
 autowrap_mode = 1
 
 [node name="Label19" type="Label" parent="Control"]
+layout_mode = 0
 offset_left = -445.0
 offset_top = -43176.0
 offset_right = 350.0
@@ -416,6 +431,7 @@ horizontal_alignment = 1
 autowrap_mode = 1
 
 [node name="Label20" type="Label" parent="Control"]
+layout_mode = 0
 offset_left = -415.0
 offset_top = -46860.0
 offset_right = 441.0
@@ -427,6 +443,7 @@ horizontal_alignment = 1
 autowrap_mode = 1
 
 [node name="Label21" type="Label" parent="Control"]
+layout_mode = 0
 offset_left = -424.0
 offset_top = -49859.0
 offset_right = 432.0
@@ -438,6 +455,7 @@ horizontal_alignment = 1
 autowrap_mode = 1
 
 [node name="Label22" type="Label" parent="Control"]
+layout_mode = 0
 offset_left = -432.0
 offset_top = -51024.0
 offset_right = 424.0
@@ -449,6 +467,7 @@ horizontal_alignment = 1
 autowrap_mode = 1
 
 [node name="Label23" type="Label" parent="Control"]
+layout_mode = 0
 offset_left = -386.0
 offset_top = -52111.0
 offset_right = 404.0
@@ -460,6 +479,7 @@ horizontal_alignment = 1
 autowrap_mode = 1
 
 [node name="Label24" type="Label" parent="Control"]
+layout_mode = 0
 offset_left = -432.0
 offset_top = -53097.0
 offset_right = 424.0
@@ -471,6 +491,7 @@ horizontal_alignment = 1
 autowrap_mode = 1
 
 [node name="Label25" type="Label" parent="Control"]
+layout_mode = 0
 offset_left = -321.0
 offset_top = -54069.0
 offset_right = 276.0
@@ -482,6 +503,7 @@ horizontal_alignment = 1
 autowrap_mode = 1
 
 [node name="Label26" type="Label" parent="Control"]
+layout_mode = 0
 offset_left = -447.0
 offset_top = -54824.0
 offset_right = 409.0
@@ -493,6 +515,7 @@ horizontal_alignment = 1
 autowrap_mode = 1
 
 [node name="Label27" type="Label" parent="Control"]
+layout_mode = 0
 offset_left = -411.0
 offset_top = -55636.0
 offset_right = 445.0
@@ -504,6 +527,7 @@ horizontal_alignment = 1
 autowrap_mode = 1
 
 [node name="Label28" type="Label" parent="Control"]
+layout_mode = 0
 offset_left = -418.0
 offset_top = -56486.0
 offset_right = 438.0
@@ -515,6 +539,7 @@ horizontal_alignment = 1
 autowrap_mode = 1
 
 [node name="Label29" type="Label" parent="Control"]
+layout_mode = 0
 offset_left = -424.0
 offset_top = -57262.0
 offset_right = 432.0
@@ -526,6 +551,7 @@ horizontal_alignment = 1
 autowrap_mode = 1
 
 [node name="Label30" type="Label" parent="Control"]
+layout_mode = 0
 offset_left = -418.0
 offset_top = -58042.0
 offset_right = 438.0
@@ -537,6 +563,7 @@ horizontal_alignment = 1
 autowrap_mode = 1
 
 [node name="Label31" type="Label" parent="Control"]
+layout_mode = 0
 offset_left = -410.0
 offset_top = -58752.0
 offset_right = 446.0
@@ -549,6 +576,7 @@ horizontal_alignment = 1
 autowrap_mode = 1
 
 [node name="Label32" type="Label" parent="Control"]
+layout_mode = 0
 offset_left = -400.0
 offset_top = -59634.0
 offset_right = 329.0
@@ -560,6 +588,7 @@ horizontal_alignment = 1
 autowrap_mode = 1
 
 [node name="Label33" type="Label" parent="Control"]
+layout_mode = 0
 offset_left = -364.0
 offset_top = -60564.0
 offset_right = 365.0
@@ -571,6 +600,7 @@ horizontal_alignment = 1
 autowrap_mode = 1
 
 [node name="Label34" type="Label" parent="Control"]
+layout_mode = 0
 offset_left = -492.0
 offset_top = -61288.0
 offset_right = 533.0
@@ -582,6 +612,7 @@ horizontal_alignment = 1
 autowrap_mode = 1
 
 [node name="Label35" type="Label" parent="Control"]
+layout_mode = 0
 offset_left = -503.0
 offset_top = -62001.0
 offset_right = 522.0
@@ -593,6 +624,7 @@ horizontal_alignment = 1
 autowrap_mode = 1
 
 [node name="Label36" type="Label" parent="Control"]
+layout_mode = 0
 offset_left = -503.0
 offset_top = -62792.0
 offset_right = 522.0
@@ -604,6 +636,7 @@ horizontal_alignment = 1
 autowrap_mode = 1
 
 [node name="Label37" type="Label" parent="Control"]
+layout_mode = 0
 offset_left = -515.0
 offset_top = -63535.0
 offset_right = 510.0
@@ -615,6 +648,7 @@ horizontal_alignment = 1
 autowrap_mode = 1
 
 [node name="Label38" type="Label" parent="Control"]
+layout_mode = 0
 offset_left = -527.0
 offset_top = -64230.0
 offset_right = 498.0
@@ -626,6 +660,7 @@ horizontal_alignment = 1
 autowrap_mode = 1
 
 [node name="Label39" type="Label" parent="Control"]
+layout_mode = 0
 offset_left = -521.0
 offset_top = -64966.0
 offset_right = 504.0
@@ -637,6 +672,7 @@ horizontal_alignment = 1
 autowrap_mode = 1
 
 [node name="Label40" type="Label" parent="Control"]
+layout_mode = 0
 offset_left = -495.0
 offset_top = -65676.0
 offset_right = 530.0
@@ -648,6 +684,7 @@ horizontal_alignment = 1
 autowrap_mode = 1
 
 [node name="Label41" type="Label" parent="Control"]
+layout_mode = 0
 offset_left = -514.0
 offset_top = -66453.0
 offset_right = 511.0
@@ -659,6 +696,7 @@ horizontal_alignment = 1
 autowrap_mode = 1
 
 [node name="Label42" type="Label" parent="Control"]
+layout_mode = 0
 offset_left = -520.0
 offset_top = -67267.0
 offset_right = 569.0
@@ -671,6 +709,7 @@ horizontal_alignment = 1
 autowrap_mode = 1
 
 [node name="Label43" type="Label" parent="Control"]
+layout_mode = 0
 offset_left = -537.0
 offset_top = -68014.0
 offset_right = 552.0
@@ -682,6 +721,7 @@ horizontal_alignment = 1
 autowrap_mode = 1
 
 [node name="Label44" type="Label" parent="Control"]
+layout_mode = 0
 offset_left = -543.0
 offset_top = -68681.0
 offset_right = 546.0
@@ -693,6 +733,7 @@ horizontal_alignment = 1
 autowrap_mode = 1
 
 [node name="Label45" type="Label" parent="Control"]
+layout_mode = 0
 offset_left = -531.0
 offset_top = -69333.0
 offset_right = 558.0
@@ -704,6 +745,7 @@ horizontal_alignment = 1
 autowrap_mode = 1
 
 [node name="Label46" type="Label" parent="Control"]
+layout_mode = 0
 offset_left = -520.0
 offset_top = -70013.0
 offset_right = 569.0
@@ -715,6 +757,7 @@ horizontal_alignment = 1
 autowrap_mode = 1
 
 [node name="Label47" type="Label" parent="Control"]
+layout_mode = 0
 offset_left = -544.0
 offset_top = -70586.0
 offset_right = 598.0
@@ -726,6 +769,7 @@ horizontal_alignment = 1
 autowrap_mode = 1
 
 [node name="Label48" type="Label" parent="Control"]
+layout_mode = 0
 offset_left = -420.0
 offset_top = -71695.0
 offset_right = 420.0
@@ -737,6 +781,7 @@ horizontal_alignment = 1
 autowrap_mode = 1
 
 [node name="Label49" type="Label" parent="Control"]
+layout_mode = 0
 offset_left = -415.0
 offset_top = -75047.0
 offset_right = 425.0
@@ -748,6 +793,7 @@ horizontal_alignment = 1
 autowrap_mode = 1
 
 [node name="Label50" type="Label" parent="Control"]
+layout_mode = 0
 offset_left = -426.0
 offset_top = -76010.0
 offset_right = 414.0
@@ -759,6 +805,7 @@ horizontal_alignment = 1
 autowrap_mode = 1
 
 [node name="Label51" type="Label" parent="Control"]
+layout_mode = 0
 offset_left = -180.0
 offset_top = -76853.0
 offset_right = 174.0
@@ -768,6 +815,7 @@ theme_override_font_sizes/font_size = 128
 text = "一直走"
 
 [node name="Label52" type="Label" parent="Control"]
+layout_mode = 0
 offset_left = -181.0
 offset_top = -77386.0
 offset_right = 173.0
@@ -777,6 +825,7 @@ theme_override_font_sizes/font_size = 128
 text = "不要停"
 
 [node name="Label53" type="Label" parent="Control"]
+layout_mode = 0
 offset_left = -485.0
 offset_top = -77912.0
 offset_right = 459.0
@@ -787,6 +836,7 @@ text = "停下将被黑暗吞噬"
 
 [node name="Label54" type="Label" parent="Control"]
 modulate = Color(0, 0, 0, 1)
+layout_mode = 0
 offset_left = -357.0
 offset_top = -81259.0
 offset_right = 371.0
@@ -797,6 +847,7 @@ text = "嗯？。怎么快"
 
 [node name="Label55" type="Label" parent="Control"]
 modulate = Color(0, 0, 0, 1)
+layout_mode = 0
 offset_left = -409.0
 offset_top = -82632.0
 offset_right = 417.0
@@ -807,6 +858,7 @@ text = "最终还是来了么"
 
 [node name="Label56" type="Label" parent="Control"]
 modulate = Color(0, 0, 0, 1)
+layout_mode = 0
 offset_left = -710.0
 offset_top = -83806.0
 offset_right = 706.0
@@ -817,6 +869,7 @@ text = "后面的路只能由你自己走了"
 
 [node name="Label57" type="Label" parent="Control"]
 modulate = Color(0, 0, 0, 1)
+layout_mode = 0
 offset_left = -232.0
 offset_top = -85141.0
 offset_right = 240.0

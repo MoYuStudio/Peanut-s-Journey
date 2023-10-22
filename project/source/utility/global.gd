@@ -53,6 +53,9 @@ var player_dict = {
 	'total_hp':0,
 	'kill':0,
 	'wall':0,
+	# 剧情模式
+	'movement_lock':false,
+	'weapon_lock':false,
 }
 
 # Steam variables
