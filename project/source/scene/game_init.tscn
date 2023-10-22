@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://gf0wj35txowm"]
+[gd_scene load_steps=6 format=3 uid="uid://gf0wj35txowm"]
 
 [ext_resource type="PackedScene" uid="uid://boorlk0l20e1p" path="res://source/map/map_init.tscn" id="1_o4mu8"]
 [ext_resource type="PackedScene" uid="uid://532f5h24sdvb" path="res://source/player/player.tscn" id="1_uw1gq"]
+[ext_resource type="Material" uid="uid://bppubfvsdmehi" path="res://resource/shader/old_tv_fisheye.tres" id="3_b55a0"]
 
 [sub_resource type="GDScript" id="GDScript_ayg21"]
 script/source = "
@@ -60,6 +61,16 @@ render_target_update_mode = 0
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_mrucn")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="OldTVFilter" type="ColorRect" parent="CanvasLayer"]
+material = ExtResource("3_b55a0")
+offset_left = -5027.0
+offset_top = -1689.0
+offset_right = 8733.0
+offset_bottom = 4341.0
+color = Color(1, 1, 1, 0)
 
 [editable path="MapInit"]
 [editable path="MapInit/Wall/StaticBody2D/HitBox"]

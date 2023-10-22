@@ -89,10 +89,10 @@ _data = {
 script = SubResource("GDScript_6o0tv")
 
 [node name="Background" type="ColorRect" parent="."]
-offset_left = -900.0
-offset_top = -600.0
-offset_right = 8100.0
-offset_bottom = 5400.0
+offset_left = -10849.0
+offset_top = -6626.0
+offset_right = 14689.0
+offset_bottom = 8744.0
 color = Color(0, 0, 0, 1)
 
 [node name="Logo" type="Sprite2D" parent="."]
@@ -109,10 +109,10 @@ libraries = {
 
 [node name="Mask" type="ColorRect" parent="."]
 modulate = Color(1, 1, 1, 0)
-offset_left = -900.0
-offset_top = -600.0
-offset_right = 8100.0
-offset_bottom = 5400.0
+offset_left = -10189.0
+offset_top = -5237.0
+offset_right = 13970.0
+offset_bottom = 7179.0
 color = Color(0, 0, 0, 1)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Mask"]
