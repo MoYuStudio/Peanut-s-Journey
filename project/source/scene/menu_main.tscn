@@ -208,9 +208,9 @@ func _ready():
 	
 func _physics_process(delta):
 	var viewport_size = get_viewport_rect().size
-	var logo_size = get_rect().size
-	position.x = viewport_size.x - logo_size.x*2
-	position.y = viewport_size.y - logo_size.y*2
+	var icon_size = get_rect().size
+	position.x = viewport_size.x - icon_size.x*2
+	position.y = viewport_size.y - icon_size.y*2
 
 func _on_pressed():
 	if language_id < len(language_list)-1:
@@ -310,7 +310,7 @@ offset_bottom = 40.0
 position = Vector2(-1125.81, -331.418)
 scale = Vector2(0.694487, 0.922782)
 color = Color(0.243137, 0.207843, 0.27451, 1)
-polygon = PackedVector2Array(-4164.49, -4044.92, -4370.4, 13082.6, 13385.1, 13113, 13313.2, -4230.23)
+polygon = PackedVector2Array(-6000, -6000, -6000, 16000, 16000, 16000, 16000, -6000)
 
 [node name="Light" type="Node2D" parent="Main"]
 
