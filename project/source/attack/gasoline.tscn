@@ -1,18 +1,22 @@
-[gd_scene load_steps=6 format=3 uid="uid://b7qvn78dl187d"]
+[gd_scene load_steps=11 format=3 uid="uid://bh82sk5uu3ulj"]
 
+[ext_resource type="Texture2D" uid="uid://bdd3kpg7fvtqr" path="res://resource/image/circle.png" id="1_i5c06"]
+[ext_resource type="Texture2D" uid="uid://bf3ms33sny8cl" path="res://resource/image/chest.png" id="1_s1xpw"]
 [ext_resource type="PackedScene" uid="uid://o84475elvy3" path="res://source/utility/hitbox.tscn" id="3_jd2jm"]
 
 [sub_resource type="GDScript" id="GDScript_0gpna"]
-script/source = "
+script/source = "# time的时间小范围随机。改变丢的位置。   你看看 和怪的碰撞 要不要写，两个画到时候再改 
+# 到时候添加就随机丢，不用瞄准了
+
 extends Area2D
 
-@onready var player = get_tree().get_first_node_in_group('player')
+@onready var boss = get_tree().get_first_node_in_group('boss')
 
 signal remove_from_array(object)
 
 var level = 1
 var hp = 1
-var speed = 1000
+var speed = 100
 var damage = 5
 var knock_back = 100
 var attack_size = 1.0
@@ -40,7 +44,8 @@ func _ready():
 			damage = 80
 			knock_back = 100
 			attack_size = 1.0
-			
+	
+	$AnimationPlayer2.play('animation')
 
 func _physics_process(delta):
 	position += angle * speed * delta
@@ -55,48 +60,132 @@ func _on_timer_timeout():
 	speed = 0
 	$AnimationPlayer.play(\"animation\")
 	await $AnimationPlayer.animation_finished
-	
 	emit_signal('remove_from_array',self)
 	queue_free()
 "
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_svgif"]
-radius = 184.459
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g3s5i"]
+size = Vector2(60, 70)
 
-[sub_resource type="Animation" id="Animation_11se0"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_svgif"]
+radius = 230.02
+
+[sub_resource type="Animation" id="Animation_qb8ac"]
+resource_name = "animation"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HitBox/CollisionShape2D:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HitBox/CollisionShape2D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CollisionShape2D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Circle:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(7, 7)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Chest:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nvw30"]
+_data = {
+"animation": SubResource("Animation_qb8ac")
+}
+
+[sub_resource type="Animation" id="Animation_8371y"]
 resource_name = "animation"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("HitBox/CollisionShape2D:scale")
+tracks/0/path = NodePath("Chest:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(0, 0), Vector2(1, 1)]
+"values": [-1.5708, 4.71239]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Chest:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(0.784584, 1, 1),
+"update": 0,
+"values": [Vector2(4, 4), Vector2(3, 3), Vector2(4, 4)]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_f4obk"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_85bso"]
 _data = {
-"animation": SubResource("Animation_11se0")
+"animation": SubResource("Animation_8371y")
 }
 
 [node name="Gasoline" type="Area2D"]
 texture_filter = 1
-collision_layer = 2
-collision_mask = 2
+collision_layer = 3
+collision_mask = 3
 script = SubResource("GDScript_0gpna")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-modulate = Color(0.854902, 0, 0, 1)
-self_modulate = Color(1, 0, 0, 1)
-position = Vector2(-30, 45)
-polygon = PackedVector2Array(0, 0, 0, -90, 60, -90, 60, 0)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_g3s5i")
+
+[node name="Chest" type="Sprite2D" parent="."]
+rotation = -1.5708
+scale = Vector2(4, 4)
+texture = ExtResource("1_s1xpw")
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 1.5
 autostart = true
 
 [node name="HitBox" parent="." instance=ExtResource("3_jd2jm")]
@@ -105,14 +194,26 @@ collision_mask = 4
 damage = 80
 
 [node name="CollisionShape2D" parent="HitBox" index="0"]
+scale = Vector2(0.1, 0.1)
 shape = SubResource("CircleShape2D_svgif")
+disabled = true
 
 [node name="DisableHitBoxTimer" parent="HitBox" index="1"]
 wait_time = 9.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_f4obk")
+"": SubResource("AnimationLibrary_nvw30")
+}
+
+[node name="Circle" type="Sprite2D" parent="."]
+modulate = Color(1, 0.545098, 0.239216, 0.345098)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("1_i5c06")
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_85bso")
 }
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
