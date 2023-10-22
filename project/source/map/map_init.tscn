@@ -41,16 +41,16 @@ func _process(delta):
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
 z_index = -10
-position = Vector2(34940.2, -2040.46)
-scale = Vector2(6.48152, 1.317)
+position = Vector2(34872, 5452.13)
+scale = Vector2(6.48152, 0.752991)
 color = Color(0.25098, 0.207843, 0.27451, 1)
-polygon = PackedVector2Array(-9189.85, -109428, -8085.02, 12897.8, -2614.7, 14161.3, -2277.89, -109428)
+polygon = PackedVector2Array(-8085.02, 12897.8, -2614.7, 14161.3, -2179.77, -148010, -9111.47, -150828)
 
 [node name="Polygon2D2" type="Polygon2D" parent="."]
 z_index = -10
-position = Vector2(17234, -115943)
-scale = Vector2(5.46189, 2.9749)
-polygon = PackedVector2Array(-6488.96, -13396.1, -6221.7, 5898.85, -424.308, 5417.19, -372.398, -13697.3)
+position = Vector2(10854, -82216)
+scale = Vector2(3.28959, 0.596507)
+polygon = PackedVector2Array(-6488.96, -13396.1, -5980.71, 5419.01, -424.308, 5417.19, -372.398, -13697.3)
 
 [node name="Area2D" type="StaticBody2D" parent="."]
 collision_layer = 11
@@ -60,13 +60,13 @@ collision_mask = 11
 z_index = 3
 position = Vector2(49099, -8118)
 scale = Vector2(3.80965, 1)
-polygon = PackedVector2Array(-8596.59, -92662, -12683.1, -91431, -12765.7, -28155, -11840.2, -26040, -12117.9, -21022, -12766.5, -20147, -12594.3, 3745, -11371.1, 8058, -12353.4, 12560, -12923.8, 13067, -12885.7, 17701, -9350.46, 18027)
+polygon = PackedVector2Array(-8596.59, -92662, -12910.9, -93152, -12898.8, -89366, -12587.5, -88180, -12676, -71534, -12755, -66580, -12316.9, -64736, -12715.1, -62616, -12765.7, -28155, -11840.2, -26040, -12117.9, -21022, -12766.5, -20147, -12594.3, 3745, -11932.1, 7869, -12129.7, 11381, -12842.1, 11358, -12885.7, 17701, -9350.46, 18027)
 
 [node name="Polygon2D2" type="Polygon2D" parent="Area2D"]
 z_index = 3
 position = Vector2(338, -28758)
 scale = Vector2(3.41478, 1)
-polygon = PackedVector2Array(-282.888, 571, -1074.45, -1060, -1233.46, -5806, -264.439, -7597, -294.309, -71008, -5760.25, -71543, -4125.01, 39246, -106.888, 38378, -43.341, 33635, -817.329, 33454, -1667.46, 28657, -461.523, 24419)
+polygon = PackedVector2Array(-263.56, 538, -1074.45, -1060, -1233.46, -5806, -264.439, -7597, -280.545, -41999, -753.196, -43866, -246.868, -45974, -296.652, -50935, -605.31, -67403, -191.228, -68726, -164.579, -72603, -5760.25, -71543, -4125.01, 39246, -106.888, 38378, -54.4691, 31953, -722.155, 32021, -1136.24, 28760, -393.29, 24349)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
 position = Vector2(30164, -30061)
@@ -112,7 +112,7 @@ z_index = 3
 position = Vector2(48765, -25847)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Wall"]
-position = Vector2(-1600, 1000)
+position = Vector2(-49238, -46550)
 collision_layer = 15
 collision_mask = 15
 
@@ -137,7 +137,7 @@ damage = 10
 shape = SubResource("RectangleShape2D_x4lhq")
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="Wall"]
-position = Vector2(-1600, -1000)
+position = Vector2(-48322, -47057)
 collision_layer = 15
 collision_mask = 15
 
@@ -162,7 +162,7 @@ damage = 10
 shape = SubResource("RectangleShape2D_h158p")
 
 [node name="StaticBody2D3" type="StaticBody2D" parent="Wall"]
-position = Vector2(1600, -1000)
+position = Vector2(-49042, -47580)
 collision_layer = 15
 collision_mask = 15
 
@@ -187,7 +187,7 @@ damage = 10
 shape = SubResource("RectangleShape2D_g5p5n")
 
 [node name="StaticBody2D4" type="StaticBody2D" parent="Wall"]
-position = Vector2(1600, 1000)
+position = Vector2(-48505, -48135)
 collision_layer = 15
 collision_mask = 15
 
@@ -412,13 +412,412 @@ autowrap_mode = 1
 [node name="Label20" type="Label" parent="Control"]
 offset_left = -415.0
 offset_top = -46860.0
-offset_right = 380.0
-offset_bottom = -46520.0
+offset_right = 441.0
+offset_bottom = -46671.0
 theme = ExtResource("3_bstat")
 theme_override_font_sizes/font_size = 128
-text = "这条路真的有尽头吗？"
+text = "好像没有尽头。"
 horizontal_alignment = 1
 autowrap_mode = 1
+
+[node name="Label21" type="Label" parent="Control"]
+offset_left = -424.0
+offset_top = -49859.0
+offset_right = 432.0
+offset_bottom = -49670.0
+theme = ExtResource("3_bstat")
+theme_override_font_sizes/font_size = 128
+text = "路漫漫"
+horizontal_alignment = 1
+autowrap_mode = 1
+
+[node name="Label22" type="Label" parent="Control"]
+offset_left = -432.0
+offset_top = -51024.0
+offset_right = 424.0
+offset_bottom = -50835.0
+theme = ExtResource("3_bstat")
+theme_override_font_sizes/font_size = 128
+text = "我来跟你讲一讲我的故事把"
+horizontal_alignment = 1
+autowrap_mode = 1
+
+[node name="Label23" type="Label" parent="Control"]
+offset_left = -386.0
+offset_top = -52111.0
+offset_right = 404.0
+offset_bottom = -51771.0
+theme = ExtResource("3_bstat")
+theme_override_font_sizes/font_size = 128
+text = "我出生在一个孤岛上"
+horizontal_alignment = 1
+autowrap_mode = 1
+
+[node name="Label24" type="Label" parent="Control"]
+offset_left = -432.0
+offset_top = -53097.0
+offset_right = 424.0
+offset_bottom = -52757.0
+theme = ExtResource("3_bstat")
+theme_override_font_sizes/font_size = 128
+text = "嗯。。处境和现在的你差不多"
+horizontal_alignment = 1
+autowrap_mode = 1
+
+[node name="Label25" type="Label" parent="Control"]
+offset_left = -321.0
+offset_top = -54069.0
+offset_right = 276.0
+offset_bottom = -53729.0
+theme = ExtResource("3_bstat")
+theme_override_font_sizes/font_size = 128
+text = "迷茫 孤独 被迫行走"
+horizontal_alignment = 1
+autowrap_mode = 1
+
+[node name="Label26" type="Label" parent="Control"]
+offset_left = -447.0
+offset_top = -54824.0
+offset_right = 409.0
+offset_bottom = -54654.0
+theme = ExtResource("3_bstat")
+theme_override_font_sizes/font_size = 128
+text = "沿着某一个道路"
+horizontal_alignment = 1
+autowrap_mode = 1
+
+[node name="Label27" type="Label" parent="Control"]
+offset_left = -411.0
+offset_top = -55636.0
+offset_right = 445.0
+offset_bottom = -55466.0
+theme = ExtResource("3_bstat")
+theme_override_font_sizes/font_size = 128
+text = "内心一直有一个声音告诉我"
+horizontal_alignment = 1
+autowrap_mode = 1
+
+[node name="Label28" type="Label" parent="Control"]
+offset_left = -418.0
+offset_top = -56486.0
+offset_right = 438.0
+offset_bottom = -56316.0
+theme = ExtResource("3_bstat")
+theme_override_font_sizes/font_size = 128
+text = "这一定存在着某种问题"
+horizontal_alignment = 1
+autowrap_mode = 1
+
+[node name="Label29" type="Label" parent="Control"]
+offset_left = -424.0
+offset_top = -57262.0
+offset_right = 432.0
+offset_bottom = -57067.0
+theme = ExtResource("3_bstat")
+theme_override_font_sizes/font_size = 128
+text = "我尝试过反抗"
+horizontal_alignment = 1
+autowrap_mode = 1
+
+[node name="Label30" type="Label" parent="Control"]
+offset_left = -418.0
+offset_top = -58042.0
+offset_right = 438.0
+offset_bottom = -57872.0
+theme = ExtResource("3_bstat")
+theme_override_font_sizes/font_size = 128
+text = "却无力改变"
+horizontal_alignment = 1
+autowrap_mode = 1
+
+[node name="Label31" type="Label" parent="Control"]
+offset_left = -410.0
+offset_top = -58752.0
+offset_right = 446.0
+offset_bottom = -58582.0
+theme = ExtResource("3_bstat")
+theme_override_font_sizes/font_size = 128
+text = "直到有一天
+那个声音消失了"
+horizontal_alignment = 1
+autowrap_mode = 1
+
+[node name="Label32" type="Label" parent="Control"]
+offset_left = -400.0
+offset_top = -59634.0
+offset_right = 329.0
+offset_bottom = -59294.0
+theme = ExtResource("3_bstat")
+theme_override_font_sizes/font_size = 128
+text = "之后再也没有出现过"
+horizontal_alignment = 1
+autowrap_mode = 1
+
+[node name="Label33" type="Label" parent="Control"]
+offset_left = -364.0
+offset_top = -60564.0
+offset_right = 365.0
+offset_bottom = -60224.0
+theme = ExtResource("3_bstat")
+theme_override_font_sizes/font_size = 128
+text = "我逃出被禁锢的孤岛"
+horizontal_alignment = 1
+autowrap_mode = 1
+
+[node name="Label34" type="Label" parent="Control"]
+offset_left = -492.0
+offset_top = -61288.0
+offset_right = 533.0
+offset_bottom = -61118.0
+theme = ExtResource("3_bstat")
+theme_override_font_sizes/font_size = 128
+text = "翻过无数山河湖海"
+horizontal_alignment = 1
+autowrap_mode = 1
+
+[node name="Label35" type="Label" parent="Control"]
+offset_left = -503.0
+offset_top = -62001.0
+offset_right = 522.0
+offset_bottom = -61831.0
+theme = ExtResource("3_bstat")
+theme_override_font_sizes/font_size = 128
+text = "听过无数传闻异辞"
+horizontal_alignment = 1
+autowrap_mode = 1
+
+[node name="Label36" type="Label" parent="Control"]
+offset_left = -503.0
+offset_top = -62792.0
+offset_right = 522.0
+offset_bottom = -62622.0
+theme = ExtResource("3_bstat")
+theme_override_font_sizes/font_size = 128
+text = "最终一无所获"
+horizontal_alignment = 1
+autowrap_mode = 1
+
+[node name="Label37" type="Label" parent="Control"]
+offset_left = -515.0
+offset_top = -63535.0
+offset_right = 510.0
+offset_bottom = -63365.0
+theme = ExtResource("3_bstat")
+theme_override_font_sizes/font_size = 128
+text = "白驹过隙"
+horizontal_alignment = 1
+autowrap_mode = 1
+
+[node name="Label38" type="Label" parent="Control"]
+offset_left = -527.0
+offset_top = -64230.0
+offset_right = 498.0
+offset_bottom = -64060.0
+theme = ExtResource("3_bstat")
+theme_override_font_sizes/font_size = 128
+text = "有一天"
+horizontal_alignment = 1
+autowrap_mode = 1
+
+[node name="Label39" type="Label" parent="Control"]
+offset_left = -521.0
+offset_top = -64966.0
+offset_right = 504.0
+offset_bottom = -64796.0
+theme = ExtResource("3_bstat")
+theme_override_font_sizes/font_size = 128
+text = "我被一阵白光包围"
+horizontal_alignment = 1
+autowrap_mode = 1
+
+[node name="Label40" type="Label" parent="Control"]
+offset_left = -495.0
+offset_top = -65676.0
+offset_right = 530.0
+offset_bottom = -65506.0
+theme = ExtResource("3_bstat")
+theme_override_font_sizes/font_size = 128
+text = "我知道"
+horizontal_alignment = 1
+autowrap_mode = 1
+
+[node name="Label41" type="Label" parent="Control"]
+offset_left = -514.0
+offset_top = -66453.0
+offset_right = 511.0
+offset_bottom = -66283.0
+theme = ExtResource("3_bstat")
+theme_override_font_sizes/font_size = 128
+text = "一切都结束了"
+horizontal_alignment = 1
+autowrap_mode = 1
+
+[node name="Label42" type="Label" parent="Control"]
+offset_left = -520.0
+offset_top = -67267.0
+offset_right = 569.0
+offset_bottom = -66927.0
+theme = ExtResource("3_bstat")
+theme_override_font_sizes/font_size = 128
+text = "一生如同在围墙之下
+围城之中"
+horizontal_alignment = 1
+autowrap_mode = 1
+
+[node name="Label43" type="Label" parent="Control"]
+offset_left = -537.0
+offset_top = -68014.0
+offset_right = 552.0
+offset_bottom = -67844.0
+theme = ExtResource("3_bstat")
+theme_override_font_sizes/font_size = 128
+text = "无力感贯彻始终"
+horizontal_alignment = 1
+autowrap_mode = 1
+
+[node name="Label44" type="Label" parent="Control"]
+offset_left = -543.0
+offset_top = -68681.0
+offset_right = 546.0
+offset_bottom = -68511.0
+theme = ExtResource("3_bstat")
+theme_override_font_sizes/font_size = 128
+text = "白光渐退"
+horizontal_alignment = 1
+autowrap_mode = 1
+
+[node name="Label45" type="Label" parent="Control"]
+offset_left = -531.0
+offset_top = -69333.0
+offset_right = 558.0
+offset_bottom = -69163.0
+theme = ExtResource("3_bstat")
+theme_override_font_sizes/font_size = 128
+text = "我化作意志"
+horizontal_alignment = 1
+autowrap_mode = 1
+
+[node name="Label46" type="Label" parent="Control"]
+offset_left = -520.0
+offset_top = -70013.0
+offset_right = 569.0
+offset_bottom = -69843.0
+theme = ExtResource("3_bstat")
+theme_override_font_sizes/font_size = 128
+text = "和一些前辈一起"
+horizontal_alignment = 1
+autowrap_mode = 1
+
+[node name="Label47" type="Label" parent="Control"]
+offset_left = -544.0
+offset_top = -70586.0
+offset_right = 598.0
+offset_bottom = -70416.0
+theme = ExtResource("3_bstat")
+theme_override_font_sizes/font_size = 128
+text = "化作一个个引路石"
+horizontal_alignment = 1
+autowrap_mode = 1
+
+[node name="Label48" type="Label" parent="Control"]
+offset_left = -420.0
+offset_top = -71695.0
+offset_right = 420.0
+offset_bottom = -71525.0
+theme = ExtResource("3_bstat")
+theme_override_font_sizes/font_size = 128
+text = "你好 探险者"
+horizontal_alignment = 1
+autowrap_mode = 1
+
+[node name="Label49" type="Label" parent="Control"]
+offset_left = -415.0
+offset_top = -75047.0
+offset_right = 425.0
+offset_bottom = -74877.0
+theme = ExtResource("3_bstat")
+theme_override_font_sizes/font_size = 128
+text = "在无尽有有限的道路上"
+horizontal_alignment = 1
+autowrap_mode = 1
+
+[node name="Label50" type="Label" parent="Control"]
+offset_left = -426.0
+offset_top = -76010.0
+offset_right = 414.0
+offset_bottom = -75670.0
+theme = ExtResource("3_bstat")
+theme_override_font_sizes/font_size = 128
+text = "我们会为你指明方向"
+horizontal_alignment = 1
+autowrap_mode = 1
+
+[node name="Label51" type="Label" parent="Control"]
+offset_left = -180.0
+offset_top = -76853.0
+offset_right = 174.0
+offset_bottom = -76683.0
+theme = ExtResource("3_bstat")
+theme_override_font_sizes/font_size = 128
+text = "一直走"
+
+[node name="Label52" type="Label" parent="Control"]
+offset_left = -181.0
+offset_top = -77386.0
+offset_right = 173.0
+offset_bottom = -77216.0
+theme = ExtResource("3_bstat")
+theme_override_font_sizes/font_size = 128
+text = "不要停"
+
+[node name="Label53" type="Label" parent="Control"]
+offset_left = -485.0
+offset_top = -77912.0
+offset_right = 459.0
+offset_bottom = -77742.0
+theme = ExtResource("3_bstat")
+theme_override_font_sizes/font_size = 128
+text = "停下将被黑暗吞噬"
+
+[node name="Label54" type="Label" parent="Control"]
+modulate = Color(0, 0, 0, 1)
+offset_left = -357.0
+offset_top = -81259.0
+offset_right = 371.0
+offset_bottom = -81089.0
+theme = ExtResource("3_bstat")
+theme_override_font_sizes/font_size = 128
+text = "嗯？。怎么快"
+
+[node name="Label55" type="Label" parent="Control"]
+modulate = Color(0, 0, 0, 1)
+offset_left = -409.0
+offset_top = -82632.0
+offset_right = 417.0
+offset_bottom = -82462.0
+theme = ExtResource("3_bstat")
+theme_override_font_sizes/font_size = 128
+text = "最终还是来了么"
+
+[node name="Label56" type="Label" parent="Control"]
+modulate = Color(0, 0, 0, 1)
+offset_left = -710.0
+offset_top = -83806.0
+offset_right = 706.0
+offset_bottom = -83636.0
+theme = ExtResource("3_bstat")
+theme_override_font_sizes/font_size = 128
+text = "后面的路只能由你自己走了"
+
+[node name="Label57" type="Label" parent="Control"]
+modulate = Color(0, 0, 0, 1)
+offset_left = -232.0
+offset_top = -85141.0
+offset_right = 240.0
+offset_bottom = -84971.0
+theme = ExtResource("3_bstat")
+theme_override_font_sizes/font_size = 128
+text = "后会无期"
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
