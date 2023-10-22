@@ -145,7 +145,7 @@ script/source = "extends VBoxContainer
 func _physics_process(delta):
 	total_money.text = str(round(Global.player_dict['total_money']*10)/10)
 	kill.text = str(Global.player_dict['kill'])
-	wall.text = str(Global.player_dict['wall'])
+	wall.text = str(Global.player_dict['ice_wall'])
 "
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_o2cs8"]

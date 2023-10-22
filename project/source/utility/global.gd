@@ -37,6 +37,10 @@ var player_dict = {
 	'hit_damage':10,
 	'money_drop':50,
 	'money_multiple':1.0,
+	# 武器升级
+	'bullet_level':0,
+	'ice_wall_level':0,
+	'ray_cast_level':0,
 	# 符文
 	'rune_0':0,
 	'rune_1':0,
@@ -52,7 +56,7 @@ var player_dict = {
 	'total_money':0,
 	'total_hp':0,
 	'kill':0,
-	'wall':0,
+	'ice_wall':0,
 	# 剧情模式
 	'movement_lock':false,
 	'weapon_lock':false,

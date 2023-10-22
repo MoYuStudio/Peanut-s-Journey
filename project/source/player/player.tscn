@@ -47,11 +47,9 @@ var enemy_close = []
 @onready var bullet = preload('res://source/attack/bullet.tscn')
 @onready var bullet_timer = $Body/Attack/BulletTimer
 @onready var bullet_attack_timer = $Body/Attack/BulletTimer/BulletAttackTimer
-var bullet_level = 5
 var bullet_attack_speed = 0.1 # 0.1
 
-@onready var wall = preload('res://source/attack/wall.tscn')
-var wall_level = 1
+@onready var ice_wall = preload('res://source/attack/ice_wall.tscn')
 
 # 进程函数 ==============================================================
 
@@ -96,23 +94,28 @@ func _physics_process(delta):
 	
 	gun.look_at(get_global_mouse_position())
 	
-	if Input.is_action_just_pressed('ui_select'):
-		if Global.player_dict['money'] >= 50:
-			Global.player_dict['money'] -= 50
-			Global.player_dict['hp'] -= 10
-			var wall_attack = wall.instantiate()
-			wall_attack.target = body.position
-			wall_attack.level = wall_level
-			wall_attack.position = body.position
-			wall_attack.rotation = body.rotation
-			add_child(wall_attack)
-			Global.player_dict['wall'] += 1
+	if Global.player_dict['ice_wall_level'] == 0:
+		pass
+	if Global.player_dict['ice_wall_level'] > 0:
+		if Input.is_action_just_pressed('ui_select'):
+			if Global.player_dict['money'] >= 50:
+				Global.player_dict['money'] -= 50
+				Global.player_dict['hp'] -= 10
+				var ice_wall_attack = ice_wall.instantiate()
+				ice_wall_attack.target = body.position
+				ice_wall_attack.level = Global.player_dict['ice_wall_level']
+				ice_wall_attack.position = body.position
+				ice_wall_attack.rotation = body.rotation
+				add_child(ice_wall_attack)
+				Global.player_dict['ice_wall'] += 1
 	
 
 func attack():
-	if bullet_level == 0:
-		gun.hide()
-	if bullet_level > 0:
+	if Global.player_dict['bullet_level'] == 0:
+		# gun.hide()
+		pass
+		
+	if Global.player_dict['bullet_level'] > 0:
 		gun.show()
 		bullet_timer.wait_time = bullet_attack_speed
 		if bullet_timer.is_stopped():
@@ -125,7 +128,7 @@ func _on_bullet_timer_timeout():
 	# if len(enemy_close) > 1:
 	var bullet_attack = bullet.instantiate()
 	# bullet_attack.target = get_local_mouse_position()# get_random_target()
-	bullet_attack.level = bullet_level
+	bullet_attack.level = Global.player_dict['bullet_level']
 	bullet_attack.position.x = body.position.x+3
 	bullet_attack.position.y = body.position.y
 	# bullet_attack.rotation = gun.rotation + 44
@@ -376,6 +379,17 @@ script = SubResource("GDScript_penpb")
 [node name="Body" parent="." instance=ExtResource("1_pjecn")]
 collision_layer = 3
 collision_mask = 3
+max_steering_angle = 10
+steering_speed = 0.1
+max_acc = 1200
+reverse_acc = -450
+max_speed_reverse = 250
+friction = -0.2
+drag = -0.001
+drift_speed = 800
+drift_angle = 9
+traction_fast = 0.001
+traction_slow = 0.995
 
 [node name="Camera" parent="Body" index="0"]
 position_smoothing_enabled = true

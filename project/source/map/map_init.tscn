@@ -33,6 +33,7 @@ func _ready():
 func _process(delta):
 	if Input.is_action_just_pressed('Q'):
 		Global.player_dict['movement_lock'] = false
+		Global.player_dict['bullet_level'] = 5
 		get_tree().change_scene_to_file('res://source/scene/game_main.tscn')
 		# SceneTransition.change_scene('res://source/scene/game_main.tscn')
 
@@ -221,12 +222,12 @@ offset_bottom = 40.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Control"]
 layout_mode = 0
-offset_left = -481.0
-offset_top = -2556.0
-offset_right = 463.0
-offset_bottom = -706.0
+offset_left = -471.0
+offset_top = -2743.0
+offset_right = 473.0
+offset_bottom = -453.0
 theme = ExtResource("3_bstat")
-theme_override_constants/separation = 250
+theme_override_constants/separation = 360
 alignment = 1
 
 [node name="Label5" type="Label" parent="Control/VBoxContainer"]
@@ -264,38 +265,34 @@ theme_override_font_sizes/font_size = 128
 text = "来"
 horizontal_alignment = 1
 
-[node name="Label6" type="Label" parent="Control"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="Control"]
 layout_mode = 0
-offset_left = -533.0
-offset_top = -4887.0
-offset_right = 539.0
-offset_bottom = -4717.0
+offset_left = -527.0
+offset_top = -6079.0
+offset_right = 545.0
+offset_bottom = -4679.0
+theme_override_constants/separation = 360
+
+[node name="Label8" type="Label" parent="Control/VBoxContainer2"]
+layout_mode = 2
 theme = ExtResource("3_bstat")
 theme_override_font_sizes/font_size = 128
-text = "你为什么按照指示？"
+text = "你还会坚持吗？"
 horizontal_alignment = 1
 
-[node name="Label7" type="Label" parent="Control"]
-layout_mode = 0
-offset_left = -525.0
-offset_top = -5691.0
-offset_right = 530.0
-offset_bottom = -5351.0
+[node name="Label7" type="Label" parent="Control/VBoxContainer2"]
+layout_mode = 2
 theme = ExtResource("3_bstat")
 theme_override_font_sizes/font_size = 128
 text = "如果指示自始至终都是错的"
 horizontal_alignment = 1
 autowrap_mode = 1
 
-[node name="Label8" type="Label" parent="Control"]
-layout_mode = 0
-offset_left = -415.0
-offset_top = -6335.0
-offset_right = 421.0
-offset_bottom = -6165.0
+[node name="Label6" type="Label" parent="Control/VBoxContainer2"]
+layout_mode = 2
 theme = ExtResource("3_bstat")
 theme_override_font_sizes/font_size = 128
-text = "你还会坚持吗？"
+text = "你为什么按照指示？"
 horizontal_alignment = 1
 
 [node name="Label9" type="Label" parent="Control"]

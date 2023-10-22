@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://d2k1tgb4hoh3"]
 
-[ext_resource type="AudioStream" uid="uid://gv0h3dumcc7m" path="res://resource/sound/icewall_01.wav" id="1_b4cbx"]
-[ext_resource type="PackedScene" uid="uid://o84475elvy3" path="res://source/utility/hitbox.tscn" id="1_ke12r"]
+[ext_resource type="AudioStream" uid="uid://gv0h3dumcc7m" path="res://resource/sound/icewall_01.wav" id="1_gmwvp"]
+[ext_resource type="PackedScene" uid="uid://o84475elvy3" path="res://source/utility/hitbox.tscn" id="2_a64bk"]
 
 [sub_resource type="GDScript" id="GDScript_ov1d2"]
 script/source = "
@@ -111,11 +111,11 @@ one_shot = true
 autostart = true
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("1_b4cbx")
+stream = ExtResource("1_gmwvp")
 volume_db = -13.0
 autoplay = true
 
-[node name="HitBox" parent="." instance=ExtResource("1_ke12r")]
+[node name="HitBox" parent="." instance=ExtResource("2_a64bk")]
 collision_layer = 4
 collision_mask = 4
 damage = 10
