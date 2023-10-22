@@ -59,7 +59,6 @@ var player_dict = {
 	'ice_wall':0,
 	# 剧情模式
 	'movement_lock':false,
-	'weapon_lock':false,
 }
 
 # Steam variables

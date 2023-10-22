@@ -11,7 +11,6 @@ var step = 0
 
 func _ready():
 	Global.player_dict['movement_lock'] = true
-	Global.player_dict['weapon_lock'] = true
 
 func _physics_process(delta):
 	pass
