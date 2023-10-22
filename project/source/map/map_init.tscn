@@ -32,6 +32,8 @@ func _ready():
 
 func _process(delta):
 	if Input.is_action_just_pressed('Q'):
+		MusicPlayer.show()
+		MusicPlayer.player.stream_paused = false
 		Global.player_dict['movement_lock'] = false
 		Global.player_dict['bullet_level'] = 5
 		get_tree().change_scene_to_file('res://source/scene/game_main.tscn')
@@ -220,50 +222,62 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
+[node name="VBoxContainer0" type="VBoxContainer" parent="Control"]
 layout_mode = 0
-offset_left = -476.0
-offset_top = -2469.0
-offset_right = 468.0
-offset_bottom = -179.0
-theme = ExtResource("3_bstat")
-theme_override_constants/separation = 360
-alignment = 1
+offset_left = -380.0
+offset_top = -555.0
+offset_right = 372.0
+offset_bottom = -385.0
 
-[node name="Label5" type="Label" parent="Control/VBoxContainer"]
-layout_mode = 2
-theme = ExtResource("3_bstat")
-theme_override_font_sizes/font_size = 128
-text = "停下将被黑暗吞噬"
-horizontal_alignment = 1
-
-[node name="Label4" type="Label" parent="Control/VBoxContainer"]
-layout_mode = 2
-theme = ExtResource("3_bstat")
-theme_override_font_sizes/font_size = 128
-text = "不要停"
-horizontal_alignment = 1
-
-[node name="Label3" type="Label" parent="Control/VBoxContainer"]
-layout_mode = 2
-theme = ExtResource("3_bstat")
-theme_override_font_sizes/font_size = 128
-text = "一直走"
-horizontal_alignment = 1
-
-[node name="Label2" type="Label" parent="Control/VBoxContainer"]
-layout_mode = 2
-theme = ExtResource("3_bstat")
-theme_override_font_sizes/font_size = 128
-text = "到这里来"
-horizontal_alignment = 1
-
-[node name="Label" type="Label" parent="Control/VBoxContainer"]
+[node name="Label" type="Label" parent="Control/VBoxContainer0"]
 layout_mode = 2
 theme = ExtResource("3_bstat")
 theme_override_font_sizes/font_size = 128
 text = "来"
 horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="VBoxContainer1" type="VBoxContainer" parent="Control"]
+layout_mode = 0
+offset_left = -453.0
+offset_top = -3568.0
+offset_right = 491.0
+offset_bottom = -1278.0
+theme = ExtResource("3_bstat")
+theme_override_constants/separation = 360
+alignment = 1
+
+[node name="Label5" type="Label" parent="Control/VBoxContainer1"]
+layout_mode = 2
+theme = ExtResource("3_bstat")
+theme_override_font_sizes/font_size = 128
+text = "停下将被黑暗吞噬"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Label4" type="Label" parent="Control/VBoxContainer1"]
+layout_mode = 2
+theme = ExtResource("3_bstat")
+theme_override_font_sizes/font_size = 128
+text = "不要停"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Label3" type="Label" parent="Control/VBoxContainer1"]
+layout_mode = 2
+theme = ExtResource("3_bstat")
+theme_override_font_sizes/font_size = 128
+text = "一直走"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Label2" type="Label" parent="Control/VBoxContainer1"]
+layout_mode = 2
+theme = ExtResource("3_bstat")
+theme_override_font_sizes/font_size = 128
+text = "到这里来"
+horizontal_alignment = 1
+autowrap_mode = 2
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="Control"]
 layout_mode = 0
@@ -279,6 +293,7 @@ theme = ExtResource("3_bstat")
 theme_override_font_sizes/font_size = 128
 text = "你还会坚持吗？"
 horizontal_alignment = 1
+autowrap_mode = 2
 
 [node name="Label7" type="Label" parent="Control/VBoxContainer2"]
 layout_mode = 2
@@ -286,7 +301,7 @@ theme = ExtResource("3_bstat")
 theme_override_font_sizes/font_size = 128
 text = "如果指示自始至终都是错的"
 horizontal_alignment = 1
-autowrap_mode = 1
+autowrap_mode = 2
 
 [node name="Label6" type="Label" parent="Control/VBoxContainer2"]
 layout_mode = 2
@@ -294,6 +309,7 @@ theme = ExtResource("3_bstat")
 theme_override_font_sizes/font_size = 128
 text = "你为什么按照指示？"
 horizontal_alignment = 1
+autowrap_mode = 2
 
 [node name="VBoxContainer3" type="VBoxContainer" parent="Control"]
 layout_mode = 0
@@ -309,7 +325,7 @@ theme = ExtResource("3_bstat")
 theme_override_font_sizes/font_size = 128
 text = "祝好运"
 horizontal_alignment = 1
-autowrap_mode = 1
+autowrap_mode = 2
 
 [node name="Label12" type="Label" parent="Control/VBoxContainer3"]
 layout_mode = 2
@@ -317,7 +333,7 @@ theme = ExtResource("3_bstat")
 theme_override_font_sizes/font_size = 128
 text = "会越来越窄"
 horizontal_alignment = 1
-autowrap_mode = 1
+autowrap_mode = 2
 
 [node name="Label11" type="Label" parent="Control/VBoxContainer3"]
 layout_mode = 2
@@ -325,7 +341,7 @@ theme = ExtResource("3_bstat")
 theme_override_font_sizes/font_size = 128
 text = "随着时间的推移"
 horizontal_alignment = 1
-autowrap_mode = 1
+autowrap_mode = 2
 
 [node name="Label10" type="Label" parent="Control/VBoxContainer3"]
 layout_mode = 2
@@ -333,13 +349,14 @@ theme = ExtResource("3_bstat")
 theme_override_font_sizes/font_size = 128
 text = "像极了每个人一辈子能做的全部选择"
 horizontal_alignment = 1
-autowrap_mode = 1
+autowrap_mode = 2
 
 [node name="Label9" type="Label" parent="Control/VBoxContainer3"]
 layout_mode = 2
 theme = ExtResource("3_bstat")
 theme_override_font_sizes/font_size = 128
 text = "这条路狭窄的很"
+autowrap_mode = 2
 
 [node name="VBoxContainer4" type="VBoxContainer" parent="Control"]
 layout_mode = 0
@@ -355,7 +372,7 @@ theme = ExtResource("3_bstat")
 theme_override_font_sizes/font_size = 128
 text = "你好像获得了某种机遇"
 horizontal_alignment = 1
-autowrap_mode = 1
+autowrap_mode = 2
 
 [node name="Label14" type="Label" parent="Control/VBoxContainer4"]
 layout_mode = 2
@@ -363,7 +380,7 @@ theme = ExtResource("3_bstat")
 theme_override_font_sizes/font_size = 128
 text = "嗯？前面通道变的开阔了许多"
 horizontal_alignment = 1
-autowrap_mode = 1
+autowrap_mode = 2
 
 [node name="VBoxContainer5" type="VBoxContainer" parent="Control"]
 layout_mode = 0
@@ -376,10 +393,17 @@ offset_bottom = -28673.0
 layout_mode = 2
 theme = ExtResource("3_bstat")
 theme_override_font_sizes/font_size = 128
-text = "但是请记住
-机遇和风险并存"
+text = "但是请记住"
 horizontal_alignment = 1
-autowrap_mode = 1
+autowrap_mode = 2
+
+[node name="Label17" type="Label" parent="Control/VBoxContainer5"]
+layout_mode = 2
+theme = ExtResource("3_bstat")
+theme_override_font_sizes/font_size = 128
+text = "机遇和风险并存"
+horizontal_alignment = 1
+autowrap_mode = 2
 
 [node name="VBoxContainer6" type="VBoxContainer" parent="Control"]
 layout_mode = 0
@@ -395,16 +419,15 @@ theme = ExtResource("3_bstat")
 theme_override_font_sizes/font_size = 128
 text = "大都数情况都是危机"
 horizontal_alignment = 1
-autowrap_mode = 1
+autowrap_mode = 2
 
 [node name="Label17" type="Label" parent="Control/VBoxContainer6"]
 layout_mode = 2
 theme = ExtResource("3_bstat")
 theme_override_font_sizes/font_size = 128
-text = "好吧
-还是太乐观了"
+text = "好吧，还是太乐观了"
 horizontal_alignment = 1
-autowrap_mode = 1
+autowrap_mode = 2
 
 [node name="VBoxContainer7" type="VBoxContainer" parent="Control"]
 layout_mode = 0
@@ -420,7 +443,7 @@ theme = ExtResource("3_bstat")
 theme_override_font_sizes/font_size = 128
 text = "好像没有尽头。"
 horizontal_alignment = 1
-autowrap_mode = 1
+autowrap_mode = 2
 
 [node name="Label19" type="Label" parent="Control/VBoxContainer7"]
 layout_mode = 2
@@ -428,14 +451,14 @@ theme = ExtResource("3_bstat")
 theme_override_font_sizes/font_size = 128
 text = "这条路真的有尽头吗？"
 horizontal_alignment = 1
-autowrap_mode = 1
+autowrap_mode = 2
 
 [node name="VBoxContainer8" type="VBoxContainer" parent="Control"]
 layout_mode = 0
-offset_left = -543.0
+offset_left = -496.0
 offset_top = -70887.0
 offset_right = 495.0
-offset_bottom = -45608.0
+offset_bottom = -45594.0
 theme_override_constants/separation = 720
 
 [node name="Label47" type="Label" parent="Control/VBoxContainer8"]
@@ -444,7 +467,7 @@ theme = ExtResource("3_bstat")
 theme_override_font_sizes/font_size = 128
 text = "化作一个个引路石"
 horizontal_alignment = 1
-autowrap_mode = 1
+autowrap_mode = 2
 
 [node name="Label46" type="Label" parent="Control/VBoxContainer8"]
 layout_mode = 2
@@ -452,7 +475,7 @@ theme = ExtResource("3_bstat")
 theme_override_font_sizes/font_size = 128
 text = "和一些前辈一起"
 horizontal_alignment = 1
-autowrap_mode = 1
+autowrap_mode = 2
 
 [node name="Label45" type="Label" parent="Control/VBoxContainer8"]
 layout_mode = 2
@@ -460,7 +483,7 @@ theme = ExtResource("3_bstat")
 theme_override_font_sizes/font_size = 128
 text = "我化作意志"
 horizontal_alignment = 1
-autowrap_mode = 1
+autowrap_mode = 2
 
 [node name="Label44" type="Label" parent="Control/VBoxContainer8"]
 layout_mode = 2
@@ -468,7 +491,7 @@ theme = ExtResource("3_bstat")
 theme_override_font_sizes/font_size = 128
 text = "白光渐退"
 horizontal_alignment = 1
-autowrap_mode = 1
+autowrap_mode = 2
 
 [node name="Label43" type="Label" parent="Control/VBoxContainer8"]
 layout_mode = 2
@@ -476,16 +499,15 @@ theme = ExtResource("3_bstat")
 theme_override_font_sizes/font_size = 128
 text = "无力感贯彻始终"
 horizontal_alignment = 1
-autowrap_mode = 1
+autowrap_mode = 2
 
 [node name="Label42" type="Label" parent="Control/VBoxContainer8"]
 layout_mode = 2
 theme = ExtResource("3_bstat")
 theme_override_font_sizes/font_size = 128
-text = "一生如同在围墙之下
-围城之中"
+text = "一生如同在围墙之下，围城之中"
 horizontal_alignment = 1
-autowrap_mode = 1
+autowrap_mode = 2
 
 [node name="Label41" type="Label" parent="Control/VBoxContainer8"]
 layout_mode = 2
@@ -493,7 +515,7 @@ theme = ExtResource("3_bstat")
 theme_override_font_sizes/font_size = 128
 text = "一切都结束了"
 horizontal_alignment = 1
-autowrap_mode = 1
+autowrap_mode = 2
 
 [node name="Label40" type="Label" parent="Control/VBoxContainer8"]
 layout_mode = 2
@@ -501,7 +523,7 @@ theme = ExtResource("3_bstat")
 theme_override_font_sizes/font_size = 128
 text = "我知道"
 horizontal_alignment = 1
-autowrap_mode = 1
+autowrap_mode = 2
 
 [node name="Label39" type="Label" parent="Control/VBoxContainer8"]
 layout_mode = 2
@@ -509,7 +531,7 @@ theme = ExtResource("3_bstat")
 theme_override_font_sizes/font_size = 128
 text = "我被一阵白光包围"
 horizontal_alignment = 1
-autowrap_mode = 1
+autowrap_mode = 2
 
 [node name="Label38" type="Label" parent="Control/VBoxContainer8"]
 layout_mode = 2
@@ -517,7 +539,7 @@ theme = ExtResource("3_bstat")
 theme_override_font_sizes/font_size = 128
 text = "有一天"
 horizontal_alignment = 1
-autowrap_mode = 1
+autowrap_mode = 2
 
 [node name="Label37" type="Label" parent="Control/VBoxContainer8"]
 layout_mode = 2
@@ -525,7 +547,7 @@ theme = ExtResource("3_bstat")
 theme_override_font_sizes/font_size = 128
 text = "白驹过隙"
 horizontal_alignment = 1
-autowrap_mode = 1
+autowrap_mode = 2
 
 [node name="Label36" type="Label" parent="Control/VBoxContainer8"]
 layout_mode = 2
@@ -533,7 +555,7 @@ theme = ExtResource("3_bstat")
 theme_override_font_sizes/font_size = 128
 text = "最终一无所获"
 horizontal_alignment = 1
-autowrap_mode = 1
+autowrap_mode = 2
 
 [node name="Label35" type="Label" parent="Control/VBoxContainer8"]
 layout_mode = 2
@@ -541,7 +563,7 @@ theme = ExtResource("3_bstat")
 theme_override_font_sizes/font_size = 128
 text = "听过无数传闻异辞"
 horizontal_alignment = 1
-autowrap_mode = 1
+autowrap_mode = 2
 
 [node name="Label34" type="Label" parent="Control/VBoxContainer8"]
 layout_mode = 2
@@ -549,7 +571,7 @@ theme = ExtResource("3_bstat")
 theme_override_font_sizes/font_size = 128
 text = "翻过无数山河湖海"
 horizontal_alignment = 1
-autowrap_mode = 1
+autowrap_mode = 2
 
 [node name="Label33" type="Label" parent="Control/VBoxContainer8"]
 layout_mode = 2
@@ -557,7 +579,7 @@ theme = ExtResource("3_bstat")
 theme_override_font_sizes/font_size = 128
 text = "我逃出被禁锢的孤岛"
 horizontal_alignment = 1
-autowrap_mode = 1
+autowrap_mode = 2
 
 [node name="Label32" type="Label" parent="Control/VBoxContainer8"]
 layout_mode = 2
@@ -565,16 +587,15 @@ theme = ExtResource("3_bstat")
 theme_override_font_sizes/font_size = 128
 text = "之后再也没有出现过"
 horizontal_alignment = 1
-autowrap_mode = 1
+autowrap_mode = 2
 
 [node name="Label31" type="Label" parent="Control/VBoxContainer8"]
 layout_mode = 2
 theme = ExtResource("3_bstat")
 theme_override_font_sizes/font_size = 128
-text = "直到有一天
-那个声音消失了"
+text = "直到有一天，那个声音消失了"
 horizontal_alignment = 1
-autowrap_mode = 1
+autowrap_mode = 2
 
 [node name="Label30" type="Label" parent="Control/VBoxContainer8"]
 layout_mode = 2
@@ -582,7 +603,7 @@ theme = ExtResource("3_bstat")
 theme_override_font_sizes/font_size = 128
 text = "却无力改变"
 horizontal_alignment = 1
-autowrap_mode = 1
+autowrap_mode = 2
 
 [node name="Label29" type="Label" parent="Control/VBoxContainer8"]
 layout_mode = 2
@@ -590,7 +611,7 @@ theme = ExtResource("3_bstat")
 theme_override_font_sizes/font_size = 128
 text = "我尝试过反抗"
 horizontal_alignment = 1
-autowrap_mode = 1
+autowrap_mode = 2
 
 [node name="Label28" type="Label" parent="Control/VBoxContainer8"]
 layout_mode = 2
@@ -598,7 +619,7 @@ theme = ExtResource("3_bstat")
 theme_override_font_sizes/font_size = 128
 text = "这一定存在着某种问题"
 horizontal_alignment = 1
-autowrap_mode = 1
+autowrap_mode = 2
 
 [node name="Label27" type="Label" parent="Control/VBoxContainer8"]
 layout_mode = 2
@@ -606,7 +627,7 @@ theme = ExtResource("3_bstat")
 theme_override_font_sizes/font_size = 128
 text = "内心一直有一个声音告诉我"
 horizontal_alignment = 1
-autowrap_mode = 1
+autowrap_mode = 2
 
 [node name="Label26" type="Label" parent="Control/VBoxContainer8"]
 layout_mode = 2
@@ -614,7 +635,7 @@ theme = ExtResource("3_bstat")
 theme_override_font_sizes/font_size = 128
 text = "沿着某一个道路"
 horizontal_alignment = 1
-autowrap_mode = 1
+autowrap_mode = 2
 
 [node name="Label25" type="Label" parent="Control/VBoxContainer8"]
 layout_mode = 2
@@ -622,7 +643,7 @@ theme = ExtResource("3_bstat")
 theme_override_font_sizes/font_size = 128
 text = "迷茫 孤独 被迫行走"
 horizontal_alignment = 1
-autowrap_mode = 1
+autowrap_mode = 2
 
 [node name="Label24" type="Label" parent="Control/VBoxContainer8"]
 layout_mode = 2
@@ -630,7 +651,7 @@ theme = ExtResource("3_bstat")
 theme_override_font_sizes/font_size = 128
 text = "嗯。。处境和现在的你差不多"
 horizontal_alignment = 1
-autowrap_mode = 1
+autowrap_mode = 2
 
 [node name="Label23" type="Label" parent="Control/VBoxContainer8"]
 layout_mode = 2
@@ -638,7 +659,7 @@ theme = ExtResource("3_bstat")
 theme_override_font_sizes/font_size = 128
 text = "我出生在一个孤岛上"
 horizontal_alignment = 1
-autowrap_mode = 1
+autowrap_mode = 2
 
 [node name="Label22" type="Label" parent="Control/VBoxContainer8"]
 layout_mode = 2
@@ -646,7 +667,7 @@ theme = ExtResource("3_bstat")
 theme_override_font_sizes/font_size = 128
 text = "我来跟你讲一讲我的故事把"
 horizontal_alignment = 1
-autowrap_mode = 1
+autowrap_mode = 2
 
 [node name="Label21" type="Label" parent="Control/VBoxContainer8"]
 layout_mode = 2
@@ -654,7 +675,7 @@ theme = ExtResource("3_bstat")
 theme_override_font_sizes/font_size = 128
 text = "路漫漫"
 horizontal_alignment = 1
-autowrap_mode = 1
+autowrap_mode = 2
 
 [node name="VBoxContainer9" type="VBoxContainer" parent="Control"]
 layout_mode = 0
@@ -669,7 +690,7 @@ theme = ExtResource("3_bstat")
 theme_override_font_sizes/font_size = 128
 text = "你好 探险者"
 horizontal_alignment = 1
-autowrap_mode = 1
+autowrap_mode = 2
 
 [node name="VBoxContainer10" type="VBoxContainer" parent="Control"]
 layout_mode = 0
@@ -685,6 +706,7 @@ theme = ExtResource("3_bstat")
 theme_override_font_sizes/font_size = 128
 text = "停下将被黑暗吞噬"
 horizontal_alignment = 1
+autowrap_mode = 2
 
 [node name="Label52" type="Label" parent="Control/VBoxContainer10"]
 layout_mode = 2
@@ -692,6 +714,7 @@ theme = ExtResource("3_bstat")
 theme_override_font_sizes/font_size = 128
 text = "不要停"
 horizontal_alignment = 1
+autowrap_mode = 2
 
 [node name="Label51" type="Label" parent="Control/VBoxContainer10"]
 layout_mode = 2
@@ -699,6 +722,7 @@ theme = ExtResource("3_bstat")
 theme_override_font_sizes/font_size = 128
 text = "一直走"
 horizontal_alignment = 1
+autowrap_mode = 2
 
 [node name="Label50" type="Label" parent="Control/VBoxContainer10"]
 layout_mode = 2
@@ -706,15 +730,15 @@ theme = ExtResource("3_bstat")
 theme_override_font_sizes/font_size = 128
 text = "我们会为你指明方向"
 horizontal_alignment = 1
-autowrap_mode = 1
+autowrap_mode = 2
 
 [node name="Label49" type="Label" parent="Control/VBoxContainer10"]
 layout_mode = 2
 theme = ExtResource("3_bstat")
 theme_override_font_sizes/font_size = 128
-text = "在无尽有有限的道路上"
+text = "在无尽又有限的道路上"
 horizontal_alignment = 1
-autowrap_mode = 1
+autowrap_mode = 2
 
 [node name="VBoxContainer11" type="VBoxContainer" parent="Control"]
 layout_mode = 0
@@ -731,6 +755,7 @@ theme = ExtResource("3_bstat")
 theme_override_font_sizes/font_size = 128
 text = "后会无期"
 horizontal_alignment = 1
+autowrap_mode = 2
 
 [node name="Label56" type="Label" parent="Control/VBoxContainer11"]
 modulate = Color(0, 0, 0, 1)
@@ -739,6 +764,7 @@ theme = ExtResource("3_bstat")
 theme_override_font_sizes/font_size = 128
 text = "后面的路只能由你自己走了"
 horizontal_alignment = 1
+autowrap_mode = 2
 
 [node name="Label55" type="Label" parent="Control/VBoxContainer11"]
 modulate = Color(0, 0, 0, 1)
@@ -747,6 +773,7 @@ theme = ExtResource("3_bstat")
 theme_override_font_sizes/font_size = 128
 text = "最终还是来了么"
 horizontal_alignment = 1
+autowrap_mode = 2
 
 [node name="Label54" type="Label" parent="Control/VBoxContainer11"]
 modulate = Color(0, 0, 0, 1)
@@ -755,16 +782,17 @@ theme = ExtResource("3_bstat")
 theme_override_font_sizes/font_size = 128
 text = "嗯？。怎么快"
 horizontal_alignment = 1
+autowrap_mode = 2
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Label" type="Label" parent="CanvasLayer"]
 modulate = Color(1, 1, 1, 0.392157)
 texture_filter = 1
-offset_left = 2824.0
-offset_top = 1893.0
-offset_right = 3683.0
-offset_bottom = 2021.0
+offset_left = 138.0
+offset_top = 104.0
+offset_right = 997.0
+offset_bottom = 232.0
 theme = ExtResource("3_bstat")
 theme_override_font_sizes/font_size = 96
 text = "按 Q 跳过 剧情模式"
