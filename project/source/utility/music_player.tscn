@@ -15,6 +15,11 @@ extends Node
 @onready var sound_name = $Control/Panel/Label
 @onready var player = $AudioStreamPlayer
 
+@onready var play_button = $Control/Panel/HBoxContainer/Button2
+
+var play_button_stop = preload(\"res://resource/ui/music_player_2.png\")
+var play_button_play = preload(\"res://resource/ui/music_player_3.png\")
+
 var path = \"resource/music_TreeStarMoon_CC0PublicDomain/\"
 var music_dict = {
 					'TreeStarMoon_CC0PublicDomain':[],
@@ -25,6 +30,12 @@ func _ready():
 	music_dict['TreeStarMoon_CC0PublicDomain'] = Global.traverse(path)
 	
 	change_music()
+	
+func _process(delta):
+	if player.stream_paused == true:
+		play_button.icon = play_button_play
+	else:
+		play_button.icon = play_button_stop
 	
 func change_music():
 	var player_sound = music_dict['TreeStarMoon_CC0PublicDomain'][randi_range(0,len(music_dict['TreeStarMoon_CC0PublicDomain'])-1)]
