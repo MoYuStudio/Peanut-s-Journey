@@ -10,8 +10,10 @@ extends Car
 @onready var camera = $Camera
 
 @onready var ray_cast = preload('res://source/attack/ray_cast.tscn')
+@onready var electric_field = preload('res://source/attack/electric_field.tscn')
 
 var ray_cast_attack
+var electric_field_attack
 
 func _ready():
 	camera.rotation = 90
@@ -43,12 +45,25 @@ func physics_process(delta):
 				# ray_cast_attack.rotation = get_local_mouse_position()
 				# ray_cast_attack.look_at(get_local_mouse_position())
 				add_child(ray_cast_attack)
-		
+				
+	if Global.player_dict['electric_field_level'] == 0:
+		pass
+	if Global.player_dict['electric_field_level'] > 0:
+		if $ElectricField != null:
+			pass
+		else:
+			electric_field_attack = electric_field.instantiate()
+			# electric_field_attack.target = get_local_mouse_position()
+			electric_field_attack.level = Global.player_dict['electric_field_level']
+			electric_field_attack.name = 'ElectricField'
+			# ray_cast_attack.position = body.position
+			# ray_cast_attack.rotation = get_local_mouse_position()
+			# ray_cast_attack.look_at(get_local_mouse_position())
+			add_child(electric_field_attack)
 		
 	if Input.is_action_just_released('mouse_left'):
 		if $RayCast != null:
 			$RayCast.switch = false
-
 		
 	if Input.is_action_pressed('mouse_left'):
 		if $RayCast != null:

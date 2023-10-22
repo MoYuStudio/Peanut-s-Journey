@@ -41,6 +41,7 @@ var player_dict = {
 	'bullet_level':0,
 	'ice_wall_level':0,
 	'ray_cast_level':0,
+	'electric_field_level':0,
 	# 符文
 	'rune_0':0,
 	'rune_1':0,
