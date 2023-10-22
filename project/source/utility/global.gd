@@ -29,9 +29,9 @@ var player_dict = {
 	'rotation':0.0,
 	
 	'money':1000,
-	'hp':1000,
+	'hp':100,
 	# 基础升级
-	'hp_max':1000, 
+	'hp_max':100, 
 	'hp_auto_add':0,
 	'grab_area_size':256,
 	'hit_damage':10,

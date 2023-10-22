@@ -44,7 +44,7 @@ var enemy_close = []
 
 # Attacks
 @onready var gun = $Body/Attack/Gun
-@onready var bullet = preload('res://source/attack/arrow.tscn')
+@onready var bullet = preload('res://source/attack/bullet.tscn')
 @onready var bullet_timer = $Body/Attack/BulletTimer
 @onready var bullet_attack_timer = $Body/Attack/BulletTimer/BulletAttackTimer
 var bullet_attack_speed = 0.1 # 0.1

@@ -26,7 +26,7 @@ var death_coin = preload('res://source/loot/coin.tscn')
 @onready var arrow = preload('res://source/attack/arrow.tscn')
 @onready var arrow_timer = $Attack/ArrowTimer
 var arrow_level = 1
-var arrow_attack_speed = 1 # 0.1
+var arrow_attack_speed = 0.6 # 0.1
 
 # var screen_size
 
@@ -65,7 +65,6 @@ func _on_hurt_box_hurt(damage, angle, knock_back_amount):
 	knock_back = angle * knock_back_amount
 	if hp <= 0:
 		death()
-		
 
 func _on_arrow_timer_timeout():
 	# if len(enemy_close) > 1:
@@ -119,9 +118,8 @@ collision_layer = 20
 collision_mask = 20
 safe_margin = 0.1
 script = SubResource("GDScript_3nnkj")
-movement_speed = 100.0
-hp = 1000
-knock_back_recovery = 3.5
+movement_speed = 200.0
+hp = 30
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
 texture_filter = 1
@@ -138,7 +136,7 @@ position = Vector2(-18, 0)
 [node name="Polygon2D" type="Polygon2D" parent="."]
 scale = Vector2(0.630137, 1.55645)
 color = Color(0.984314, 0.254902, 0.329412, 1)
-polygon = PackedVector2Array(-100, 50, 200, 0, -100, -50)
+polygon = PackedVector2Array(-30.1522, 14.1347, 46.0217, 11.5648, 200, 0, 46.0217, -13.4922, -30.1522, -14.7772, 0, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(28, 0)
@@ -172,7 +170,6 @@ autoplay = true
 [node name="Attack" type="Node2D" parent="."]
 
 [node name="ArrowTimer" type="Timer" parent="Attack"]
-wait_time = 10.0
 
 [connection signal="hurt" from="HurtBox" to="." method="_on_hurt_box_hurt"]
 [connection signal="timeout" from="Attack/ArrowTimer" to="." method="_on_arrow_timer_timeout"]

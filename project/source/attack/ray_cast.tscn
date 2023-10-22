@@ -13,9 +13,9 @@ extends Area2D
 signal remove_from_array(object)
 
 var level = 1
-var hp = 10
+var hp = 1
 var speed = 1000
-var damage = 5
+var damage = 2
 var attack_size = 1.0
 
 var switch = true
@@ -31,7 +31,7 @@ func _ready():
 	# rotation = angle.angle() + deg_to_rad(135)
 	match level:
 		1:
-			hp = 10
+			hp = 1
 			speed = 800
 			damage = 2
 			attack_size = 1.0
