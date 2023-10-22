@@ -69,11 +69,11 @@ scale = Vector2(3.41478, 1)
 polygon = PackedVector2Array(-263.56, 538, -1074.45, -1060, -1233.46, -5806, -264.439, -7597, -280.545, -41999, -753.196, -43866, -246.868, -45974, -296.652, -50935, -605.31, -67403, -191.228, -68726, -164.579, -72603, -5760.25, -71543, -4125.01, 39246, -106.888, 38378, -54.4691, 31953, -722.155, 32021, -1136.24, 28760, -393.29, 24349)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
-position = Vector2(30164, -30061)
-polygon = PackedVector2Array(2500, 2000, 500, 2000, 500, 5500, -500, 5500, -500, 2000, -2600, 2000, -3600, 0, -2600, -2000, -500, -2000, -500, -5500, 0, -5500, 0, -6000, -9000, -6000, -9000, 6000, 9000, 6000, 9000, -6000, 0, -6000, 0, -5500, 500, -5500, 500, -2000, 2500, -2000, 3500, 0)
+position = Vector2(-2021, -50786)
+polygon = PackedVector2Array(3603, 54371, 866, 54462, 11.8867, -44488.5, 1904, -46590, 983, -49980, -15968, -47050, -11098, 62540, 16179, 62419, 17056, -47178, 1877, -50630, 2001, -46590, 3477.46, -44270.8)
 
 [node name="Light" type="Node2D" parent="."]
-position = Vector2(49178, -30463)
+position = Vector2(-19, -32181)
 
 [node name="PointLight2D" type="PointLight2D" parent="Light"]
 position = Vector2(-2000, -1600)
@@ -109,10 +109,10 @@ texture_scale = 8.0
 
 [node name="Wall" type="Node2D" parent="."]
 z_index = 3
-position = Vector2(48765, -25847)
+position = Vector2(-28, -72832)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Wall"]
-position = Vector2(-49238, -46550)
+position = Vector2(-478, 572)
 collision_layer = 15
 collision_mask = 15
 
@@ -122,6 +122,7 @@ offset_top = -128.0
 offset_right = 128.0
 offset_bottom = 128.0
 color = Color(0.56, 0.83, 2, 1)
+metadata/_edit_use_anchors_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Wall/StaticBody2D"]
 shape = SubResource("RectangleShape2D_nj4wx")
@@ -137,7 +138,7 @@ damage = 10
 shape = SubResource("RectangleShape2D_x4lhq")
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="Wall"]
-position = Vector2(-48322, -47057)
+position = Vector2(438, 65)
 collision_layer = 15
 collision_mask = 15
 
@@ -147,6 +148,7 @@ offset_top = -128.0
 offset_right = 128.0
 offset_bottom = 128.0
 color = Color(0.56, 0.83, 2, 1)
+metadata/_edit_use_anchors_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Wall/StaticBody2D2"]
 shape = SubResource("RectangleShape2D_nj4wx")
@@ -162,7 +164,7 @@ damage = 10
 shape = SubResource("RectangleShape2D_h158p")
 
 [node name="StaticBody2D3" type="StaticBody2D" parent="Wall"]
-position = Vector2(-49042, -47580)
+position = Vector2(-282, -458)
 collision_layer = 15
 collision_mask = 15
 
@@ -172,6 +174,7 @@ offset_top = -128.0
 offset_right = 128.0
 offset_bottom = 128.0
 color = Color(0.56, 0.83, 2, 1)
+metadata/_edit_use_anchors_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Wall/StaticBody2D3"]
 shape = SubResource("RectangleShape2D_nj4wx")
@@ -187,7 +190,7 @@ damage = 10
 shape = SubResource("RectangleShape2D_g5p5n")
 
 [node name="StaticBody2D4" type="StaticBody2D" parent="Wall"]
-position = Vector2(-48505, -48135)
+position = Vector2(255, -1013)
 collision_layer = 15
 collision_mask = 15
 
@@ -197,6 +200,7 @@ offset_top = -128.0
 offset_right = 128.0
 offset_bottom = 128.0
 color = Color(0.56, 0.83, 100, 1)
+metadata/_edit_use_anchors_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Wall/StaticBody2D4"]
 shape = SubResource("RectangleShape2D_nj4wx")
