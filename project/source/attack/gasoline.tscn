@@ -7,7 +7,7 @@
 [sub_resource type="GDScript" id="GDScript_0gpna"]
 script/source = "# time的时间小范围随机。改变丢的位置。   你看看 和怪的碰撞 要不要写，两个画到时候再改 
 # 到时候添加就随机丢，不用瞄准了
-
+# 还有声音什么的
 extends Area2D
 
 @onready var boss = get_tree().get_first_node_in_group('boss')
