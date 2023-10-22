@@ -58,6 +58,7 @@ var player_dict = {
 	'kill':0,
 	'ice_wall':0,
 	# 剧情模式
+	'story_mode':false,
 	'movement_lock':false,
 }
 

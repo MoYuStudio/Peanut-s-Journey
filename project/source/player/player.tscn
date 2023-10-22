@@ -54,7 +54,6 @@ var bullet_attack_speed = 0.1 # 0.1
 # 进程函数 ==============================================================
 
 func _ready():
-	
 	#position.x = float(Global.player_dict['position'][0])
 	#position.y = float(Global.player_dict['position'][1])
 	#rotation = float(Global.player_dict['rotation'])
@@ -275,7 +274,7 @@ func _ready():
 	pass
 
 func _physics_process(delta):
-	if get_tree().paused:
+	if get_tree().paused or Global.player_dict['story_mode']:
 		hide()
 	else:
 		show()
@@ -571,10 +570,10 @@ libraries = {
 [node name="InfoBar" type="Control" parent="GUI/Control"]
 layout_mode = 3
 anchors_preset = 0
-offset_left = 107.0
-offset_top = 794.0
-offset_right = 1236.0
-offset_bottom = 965.0
+offset_left = 39.0
+offset_top = 672.0
+offset_right = 1168.0
+offset_bottom = 843.0
 
 [node name="Sprite2D" type="Sprite2D" parent="GUI/Control/InfoBar"]
 texture_filter = 1
@@ -604,37 +603,46 @@ theme_override_font_sizes/font_size = 128
 text = "0"
 script = SubResource("GDScript_pbsv1")
 
-[node name="Panel" type="Panel" parent="GUI/Control"]
-layout_mode = 0
-offset_left = 128.0
-offset_top = 128.0
-offset_right = 728.0
-offset_bottom = 728.0
-theme = ExtResource("14_k4l4r")
+[node name="MiniMap" type="Control" parent="GUI/Control"]
+anchors_preset = 0
+offset_right = 614.0
+offset_bottom = 615.0
 
-[node name="MarginContainer" type="MarginContainer" parent="GUI/Control/Panel"]
+[node name="MarginContainer" type="MarginContainer" parent="GUI/Control/MiniMap"]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
-theme_override_constants/margin_left = 42
-theme_override_constants/margin_top = 42
+theme_override_constants/margin_left = 64
+theme_override_constants/margin_top = 64
 
-[node name="SubViewportContainer" type="SubViewportContainer" parent="GUI/Control/Panel/MarginContainer"]
+[node name="Panel" type="Panel" parent="GUI/Control/MiniMap/MarginContainer"]
+custom_minimum_size = Vector2(576, 576)
+layout_mode = 2
+theme = ExtResource("14_k4l4r")
+
+[node name="MarginContainer" type="MarginContainer" parent="GUI/Control/MiniMap/MarginContainer/Panel"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="GUI/Control/MiniMap/MarginContainer/Panel/MarginContainer"]
 layout_mode = 2
 script = SubResource("GDScript_sdadq")
 
-[node name="SubViewport" type="SubViewport" parent="GUI/Control/Panel/MarginContainer/SubViewportContainer"]
+[node name="SubViewport" type="SubViewport" parent="GUI/Control/MiniMap/MarginContainer/Panel/MarginContainer/SubViewportContainer"]
 handle_input_locally = false
 render_target_update_mode = 4
 
-[node name="Camera2D" type="Camera2D" parent="GUI/Control/Panel/MarginContainer/SubViewportContainer/SubViewport"]
+[node name="Camera2D" type="Camera2D" parent="GUI/Control/MiniMap/MarginContainer/Panel/MarginContainer/SubViewportContainer/SubViewport"]
 zoom = Vector2(0.1, 0.1)
 
-[node name="Map" type="Sprite2D" parent="GUI/Control/Panel/MarginContainer/SubViewportContainer/SubViewport"]
+[node name="Map" type="Sprite2D" parent="GUI/Control/MiniMap/MarginContainer/Panel/MarginContainer/SubViewportContainer/SubViewport"]
 scale = Vector2(16, 16)
 texture = ExtResource("14_aavxw")
 
-[node name="Sprite" type="Sprite2D" parent="GUI/Control/Panel/MarginContainer/SubViewportContainer"]
+[node name="Sprite" type="Sprite2D" parent="GUI/Control/MiniMap/MarginContainer/Panel/MarginContainer/SubViewportContainer"]
 modulate = Color(1, 1.5, 1.5, 1)
 z_index = 1
 texture_filter = 1

@@ -11,6 +11,8 @@ extends Node
 func _ready():
 	MusicPlayer.hide()
 	MusicPlayer.player.stream_paused = true
+	
+	Global.player_dict['story_mode'] = true
 	Global.player_dict['movement_lock'] = true
 
 func _physics_process(delta):
@@ -49,22 +51,13 @@ offset_bottom = 387.0
 [node name="InfoBar" parent="Player/GUI/Control" index="1"]
 visible = false
 
-[node name="Panel" parent="Player/GUI/Control" index="2"]
-visible = false
-offset_left = 0.0
-offset_top = 0.0
-offset_right = 600.0
-offset_bottom = 600.0
-
-[node name="SubViewport" parent="Player/GUI/Control/Panel/MarginContainer/SubViewportContainer" index="0"]
-render_target_update_mode = 0
-
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_mrucn")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="OldTVFilter" type="ColorRect" parent="CanvasLayer"]
+modulate = Color(1, 1, 1, 0.0117647)
 material = ExtResource("3_b55a0")
 offset_left = -5027.0
 offset_top = -1689.0
