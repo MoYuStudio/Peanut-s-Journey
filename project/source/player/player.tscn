@@ -111,32 +111,29 @@ func _physics_process(delta):
 	
 
 func attack():
-	if Global.player_dict['bullet_level'] == 0:
-		# gun.hide()
-		pass
-		
-	if Global.player_dict['bullet_level'] > 0:
-		gun.show()
-		bullet_timer.wait_time = bullet_attack_speed
-		if bullet_timer.is_stopped():
-			bullet_timer.start()
+	bullet_timer.wait_time = bullet_attack_speed
+	if bullet_timer.is_stopped():
+		bullet_timer.start()
 
 # 信号 ================================================================
 
 # 子弹信号
 func _on_bullet_timer_timeout():
-	# if len(enemy_close) > 1:
-	var bullet_attack = bullet.instantiate()
-	# bullet_attack.target = get_local_mouse_position()# get_random_target()
-	bullet_attack.level = Global.player_dict['bullet_level']
-	bullet_attack.position.x = body.position.x+3
-	bullet_attack.position.y = body.position.y
-	# bullet_attack.rotation = gun.rotation + 44
-	bullet_attack.target = get_global_mouse_position() # body.get_global_mouse_position()
-	bullet_attack.look_at(get_global_mouse_position())
-	# gun.look_at(get_global_mouse_position())
-	get_parent().add_child(bullet_attack)
-		
+	if Global.player_dict['bullet_level'] == 0:
+		pass
+	if Global.player_dict['bullet_level'] > 0:
+		# if len(enemy_close) > 1:
+		var bullet_attack = bullet.instantiate()
+		# bullet_attack.target = get_local_mouse_position()# get_random_target()
+		bullet_attack.level = Global.player_dict['bullet_level']
+		bullet_attack.position.x = body.position.x+3
+		bullet_attack.position.y = body.position.y
+		# bullet_attack.rotation = gun.rotation + 44
+		bullet_attack.target = get_global_mouse_position() # body.get_global_mouse_position()
+		bullet_attack.look_at(get_global_mouse_position())
+		# gun.look_at(get_global_mouse_position())
+		get_parent().add_child(bullet_attack)
+			
 		
 			
 func get_random_target():

@@ -7,8 +7,6 @@
 script/source = "
 extends Node
 
-var step = 0
-
 func _ready():
 	MusicPlayer.hide()
 	MusicPlayer.player.stream_paused = true
