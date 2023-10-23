@@ -28,11 +28,11 @@ var player_dict = {
 	'position':[0.0,0.0],
 	'rotation':0.0,
 	
-	'money':10000,
-	'hp':1000,
+	'money':1000,
+	'hp':100,
 	# 基础升级
-	'hp_max':1000, 
-	'hp_auto_add':0,
+	'hp_max':100, 
+	'hp_auto_add':3,
 	'grab_area_size':256,
 	'hit_damage':10,
 	'money_drop':50,

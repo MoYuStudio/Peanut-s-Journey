@@ -10,7 +10,6 @@ extends Node
 @onready var map = $Map
 @onready var map_door = $Map/Door
 @onready var map_door_animation = $Map/Door/AnimationPlayer
-#@onready var enemy_spawner = $Map/EnemySpawner
 @onready var next_part = $Map/NextPart
 
 @onready var play = $Player
@@ -21,21 +20,9 @@ extends Node
 var map_list = []
 
 func _ready():
-	#for num in range(1, 6):
-	#	var map_preload = load('res://source/map/map' + str(num) + '.tscn')
-	#	map_list.append(map_preload)
-	
-	#next_part.visible = false
-	#next_part.collision.disabled = true
-	
-	#var night_mode = Global.night_node
-	#if night_mode:
-	#	night_mode_switch_on()
-	#else:
-	#	night_mode_switch_off()
 	pass
 
-func _process(delta):
+func _physics_process(delta):
 	if map.door_switch == true:
 		play_camera.position = Vector2(map_door.position.x,map_door.position.y-250)
 		play_camera.rotation = map_door.rotation
@@ -45,47 +32,13 @@ func _process(delta):
 		play_camera.rotation = play_body.rotation
 		map.door_switch = false
 		play_hp.visible = true
-	pass
-
-func _physics_process(delta):
 	
 	if play.level_switch == true:
 		play_body.position = Vector2(0,5000)
-	'''
-	if enemy_spawner != null:
-		if enemy_spawner.time >= map.map_time and enemy_spawner.my_children.size() <= 1:
-			next_part.visible = true
-			next_part.collision.disabled = false
-			
-			if play.level_switch == true:
-				var map_level = map.map_level
-		
-				map.queue_free()
-				
-				map = map_list[map_level].instantiate()
-				add_child(map)
-				map.set_name('Map'+str(map_level+1))
-				
-				map = get_node('Map'+str(map_level+1))
-				enemy_spawner = get_node('Map'+str(map_level+1)+'/EnemySpawner')
-				next_part = get_node('Map'+str(map_level+1)+'/TileMap/NextPart')
-				
-				next_part.visible = false
-				next_part.collision.disabled = true
-				
-				play.position = Vector2.ZERO
-				play.level_animation.play('animation')
-				play.level_switch = false
-	'''
-	pass
-func night_mode_switch_on():
-	$CanvasModulate.visible = true
-	$Player/Body/Light.visible = true
-	
-func night_mode_switch_off():
-	$CanvasModulate.visible = false
-	$Player/Body/Light.visible = false
-	
+		play.level_switch = false
+		$Map/Door.close()
+		$Map/Door2.open()
+		$Map.door_2_lock = false
 "
 
 [sub_resource type="Environment" id="Environment_gdbnm"]

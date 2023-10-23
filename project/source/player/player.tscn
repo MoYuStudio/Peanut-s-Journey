@@ -35,7 +35,7 @@ extends Node2D
 @onready var money_label = $GUI/InfoBar/Money
 
 var level_switch = false
-@onready var level = $GUI/Level
+@onready var level = $GUI/Control/Level
 @onready var level_animation = $GUI/Level/AnimationPlayer
 
 @onready var prize_draw = preload('res://source/object/prize_draw.tscn')
@@ -570,7 +570,7 @@ offset_right = 2424.0
 offset_bottom = 765.0
 theme_override_fonts/font = ExtResource("11_oxdnj")
 theme_override_font_sizes/font_size = 256
-text = "0"
+text = "1"
 horizontal_alignment = 1
 script = SubResource("GDScript_8bluy")
 
