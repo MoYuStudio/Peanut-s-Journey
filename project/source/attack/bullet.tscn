@@ -69,6 +69,12 @@ func _ready():
 			damage = 16
 			knock_back = 200
 			attack_size = 1.0
+		6:
+			hp = 5
+			speed = 2000
+			damage = 16
+			knock_back = 200
+			attack_size = 1.0
 
 func _physics_process(delta):
 	position += angle * speed * delta

@@ -43,6 +43,36 @@ func _ready():
 			damage = 80
 			knock_back = 100
 			attack_size = 1.0
+		2:
+			hp = 100
+			speed = 600
+			damage = 80
+			knock_back = 100
+			attack_size = 1.0
+		3:
+			hp = 100
+			speed = 600
+			damage = 80
+			knock_back = 100
+			attack_size = 1.0
+		4:
+			hp = 100
+			speed = 600
+			damage = 80
+			knock_back = 100
+			attack_size = 1.0
+		5:
+			hp = 100
+			speed = 600
+			damage = 80
+			knock_back = 100
+			attack_size = 1.0
+		6:
+			hp = 100
+			speed = 600
+			damage = 80
+			knock_back = 100
+			attack_size = 1.0
 			
 
 func _physics_process(delta):

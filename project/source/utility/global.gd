@@ -38,10 +38,10 @@ var player_dict = {
 	'money_drop':50,
 	'money_multiple':1.0,
 	# 武器升级
-	'bullet_level':1,
-	'ice_wall_level':1,
-	'ray_cast_level':1,
-	'electric_field_level':1,
+	'bullet_level':0,
+	'ice_wall_level':0,
+	'ray_cast_level':0,
+	'electric_field_level':0,
 	# 符文
 	'rune_0':10,
 	'rune_1':10,

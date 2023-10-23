@@ -9,6 +9,7 @@ script/source = "
 extends Node
 
 func _ready():
+	Global.save_data('player',Global.player_dict)
 	MusicPlayer.hide()
 	MusicPlayer.player.stream_paused = true
 	
@@ -41,6 +42,18 @@ position = Vector2(0, 0)
 [node name="Camera" parent="Player/Body" index="0"]
 zoom = Vector2(2, 2)
 
+[node name="Label" parent="Player/GUI/Paused/Panel/TabContainer/升级/TabContainer/武器升级" index="1"]
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 799.0
+offset_bottom = 125.0
+
+[node name="Label2" parent="Player/GUI/Paused/Panel/TabContainer/升级/TabContainer/武器升级" index="2"]
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 528.0
+offset_bottom = 256.0
+
 [node name="Level" parent="Player/GUI/Control" index="0"]
 visible = false
 offset_left = 0.0
@@ -59,10 +72,10 @@ environment = SubResource("Environment_mrucn")
 [node name="OldTVFilter" type="ColorRect" parent="CanvasLayer"]
 modulate = Color(1, 1, 1, 0.0117647)
 material = ExtResource("3_b55a0")
-offset_left = -5027.0
-offset_top = -1689.0
-offset_right = 8733.0
-offset_bottom = 4341.0
+offset_left = -1920.0
+offset_top = -1080.0
+offset_right = 5760.0
+offset_bottom = 3240.0
 color = Color(1, 1, 1, 0)
 
 [editable path="MapInit"]
