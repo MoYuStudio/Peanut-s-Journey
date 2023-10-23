@@ -5,7 +5,7 @@ script/source = "
 extends HSlider
 
 @export var bus_name:String
-@export var bus_index:int
+var bus_index:int
 
 func _ready():
 	bus_index = AudioServer.get_bus_index(bus_name)
@@ -24,5 +24,7 @@ func _value_changed(value):
 
 [node name="VolumeSlider" type="HSlider"]
 custom_minimum_size = Vector2(900, 87)
-value = 50.0
+min_value = -10.0
+max_value = 10.0
+step = 0.01
 script = SubResource("GDScript_hwpku")

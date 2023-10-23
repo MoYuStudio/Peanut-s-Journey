@@ -89,7 +89,7 @@ Q={
 
 [internationalization]
 
-locale/translations=PackedStringArray("res://data/language.en.translation", "res://data/language.zh.translation")
+locale/translations=PackedStringArray("res://resource/language/language.en.translation", "res://resource/language/language.zh.translation")
 locale/test="en"
 
 [layer_names]

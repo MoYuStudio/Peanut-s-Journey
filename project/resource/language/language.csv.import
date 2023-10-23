@@ -1,0 +1,17 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://bhqty18tndicw"
+
+[deps]
+
+files=["res://resource/language/language.zh.translation", "res://resource/language/language.en.translation", "res://resource/language/language..translation", "res://resource/language/language..translation", "res://resource/language/language..translation", "res://resource/language/language..translation", "res://resource/language/language..translation", "res://resource/language/language..translation", "res://resource/language/language..translation", "res://resource/language/language..translation", "res://resource/language/language..translation", "res://resource/language/language..translation", "res://resource/language/language..translation", "res://resource/language/language..translation", "res://resource/language/language..translation", "res://resource/language/language..translation", "res://resource/language/language..translation", "res://resource/language/language..translation", "res://resource/language/language..translation"]
+
+source_file="res://resource/language/language.csv"
+dest_files=["res://resource/language/language.zh.translation", "res://resource/language/language.en.translation", "res://resource/language/language..translation", "res://resource/language/language..translation", "res://resource/language/language..translation", "res://resource/language/language..translation", "res://resource/language/language..translation", "res://resource/language/language..translation", "res://resource/language/language..translation", "res://resource/language/language..translation", "res://resource/language/language..translation", "res://resource/language/language..translation", "res://resource/language/language..translation", "res://resource/language/language..translation", "res://resource/language/language..translation", "res://resource/language/language..translation", "res://resource/language/language..translation", "res://resource/language/language..translation", "res://resource/language/language..translation"]
+
+[params]
+
+compress=true
+delimiter=0
