@@ -137,7 +137,7 @@ position = Vector2(-18, 0)
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
 color = Color(0.984314, 0.72549, 0.329412, 1)
-polygon = PackedVector2Array(-135, 25, -30, 32, -25, 132, -1, 75, 29, 133, 30, 32, 139, 30, 97, 0, 142, -21, 30, -24, 25, -122, -1, -69, -30, -123, -33, -23, -136, -23, -83, 2)
+polygon = PackedVector2Array(-89, 27, -30, 32, -26, 91, 0, 32, 28, 90, 30, 32, 91, 28, 31, 0, 92, -23, 30, -24, 27, -90, 0, -23, -32, -88, -33, -23, -91, -21, -31, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_edhxe")
@@ -152,7 +152,6 @@ shape = SubResource("CircleShape2D_e53nk")
 
 [node name="AudioStreamPlayer2D" parent="HurtBox" index="2"]
 stream = ExtResource("4_d64p2")
-bus = &"SFX"
 
 [node name="HitBox" parent="." instance=ExtResource("5_wvh2a")]
 collision_layer = 2

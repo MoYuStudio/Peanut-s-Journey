@@ -42,12 +42,6 @@ position = Vector2(0, 0)
 [node name="Camera" parent="Player/Body" index="0"]
 zoom = Vector2(2, 2)
 
-[node name="状态" parent="Player/GUI/Paused/Panel/TabContainer" index="1"]
-visible = true
-
-[node name="升级" parent="Player/GUI/Paused/Panel/TabContainer" index="2"]
-visible = false
-
 [node name="Level" parent="Player/GUI/Control" index="0"]
 visible = false
 offset_left = 0.0
@@ -62,10 +56,8 @@ visible = false
 environment = SubResource("Environment_mrucn")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-visible = false
 
 [node name="OldTVFilter" type="ColorRect" parent="CanvasLayer"]
-visible = false
 modulate = Color(1, 1, 1, 0.0117647)
 material = ExtResource("3_b55a0")
 offset_left = -1920.0

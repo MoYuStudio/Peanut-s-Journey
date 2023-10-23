@@ -15,6 +15,8 @@ extends Node2D
 @onready var enemy1 = preload(\"res://source/enemy/enemy1.tscn\")
 @onready var archer = preload(\"res://source/enemy/archer.tscn\")
 
+@onready var boss = preload(\"res://source/enemy/boss.tscn\")
+
 @onready var rooms = $Rooms
 @onready var enemy_spawner = $EnemySpawner
 
@@ -26,15 +28,15 @@ func _ready():
 	# 创建SpawnInfo资源
 	var spawn_info = SpawnInfo.new()
 	spawn_info.time_start = 0
-	spawn_info.time_end = 30
+	spawn_info.time_end = 20
 	spawn_info.enemy = enemy
-	spawn_info.enemy_num = 60
+	spawn_info.enemy_num = 50
 	spawn_info.enemy_spawn_delay = 1
 	enemy_spawner.spawns.append(spawn_info)
 	
 	spawn_info = SpawnInfo.new()
 	spawn_info.time_start = 0
-	spawn_info.time_end = 30
+	spawn_info.time_end = 20
 	spawn_info.enemy = enemy1
 	spawn_info.enemy_num = 15
 	spawn_info.enemy_spawn_delay = 1
@@ -42,17 +44,25 @@ func _ready():
 	
 	spawn_info = SpawnInfo.new()
 	spawn_info.time_start = 0
-	spawn_info.time_end = 30
+	spawn_info.time_end = 20
 	spawn_info.enemy = archer
 	spawn_info.enemy_num = 10
 	spawn_info.enemy_spawn_delay = 1
+	enemy_spawner.spawns.append(spawn_info)
+	
+	spawn_info = SpawnInfo.new()
+	spawn_info.time_start = 20
+	spawn_info.time_end = 20
+	spawn_info.enemy = boss
+	spawn_info.enemy_num = 1
+	spawn_info.enemy_spawn_delay = 0
 	enemy_spawner.spawns.append(spawn_info)
 	
 func _process(delta):
 	pass
 	
 func _physics_process(delta):
-	if enemy_spawner.time >= 30 and enemy_spawner.my_children.size() <= 1 and door_switch == false and door_once == 0:
+	if enemy_spawner.time >= 30+3 and enemy_spawner.my_children.size() <= 1 and door_switch == false and door_once == 0:
 		$Door.open()
 		door_switch = true
 		door_once += 1
