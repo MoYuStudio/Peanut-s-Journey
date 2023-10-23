@@ -218,6 +218,7 @@ shape = SubResource("RectangleShape2D_5h1o7")
 stream = ExtResource("3_egh6s")
 volume_db = -3.0
 autoplay = true
+bus = &"SFX"
 
 [connection signal="finished" from="AudioStreamPlayer2D" to="." method="_on_audio_player_finished"]
 

@@ -124,3 +124,4 @@ libraries = {
 stream = ExtResource("2_koyle")
 volume_db = 6.4
 autoplay = true
+bus = &"SFX"

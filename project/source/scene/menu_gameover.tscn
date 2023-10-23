@@ -56,3 +56,4 @@ script = SubResource("GDScript_vhbo6")
 stream = ExtResource("4_5evh3")
 volume_db = -10.0
 autoplay = true
+bus = &"SFX"

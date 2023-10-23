@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://bdcbyd1c1daqn"]
+[gd_scene load_steps=10 format=3 uid="uid://bdcbyd1c1daqn"]
 
 [ext_resource type="FontFile" uid="uid://dwo3w3m0bti6d" path="res://resource/font/YouSheBiaoTiHei.ttf" id="1_8ogvg"]
 [ext_resource type="Theme" uid="uid://cwvilb81l6i31" path="res://resource/theme/moyu.tres" id="2_81j4f"]
+[ext_resource type="PackedScene" uid="uid://ckerb2cw4aont" path="res://source/object/volume_slider.tscn" id="3_myh7w"]
 
 [sub_resource type="GDScript" id="GDScript_q6h71"]
 script/source = "
@@ -88,6 +89,7 @@ theme = ExtResource("2_81j4f")
 theme_override_constants/side_margin = 36
 
 [node name="显示" type="TabBar" parent="TabContainer"]
+visible = false
 layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="TabContainer/显示"]
@@ -211,7 +213,6 @@ text = "窗口位置修复"
 script = SubResource("GDScript_4dl4j")
 
 [node name="音效" type="TabBar" parent="TabContainer"]
-visible = false
 layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="TabContainer/音效"]
@@ -245,20 +246,17 @@ text = "音效"
 [node name="Setting" type="VBoxContainer" parent="TabContainer/音效/MarginContainer/HBoxContainer"]
 layout_mode = 2
 
-[node name="HSlider" type="HSlider" parent="TabContainer/音效/MarginContainer/HBoxContainer/Setting"]
-custom_minimum_size = Vector2(900, 87)
+[node name="VolumeSlider" parent="TabContainer/音效/MarginContainer/HBoxContainer/Setting" instance=ExtResource("3_myh7w")]
 layout_mode = 2
-value = 50.0
+bus_name = "Mester"
 
-[node name="HSlider2" type="HSlider" parent="TabContainer/音效/MarginContainer/HBoxContainer/Setting"]
-custom_minimum_size = Vector2(900, 87)
+[node name="VolumeSlider2" parent="TabContainer/音效/MarginContainer/HBoxContainer/Setting" instance=ExtResource("3_myh7w")]
 layout_mode = 2
-value = 50.0
+bus_name = "BGM"
 
-[node name="HSlider3" type="HSlider" parent="TabContainer/音效/MarginContainer/HBoxContainer/Setting"]
-custom_minimum_size = Vector2(900, 87)
+[node name="VolumeSlider3" parent="TabContainer/音效/MarginContainer/HBoxContainer/Setting" instance=ExtResource("3_myh7w")]
 layout_mode = 2
-value = 50.0
+bus_name = "SFX"
 
 [connection signal="pressed" from="Button" to="." method="_on_save_button_pressed"]
 [connection signal="item_selected" from="TabContainer/显示/MarginContainer/HBoxContainer/Setting/WindowMode" to="." method="_on_window_mode_item_selected"]

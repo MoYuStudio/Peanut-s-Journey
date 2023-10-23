@@ -112,3 +112,4 @@ one_shot = true
 stream = ExtResource("2_p1pmy")
 volume_db = -10.0
 autoplay = true
+bus = &"SFX"

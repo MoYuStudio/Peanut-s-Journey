@@ -178,6 +178,7 @@ libraries = {
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_riqte")
 autoplay = true
+bus = &"SFX"
 
 [node name="Button" type="Button" parent="."]
 visible = false

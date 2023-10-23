@@ -1,0 +1,28 @@
+[gd_scene load_steps=2 format=3 uid="uid://ckerb2cw4aont"]
+
+[sub_resource type="GDScript" id="GDScript_hwpku"]
+script/source = "
+extends HSlider
+
+@export var bus_name:String
+@export var bus_index:int
+
+func _ready():
+	bus_index = AudioServer.get_bus_index(bus_name)
+	value_changed.connect(_value_changed)
+	
+	value = db_to_linear(
+		AudioServer.get_bus_volume_db(bus_index)
+	)
+
+func _value_changed(value):
+	AudioServer.set_bus_volume_db(
+		bus_index,
+		linear_to_db(value)
+	)
+"
+
+[node name="VolumeSlider" type="HSlider"]
+custom_minimum_size = Vector2(900, 87)
+value = 50.0
+script = SubResource("GDScript_hwpku")

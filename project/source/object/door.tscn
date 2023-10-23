@@ -218,3 +218,4 @@ libraries = {
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("1_inu22")
 volume_db = -10.0
+bus = &"SFX"

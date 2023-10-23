@@ -482,6 +482,7 @@ shape = SubResource("CapsuleShape2D_c6bq5")
 
 [node name="AudioStreamPlayer2D" parent="Body/HurtBox" index="2"]
 stream = ExtResource("7_hdkaj")
+bus = &"SFX"
 
 [node name="HitBox" parent="Body" instance=ExtResource("3_a75go")]
 rotation = 1.5708
@@ -659,6 +660,7 @@ texture = ExtResource("15_srm3l")
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("9_yx8xc")
 volume_db = -20.0
+bus = &"SFX"
 
 [connection signal="timeout" from="Body/Camera/HP/Timer" to="." method="_on_hp_timer_timeout"]
 [connection signal="timeout" from="Body/Attack/BulletTimer" to="." method="_on_bullet_timer_timeout"]

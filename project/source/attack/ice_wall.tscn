@@ -144,6 +144,7 @@ autostart = true
 stream = ExtResource("1_gmwvp")
 volume_db = -13.0
 autoplay = true
+bus = &"SFX"
 
 [node name="HitBox" parent="." instance=ExtResource("2_a64bk")]
 collision_layer = 4
