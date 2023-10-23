@@ -16,6 +16,7 @@ extends Node
 @onready var play_body = $Player/Body
 @onready var play_camera = $Player/Body/Camera
 @onready var play_hp = $Player/Body/Camera/HP
+@onready var level_animation = $Player/GUI/Control/Level/AnimationPlayer
 
 var map_list = []
 
@@ -41,6 +42,7 @@ func _physics_process(delta):
 		$Map/Door.close()
 		$Map/Door2.open()
 		$Map.door_2_lock = false
+
 "
 
 [sub_resource type="Environment" id="Environment_gdbnm"]
@@ -77,6 +79,11 @@ autoplay = true
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_gdbnm")
 
+[editable path="Map"]
+[editable path="Map/Wall/StaticBody2D/HitBox"]
+[editable path="Map/Wall/StaticBody2D2/HitBox"]
+[editable path="Map/Wall/StaticBody2D3/HitBox"]
+[editable path="Map/Wall/StaticBody2D4/HitBox"]
 [editable path="Player"]
 [editable path="Player/Body"]
 [editable path="Player/Body/HurtBox"]

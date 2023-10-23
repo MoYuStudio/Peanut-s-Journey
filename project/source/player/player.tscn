@@ -36,7 +36,7 @@ extends Node2D
 
 var level_switch = false
 @onready var level = $GUI/Control/Level
-@onready var level_animation = $GUI/Level/AnimationPlayer
+@onready var level_animation = $GUI/Control/Level/AnimationPlayer
 
 @onready var prize_draw = preload('res://source/object/prize_draw.tscn')
 
@@ -171,7 +171,6 @@ func _on_collect_area_area_entered(area):
 
 	if area.is_in_group('next_part'):
 		level_switch = true
-		level.text = str(int(level.text)+1)
 
 # 敌人检测区域信号
 func _on_enemy_detection_area_body_entered(body):
@@ -290,6 +289,7 @@ func _ready():
 	animation.play('animation')
 
 func _physics_process(delta):
+	text = str(Global.player_dict['map_level'])
 	var viewport_size = get_viewport_rect().size
 	var logo_size = get_rect().size
 	position.x = viewport_size.x/2 - logo_size.x/2

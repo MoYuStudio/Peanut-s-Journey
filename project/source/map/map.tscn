@@ -31,6 +31,8 @@ var level_base_time = 5
 var door_2_lock = true
 
 func _ready():
+	door_once = Global.player_dict['map_level']-1
+	level = Global.player_dict['map_level']
 	reset_map()
 	
 func _physics_process(delta):
@@ -42,6 +44,7 @@ func _physics_process(delta):
 		$Door.open()
 		door_switch = true
 		door_once += 1
+		
 		
 		
 
@@ -89,6 +92,7 @@ func _on_close_door2_area_entered(area):
 			reset_map()
 			door_2_lock = true
 			level += 1
+			Global.player_dict['map_level'] = level
 "
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bf0sd"]
