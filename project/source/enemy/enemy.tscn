@@ -119,7 +119,7 @@ position = Vector2(-18, 0)
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
 color = Color(0.917647, 0.678431, 0.929412, 1)
-polygon = PackedVector2Array(-18, -11, -18, 12, 0, 19, 19, 0, 0, -19)
+polygon = PackedVector2Array(-21, -11, -21, 12, 0, 28, 30, -1, 0, -26)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_3ay8f")
