@@ -242,6 +242,7 @@ theme = ExtResource("1_ngxqj")
 tab_alignment = 1
 
 [node name="状态" type="TabBar" parent="Panel/TabContainer"]
+visible = false
 layout_mode = 2
 script = SubResource("GDScript_y52n6")
 
@@ -308,7 +309,6 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="升级" type="TabBar" parent="Panel/TabContainer"]
-visible = false
 layout_mode = 2
 
 [node name="TabContainer" type="TabContainer" parent="Panel/TabContainer/升级"]
