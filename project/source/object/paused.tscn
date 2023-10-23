@@ -88,7 +88,7 @@ func _physics_process(delta):
 	ray_cast_level_label.text = 'Lv'+str(Global.player_dict['ray_cast_level'])
 	electric_field_level_label.text = 'Lv'+str(Global.player_dict['electric_field_level'])
 	
-	$Label.text = '升级所需(升级惩罚倍率'+str(upgrade_debuff)+')：'+str(upgrade_price)
+	$MarginContainer/Label.text = '升级所需(升级惩罚倍率'+str(upgrade_debuff)+')：'+str(upgrade_price)
 	
 func upgrade_fn(value,value_plus):
 	if Global.player_dict['money'] >= upgrade_price:
@@ -412,19 +412,25 @@ text = "升级"
 layout_mode = 2
 text = "升级"
 
-[node name="Label" type="Label" parent="Panel/TabContainer/升级/TabContainer/武器升级"]
+[node name="MarginContainer" type="MarginContainer" parent="Panel/TabContainer/升级/TabContainer/武器升级"]
 layout_mode = 0
-offset_left = 157.0
-offset_top = 1032.0
-offset_right = 956.0
-offset_bottom = 1157.0
-
-[node name="Label2" type="Label" parent="Panel/TabContainer/升级/TabContainer/武器升级"]
-layout_mode = 0
-offset_left = 2138.0
+offset_left = 121.0
 offset_top = 889.0
-offset_right = 2666.0
-offset_bottom = 1145.0
+offset_right = 161.0
+offset_bottom = 1014.0
+
+[node name="Label" type="Label" parent="Panel/TabContainer/升级/TabContainer/武器升级/MarginContainer"]
+layout_mode = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="Panel/TabContainer/升级/TabContainer/武器升级"]
+layout_mode = 0
+offset_left = 2184.0
+offset_top = 768.0
+offset_right = 2712.0
+offset_bottom = 1024.0
+
+[node name="Label2" type="Label" parent="Panel/TabContainer/升级/TabContainer/武器升级/MarginContainer2"]
+layout_mode = 2
 text = "左键释放激光
 空格构建冰墙"
 

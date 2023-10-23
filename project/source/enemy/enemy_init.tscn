@@ -135,7 +135,6 @@ shape = SubResource("CapsuleShape2D_e3hjc")
 
 [node name="AudioStreamPlayer2D" parent="HurtBox" index="2"]
 stream = ExtResource("4_t8ap3")
-bus = &"SFX"
 
 [node name="HitBox" parent="." instance=ExtResource("5_wukm4")]
 collision_layer = 2
