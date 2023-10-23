@@ -482,7 +482,6 @@ shape = SubResource("CapsuleShape2D_c6bq5")
 
 [node name="AudioStreamPlayer2D" parent="Body/HurtBox" index="2"]
 stream = ExtResource("7_hdkaj")
-bus = &"SFX"
 
 [node name="HitBox" parent="Body" instance=ExtResource("3_a75go")]
 rotation = 1.5708
@@ -529,6 +528,12 @@ visible = false
 
 [node name="ColorRect" parent="GUI/Paused" index="0"]
 color = Color(0, 0, 0, 0.25098)
+
+[node name="状态" parent="GUI/Paused/Panel/TabContainer" index="1"]
+visible = true
+
+[node name="升级" parent="GUI/Paused/Panel/TabContainer" index="2"]
+visible = false
 
 [node name="Label" parent="GUI/Paused/Panel/TabContainer/升级/TabContainer/武器升级" index="1"]
 offset_left = 0.0

@@ -251,9 +251,6 @@ position = Vector2(-1, -4488)
 [node name="Chest" parent="." instance=ExtResource("6_b5fh6")]
 position = Vector2(-7, -3318)
 
-[node name="Chest2" parent="." instance=ExtResource("6_b5fh6")]
-position = Vector2(999, -31)
-
 [editable path="Wall/StaticBody2D/HitBox"]
 [editable path="Wall/StaticBody2D2/HitBox"]
 [editable path="Wall/StaticBody2D3/HitBox"]

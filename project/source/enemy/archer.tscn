@@ -105,13 +105,13 @@ color = Color(1, 1, 1, 0.12549)
 turbulence_noise_strength = 20.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_edhxe"]
-radius = 94.3663
+radius = 50.0899
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_e53nk"]
-radius = 100.045
+radius = 54.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ebskx"]
-radius = 105.575
+radius = 52.0
 
 [node name="Archer" type="CharacterBody2D" groups=["boss"]]
 collision_layer = 20
@@ -136,10 +136,10 @@ position = Vector2(-18, 0)
 [node name="Polygon2D" type="Polygon2D" parent="."]
 scale = Vector2(0.630137, 1.55645)
 color = Color(0.984314, 0.254902, 0.329412, 1)
-polygon = PackedVector2Array(-30.1522, 14.1347, 46.0217, 11.5648, 200, 0, 46.0217, -13.4922, -30.1522, -14.7772, 0, 0)
+polygon = PackedVector2Array(-30.1522, 14.1347, 30.1522, 14.1347, 128.543, 0, 31.7391, -14.7772, -30.1522, -14.7772, 0, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(28, 0)
+position = Vector2(29, 0)
 shape = SubResource("CircleShape2D_edhxe")
 
 [node name="HurtBox" parent="." instance=ExtResource("3_k0pqb")]
@@ -148,7 +148,7 @@ collision_mask = 4
 hitbox_type = 1
 
 [node name="CollisionShape2D" parent="HurtBox" index="0"]
-position = Vector2(28, -2)
+position = Vector2(29, 0)
 shape = SubResource("CircleShape2D_e53nk")
 
 [node name="AudioStreamPlayer2D" parent="HurtBox" index="2"]

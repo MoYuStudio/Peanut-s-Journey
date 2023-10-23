@@ -61,6 +61,8 @@ var player_dict = {
 	# 剧情模式
 	'story_mode':false,
 	'movement_lock':false,
+	# 怪物乘数
+	'enemy_power':1,
 }
 
 # Steam variables
