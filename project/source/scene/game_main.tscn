@@ -21,8 +21,8 @@ var map_list = []
 
 func _ready():
 	pass
-
-func _physics_process(delta):
+	
+func _process(delta):
 	if map.door_switch == true:
 		play_camera.position = Vector2(map_door.position.x,map_door.position.y-250)
 		play_camera.rotation = map_door.rotation
@@ -32,6 +32,8 @@ func _physics_process(delta):
 		play_camera.rotation = play_body.rotation
 		map.door_switch = false
 		play_hp.visible = true
+
+func _physics_process(delta):
 	
 	if play.level_switch == true:
 		play_body.position = Vector2(0,5000)
