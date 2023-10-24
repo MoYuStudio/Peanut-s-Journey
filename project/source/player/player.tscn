@@ -87,7 +87,7 @@ func _physics_process(delta):
 	
 	if Global.player_dict['hp'] <= 0:
 		# get_tree().change_scene_to_file('res://source/scene/menu_gameover.tscn')
-		SceneTransition.change_scene('res://source/scene/menu_gameover.tscn')
+		SceneTransition.change_scene('black','res://source/scene/menu_gameover.tscn')
 
 	hp_bar.value = Global.player_dict['hp']
 	
@@ -528,24 +528,6 @@ visible = false
 
 [node name="ColorRect" parent="GUI/Paused" index="0"]
 color = Color(0, 0, 0, 0.25098)
-
-[node name="状态" parent="GUI/Paused/Panel/TabContainer" index="1"]
-visible = true
-
-[node name="升级" parent="GUI/Paused/Panel/TabContainer" index="2"]
-visible = false
-
-[node name="Label" parent="GUI/Paused/Panel/TabContainer/升级/TabContainer/武器升级" index="1"]
-offset_left = 0.0
-offset_top = 0.0
-offset_right = 799.0
-offset_bottom = 125.0
-
-[node name="Label2" parent="GUI/Paused/Panel/TabContainer/升级/TabContainer/武器升级" index="2"]
-offset_left = 0.0
-offset_top = 0.0
-offset_right = 528.0
-offset_bottom = 256.0
 
 [node name="VBoxContainer" parent="GUI/Paused/Panel/TabContainer/升级/TabContainer/车辆升级" index="0"]
 offset_left = 0.0

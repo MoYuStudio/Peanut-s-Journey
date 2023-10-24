@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cor157qmajir"]
+[gd_scene load_steps=16 format=3 uid="uid://cor157qmajir"]
 
 [ext_resource type="Texture2D" uid="uid://bexf5o5rkdmox" path="res://resource/image/blood_low.png" id="1_4o4o3"]
 [ext_resource type="AudioStream" uid="uid://co2qs7o2nute3" path="res://resource/sound/explosion_01.ogg" id="2_p1pmy"]
@@ -15,7 +15,14 @@ func _ready():
 	queue_free()
 "
 
+[sub_resource type="Curve" id="Curve_fnxll"]
+min_value = -360.0
+max_value = 360.0
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
 [sub_resource type="CurveTexture" id="CurveTexture_x2acx"]
+curve = SubResource("Curve_fnxll")
 
 [sub_resource type="Curve" id="Curve_q4fre"]
 min_value = -200.0

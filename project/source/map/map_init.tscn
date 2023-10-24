@@ -1,8 +1,9 @@
-[gd_scene load_steps=16 format=3 uid="uid://boorlk0l20e1p"]
+[gd_scene load_steps=17 format=3 uid="uid://boorlk0l20e1p"]
 
 [ext_resource type="Texture2D" uid="uid://8r1s6ng6iids" path="res://resource/image/light.png" id="1_ktyyc"]
 [ext_resource type="PackedScene" uid="uid://o84475elvy3" path="res://source/utility/hitbox.tscn" id="2_gvo62"]
 [ext_resource type="Theme" uid="uid://cwvilb81l6i31" path="res://resource/theme/moyu.tres" id="3_bstat"]
+[ext_resource type="AudioStream" uid="uid://pc87dt68agy" path="res://resource/music_TreeStarMoon_CC0PublicDomain/Blue State.mp3" id="4_3kq5j"]
 
 [sub_resource type="GDScript" id="GDScript_irsj4"]
 script/source = "
@@ -15,8 +16,8 @@ func _process(delta):
 		Global.player_dict['story_mode'] = false
 		Global.player_dict['movement_lock'] = false
 		Global.player_dict['bullet_level'] = 1
-		get_tree().change_scene_to_file('res://source/scene/game_main.tscn')
-		# SceneTransition.change_scene('res://source/scene/game_main.tscn')
+		# get_tree().change_scene_to_file('res://source/scene/game_main.tscn')
+		SceneTransition.change_scene('white','res://source/scene/game_main.tscn')
 "
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nj4wx"]
@@ -63,8 +64,9 @@ func _on_timer_timeout():
 	MusicPlayer.player.stream_paused = false
 	Global.player_dict['story_mode'] = false
 	Global.player_dict['movement_lock'] = false
-	Global.player_dict['bullet_level'] = 5
+	Global.player_dict['bullet_level'] = 1
 	get_tree().change_scene_to_file('res://source/scene/game_main.tscn')
+	SceneTransition.change_scene('white','res://source/scene/game_main.tscn')
 "
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wx7rr"]
@@ -112,7 +114,7 @@ polygon = PackedVector2Array(-8085.02, 12897.8, -2614.7, 14161.3, -2179.77, -148
 z_index = -10
 position = Vector2(11319, -86877)
 scale = Vector2(3.28959, 1.04992)
-polygon = PackedVector2Array(-6488.96, -13396.1, -5980.71, 5419.01, -424.308, 5417.19, -372.398, -13697.3)
+polygon = PackedVector2Array(-6488.96, -13396.1, -5980.71, 5419.01, -3592.85, 5419.46, -3440.85, 4983.24, -3288.86, 5419.46, -424.308, 5417.19, -372.398, -13697.3)
 
 [node name="Area2D" type="StaticBody2D" parent="."]
 collision_layer = 11
@@ -895,6 +897,12 @@ shape = SubResource("RectangleShape2D_jio2q")
 [node name="Timer" type="Timer" parent="Area2D3"]
 wait_time = 2.0
 one_shot = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_3kq5j")
+volume_db = -15.0
+autoplay = true
+bus = &"BGM"
 
 [connection signal="area_entered" from="Area2D2" to="Area2D2" method="_on_area_entered"]
 [connection signal="timeout" from="Area2D2/Timer" to="Area2D2" method="_on_timer_timeout"]
