@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://ivo77piqgdfv"]
+[gd_scene load_steps=5 format=3 uid="uid://ivo77piqgdfv"]
 
 [ext_resource type="PackedScene" uid="uid://bi6uykfg167sj" path="res://source/player/car.tscn" id="1_ldj6h"]
 [ext_resource type="Texture2D" uid="uid://dehg38xt8tidn" path="res://resource/image/car.png" id="2_mhcvl"]
@@ -109,6 +109,37 @@ func control():
 
 "
 
+[sub_resource type="GDScript" id="GDScript_j35w5"]
+script/source = "
+extends Camera2D
+
+@export var noise : FastNoiseLite = FastNoiseLite.new()
+@export var trauma : float = 0.0
+@export var max_X : int = 150
+@export var max_Y : int = 150
+@export var max_R : int = 25
+@export var time_scale : int = 150
+@export var decay : float = 0.6
+
+var time : float = 0
+
+func _ready():
+	pass
+
+func add_trauma(trauma_in):
+	trauma = clamp(trauma + trauma_in, 0.0, 1.0)
+
+func _process(delta):
+	time += delta
+	var shake = pow(trauma, 2)
+	var offset_x = noise.get_noise_3d(time * time_scale, 0, 0) * max_X * shake
+	var offset_y = noise.get_noise_3d(0, time * time_scale, 0) * max_Y * shake
+	var rotation_degrees = noise.get_noise_3d(0, 0, time * time_scale) * max_R * shake
+
+	if trauma > 0:
+		trauma = clamp(trauma - (delta * decay), 0.0, 1.0)
+"
+
 [node name="CarPlayer" groups=["player"] instance=ExtResource("1_ldj6h")]
 collision_layer = 7
 collision_mask = 7
@@ -119,6 +150,7 @@ scale = Vector2(0.5, 0.5)
 ignore_rotation = false
 position_smoothing_speed = 3.0
 rotation_smoothing_speed = 3.0
+script = SubResource("GDScript_j35w5")
 
 [node name="Sprite" parent="." index="2"]
 scale = Vector2(6, 6)

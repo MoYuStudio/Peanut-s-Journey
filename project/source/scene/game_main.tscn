@@ -21,6 +21,8 @@ extends Node
 var map_list = []
 
 func _ready():
+	Global.player_dict['story_mode'] = false
+	Global.player_dict['movement_lock'] = false
 	pass
 	
 func _process(delta):
