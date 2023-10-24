@@ -113,31 +113,16 @@ func control():
 script/source = "
 extends Camera2D
 
-@export var noise : FastNoiseLite = FastNoiseLite.new()
-@export var trauma : float = 0.0
-@export var max_X : int = 150
-@export var max_Y : int = 150
-@export var max_R : int = 25
-@export var time_scale : int = 150
-@export var decay : float = 0.6
+var length = 3  # 总长度
+var shake_range = 9  # 抖动范围
+var freq = 0.01  # 抖动频率
 
-var time : float = 0
-
-func _ready():
-	pass
-
-func add_trauma(trauma_in):
-	trauma = clamp(trauma + trauma_in, 0.0, 1.0)
-
-func _process(delta):
-	time += delta
-	var shake = pow(trauma, 2)
-	var offset_x = noise.get_noise_3d(time * time_scale, 0, 0) * max_X * shake
-	var offset_y = noise.get_noise_3d(0, time * time_scale, 0) * max_Y * shake
-	var rotation_degrees = noise.get_noise_3d(0, 0, time * time_scale) * max_R * shake
-
-	if trauma > 0:
-		trauma = clamp(trauma - (delta * decay), 0.0, 1.0)
+func shake_screen():
+	for i in length:
+		offset.x = randf_range(-shake_range, shake_range)
+		offset.y = randf_range(-shake_range, shake_range)
+		await get_tree().create_timer(freq).timeout
+	offset = Vector2.ZERO
 "
 
 [node name="CarPlayer" groups=["player"] instance=ExtResource("1_ldj6h")]

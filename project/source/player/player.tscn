@@ -144,6 +144,7 @@ func get_random_target():
 # 受伤箱信号
 func _on_hurt_box_hurt(damage, _angle, _knock_back):
 	Global.player_dict['hp'] -= damage
+	camera.shake_screen()
 	
 func _on_collect_area_area_entered(area):
 	if area.is_in_group('loot'):
