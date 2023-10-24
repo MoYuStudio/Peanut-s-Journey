@@ -131,8 +131,7 @@ func _ready():
 	
 	# save_data('game_save',save_dict)
 	# print(load_data('game_save'))
-	
-	
+
 	
 	pass
 
