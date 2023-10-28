@@ -26,7 +26,7 @@ var door_once = 0
 var door_switch = false
 
 var level = 1
-var level_base_time = 15
+var level_base_time = 1
 
 var door_2_lock = true
 
