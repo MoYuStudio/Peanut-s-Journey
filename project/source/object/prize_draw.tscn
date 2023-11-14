@@ -58,6 +58,7 @@ bus = &"SFX"
 
 [node name="Button" type="Button" parent="."]
 visible = false
+layout_mode = 0
 offset_left = 1810.0
 offset_top = 1623.0
 offset_right = 2149.0

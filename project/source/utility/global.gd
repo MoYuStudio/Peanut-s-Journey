@@ -42,17 +42,6 @@ var player_dict = {
 	'ice_wall_level':0,
 	'ray_cast_level':0,
 	'electric_field_level':0,
-	# 符文
-	'rune_0':10,
-	'rune_1':10,
-	'rune_2':10,
-	'rune_3':10,
-	'rune_4':10,
-	'rune_5':10,
-	'rune_6':10,
-	'rune_7':10,
-	'rune_8':10,
-	'rune_9':10,
 	# 统计信息
 	'total_money':0,
 	'total_hp':0,
