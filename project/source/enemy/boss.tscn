@@ -28,12 +28,21 @@ var death_coin = preload('res://source/loot/coin.tscn')
 var fire_ball_level = 1
 var fire_ball_attack_speed = 9 # 0.1
 
+@onready var arrow = preload('res://source/attack/arrow.tscn')
+@onready var arrow_timer = $Attack/ArrowTimer
+var arrow_level = 1
+var arrow_attack_speed = 0.6 # 0.1
+
 # var screen_size
 
 func _ready():
 	fire_ball_timer.wait_time = fire_ball_attack_speed
 	if fire_ball_timer.is_stopped():
 		fire_ball_timer.start()
+		
+	arrow_timer.wait_time = arrow_attack_speed
+	if arrow_timer.is_stopped():
+		arrow_timer.start()
 
 func _physics_process(_delta):
 	knock_back = knock_back.move_toward(Vector2.ZERO, knock_back_recovery)
@@ -78,6 +87,18 @@ func _on_fire_ball_timer_timeout():
 	fire_ball_attack.look_at(player.position)
 	# gun.look_at(get_global_mouse_position())
 	get_parent().add_child(fire_ball_attack)
+	
+func _on_arrow_timer_timeout():
+	# if len(enemy_close) > 1:
+	var arrow_attack = arrow.instantiate()
+	# bullet_attack.target = get_local_mouse_position()# get_random_target()
+	arrow_attack.level = arrow_level
+	arrow_attack.position = position
+	# bullet_attack.rotation = gun.rotation + 44
+	arrow_attack.target = player.position # body.get_global_mouse_position()
+	arrow_attack.look_at(player.position)
+	# gun.look_at(get_global_mouse_position())
+	get_parent().add_child(arrow_attack)
 "
 
 [sub_resource type="Curve" id="Curve_0xrda"]
@@ -171,8 +192,12 @@ bus = &"SFX"
 [node name="FireBallTimer" type="Timer" parent="Attack"]
 wait_time = 9.0
 
+[node name="ArrowTimer" type="Timer" parent="Attack"]
+wait_time = 0.3
+
 [connection signal="hurt" from="HurtBox" to="." method="_on_hurt_box_hurt"]
 [connection signal="timeout" from="Attack/FireBallTimer" to="." method="_on_fire_ball_timer_timeout"]
+[connection signal="timeout" from="Attack/ArrowTimer" to="." method="_on_arrow_timer_timeout"]
 
 [editable path="HurtBox"]
 [editable path="HitBox"]
